@@ -1,11 +1,18 @@
 {
   // wrangler.jsonc — Santana & Cía Abogados
-  // Cloudflare Pages — https://www.santanaycia.cl
+  // Cloudflare Workers + Assets — https://www.santanaycia.cl
 
   "name": "santanaycia",
   "compatibility_date": "2026-04-19",
-  "pages_build_output_dir": ".",
 
-  // Dominio personalizado — configúralo también en el dashboard de Cloudflare Pages
-  // "routes": [{ "pattern": "santanaycia.cl/*", "zone_name": "santanaycia.cl" }]
+  // Sirve los archivos estáticos directamente desde la carpeta raíz
+  "assets": {
+    "directory": "."
+  },
+
+  // Rutas — activa esto DESPUÉS de verificar que el Worker funciona
+  // "routes": [
+  //   { "pattern": "santanaycia.cl/*", "zone_name": "santanaycia.cl" },
+  //   { "pattern": "www.santanaycia.cl/*", "zone_name": "santanaycia.cl" }
+  // ]
 }
