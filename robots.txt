@@ -1,0 +1,30 @@
+# robots.txt — santanaycia.cl
+# Santana & Cía Abogados
+
+User-agent: *
+Allow: /
+
+# Bloquear carpetas de sistema si las hubiera
+Disallow: /cdn-cgi/
+
+# Crawlers de IA — permitir para indexación y citación
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.santanaycia.cl/sitemap.xml
