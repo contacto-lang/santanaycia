@@ -1,0 +1,11 @@
+{
+  // wrangler.jsonc — Santana & Cía Abogados
+  // Cloudflare Pages — https://www.santanaycia.cl
+
+  "name": "santanaycia",
+  "compatibility_date": "2026-04-19",
+  "pages_build_output_dir": ".",
+
+  // Dominio personalizado — configúralo también en el dashboard de Cloudflare Pages
+  // "routes": [{ "pattern": "santanaycia.cl/*", "zone_name": "santanaycia.cl" }]
+}
