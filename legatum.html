@@ -1019,7 +1019,7 @@
     <div class="footer-inner">
       <div class="footer-logo">
         Santana &amp; Cía
-        <span>Abogados · Santiago, Chile · <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></span>
+        <span>Abogados · Santiago, Chile · <a href="mailto:contacto@santanaycia.cl" style="color: inherit; text-decoration: underline;">contacto@santanaycia.cl</a></span>
       </div>
       <p class="footer-note">
         © 2026 Santana &amp; Cía Abogados. Herramienta orientativa.<br>
@@ -1121,7 +1121,7 @@
       if (tieneConyuge) docs += `<div class="checklist-item"><span class="check-dot"></span>Certificado de matrimonio</div>`;
       if (numHijos > 0) docs += `<div class="checklist-item"><span class="check-dot"></span>Cert. de nacimiento de cada hijo</div>`;
       if (raiz > 0)     docs += `<div class="checklist-item"><span class="check-dot"></span>Certificado de avalúo fiscal</div>`;
-      docs += `<div class="checklist-item"><span class="check-dot"></span>RUT del causante (Registro Civil)</div>`;
+     
       document.getElementById('checklist').innerHTML = docs;
 
       updateChart([cConyuge, cHijosTotal, vMejora, vLibre]);
