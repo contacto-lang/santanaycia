@@ -1346,7 +1346,7 @@
         © 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.<br>
         <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a> &nbsp;·&nbsp;
         <a href="https://www.santanaycia.cl">www.santanaycia.cl</a><br>
-        <span style="opacity:0.5;">Imagen: <a href="https://www.pexels.com/photo/5669619/" target="_blank" rel="noopener">Sora Shimazaki / Pexels</a></span>
+        
       </p>
     </div>
   </footer>
@@ -1364,7 +1364,7 @@
       });
     });
 
-    /* ── Archivos ── */
+    /* ── Mostrar archivos seleccionados ── */
     function mostrarArchivos(input) {
       const list = document.getElementById('file-list');
       list.innerHTML = '';
@@ -1388,27 +1388,122 @@
       mostrarArchivos(fi);
     });
 
-    /* ── Formulario ── */
-    document.getElementById('contacto-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nombre = document.getElementById('nombre').value.trim();
-      const email  = document.getElementById('email').value.trim();
-      const materia = document.getElementById('materia').value;
-      const relato = document.getElementById('relato').value.trim();
-      const consent = document.getElementById('consentimiento').checked;
-      const veracidad = document.getElementById('veracidad').checked;
-      const errorMsg = document.getElementById('error-msg');
+    /* ── Subir archivo a GoFile y retornar link ── */
+    async function subirArchivo(file) {
+      const serverRes = await fetch('https://api.gofile.io/servers');
+      const serverData = await serverRes.json();
+      const server = serverData.data.servers[0].name;
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch(`https://${server}.gofile.io/uploadFile`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (data.status !== 'ok') throw new Error('Error subiendo ' + file.name);
+      return `${file.name}: ${data.data.downloadPage}`;
+    }
 
+    /* ── Botón: estado visual ── */
+    function setBtnState(text, disabled) {
+      const btn = document.querySelector('.form-submit');
+      btn.textContent = text;
+      btn.disabled = disabled;
+    }
+
+    /* ── Mensaje de estado ── */
+    function setStatus(msg, color) {
+      let el = document.getElementById('form-status-msg');
+      if (!el) {
+        el = document.createElement('p');
+        el.id = 'form-status-msg';
+        el.style.cssText = 'font-size:12px;letter-spacing:0.05em;margin-top:0.75rem;text-align:center;';
+        document.querySelector('.form-submit').insertAdjacentElement('afterend', el);
+      }
+      el.style.color = color;
+      el.textContent = msg;
+    }
+
+    /* ── Envío principal ── */
+    document.getElementById('contacto-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const nombre    = document.getElementById('nombre').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const materia   = document.getElementById('materia').value;
+      const relato    = document.getElementById('relato').value.trim();
+      const consent   = document.getElementById('consentimiento').checked;
+      const veracidad = document.getElementById('veracidad').checked;
+      const errorMsg  = document.getElementById('error-msg');
+      const files     = document.getElementById('archivos').files;
+
+      /* Validación */
       if (!nombre || !email || !materia || !relato || !consent || !veracidad) {
         errorMsg.style.display = 'block';
         return;
       }
       errorMsg.style.display = 'none';
 
-      /* Aquí iría el envío real (fetch a backend / Formspree / etc.) */
-      /* Por ahora simula el éxito */
-      this.style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
+      setBtnState('Enviando…', true);
+
+      /* 1. Subir archivos a GoFile si los hay */
+      let linksArchivos = '';
+      if (files.length > 0) {
+        setBtnState(`Subiendo ${files.length} archivo(s)…`, true);
+        setStatus('Subiendo documentos adjuntos…', 'rgba(213,181,144,0.7)');
+        try {
+          const links = await Promise.all(Array.from(files).map(subirArchivo));
+          linksArchivos = links.join('\n');
+        } catch {
+          setBtnState('Enviar consulta confidencial →', false);
+          setStatus('Error al subir archivos. Intente de nuevo o envíe sin adjuntos.', '#d5a090');
+          return;
+        }
+      }
+
+      /* 2. Construir payload para FormSubmit */
+      setBtnState('Enviando consulta…', true);
+      setStatus('Enviando…', 'rgba(213,181,144,0.7)');
+
+      const payload = {
+        nombre,
+        email,
+        telefono:  document.getElementById('telefono').value.trim() || '—',
+        region:    document.getElementById('region').value || '—',
+        materia,
+        relato,
+        archivos:  linksArchivos || 'Sin adjuntos',
+        _subject:  'Nueva consulta — Santana & Cía Abogados',
+        _template: 'table',
+        _captcha:  'false'
+      };
+
+      /* 3. Enviar a FormSubmit via fetch (AJAX) */
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success === 'true' || data.success === true) {
+          /* Éxito: mostrar pantalla de confirmación */
+          document.getElementById('contacto-form').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          throw new Error('FormSubmit error');
+        }
+      } catch {
+        setBtnState('Enviar consulta confidencial →', false);
+        setStatus(
+          'Error al enviar. Escríbanos directamente a contacto@santanaycia.cl',
+          '#d5a090'
+        );
+      }
     });
 
     /* ── Animaciones scroll ── */
