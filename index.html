@@ -9,15 +9,18 @@
        SEO CLÁSICO
   ═══════════════════════════════════════════ -->
   <title>Santana &amp; Cía | Abogados Pensión de Alimentos, Divorcio y Herencias — Santiago, Chile</title>
-  <meta name="description" content="Abogados especialistas en pensión de alimentos, divorcio, tuición, herencias y violencia intrafamiliar en Chile. Fijación, aumento y apremio por no pago de pensión de alimentos. Consulta confidencial sin costo. contacto@santanaycia.cl">
+  <meta name="description" content="Abogados especialistas en pensión de alimentos, divorcio, tuición, herencias y violencia intrafamiliar en Chile. Fijación, aumento y apremio por no pago de pensión de alimentos. Atendemos en todo Chile vía formulario. Primera evaluación sin costo. contacto@santanaycia.cl">
+
   <meta name="keywords" content="abogado pensión de alimentos chile, abogado alimentos santiago, aumentar pensión de alimentos chile, cobrar pensión de alimentos atrasada, apremio pensión de alimentos, no paga pensión de alimentos chile, demanda alimentos chile, abogado tuición chile, abogado cuidado personal chile, abogado divorcio santiago chile, abogado divorcio mutuo acuerdo, abogado herencias chile, posesión efectiva chile, abogado violencia intrafamiliar chile, medidas cautelares violencia intrafamiliar, abogado familia santiago, estudio jurídico familia chile, santana y cia abogados, santanaycia.cl, contacto@santanaycia.cl">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="bingbot" content="index, follow">
   <meta name="Googlebot-News" content="index, follow">
-  <meta name="author" content="Santana &amp; Cía Abogados">
-  <meta name="publisher" content="Santana &amp; Cía Abogados">
-  <meta name="copyright" content="Santana &amp; Cía Abogados 2026">
+  <meta name="author" content="Santana">
+<meta name="publisher" content="Santana &amp; Cía Abogados">
+<meta name="copyright" content="Santana &amp; Cía Abogados 2026">
+<meta property="profile:last_name" content="Santana"/>
+<meta name="theme-color" content="#2c2520"/>
   <meta name="reply-to" content="contacto@santanaycia.cl">
   <meta name="contact" content="contacto@santanaycia.cl">
   <meta name="language" content="Spanish">
@@ -109,17 +112,25 @@
 
   <!-- WebSite -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://www.santanaycia.cl/#website",
-    "name": "Santana & Cía Abogados",
-    "url": "https://www.santanaycia.cl",
-    "description": "Estudio jurídico especializado en pensión de alimentos, derecho de familia y sucesiones en Chile.",
-    "inLanguage": "es-CL",
-    "publisher": { "@id": "https://www.santanaycia.cl/#organization" }
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.santanaycia.cl/#website",
+  "name": "Santana & Cía Abogados",
+  "url": "https://www.santanaycia.cl",
+  "description": "Estudio jurídico especializado en pensión de alimentos, derecho de familia y sucesiones en Chile.",
+  "inLanguage": "es-CL",
+  "publisher": { "@id": "https://www.santanaycia.cl/#organization" },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.santanaycia.cl/?s={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
   }
-  </script>
+}
+</script>
 
   <!-- LegalService / Organization -->
   <script type="application/ld+json">
@@ -153,6 +164,20 @@
     },
     "areaServed": { "@type": "Country", "name": "Chile" },
     "priceRange": "$$",
+"founder": {
+  "@type": "Person",
+  "name": "Santana",
+  "jobTitle": "Abogado Fundador",
+  "knowsAbout": [
+    "Pensión de Alimentos Chile",
+    "Apremio por No Pago de Alimentos",
+    "Divorcio Chile",
+    "Tuición y Cuidado Personal",
+    "Herencias y Posesión Efectiva",
+    "Violencia Intrafamiliar Chile",
+    "Derecho de Familia Chile"
+  ]
+},
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Servicios Legales de Familia y Sucesiones",
@@ -1508,16 +1533,36 @@
     });
 
     /* ── Animaciones scroll ── */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+   function initFadeIn() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 2500);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFadeIn);
+} else {
+  initFadeIn();
+}
+
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }
+});
   </script>
 
 </body>
