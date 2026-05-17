@@ -744,7 +744,8 @@
       ts: Date.now(),
     })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 
-    const base = window.location.href.replace('panel-abogado.html', '').replace(/\/?$/, '');
+    // Siempre construye el link desde la raíz del dominio, sin importar desde dónde se sirve el panel
+    const base = 'https://santanaycia.cl';
     linkGenerado = `${base}/firma-cliente.html?c=${token}`;
 
     sp.classList.remove('show');
