@@ -1492,6 +1492,9 @@
       setStatus('Enviando…', 'rgba(213,181,144,0.7)');
 
       const payload = {
+access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
+  subject:    'Nueva consulta — Santana & Cía Abogados',
+  from_name:  'Santana & Cía Web',
         nombre,
         email,
         telefono:  document.getElementById('telefono').value.trim() || '—',
@@ -1499,14 +1502,12 @@
         materia,
         relato,
         archivos:  linksArchivos || 'Sin adjuntos',
-        _subject:  'Nueva consulta — Santana & Cía Abogados',
-        _template: 'table',
-        _captcha:  'false'
+      
       };
 
       /* 3. Enviar a FormSubmit via fetch (AJAX) */
       try {
-        const res = await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1516,7 +1517,7 @@
         });
         const data = await res.json();
 
-        if (data.success === 'true' || data.success === true) {
+        if (data.success === true) {
           /* Éxito: mostrar pantalla de confirmación */
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
