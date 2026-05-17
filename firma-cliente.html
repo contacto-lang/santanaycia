@@ -822,7 +822,7 @@
       spinner.classList.add('show');
 
       // ── Llama al backend real para generar y enviar el OTP ──
-      const BACKEND = 'https://santana-contratos.vercel.app'; // ← reemplaza con tu URL de Vercel
+      const BACKEND = 'https://santana-contratos.vercel.app';
       try {
         const resp = await fetch(`${BACKEND}/api/enviar`, {
           method: 'POST',
@@ -952,13 +952,13 @@
     ════════════════════════════ */
     async function registrarFirma() {
       try {
-        await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+        await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            _subject:    `✅ Contrato firmado ${datos.num} — ${datos.nombre}`,
-            _template:   'table',
-            _captcha:    'false',
+            access_key:   'd7e35043-05c0-4a26-9565-2c55b0a024fa',
+            subject:      `✅ Contrato firmado ${datos.num} — ${datos.nombre}`,
+            from_name:    'Santana & Cía — Firma de contratos',
             contrato_num: datos.num,
             nombre:       datos.nombre,
             rut:          datos.rut || '—',
@@ -966,7 +966,8 @@
             celular:      datos.celular || '—',
             domicilio:    [datos.domicilio, datos.ciudad, datos.region].filter(Boolean).join(', ') || '—',
             servicio:     datos.servicio,
-            honorarios:   `$${parseInt(datos.honorarios).toLocaleString('es-CL')} CLP`,
+            honorarios:   `$${parseInt(datos.honorarios).toLocaleString('es-CL')} ${datos.moneda}`,
+            forma_pago:   datos.forma_pago,
             firma_tipo:   'Firma Electrónica Simple — Ley 19.799',
             verificacion: 'OTP por correo electrónico',
             hash_doc:     simpleHash(datos.num + datos.correo),
