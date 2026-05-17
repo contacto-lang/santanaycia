@@ -595,7 +595,6 @@
     let datos = null;        // datos decodificados del token
     let currentView = null;
     let contratoLeido = false;
-    let otpCode = '';
     let otpTimerInterval = null;
 
     /* ════════════════════════════
@@ -815,13 +814,14 @@
     /* ════════════════════════════
        OTP — ENVÍO
     ════════════════════════════ */
+    let otpToken = ''; // token devuelto por /api/enviar, necesario para /api/verificar
+
     async function enviarOtp(reenvio = false) {
       const btn     = document.getElementById('btn-enviar-otp');
       const spinner = document.getElementById('spinner-enviar');
       btn.disabled = true;
       spinner.classList.add('show');
 
-      // ── Llama al backend real para generar y enviar el OTP ──
       const BACKEND = 'https://santana-contratos.vercel.app';
       try {
         const resp = await fetch(`${BACKEND}/api/enviar`, {
@@ -835,21 +835,23 @@
         });
         const r = await resp.json();
         if (!r.ok) throw new Error(r.error || 'error_envio');
+        otpToken = r.token || ''; // guardar el token HMAC para verificación
       } catch (e) {
-        document.getElementById('spinner-enviar').classList.remove('show');
-        document.getElementById('btn-enviar-otp').disabled = false;
-        document.getElementById('btn-enviar-otp').textContent = 'Error al enviar. Intente nuevamente.';
+        spinner.classList.remove('show');
+        btn.disabled = false;
+        btn.textContent = 'Error al enviar. Intente nuevamente.';
+        btn.style.background = '';
         console.error('[OTP] Error al enviar:', e);
         return;
       }
 
-      await new Promise(r => setTimeout(r, 1200));
       spinner.classList.remove('show');
-      btn.textContent = reenvio ? 'Código reenviado ✓' : 'Código enviado ✓';
+      btn.textContent = reenvio ? '✓ Código reenviado' : '✓ Código enviado';
       btn.style.background = 'var(--success)';
 
       document.getElementById('otp-code-group').classList.add('show');
       document.querySelectorAll('.otp-digit').forEach(d => { d.value = ''; d.className = 'otp-digit'; });
+      document.getElementById('btn-verificar').disabled = true;
       document.querySelectorAll('.otp-digit')[0].focus();
       iniciarTimer();
     }
@@ -880,21 +882,19 @@
        OTP — VERIFICACIÓN
     ════════════════════════════ */
     async function verificarOtp() {
-      const digits   = Array.from(document.querySelectorAll('.otp-digit'));
+      const digits    = Array.from(document.querySelectorAll('.otp-digit'));
       const ingresado = digits.map(d => d.value).join('');
       const err       = document.getElementById('err-3');
 
-      if (ingresado.length < 6) { err.classList.add('show'); return; }
+      if (ingresado.length < 6) { err.textContent = 'Ingrese el código completo de 6 dígitos.'; err.classList.add('show'); return; }
+      if (!otpToken)             { err.textContent = 'Primero envíe el código a su correo.';     err.classList.add('show'); return; }
 
       const btn     = document.getElementById('btn-verificar');
       const spinner = document.getElementById('spinner-verificar');
       btn.disabled = true;
       spinner.classList.add('show');
 
-      await new Promise(r => setTimeout(r, 1000));
-
-      // ── Verifica contra el backend real ──
-      const BACKEND = 'https://santana-contratos.vercel.app'; // ← mismo que en enviarOtp
+      const BACKEND = 'https://santana-contratos.vercel.app';
       try {
         const resp = await fetch(`${BACKEND}/api/verificar`, {
           method: 'POST',
@@ -902,6 +902,7 @@
           body: JSON.stringify({
             correo:       datos.correo,
             codigo:       ingresado,
+            token:        otpToken,
             contrato_num: datos.num,
             nombre:       datos.nombre,
             rut:          datos.rut,
@@ -917,20 +918,20 @@
         const r = await resp.json();
         if (!r.ok) {
           const mensajes = {
-            expirado:   'El código expiró. Solicite uno nuevo.',
-            incorrecto: 'Código incorrecto. Verifique e intente de nuevo.',
+            expirado:   'El código expiró (10 minutos). Solicite uno nuevo.',
+            incorrecto: 'Código incorrecto. Revise el correo e intente de nuevo.',
             bloqueado:  'Demasiados intentos. Solicite un nuevo código.',
+            invalido:   'Sesión inválida. Solicite un nuevo código.',
           };
           throw new Error(mensajes[r.motivo] || 'Error al verificar. Intente nuevamente.');
         }
       } catch (e) {
-        document.getElementById('spinner-verificar').classList.remove('show');
-        document.getElementById('btn-verificar').disabled = false;
-        document.querySelectorAll('.otp-digit').forEach(d => d.classList.add('error-d'));
-        const err3 = document.getElementById('err-3');
-        err3.textContent = e.message;
-        err3.classList.add('show');
-        setTimeout(() => document.querySelectorAll('.otp-digit').forEach(d => d.classList.remove('error-d')), 1500);
+        spinner.classList.remove('show');
+        btn.disabled = false;
+        digits.forEach(d => d.classList.add('error-d'));
+        err.textContent = e.message;
+        err.classList.add('show');
+        setTimeout(() => digits.forEach(d => d.classList.remove('error-d')), 1500);
         return;
       }
 
