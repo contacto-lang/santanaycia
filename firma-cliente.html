@@ -822,7 +822,7 @@
       spinner.classList.add('show');
 
       // ── Llama al backend real para generar y enviar el OTP ──
-      const BACKEND = 'https://TU-PROYECTO.vercel.app'; // ← reemplaza con tu URL de Vercel
+      const BACKEND = 'https://santana-contratos.vercel.app'; // ← reemplaza con tu URL de Vercel
       try {
         const resp = await fetch(`${BACKEND}/api/enviar`, {
           method: 'POST',
@@ -894,7 +894,7 @@
       await new Promise(r => setTimeout(r, 1000));
 
       // ── Verifica contra el backend real ──
-      const BACKEND = 'https://TU-PROYECTO.vercel.app'; // ← mismo que en enviarOtp
+      const BACKEND = 'https://santana-contratos.vercel.app'; // ← mismo que en enviarOtp
       try {
         const resp = await fetch(`${BACKEND}/api/verificar`, {
           method: 'POST',
