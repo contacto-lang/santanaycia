@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honorarios | Santana & Cía Abogados</title>
+
+  <meta name="description" content="Honorarios referenciales de Santana & Cía Abogados. Transparencia en cada servicio jurídico.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2c2520">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:    #f5f0e8;
+      --cream-d:  #ede5d5;
+      --sand:     #d9cdb8;
+      --terra:    #8b5e3c;
+      --terra-d:  #6b4528;
+      --charcoal: #2c2520;
+      --muted:    #7a6e64;
+      --white:    #fdfaf5;
+      --border:   rgba(139,94,60,0.15);
+      --gold:     #d5b590;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .top-logo {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .top-logo a {
+      text-decoration: none;
+    }
+
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .logo-sub {
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--terra);
+    }
+
+    .section-tag {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terra);
+      font-weight: 400;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 0.5px;
+      background: var(--terra);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.02;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terra);
+    }
+
+    .section-lead {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 620px;
+    }
+
+    .hon-wrap {
+      border: 0.5px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+    }
+
+    .hon-thead {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 0.8rem 1.75rem;
+      gap: 1rem;
+    }
+
+    .hon-thead-l,
+    .hon-thead-r {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .hon-thead-l {
+      color: rgba(213,181,144,0.38);
+    }
+
+    .hon-thead-r {
+      color: rgba(213,181,144,0.28);
+      text-align: right;
+    }
+
+    .hon-cat {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--terra);
+      opacity: 0.6;
+      padding: 0.65rem 1.75rem;
+      background: rgba(139,94,60,0.04);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .hon-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 1.4rem 1.75rem;
+      border-bottom: 0.5px solid var(--border);
+      background: var(--white);
+      transition: background 0.2s ease;
+    }
+
+    .hon-row:last-child {
+      border-bottom: none;
+    }
+
+    .hon-row:hover {
+      background: var(--cream);
+    }
+
+    .hon-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .hon-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    .hon-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-top: 6px;
+    }
+
+    .hon-note::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 0.5px;
+      background: var(--muted);
+      opacity: 0.5;
+    }
+
+    .hon-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--terra);
+      white-space: nowrap;
+      text-align: right;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .hon-price small {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .hon-price.--muted {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .hon-price.--uf {
+      color: var(--terra-d);
+    }
+
+    .hon-price.--inc {
+      font-size: 14px;
+      color: rgba(139,94,60,0.5);
+    }
+
+    .hon-conditions {
+      background: var(--cream-d);
+      border: 0.5px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem 1.75rem;
+      margin-top: 2rem;
+    }
+
+    .hon-conditions-title {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .hon-cond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem 2rem;
+    }
+
+    .hon-cond-item {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .hon-cond-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--terra);
+      opacity: 0.38;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    .hon-cond-body strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .hon-cond-body p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer-mini {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(44,37,32,0.45);
+      line-height: 1.8;
+    }
+
+    .footer-mini a {
+      color: var(--terra);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .logo-main {
+        font-size: 34px;
+      }
+
+      .hon-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .hon-price {
+        text-align: left;
+      }
+
+      .hon-cond-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <div class="section-inner">
+
+    <div class="top-logo">
+      <a href="https://www.santanaycia.cl">
+        <div class="logo-main">Santana &amp; Cía</div>
+        <div class="logo-sub">Abogados · Chile</div>
+      </a>
+    </div>
+
+    <span class="section-tag">Honorarios</span>
+
+    <h1 class="section-title">
+      Transparencia<br>
+      en cada <em>cobro</em>
+    </h1>
+
+    <p class="section-lead">
+      Antes de comprometerse, conozca el valor del servicio. Los rangos son referenciales; cada caso se evalúa individualmente antes de fijar honorarios definitivos.
+    </p>
+ <div class="hon-wrap fade-in">
+
+        <div class="hon-thead">
+          <span class="hon-thead-l">Servicio</span>
+          <span class="hon-thead-r">Valor referencial</span>
+        </div>
+
+        <!-- CONSULTA -->
+        <div class="hon-cat">Consulta y evaluación</div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Evaluación inicial del caso</div>
+            <div class="hon-desc">Análisis estratégico por un abogado del estudio: revisión de antecedentes, opciones legales y propuesta de ruta de acción. El valor se descuenta si se contrata el servicio.</div>
+          </div>
+          <div class="hon-price --uf">UF 1,5<small>descontable</small></div>
+        </div>
+
+        <!-- FAMILIA -->
+        <div class="hon-cat">Derecho de Familia</div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Divorcio de Mutuo Acuerdo — Plan Preferente</div>
+            <div class="hon-desc">Para casos simplificados sin hijos ni bienes comunes relevantes, bajo condiciones estructurales del estudio.</div>
+          </div>
+          <div class="hon-price">$130.000<small>valor único</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Divorcio de Mutuo Acuerdo — Tradicional</div>
+            <div class="hon-desc">Acuerdo completo de relaciones mutuas, compensación económica si aplica, y patrocinio de ambos cónyuges hasta sentencia de primera instancia.</div>
+            <div class="hon-note">Mercado: $300.000 – $1.000.000</div>
+          </div>
+          <div class="hon-price">$300.000<small>valor único</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Divorcio Unilateral</div>
+            <div class="hon-desc">Término del vínculo matrimonial sin acuerdo del cónyuge. Patrocinio en todas las audiencias hasta sentencia.</div>
+            <div class="hon-note">Mercado: desde $480.000</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según complejidad</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Pensión de Alimentos — Fijación</div>
+            <div class="hon-desc">Demanda para establecer la pensión del alimentario. Honorario calculado sobre la pensión efectivamente obtenida, con piso mínimo garantizado.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 1–3 meses de pensión obtenida (mín. 15 UF)</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>mín. 15 UF</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Pensión de Alimentos — Aumento o Rebaja</div>
+            <div class="hon-desc">Modificación judicial de la pensión vigente por cambio en las circunstancias económicas del alimentante o en las necesidades del alimentario.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según caso</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Apremio y Cobro de Deuda de Alimentos</div>
+            <div class="hon-desc">Arresto nocturno, retención de fondos previsionales y otras medidas de apremio por pensiones impagas. Gestión judicial de la deuda acumulada.</div>
+            <div class="hon-note">Ref.: 3 UF + 10% de lo que se obtenga</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>+ % obtenido</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Tuición y Cuidado Personal</div>
+            <div class="hon-desc">Demanda o defensa en juicios de cuidado personal de hijos menores. Incluye solicitud de medidas cautelares urgentes cuando corresponde.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según complejidad</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Violencia Intrafamiliar y Medidas Cautelares</div>
+            <div class="hon-desc">Denuncia y representación en audiencias. Solicitud de medidas cautelares urgentes: prohibición de acercamiento, salida del hogar y otras.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según urgencia</small></div>
+        </div>
+
+        <!-- HERENCIAS -->
+        <div class="hon-cat">Herencias y Sucesiones</div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Posesión Efectiva Intestada</div>
+            <div class="hon-desc">Tramitación ante el Registro Civil cuando el causante no dejó testamento: formularios, pago o exención de impuesto de herencia e inscripciones.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según bienes</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Posesión Efectiva Testada</div>
+            <div class="hon-desc">Tramitación ante el Juzgado Civil cuando existe testamento. Incluye revisión del instrumento, inventario de bienes, publicaciones legales y sentencia.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 0,5%–5% del valor comercial de los bienes (mín. 20 UF)</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>mín. 20 UF</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Redacción y Validación de Testamento</div>
+            <div class="hon-desc">Asesoría en la estructuración del testamento y redacción del instrumento. Coordinación con Notaría para su otorgamiento y depósito.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 20 UF para bienes hasta 1.000 UF</div>
+          </div>
+          <div class="hon-price --uf">Desde 20 UF<small>según cuantía</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Partición de Bienes Hereditarios</div>
+            <div class="hon-desc">Liquidación y adjudicación de los bienes entre los herederos. Puede realizarse de común acuerdo o mediante juicio de partición con árbitro.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 10% sobre la masa de bienes (mín. 30 UF)</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>mín. 30 UF</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Impugnación de Herencias</div>
+            <div class="hon-desc">Acción judicial para invalidar testamentos por vicios de forma o fondo, o para reclamar la legítima rigorosa vulnerada por el testador.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según complejidad</small></div>
+        </div>
+
+        <!-- ARRIENDO -->
+        <div class="hon-cat">Arriendo — Ley 21.461 · Devuélveme mi Casa</div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Procedimiento Monitorio — Arrendatario Moroso</div>
+            <div class="hon-desc">Juicio monitorio bajo la Ley 21.461 para cobrar rentas impagas y obtener el lanzamiento en un solo procedimiento. Honorario según monto adeudado.</div>
+            <div class="hon-note">Ref. Colegio: 10 UF (deuda hasta 50 UF) · 15 UF (51–100 UF) · 20 UF (sobre 100 UF)</div>
+          </div>
+          <div class="hon-price --muted">Desde 10 UF<small>según deuda</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Cobro de Rentas Atrasadas e Intereses</div>
+            <div class="hon-desc">Liquidación y cobro judicial de rentas impagas, gastos comunes no pagados e intereses legales. Se tramita conjuntamente con el procedimiento de restitución.</div>
+          </div>
+          <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Lanzamiento y Restitución del Inmueble</div>
+            <div class="hon-desc">Ejecución de la orden judicial de lanzamiento para recuperar la posesión material del inmueble con auxilio de la fuerza pública.</div>
+          </div>
+          <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Ocupante Precario y Sin Contrato</div>
+            <div class="hon-desc">Acción judicial para recuperar un inmueble ocupado sin título ni contrato que lo habilite. Se tramita como acción de precario ante el Juzgado Civil.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 10–50 UF según complejidad</div>
+          </div>
+          <div class="hon-price --muted">Desde 10 UF<small>según complejidad</small></div>
+        </div>
+
+        <!-- CIVIL -->
+        <div class="hon-cat">Derecho Civil</div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Redacción de Contratos</div>
+            <div class="hon-desc">Contratos de arrendamiento, compraventa, prestación de servicios, mutuos y otros. Incluye revisión de cláusulas y asesoría para la firma.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 2% del negocio (mín. 5 UF) · sin cuantía: 8 UF</div>
+          </div>
+          <div class="hon-price --uf">Desde 5 UF<small>según cuantía</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Incumplimiento y Nulidad de Contratos</div>
+            <div class="hon-desc">Demanda o defensa por incumplimiento de obligaciones contractuales. Modelo mixto: suma fija más porcentaje sobre lo efectivamente obtenido.</div>
+            <div class="hon-note">Ref. mercado: desde $1.000.000 + 20–30% cuota litis</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>+ cuota litis</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Indemnización de Perjuicios</div>
+            <div class="hon-desc">Daño emergente, lucro cesante o daño moral por actos ilícitos o incumplimientos contractuales. Honorario mixto sobre el monto obtenido.</div>
+            <div class="hon-note">Ref. Colegio de Abogados: 30 UF + 10% de lo obtenido</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>+ % obtenido</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Cobro de Deudas y Juicio Ejecutivo</div>
+            <div class="hon-desc">Cobro extrajudicial y judicial de deudas documentadas mediante pagarés, letras, contratos u otros títulos ejecutivos. Honorario sobre lo recuperado.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>+ % recuperado</small></div>
+        </div>
+        <div class="hon-row">
+          <div>
+            <div class="hon-name">Accidentes de Tránsito y Juzgado de Policía Local</div>
+            <div class="hon-desc">Representación en procedimientos ante el Juzgado de Policía Local por infracciones de tránsito, accidentes con lesiones y cobro de daños materiales.</div>
+          </div>
+          <div class="hon-price --muted">A convenir<small>según caso</small></div>
+        </div>
+
+      </div><!-- /hon-wrap -->
+
+      <!-- Condiciones -->
+      <div class="hon-conditions fade-in">
+        <p class="hon-conditions-title">Condiciones generales</p>
+        <div class="hon-cond-grid">
+          <div class="hon-cond-item">
+            <span class="hon-cond-num">01</span>
+            <div class="hon-cond-body">
+              <strong>Exclusión de costas</strong>
+              <p>Ningún honorario incluye gastos notariales, derechos del CBR, archiveros, tasas judiciales ni cobros de receptores por notificaciones. Se informan antes de iniciar.</p>
+            </div>
+          </div>
+          <div class="hon-cond-item">
+            <span class="hon-cond-num">02</span>
+            <div class="hon-cond-body">
+              <strong>Facilidades de pago</strong>
+              <p>En litigios con honorarios altos es posible pactar el saldo en cuotas fijas, iguales y sucesivas mensuales, según acuerdo previo con el estudio.</p>
+            </div>
+          </div>
+          <div class="hon-cond-item">
+            <span class="hon-cond-num">03</span>
+            <div class="hon-cond-body">
+              <strong>Valores referenciales</strong>
+              <p>Los rangos indicados son orientativos. El honorario definitivo se fija tras la evaluación inicial y considera complejidad, duración estimada y cuantía.</p>
+            </div>
+          </div>
+          <div class="hon-cond-item">
+            <span class="hon-cond-num">04</span>
+            <div class="hon-cond-body">
+              <strong>Atención en todo Chile</strong>
+              <p>Atendemos todas las regiones del país de forma remota. Sin cargos adicionales por ubicación del cliente ni del tribunal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-mini">
+      © 2026 Santana &amp; Cía Abogados<br>
+      <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
