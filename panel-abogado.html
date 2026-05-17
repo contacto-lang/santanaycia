@@ -804,18 +804,24 @@
 
   async function notificarEstudio(d, link) {
     try {
-      await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+      await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: `Contrato generado ${d.num} — ${d.nombre}`,
-          _template: 'table', _captcha: 'false',
-          contrato_num: d.num, cliente: d.nombre, rut: d.rut,
-          correo: d.correo, celular: d.celular || '—',
-          servicio: d.servicio,
-          honorarios: `$${parseInt(d.honorarios).toLocaleString('es-CL')} ${d.moneda}`,
-          forma_pago: d.forma_pago, estado: 'Pendiente de firma',
-          link_firma: link, generado: new Date().toLocaleString('es-CL'),
+          access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
+          subject:    `Contrato generado ${d.num} — ${d.nombre}`,
+          from_name:  'Santana & Cía — Panel de contratos',
+          contrato_num: d.num,
+          cliente:      d.nombre,
+          rut:          d.rut,
+          correo:       d.correo,
+          celular:      d.celular || '—',
+          servicio:     d.servicio,
+          honorarios:   `$${parseInt(d.honorarios).toLocaleString('es-CL')} ${d.moneda}`,
+          forma_pago:   d.forma_pago,
+          estado:       'Pendiente de firma del cliente',
+          link_firma:   link,
+          generado:     new Date().toLocaleString('es-CL'),
         })
       });
     } catch (_) {}
