@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firma de contrato | Santana &amp; Cía Abogados</title>
+  <meta name="description" content="Firma tu contrato de prestación de servicios legales con Santana & Cía de forma digital y segura.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #f5f0e8;
+      --cream-d:  #ede5d5;
+      --sand:     #d9cdb8;
+      --terra:    #8b5e3c;
+      --terra-d:  #6b4528;
+      --charcoal: #2c2520;
+      --muted:    #7a6e64;
+      --white:    #fdfaf5;
+      --border:   rgba(139,94,60,0.15);
+      --success:  #4a7c6f;
+      --error:    #b05240;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(245,240,232,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 400;
+      color: var(--charcoal); text-decoration: none; line-height: 1.2;
+    }
+    .nav-logo span {
+      display: block; font-family: 'Jost', sans-serif; font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--terra); margin-top: 1px;
+    }
+    .nav-secure {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: var(--cream-d); border-bottom: 0.5px solid var(--border); padding: 0 2rem;
+    }
+    .progress-steps { max-width: 680px; margin: 0 auto; display: flex; }
+    .progress-step {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 10px 4px; gap: 5px; position: relative;
+    }
+    .progress-step::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      width: 0.5px; height: 60%; background: var(--border); transform: translateY(-50%);
+    }
+    .progress-step:last-child::after { display: none; }
+    .step-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 0.5px solid var(--border); background: var(--cream-d);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 11px; color: var(--muted);
+      transition: all 0.3s;
+    }
+    .step-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .progress-step.active .step-dot { background: var(--terra); border-color: var(--terra); color: var(--white); }
+    .progress-step.active .step-label { color: var(--terra); }
+    .progress-step.done .step-dot { background: var(--success); border-color: var(--success); color: var(--white); }
+    .progress-step.done .step-label { color: var(--success); }
+
+    /* ── MAIN ── */
+    main { max-width: 680px; margin: 0 auto; padding: 148px 2rem 4rem; }
+
+    /* ── STATES ── */
+    .view { display: none; }
+    .view.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ── BIENVENIDA ── */
+    .bienvenida-card {
+      background: var(--charcoal); border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .bienvenida-header { padding: 2rem 2.5rem; border-bottom: 0.5px solid rgba(213,181,144,0.1); }
+    .bienvenida-eyebrow {
+      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(213,181,144,0.4); margin-bottom: 0.75rem; display: block;
+    }
+    .bienvenida-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 4vw, 34px);
+      font-weight: 300; color: rgba(245,240,232,0.85); line-height: 1.1; margin-bottom: 0.6rem;
+    }
+    .bienvenida-title em { font-style: italic; color: rgba(213,181,144,0.7); }
+    .bienvenida-desc { font-size: 13px; color: rgba(245,240,232,0.4); line-height: 1.75; }
+    .bienvenida-datos { padding: 1.5rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
+    .dato-item {}
+    .dato-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.2); margin-bottom: 3px; }
+    .dato-val { font-size: 13px; color: rgba(245,240,232,0.6); }
+    .dato-val.hl { color: rgba(213,181,144,0.7); font-family: 'Cormorant Garamond', serif; font-size: 16px; }
+
+    /* ── CONTRATO ── */
+    .contrato-wrap { border: 0.5px solid var(--border); border-radius: 3px; overflow: hidden; }
+    .contrato-header {
+      background: var(--charcoal); padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .contrato-header-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 14px;
+      font-weight: 400; color: rgba(245,240,232,0.7);
+    }
+    .contrato-num { font-size: 10px; letter-spacing: 0.2em; color: rgba(213,181,144,0.4); text-transform: uppercase; }
+    .contrato-body {
+      background: var(--white); padding: 2rem 2.5rem;
+      max-height: 420px; overflow-y: auto;
+      font-size: 12.5px; line-height: 1.8; color: var(--charcoal);
+    }
+    .contrato-body::-webkit-scrollbar { width: 4px; }
+    .contrato-body::-webkit-scrollbar-track { background: var(--cream-d); }
+    .contrato-body::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 2px; }
+    .contrato-seccion { margin-bottom: 1.25rem; }
+    .contrato-seccion h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--charcoal); margin-bottom: 0.5rem;
+    }
+    .contrato-seccion p { margin-bottom: 0.5rem; }
+    .contrato-seccion p:last-child { margin-bottom: 0; }
+    .dato-inline { font-weight: 500; color: var(--charcoal); border-bottom: 0.5px solid var(--sand); padding: 0 2px; }
+    .contrato-footer-strip {
+      background: var(--cream-d); border-top: 0.5px solid var(--border); padding: 1rem 2rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .contrato-footer-strip p { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .scroll-notice { font-size: 11px; color: var(--muted); text-align: center; margin: 0.75rem 0; transition: opacity 0.3s; }
+    .scroll-notice.hidden { opacity: 0; pointer-events: none; }
+
+    .aceptacion-block {
+      margin-top: 1.5rem; padding: 1.25rem 1.5rem;
+      background: var(--cream-d); border: 0.5px solid var(--border); border-radius: 3px;
+      transition: opacity 0.4s;
+    }
+    .check-row { display: flex; align-items: flex-start; gap: 10px; }
+    .check-row + .check-row { margin-top: 0.75rem; }
+    .check-row input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--terra); }
+    .check-row label { font-size: 12px; color: var(--charcoal); line-height: 1.6; cursor: pointer; }
+
+    /* ── OTP ── */
+    .otp-card { border: 0.5px solid var(--border); border-radius: 3px; overflow: hidden; }
+    .otp-header { background: var(--charcoal); padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .otp-icon-wrap {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(213,181,144,0.1); border: 0.5px solid rgba(213,181,144,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .otp-header-text p:first-child { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.35); }
+    .otp-header-text p:last-child { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(245,240,232,0.85); }
+    .otp-body { background: var(--white); padding: 2rem; }
+
+    .otp-info-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(74,124,111,0.05); border: 0.5px solid rgba(74,124,111,0.2);
+      border-radius: 2px; padding: 0.9rem 1rem; margin-bottom: 1.5rem;
+    }
+    .otp-info-row svg { flex-shrink: 0; margin-top: 2px; }
+    .otp-info-row p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .otp-info-row p strong { color: var(--charcoal); font-weight: 500; }
+
+    .correo-display {
+      padding: 12px 14px; background: var(--cream-d); border: 0.5px solid var(--sand);
+      border-radius: 2px; font-size: 13px; color: var(--charcoal);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 1rem;
+    }
+    .correo-display strong { color: var(--terra); font-weight: 400; }
+    .correo-display svg { opacity: 0.4; flex-shrink: 0; }
+
+    .btn-enviar-otp {
+      width: 100%; padding: 14px; background: var(--terra); color: var(--white);
+      border: none; border-radius: 3px; font-family: 'Jost', sans-serif;
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-enviar-otp:hover { background: var(--terra-d); }
+    .btn-enviar-otp:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .otp-code-group { display: none; margin-top: 1.5rem; }
+    .otp-code-group.show { display: block; }
+    .otp-code-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 10px; }
+    .otp-digits { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 1rem; }
+    .otp-digit {
+      width: 54px; height: 60px; text-align: center; font-size: 24px;
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      background: var(--white); border: 0.5px solid var(--sand); border-radius: 3px;
+      color: var(--charcoal); outline: none; caret-color: var(--terra);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .otp-digit:focus { border-color: var(--terra); box-shadow: 0 0 0 3px rgba(139,94,60,0.1); }
+    .otp-digit.filled { border-color: var(--terra); background: rgba(139,94,60,0.03); }
+    .otp-digit.error-d { border-color: var(--error); }
+
+    .otp-resend { font-size: 11px; color: var(--muted); text-align: center; margin-top: 0.5rem; }
+    .otp-resend button {
+      background: none; border: none; color: var(--terra); cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: 11px; text-decoration: underline; padding: 0; display: none;
+    }
+    .otp-resend button.show { display: inline; }
+    .otp-timer { color: var(--terra); font-weight: 400; }
+
+    .btn-verificar {
+      width: 100%; margin-top: 1rem; padding: 14px; background: var(--terra);
+      color: var(--white); border: none; border-radius: 3px;
+      font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.2em;
+      text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-verificar:hover { background: var(--terra-d); }
+    .btn-verificar:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .otp-footer {
+      background: var(--cream-d); border-top: 0.5px solid var(--border);
+      padding: 0.75rem 1.5rem; display: flex; align-items: flex-start; gap: 8px;
+    }
+    .otp-footer svg { opacity: 0.35; flex-shrink: 0; margin-top: 1px; }
+    .otp-footer p { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+    .fes-aviso {
+      margin-top: 1.25rem; padding: 1rem 1.25rem;
+      background: rgba(139,94,60,0.05); border: 0.5px solid rgba(139,94,60,0.2); border-radius: 2px;
+    }
+    .fes-aviso p { font-size: 11px; color: var(--muted); line-height: 1.65; }
+    .fes-aviso p strong { color: var(--charcoal); font-weight: 500; }
+
+    /* Spinner */
+    .spinner {
+      width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white; border-radius: 50%;
+      animation: spin 0.8s linear infinite; display: none; flex-shrink: 0;
+    }
+    .spinner.show { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error */
+    .err-msg {
+      font-size: 12px; color: var(--error);
+      background: rgba(176,82,64,0.07); border: 0.5px solid rgba(176,82,64,0.2);
+      border-radius: 2px; padding: 10px 14px; margin-top: 1rem; display: none;
+    }
+    .err-msg.show { display: block; }
+
+    /* Nav btns */
+    .nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; gap: 1rem; }
+    .btn-back {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); background: none; border: none; cursor: pointer; padding: 10px 0;
+      display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+    }
+    .btn-back:hover { color: var(--charcoal); }
+    .btn-back:hover svg { transform: translateX(-3px); }
+    .btn-back svg { transition: transform 0.2s; }
+    .btn-next {
+      padding: 13px 36px; background: var(--terra); color: var(--white); border: none;
+      border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 11px;
+      letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; gap: 10px; margin-left: auto;
+    }
+    .btn-next:hover { background: var(--terra-d); }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── CONFIRMACIÓN ── */
+    .confirm-wrap { text-align: center; padding: 2rem 0; }
+    .confirm-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; }
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 38px;
+      font-weight: 300; color: var(--charcoal); margin-bottom: 0.75rem;
+    }
+    .confirm-title em { font-style: italic; color: var(--terra); }
+    .confirm-desc { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 2rem; line-height: 1.8; }
+    .confirm-box {
+      max-width: 440px; margin: 0 auto 2rem; background: var(--white);
+      border: 0.5px solid var(--border); border-radius: 3px; padding: 1.5rem 2rem; text-align: left;
+    }
+    .confirm-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.6rem 0; border-bottom: 0.5px solid var(--border); gap: 1rem;
+    }
+    .confirm-row:last-child { border-bottom: none; }
+    .confirm-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+    .confirm-value { font-size: 13px; color: var(--charcoal); text-align: right; }
+    .confirm-back {
+      display: inline-block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--terra); text-decoration: none; padding: 10px 24px;
+      border: 0.5px solid var(--terra); border-radius: 2px; transition: all 0.2s;
+    }
+    .confirm-back:hover { background: var(--terra); color: var(--white); }
+
+    /* ── ERROR LINK INVÁLIDO ── */
+    .link-error { text-align: center; padding: 3rem 0; }
+    .link-error-icon { font-size: 48px; margin-bottom: 1.5rem; opacity: 0.4; }
+    .link-error h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
+      color: var(--charcoal); margin-bottom: 0.75rem;
+    }
+    .link-error p { font-size: 13px; color: var(--muted); line-height: 1.8; max-width: 380px; margin: 0 auto 1.5rem; }
+
+    @media (max-width: 600px) {
+      main { padding: 148px 1.25rem 3rem; }
+      .progress-wrap { padding: 0 0.75rem; }
+      .step-label { display: none; }
+      .contrato-body { padding: 1.5rem 1.25rem; }
+      .otp-body { padding: 1.5rem 1.25rem; }
+      .otp-digit { width: 44px; height: 52px; font-size: 20px; }
+      .bienvenida-datos { grid-template-columns: 1fr; }
+      .bienvenida-header { padding: 1.5rem; }
+      .bienvenida-datos { padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://www.santanaycia.cl/" class="nav-logo">
+      Santana &amp; Cía
+      <span>Abogados</span>
+    </a>
+    <div class="nav-secure">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="2" y="6" width="10" height="7" rx="1" stroke="#7a6e64" stroke-width="1"/>
+        <path d="M4 6V4a3 3 0 016 0v2" stroke="#7a6e64" stroke-width="1"/>
+      </svg>
+      Firma segura
+    </div>
+  </nav>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-steps" id="progress-steps">
+      <div class="progress-step active" data-step="1">
+        <div class="step-dot">1</div>
+        <span class="step-label">Bienvenida</span>
+      </div>
+      <div class="progress-step" data-step="2">
+        <div class="step-dot">2</div>
+        <span class="step-label">Contrato</span>
+      </div>
+      <div class="progress-step" data-step="3">
+        <div class="step-dot">3</div>
+        <span class="step-label">Verificar</span>
+      </div>
+      <div class="progress-step" data-step="4">
+        <div class="step-dot">4</div>
+        <span class="step-label">Listo</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- VIEW: ERROR -->
+    <div class="view active" id="view-error">
+      <div class="link-error">
+        <div class="link-error-icon">⚖️</div>
+        <h2>Link no válido o expirado</h2>
+        <p>Este link de firma no es válido o ha expirado. Los links de firma tienen una vigencia de 72 horas.</p>
+        <p>Si cree que es un error, contacte al estudio:</p>
+        <a href="mailto:contacto@santanaycia.cl" class="confirm-back">contacto@santanaycia.cl</a>
+      </div>
+    </div>
+
+    <!-- VIEW 1: BIENVENIDA -->
+    <div class="view" id="view-1">
+      <div class="bienvenida-card">
+        <div class="bienvenida-header">
+          <span class="bienvenida-eyebrow">Santana &amp; Cía Abogados · Firma electrónica</span>
+          <h1 class="bienvenida-title">Hola, <em id="nombre-saludo">—</em></h1>
+          <p class="bienvenida-desc">El estudio Santana &amp; Cía ha preparado el siguiente contrato de prestación de servicios para su revisión y firma. El proceso toma menos de 5 minutos.</p>
+        </div>
+        <div class="bienvenida-datos" id="bienvenida-datos"></div>
+      </div>
+
+      <div style="background:rgba(74,124,111,0.06);border:0.5px solid rgba(74,124,111,0.2);border-radius:3px;padding:1rem 1.25rem;margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" style="flex-shrink:0;margin-top:1px;">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="#4a7c6f" stroke-width="1"/>
+            <path d="M7.5 7v3.5M7.5 5v.5" stroke="#4a7c6f" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <p style="font-size:12px;color:var(--charcoal);font-weight:400;margin-bottom:2px;">Pasos para completar la firma</p>
+            <p style="font-size:12px;color:var(--muted);line-height:1.7;">1. Lea el contrato completo · 2. Acepte los términos · 3. Verifique su identidad con el código que recibirá en su correo</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <div></div>
+        <button class="btn-next" onclick="goTo(2)">
+          Leer el contrato
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 2: CONTRATO -->
+    <div class="view" id="view-2">
+      <div style="margin-bottom:1.5rem;">
+        <span style="font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:0.5rem;">Paso 2 de 3</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,34px);font-weight:300;color:var(--charcoal);line-height:1.1;">Lea su <em style="font-style:italic;color:var(--terra);">contrato</em></h2>
+        <p style="font-size:13px;color:var(--muted);margin-top:0.4rem;line-height:1.7;">Desplácese hasta el final para habilitar las casillas de aceptación.</p>
+      </div>
+
+      <div class="contrato-wrap">
+        <div class="contrato-header">
+          <span class="contrato-header-title">Contrato de Prestación de Servicios Profesionales</span>
+          <span class="contrato-num" id="contrato-num-display">N° —</span>
+        </div>
+        <div class="contrato-body" id="contrato-body"></div>
+        <div class="contrato-footer-strip">
+          <p>Documento generado electrónicamente por Santana &amp; Cía Abogados · Secreto profesional garantizado</p>
+        </div>
+      </div>
+
+      <p class="scroll-notice" id="scroll-notice">↓ Desplácese hasta el final del contrato para continuar</p>
+
+      <div class="aceptacion-block" id="aceptacion-block" style="opacity:0.4;pointer-events:none;">
+        <div class="check-row">
+          <input type="checkbox" id="check-leido">
+          <label for="check-leido">He leído íntegramente el contrato y comprendo sus términos y condiciones.</label>
+        </div>
+        <div class="check-row">
+          <input type="checkbox" id="check-acepto">
+          <label for="check-acepto">Acepto libre y voluntariamente los términos del presente contrato de prestación de servicios legales con Santana &amp; Cía Abogados.</label>
+        </div>
+      </div>
+
+      <div class="err-msg" id="err-2">Debe leer el contrato completo y marcar ambas casillas para continuar.</div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goTo(1)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Volver
+        </button>
+        <button class="btn-next" id="btn-2" disabled onclick="irAVerificar()">
+          Verificar identidad
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 3: OTP -->
+    <div class="view" id="view-3">
+      <div style="margin-bottom:1.5rem;">
+        <span style="font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:0.5rem;">Paso 3 de 3</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,34px);font-weight:300;color:var(--charcoal);line-height:1.1;">Verificación de <em style="font-style:italic;color:var(--terra);">identidad</em></h2>
+        <p style="font-size:13px;color:var(--muted);margin-top:0.4rem;line-height:1.7;">Enviaremos un código de 6 dígitos a su correo para completar la firma.</p>
+      </div>
+
+      <div class="otp-card">
+        <div class="otp-header">
+          <div class="otp-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="3" y="10" width="16" height="11" rx="1.5" stroke="rgba(213,181,144,0.8)" stroke-width="1"/>
+              <path d="M7 10V7a4 4 0 018 0v3" stroke="rgba(213,181,144,0.8)" stroke-width="1"/>
+              <circle cx="11" cy="15.5" r="1.5" fill="rgba(213,181,144,0.8)"/>
+            </svg>
+          </div>
+          <div class="otp-header-text">
+            <p>Firma Electrónica Simple · Ley 19.799</p>
+            <p>Verificación por código de correo</p>
+          </div>
+        </div>
+
+        <div class="otp-body">
+          <div class="otp-info-row">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="7" stroke="#4a7c6f" stroke-width="1"/>
+              <path d="M8 7v4M8 5v.5" stroke="#4a7c6f" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <p>
+              <strong>¿Por qué verificamos su identidad?</strong><br>
+              La Ley N° 19.799 establece que la verificación del correo electrónico acredita su identidad para efectos de la Firma Electrónica Simple, con el mismo valor legal que la firma manuscrita en contratos privados.
+            </p>
+          </div>
+
+          <div class="correo-display">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="1.5" y="3" width="11" height="8" rx="1" stroke="#7a6e64" stroke-width="1"/>
+              <path d="M1.5 4.5l5.5 4 5.5-4" stroke="#7a6e64" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            Código enviado a <strong id="correo-otp-display">—</strong>
+          </div>
+
+          <button class="btn-enviar-otp" id="btn-enviar-otp" onclick="enviarOtp()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 8l12-5-4 5 4 5-12-5z" stroke="white" stroke-width="1" stroke-linejoin="round"/>
+            </svg>
+            Enviar código de verificación
+            <div class="spinner" id="spinner-enviar"></div>
+          </button>
+
+          <div class="otp-code-group" id="otp-code-group">
+            <span class="otp-code-label">Ingrese el código de 6 dígitos</span>
+            <div class="otp-digits">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="0">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="1">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="2">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="3">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="4">
+              <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" data-idx="5">
+            </div>
+            <div class="otp-resend">
+              <span id="otp-timer-text">Reenviar en <span class="otp-timer" id="otp-timer">60</span>s</span>
+              <button id="btn-resend" onclick="enviarOtp(true)">Reenviar código</button>
+            </div>
+            <button class="btn-verificar" id="btn-verificar" disabled onclick="verificarOtp()">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8l4 4 6-7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Confirmar y firmar contrato
+              <div class="spinner" id="spinner-verificar"></div>
+            </button>
+          </div>
+        </div>
+
+        <div class="otp-footer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="2" y="6" width="10" height="7" rx="1" stroke="#7a6e64" stroke-width="1"/>
+            <path d="M4 6V4a3 3 0 016 0v2" stroke="#7a6e64" stroke-width="1"/>
+          </svg>
+          <p>El código expira en 10 minutos y es de uso único. Su información está protegida por el secreto profesional.</p>
+        </div>
+      </div>
+
+      <div class="fes-aviso" style="margin-top:1.25rem;">
+        <p><strong>Validez legal:</strong> La aceptación mediante código OTP constituye Firma Electrónica Simple conforme a la Ley N° 19.799. El registro incluye correo verificado, IP del firmante, timestamp y hash del documento.</p>
+      </div>
+
+      <div class="err-msg" id="err-3">Ingrese el código de 6 dígitos para completar la verificación.</div>
+
+      <div class="nav-btns">
+        <button class="btn-back" onclick="goTo(2)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M11 7H3M6 4L3 7l3 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Volver
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 4: CONFIRMACIÓN -->
+    <div class="view" id="view-4">
+      <div class="confirm-wrap">
+        <div class="confirm-icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="30" stroke="#4a7c6f" stroke-width="1"/>
+            <path d="M18 32l10 10 18-18" stroke="#4a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="confirm-title">Contrato <em>firmado</em></h2>
+        <p class="confirm-desc">Su identidad fue verificada y el contrato ha sido firmado con Firma Electrónica Simple. Recibirá una copia en su correo a la brevedad.</p>
+        <div class="confirm-box" id="confirm-box"></div>
+        <a href="https://www.santanaycia.cl/" class="confirm-back">← Volver al sitio</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    /* ════════════════════════════
+       ESTADO Y DATOS DEL CONTRATO
+    ════════════════════════════ */
+    let datos = null;        // datos decodificados del token
+    let currentView = null;
+    let contratoLeido = false;
+    let otpCode = '';
+    let otpTimerInterval = null;
+
+    /* ════════════════════════════
+       PARSEAR TOKEN DE LA URL
+    ════════════════════════════ */
+    function parsearToken() {
+      const params = new URLSearchParams(window.location.search);
+      const token  = params.get('c');
+      if (!token) return false;
+
+      try {
+        // Restaura base64 estándar
+        const b64 = token.replace(/-/g, '+').replace(/_/g, '/');
+        const pad = b64.length % 4 === 0 ? '' : '='.repeat(4 - b64.length % 4);
+        const json = atob(b64 + pad);
+        const obj  = JSON.parse(json);
+
+        // Valida campos mínimos
+        if (!obj.num || !obj.nombre || !obj.correo || !obj.servicio) return false;
+        // Compatibilidad v1 sin forma_pago
+        if (!obj.forma_pago) obj.forma_pago = 'Según acuerdo entre las partes';
+        if (!obj.moneda) obj.moneda = 'CLP';
+        if (!obj.metodo_pago) obj.metodo_pago = 'Transferencia bancaria';
+
+        // Valida expiración (72 horas)
+        const EXPIRA_MS = 72 * 60 * 60 * 1000;
+        if (Date.now() - obj.ts > EXPIRA_MS) return false;
+
+        datos = obj;
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    /* ════════════════════════════
+       NAVEGACIÓN
+    ════════════════════════════ */
+    function goTo(n) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + n)?.classList.add('active');
+      document.querySelectorAll('.progress-step').forEach(el => {
+        const s = parseInt(el.dataset.step);
+        el.classList.remove('active', 'done');
+        if (s < n) el.classList.add('done');
+        else if (s === n) el.classList.add('active');
+      });
+      currentView = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ════════════════════════════
+       INIT
+    ════════════════════════════ */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!parsearToken()) {
+        document.getElementById('view-error').classList.add('active');
+        document.querySelector('.progress-wrap').style.display = 'none';
+        return;
+      }
+
+      // Bienvenida
+      document.getElementById('nombre-saludo').textContent = datos.nombre.split(' ')[0];
+      document.getElementById('bienvenida-datos').innerHTML = `
+        <div class="dato-item">
+          <div class="dato-label">N° Contrato</div>
+          <div class="dato-val hl">${datos.num}</div>
+        </div>
+        <div class="dato-item">
+          <div class="dato-label">Servicio</div>
+          <div class="dato-val">${datos.servicio}</div>
+        </div>
+        <div class="dato-item">
+          <div class="dato-label">Honorarios</div>
+          <div class="dato-val">$${parseInt(datos.honorarios).toLocaleString('es-CL')} ${datos.moneda}</div>
+        </div>
+        <div class="dato-item">
+          <div class="dato-label">Forma de pago</div>
+          <div class="dato-val">${datos.forma_pago}</div>
+        </div>
+        <div class="dato-item">
+          <div class="dato-label">Correo</div>
+          <div class="dato-val">${datos.correo}</div>
+        </div>
+      `;
+
+      document.getElementById('view-error').classList.remove('active');
+      document.getElementById('view-1').classList.add('active');
+      currentView = 1;
+
+      // Contrato
+      generarContrato();
+      iniciarScrollDetection();
+
+      // OTP correo display
+      document.getElementById('correo-otp-display').textContent = datos.correo;
+
+      // OTP digits
+      const digits = document.querySelectorAll('.otp-digit');
+      digits.forEach((inp, idx) => {
+        inp.addEventListener('input', function () {
+          this.value = this.value.replace(/\D/g, '').slice(0, 1);
+          if (this.value) { this.classList.add('filled'); if (idx < 5) digits[idx + 1].focus(); }
+          else this.classList.remove('filled');
+          const completo = Array.from(digits).every(d => d.value.length === 1);
+          document.getElementById('btn-verificar').disabled = !completo;
+        });
+        inp.addEventListener('keydown', function (e) {
+          if (e.key === 'Backspace' && !this.value && idx > 0) digits[idx - 1].focus();
+        });
+        inp.addEventListener('paste', function (e) {
+          e.preventDefault();
+          const txt = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+          txt.split('').forEach((ch, i) => { if (digits[i]) { digits[i].value = ch; digits[i].classList.add('filled'); } });
+          if (txt.length > 0) digits[Math.min(txt.length, 5)].focus();
+          const completo = Array.from(digits).every(d => d.value.length === 1);
+          document.getElementById('btn-verificar').disabled = !completo;
+        });
+      });
+    });
+
+    /* ════════════════════════════
+       GENERAR CONTRATO
+    ════════════════════════════ */
+    function generarContrato() {
+      const d = datos;
+      const fecha = new Date(d.ts).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+      const monto = parseInt(d.honorarios).toLocaleString('es-CL');
+      document.getElementById('contrato-num-display').textContent = d.num;
+
+      document.getElementById('contrato-body').innerHTML = `
+        <div class="contrato-seccion">
+          <p style="text-align:center;color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;">
+            Contrato N° ${d.num} · Santiago, ${fecha}
+          </p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>I. Partes</h3>
+          <p><strong>Prestador:</strong> Santana &amp; Cía Abogados, con domicilio en Santiago, Región Metropolitana, correo contacto@santanaycia.cl (en adelante, <em>"el Estudio"</em>).</p>
+          <p><strong>Comitente:</strong> <span class="dato-inline">${d.nombre}</span>, RUT <span class="dato-inline">${d.rut || '—'}</span>, domicilio en <span class="dato-inline">${[d.domicilio, d.ciudad, d.region].filter(Boolean).join(', ') || '—'}</span>, correo <span class="dato-inline">${d.correo}</span>${d.celular ? `, teléfono <span class="dato-inline">${d.celular}</span>` : ''} (en adelante, <em>"el Cliente"</em>).</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>II. Objeto del Contrato</h3>
+          <p>El Cliente encomienda al Estudio la prestación del siguiente servicio legal: <span class="dato-inline">${d.servicio}</span>.</p>
+          <p>El Estudio acepta el encargo y se obliga a tramitar, gestionar y representar al Cliente en las actuaciones judiciales y/o extrajudiciales necesarias, conforme a las leyes de Chile y a los estándares éticos de la profesión legal.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>III. Honorarios</h3>
+          <p>El Cliente se obliga a pagar al Estudio la suma de <span class="dato-inline">$${monto} ${d.moneda}</span> en concepto de honorarios profesionales.</p>
+          <p><strong>Forma de pago:</strong> <span class="dato-inline">${d.forma_pago}</span>. <strong>Método de pago:</strong> <span class="dato-inline">${d.metodo_pago}</span>. <strong>Plazo:</strong> <span class="dato-inline">${d.vence_pago || 'Según acuerdo'}</span>.</p>
+          <p>El incumplimiento en el pago faculta al Estudio para suspender el servicio, sin perjuicio de las acciones legales de cobro que correspondan.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>IV. Obligaciones del Estudio</h3>
+          <p>(a) Prestar el servicio con diligencia profesional y conforme a los estándares legales vigentes; (b) mantener informado al Cliente sobre el estado de los procedimientos; (c) resguardar la confidencialidad de la información del Cliente; (d) actuar en representación del Cliente ante los tribunales o instancias que correspondan.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>V. Obligaciones del Cliente</h3>
+          <p>(a) Proporcionar toda la información y documentos necesarios, respondiendo de su veracidad; (b) pagar oportunamente los honorarios; (c) mantener comunicación activa vía correo electrónico; (d) notificar al Estudio de cualquier cambio relevante en su situación jurídica.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>VI. Confidencialidad y Secreto Profesional</h3>
+          <p>Toda la información estará protegida por el secreto profesional conforme al artículo 231 del Código Penal y las normas del Colegio de Abogados de Chile. El Estudio no divulgará información a terceros salvo requerimiento judicial expreso.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>VII. Duración</h3>
+          <p>El contrato tendrá vigencia indefinida hasta la resolución definitiva del asunto, renuncia fundada del Estudio, o desistimiento del Cliente. Cualquier terminación anticipada debe comunicarse con al menos cinco días hábiles de anticipación.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>VIII. Ley Aplicable y Jurisdicción</h3>
+          <p>El contrato se rige por las leyes de la República de Chile. Las partes fijan su domicilio en Santiago y se someten a la jurisdicción de sus Tribunales Ordinarios de Justicia.</p>
+        </div>
+        <div class="contrato-seccion">
+          <h3>IX. Firma Electrónica Simple</h3>
+          <p>Este contrato es suscrito electrónicamente por el Cliente mediante Firma Electrónica Simple (FES) conforme a la Ley N° 19.799. La verificación de identidad se realiza mediante código OTP enviado al correo registrado. El registro incluye: correo verificado, IP del firmante, timestamp y hash del documento.</p>
+          <p style="color:var(--muted);font-size:12px;">Fecha de preparación: ${fecha} · Contrato N° ${d.num}</p>
+        </div>
+      `;
+    }
+
+    /* ════════════════════════════
+       SCROLL DETECTION (CONTRATO)
+    ════════════════════════════ */
+    function iniciarScrollDetection() {
+      const body        = document.getElementById('contrato-body');
+      const aceptacion  = document.getElementById('aceptacion-block');
+      const scrollNotice = document.getElementById('scroll-notice');
+
+      body.addEventListener('scroll', function () {
+        if (!contratoLeido && this.scrollTop + this.clientHeight >= this.scrollHeight - 20) {
+          contratoLeido = true;
+          aceptacion.style.opacity = '1';
+          aceptacion.style.pointerEvents = 'auto';
+          scrollNotice.classList.add('hidden');
+        }
+      });
+
+      const checks = document.querySelectorAll('#aceptacion-block input[type="checkbox"]');
+      checks.forEach(c => {
+        c.addEventListener('change', () => {
+          const ok = Array.from(checks).every(ch => ch.checked) && contratoLeido;
+          document.getElementById('btn-2').disabled = !ok;
+        });
+      });
+    }
+
+    function irAVerificar() {
+      const checks = document.querySelectorAll('#aceptacion-block input[type="checkbox"]');
+      const err    = document.getElementById('err-2');
+      if (!Array.from(checks).every(c => c.checked) || !contratoLeido) {
+        err.classList.add('show'); return;
+      }
+      err.classList.remove('show');
+      goTo(3);
+    }
+
+    /* ════════════════════════════
+       OTP — ENVÍO
+    ════════════════════════════ */
+    async function enviarOtp(reenvio = false) {
+      const btn     = document.getElementById('btn-enviar-otp');
+      const spinner = document.getElementById('spinner-enviar');
+      btn.disabled = true;
+      spinner.classList.add('show');
+
+      // ── Llama al backend real para generar y enviar el OTP ──
+      const BACKEND = 'https://TU-PROYECTO.vercel.app'; // ← reemplaza con tu URL de Vercel
+      try {
+        const resp = await fetch(`${BACKEND}/api/enviar`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            correo:       datos.correo,
+            nombre:       datos.nombre,
+            contrato_num: datos.num,
+          })
+        });
+        const r = await resp.json();
+        if (!r.ok) throw new Error(r.error || 'error_envio');
+      } catch (e) {
+        document.getElementById('spinner-enviar').classList.remove('show');
+        document.getElementById('btn-enviar-otp').disabled = false;
+        document.getElementById('btn-enviar-otp').textContent = 'Error al enviar. Intente nuevamente.';
+        console.error('[OTP] Error al enviar:', e);
+        return;
+      }
+
+      await new Promise(r => setTimeout(r, 1200));
+      spinner.classList.remove('show');
+      btn.textContent = reenvio ? 'Código reenviado ✓' : 'Código enviado ✓';
+      btn.style.background = 'var(--success)';
+
+      document.getElementById('otp-code-group').classList.add('show');
+      document.querySelectorAll('.otp-digit').forEach(d => { d.value = ''; d.className = 'otp-digit'; });
+      document.querySelectorAll('.otp-digit')[0].focus();
+      iniciarTimer();
+    }
+
+    function iniciarTimer() {
+      clearInterval(otpTimerInterval);
+      let seg = 60;
+      const timerEl   = document.getElementById('otp-timer');
+      const timerText = document.getElementById('otp-timer-text');
+      const resendBtn = document.getElementById('btn-resend');
+      timerEl.textContent = seg;
+      resendBtn.classList.remove('show');
+      timerText.style.display = 'inline';
+
+      otpTimerInterval = setInterval(() => {
+        seg--;
+        timerEl.textContent = seg;
+        if (seg <= 0) {
+          clearInterval(otpTimerInterval);
+          timerText.style.display = 'none';
+          resendBtn.classList.add('show');
+          document.getElementById('btn-enviar-otp').disabled = false;
+        }
+      }, 1000);
+    }
+
+    /* ════════════════════════════
+       OTP — VERIFICACIÓN
+    ════════════════════════════ */
+    async function verificarOtp() {
+      const digits   = Array.from(document.querySelectorAll('.otp-digit'));
+      const ingresado = digits.map(d => d.value).join('');
+      const err       = document.getElementById('err-3');
+
+      if (ingresado.length < 6) { err.classList.add('show'); return; }
+
+      const btn     = document.getElementById('btn-verificar');
+      const spinner = document.getElementById('spinner-verificar');
+      btn.disabled = true;
+      spinner.classList.add('show');
+
+      await new Promise(r => setTimeout(r, 1000));
+
+      // ── Verifica contra el backend real ──
+      const BACKEND = 'https://TU-PROYECTO.vercel.app'; // ← mismo que en enviarOtp
+      try {
+        const resp = await fetch(`${BACKEND}/api/verificar`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            correo:       datos.correo,
+            codigo:       ingresado,
+            contrato_num: datos.num,
+            nombre:       datos.nombre,
+            rut:          datos.rut,
+            celular:      datos.celular,
+            domicilio:    [datos.domicilio, datos.ciudad, datos.region].filter(Boolean).join(', '),
+            servicio:     datos.servicio,
+            honorarios:   datos.honorarios,
+            moneda:       datos.moneda,
+            forma_pago:   datos.forma_pago,
+            hash_doc:     simpleHash(datos.num + datos.correo),
+          })
+        });
+        const r = await resp.json();
+        if (!r.ok) {
+          const mensajes = {
+            expirado:   'El código expiró. Solicite uno nuevo.',
+            incorrecto: 'Código incorrecto. Verifique e intente de nuevo.',
+            bloqueado:  'Demasiados intentos. Solicite un nuevo código.',
+          };
+          throw new Error(mensajes[r.motivo] || 'Error al verificar. Intente nuevamente.');
+        }
+      } catch (e) {
+        document.getElementById('spinner-verificar').classList.remove('show');
+        document.getElementById('btn-verificar').disabled = false;
+        document.querySelectorAll('.otp-digit').forEach(d => d.classList.add('error-d'));
+        const err3 = document.getElementById('err-3');
+        err3.textContent = e.message;
+        err3.classList.add('show');
+        setTimeout(() => document.querySelectorAll('.otp-digit').forEach(d => d.classList.remove('error-d')), 1500);
+        return;
+      }
+
+      err.classList.remove('show');
+      clearInterval(otpTimerInterval);
+      spinner.classList.remove('show');
+      await registrarFirma();
+      mostrarConfirmacion();
+    }
+
+    function simpleHash(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) { h = Math.imul(31, h) + str.charCodeAt(i) | 0; }
+      return Math.abs(h).toString(16).padStart(8, '0').toUpperCase();
+    }
+
+    /* ════════════════════════════
+       REGISTRAR FIRMA
+    ════════════════════════════ */
+    async function registrarFirma() {
+      try {
+        await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject:    `✅ Contrato firmado ${datos.num} — ${datos.nombre}`,
+            _template:   'table',
+            _captcha:    'false',
+            contrato_num: datos.num,
+            nombre:       datos.nombre,
+            rut:          datos.rut || '—',
+            correo:       datos.correo,
+            celular:      datos.celular || '—',
+            domicilio:    [datos.domicilio, datos.ciudad, datos.region].filter(Boolean).join(', ') || '—',
+            servicio:     datos.servicio,
+            honorarios:   `$${parseInt(datos.honorarios).toLocaleString('es-CL')} CLP`,
+            firma_tipo:   'Firma Electrónica Simple — Ley 19.799',
+            verificacion: 'OTP por correo electrónico',
+            hash_doc:     simpleHash(datos.num + datos.correo),
+            fecha_firma:  new Date().toLocaleString('es-CL'),
+          })
+        });
+      } catch (_) {}
+    }
+
+    /* ════════════════════════════
+       CONFIRMACIÓN
+    ════════════════════════════ */
+    function mostrarConfirmacion() {
+      const hoy = new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('confirm-box').innerHTML = `
+        <div class="confirm-row"><span class="confirm-label">N° Contrato</span><span class="confirm-value">${datos.num}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Titular</span><span class="confirm-value">${datos.nombre}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Servicio</span><span class="confirm-value">${datos.servicio}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Honorarios</span><span class="confirm-value">$${parseInt(datos.honorarios).toLocaleString('es-CL')} ${datos.moneda}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Forma de pago</span><span class="confirm-value">${datos.forma_pago}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Fecha</span><span class="confirm-value">${hoy}</span></div>
+        <div class="confirm-row"><span class="confirm-label">Tipo de firma</span><span class="confirm-value" style="color:var(--success);">✓ FES — Ley 19.799</span></div>
+      `;
+      document.querySelectorAll('.progress-step').forEach(el => { el.classList.remove('active'); el.classList.add('done'); });
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-4').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

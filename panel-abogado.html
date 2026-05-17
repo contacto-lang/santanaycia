@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Abogado | Santana &amp; Cía</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --terra:    #8b5e3c;
+      --terra-d:  #6b4528;
+      --charcoal: #2c2520;
+      --muted:    #7a6e64;
+      --white:    #fdfaf5;
+      --sand:     #d9cdb8;
+      --success:  #4a7c6f;
+      --error:    #b05240;
+      --gold:     rgba(213,181,144,0.7);
+      --sidebar-w: 240px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--charcoal);
+      color: rgba(245,240,232,0.75);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ─── LAYOUT ─── */
+    .layout { display: flex; min-height: 100vh; }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: #1a1612;
+      border-right: 0.5px solid rgba(213,181,144,0.07);
+      display: flex; flex-direction: column;
+      padding: 2rem 1.25rem;
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto;
+    }
+    .sb-logo { padding-bottom: 1.75rem; border-bottom: 0.5px solid rgba(213,181,144,0.07); margin-bottom: 1.75rem; }
+    .sb-logo-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 400; color: rgba(245,240,232,0.7); }
+    .sb-logo-sub { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(213,181,144,0.3); margin-top: 2px; display: block; }
+    .sb-section-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(213,181,144,0.2); margin-bottom: 0.6rem; }
+    .sb-nav { display: flex; flex-direction: column; gap: 2px; margin-bottom: 1.5rem; }
+    .sb-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 3px;
+      font-size: 12px; color: rgba(245,240,232,0.3);
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+      border: 0.5px solid transparent;
+    }
+    .sb-item:hover { color: rgba(245,240,232,0.6); background: rgba(255,255,255,0.03); }
+    .sb-item.active { color: rgba(213,181,144,0.8); background: rgba(139,94,60,0.1); border-color: rgba(139,94,60,0.2); }
+    .sb-item svg { opacity: 0.5; flex-shrink: 0; }
+    .sb-item.active svg { opacity: 0.75; }
+    .sb-spacer { flex: 1; }
+    .sb-user { border-top: 0.5px solid rgba(213,181,144,0.07); padding-top: 1.25rem; display: flex; align-items: center; gap: 10px; }
+    .sb-avatar {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(139,94,60,0.2); border: 0.5px solid rgba(139,94,60,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 13px; color: rgba(213,181,144,0.6); flex-shrink: 0;
+    }
+    .sb-user-name { font-size: 11px; color: rgba(245,240,232,0.4); font-weight: 400; }
+    .sb-user-mail { font-size: 10px; color: rgba(245,240,232,0.15); }
+
+    /* ─── MAIN ─── */
+    .main { flex: 1; min-width: 0; padding: 2.5rem 2.75rem 4rem; overflow-x: hidden; }
+    .page-eyebrow { font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(213,181,144,0.35); margin-bottom: 0.5rem; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,3vw,34px); font-weight: 300; color: rgba(245,240,232,0.85); line-height: 1.1; }
+    .page-title em { font-style: italic; color: rgba(213,181,144,0.65); }
+    .page-desc { font-size: 13px; color: rgba(245,240,232,0.28); margin-top: 0.4rem; line-height: 1.7; max-width: 560px; }
+    .page-header { margin-bottom: 2rem; }
+
+    /* ─── CARD ─── */
+    .card { background: rgba(255,255,255,0.025); border: 0.5px solid rgba(213,181,144,0.09); border-radius: 4px; overflow: hidden; margin-bottom: 1.25rem; }
+    .card-head {
+      padding: 1rem 1.5rem; border-bottom: 0.5px solid rgba(213,181,144,0.07);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .card-head-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(139,94,60,0.5); flex-shrink: 0; }
+    .card-head-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(213,181,144,0.4); }
+    .card-body { padding: 1.5rem; }
+
+    /* ─── FORM GRID ─── */
+    .fg { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .fg .full { grid-column: 1 / -1; }
+    .fg .third { grid-column: span 1; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(213,181,144,0.35); font-weight: 400; }
+    .field input, .field select, .field textarea {
+      background: rgba(255,255,255,0.04);
+      border: 0.5px solid rgba(213,181,144,0.13);
+      border-radius: 2px; padding: 10px 12px;
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
+      color: rgba(245,240,232,0.75); outline: none;
+      transition: border-color 0.2s, background 0.2s; width: 100%;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(245,240,232,0.18); }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: rgba(213,181,144,0.35); background: rgba(255,255,255,0.06);
+    }
+    .field input.valid { border-color: var(--success); }
+    .field input.invalid { border-color: var(--error); }
+    .field-hint { font-size: 10px; color: rgba(245,240,232,0.2); }
+    .field-hint.error { color: var(--error); }
+    .rut-ok { display: none; align-items: center; gap: 5px; font-size: 10px; color: var(--success); }
+    .rut-ok.show { display: flex; }
+    .field select { appearance: none; cursor: pointer; }
+    .field select option { background: #2c2520; color: rgba(245,240,232,0.8); }
+    .sw { position: relative; }
+    .sw::after {
+      content: ''; position: absolute; right: 11px; top: 50%;
+      transform: translateY(-50%); border: 4px solid transparent;
+      border-top-color: rgba(213,181,144,0.3); pointer-events: none;
+    }
+
+    /* ─── DIVISOR ─── */
+    .fdiv {
+      grid-column: 1 / -1; display: flex; align-items: center; gap: 10px;
+      margin: 0.25rem 0;
+    }
+    .fdiv span { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(213,181,144,0.25); white-space: nowrap; }
+    .fdiv::after { content: ''; flex: 1; height: 0.5px; background: rgba(213,181,144,0.07); }
+
+    /* ─── SERVICIOS ─── */
+    .srv-grupos { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 1.4rem; }
+    .grupo-titulo { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(213,181,144,0.35); margin-bottom: 0.5rem; display: block; }
+    .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .srv-card {
+      border: 0.5px solid rgba(213,181,144,0.1); border-radius: 3px;
+      padding: 0.85rem 0.9rem; cursor: pointer;
+      background: rgba(255,255,255,0.02); transition: all 0.18s; position: relative;
+    }
+    .srv-card:hover { border-color: rgba(213,181,144,0.28); background: rgba(255,255,255,0.045); }
+    .srv-card.sel { border-color: rgba(139,94,60,0.55); background: rgba(139,94,60,0.09); }
+    .srv-card.sel::before { content: '✓'; position: absolute; top: 6px; right: 8px; font-size: 10px; color: rgba(213,181,144,0.6); }
+    .srv-card input[type="radio"] { display: none; }
+    .srv-name { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; font-weight: 400; color: rgba(245,240,232,0.65); line-height: 1.2; margin-bottom: 2px; }
+    .srv-sub { font-size: 10px; color: rgba(245,240,232,0.22); line-height: 1.4; }
+
+    /* ─── HONORARIOS / PAGO ─── */
+    .pago-grid { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .monto-row { display: flex; gap: 0.6rem; align-items: flex-start; }
+    .curr-prefix {
+      padding: 10px 11px; background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(213,181,144,0.13); border-radius: 2px;
+      font-size: 13px; color: rgba(245,240,232,0.25); flex-shrink: 0;
+    }
+    .monto-input {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 0.5px solid rgba(213,181,144,0.13); border-radius: 2px;
+      padding: 10px 12px; font-family: 'Jost', sans-serif;
+      font-size: 13px; color: rgba(245,240,232,0.75); outline: none;
+      transition: border-color 0.2s;
+    }
+    .monto-input:focus { border-color: rgba(213,181,144,0.35); }
+
+    /* Opciones de cuotas */
+    .cuotas-opciones { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .cuota-card {
+      border: 0.5px solid rgba(213,181,144,0.1); border-radius: 3px;
+      padding: 0.9rem 1rem; cursor: pointer;
+      background: rgba(255,255,255,0.02); transition: all 0.18s; position: relative;
+    }
+    .cuota-card:hover { border-color: rgba(213,181,144,0.28); background: rgba(255,255,255,0.04); }
+    .cuota-card.sel { border-color: rgba(139,94,60,0.55); background: rgba(139,94,60,0.09); }
+    .cuota-card.sel::before { content: '✓'; position: absolute; top: 6px; right: 8px; font-size: 10px; color: rgba(213,181,144,0.6); }
+    .cuota-card input[type="radio"] { display: none; }
+    .cuota-name { font-size: 12px; font-weight: 400; color: rgba(245,240,232,0.65); margin-bottom: 2px; }
+    .cuota-sub { font-size: 10px; color: rgba(245,240,232,0.25); line-height: 1.4; }
+
+    /* detalle cuotas personalizado */
+    .cuotas-detalle { grid-column: 1 / -1; display: none; }
+    .cuotas-detalle.show { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+    /* nota preview */
+    .nota-preview {
+      grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px;
+      background: rgba(213,181,144,0.04); border: 0.5px solid rgba(213,181,144,0.1);
+      border-radius: 2px; padding: 10px 14px;
+    }
+    .nota-preview svg { flex-shrink: 0; margin-top: 1px; opacity: 0.35; }
+    .nota-preview p { font-size: 11px; color: rgba(245,240,232,0.25); line-height: 1.6; }
+
+    /* ─── FORM ERROR ─── */
+    .form-error {
+      font-size: 12px; color: var(--error);
+      background: rgba(176,82,64,0.08); border: 0.5px solid rgba(176,82,64,0.2);
+      border-radius: 2px; padding: 10px 14px; display: none; margin-top: 0.75rem;
+    }
+    .form-error.show { display: block; }
+
+    /* ─── BTN GENERAR ─── */
+    .btn-generar {
+      width: 100%; padding: 15px; margin-top: 0.75rem;
+      background: var(--terra); color: var(--white); border: none; border-radius: 3px;
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .btn-generar:hover { background: var(--terra-d); }
+    .btn-generar:disabled { opacity: 0.35; cursor: not-allowed; }
+    .spinner { width: 16px; height: 16px; border: 1.5px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; }
+    .spinner.show { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── RESULTADO ─── */
+    #result-section { display: none; }
+    #result-section.show { display: block; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .result-card { background: rgba(74,124,111,0.07); border: 0.5px solid rgba(74,124,111,0.22); border-radius: 4px; overflow: hidden; }
+    .result-head { background: rgba(74,124,111,0.1); border-bottom: 0.5px solid rgba(74,124,111,0.18); padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .result-head p:first-of-type { font-size: 13px; font-weight: 400; color: rgba(245,240,232,0.7); }
+    .result-head p:last-of-type { font-size: 11px; color: rgba(74,124,111,0.7); }
+    .result-body { padding: 1.5rem; }
+    .result-datos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+    .rd-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,240,232,0.2); margin-bottom: 2px; }
+    .rd-val { font-size: 13px; color: rgba(245,240,232,0.6); }
+    .rd-val.hl { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: rgba(213,181,144,0.7); }
+    .link-box { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(213,181,144,0.12); border-radius: 3px; overflow: hidden; margin-bottom: 1rem; }
+    .link-lbl { padding: 7px 13px; border-bottom: 0.5px solid rgba(213,181,144,0.08); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(213,181,144,0.35); background: rgba(255,255,255,0.02); }
+    .link-row { display: flex; }
+    .link-url { flex: 1; padding: 11px 13px; font-size: 11px; color: rgba(245,240,232,0.4); font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .btn-copy {
+      padding: 0 16px; background: rgba(139,94,60,0.15); border: none;
+      border-left: 0.5px solid rgba(213,181,144,0.1); color: rgba(213,181,144,0.55);
+      font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-copy:hover { background: rgba(139,94,60,0.3); color: rgba(213,181,144,0.9); }
+    .btn-copy.ok { background: rgba(74,124,111,0.2); color: rgba(74,124,111,0.8); }
+    .result-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn-act {
+      flex: 1; min-width: 130px; padding: 11px 16px;
+      border: 0.5px solid rgba(213,181,144,0.15); border-radius: 2px;
+      background: none; color: rgba(245,240,232,0.35);
+      font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-act:hover { border-color: rgba(213,181,144,0.4); color: rgba(245,240,232,0.65); }
+    .btn-act.primary { background: var(--terra); color: var(--white); border-color: var(--terra); }
+    .btn-act.primary:hover { background: var(--terra-d); }
+    .btn-nuevo { margin-top: 0.75rem; width: 100%; padding: 10px; background: none; border: 0.5px solid rgba(213,181,144,0.08); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.18); cursor: pointer; transition: all 0.2s; }
+    .btn-nuevo:hover { border-color: rgba(213,181,144,0.18); color: rgba(245,240,232,0.38); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 860px) {
+      .sidebar { display: none; }
+      .main { padding: 1.75rem 1.25rem 3rem; }
+      .fg { grid-template-columns: 1fr; }
+      .fg .full { grid-column: 1; }
+      .srv-grid { grid-template-columns: 1fr 1fr; }
+      .cuotas-opciones { grid-template-columns: 1fr 1fr; }
+      .pago-grid { grid-template-columns: 1fr; }
+      .result-datos { grid-template-columns: 1fr 1fr; }
+      .cuotas-detalle.show { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .srv-grid { grid-template-columns: 1fr; }
+      .cuotas-opciones { grid-template-columns: 1fr; }
+      .result-datos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-name">Santana &amp; Cía</div>
+      <span class="sb-logo-sub">Panel interno</span>
+    </div>
+    <div class="sb-section-label">Acciones</div>
+    <nav class="sb-nav">
+      <a class="sb-item active" href="#">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="10" height="12" rx="1" stroke="currentColor" stroke-width="1"/><path d="M4.5 4.5h5M4.5 6.5h5M4.5 8.5h3" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg>
+        Nuevo contrato
+      </a>
+      <a class="sb-item" href="https://www.santanaycia.cl" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/><path d="M2 7h10M7 1.5S5 4 5 7s2 5.5 2 5.5M7 1.5S9 4 9 7s-2 5.5-2 5.5" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg>
+        Sitio web
+      </a>
+      <a class="sb-item" href="mailto:contacto@santanaycia.cl">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="11" height="8" rx="1" stroke="currentColor" stroke-width="1"/><path d="M1.5 4.5l5.5 3.5 5.5-3.5" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg>
+        Correo
+      </a>
+    </nav>
+    <div class="sb-spacer"></div>
+    <div class="sb-user">
+      <div class="sb-avatar">S</div>
+      <div>
+        <div class="sb-user-name">Santana &amp; Cía</div>
+        <div class="sb-user-mail">contacto@santanaycia.cl</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="page-header">
+      <span class="page-eyebrow">Panel interno · Uso exclusivo del estudio</span>
+      <h1 class="page-title">Nuevo <em>contrato</em></h1>
+      <p class="page-desc">Complete los datos del cliente, el servicio y la forma de pago. Se generará un link único que puede enviar directamente al cliente.</p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div id="form-section">
+
+      <!-- DATOS DEL CLIENTE -->
+      <div class="card">
+        <div class="card-head"><div class="card-head-dot"></div><span class="card-head-title">Datos del cliente</span></div>
+        <div class="card-body">
+          <div class="fg">
+            <div class="field full">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" placeholder="Nombre y apellidos del cliente">
+            </div>
+            <div class="field">
+              <label for="rut">RUT *</label>
+              <input type="text" id="rut" placeholder="12.345.678-9" maxlength="12">
+              <span class="field-hint" id="rut-hint"></span>
+              <div class="rut-ok" id="rut-ok">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="5" stroke="#4a7c6f" stroke-width="1"/><path d="M3 5.5l1.5 1.5 3.5-3.5" stroke="#4a7c6f" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                RUT válido
+              </div>
+            </div>
+            <div class="field">
+              <label for="correo">Correo del cliente *</label>
+              <input type="email" id="correo" placeholder="correo@ejemplo.cl">
+              <span class="field-hint">Aquí llegará el link de firma</span>
+            </div>
+            <div class="field">
+              <label for="celular">Celular</label>
+              <input type="tel" id="celular" placeholder="+56 9 XXXX XXXX">
+            </div>
+            <div class="field">
+              <label for="ciudad">Ciudad</label>
+              <input type="text" id="ciudad" placeholder="Ej: Santiago">
+            </div>
+            <div class="field full">
+              <label for="domicilio">Domicilio</label>
+              <input type="text" id="domicilio" placeholder="Calle, número, departamento">
+            </div>
+            <div class="field">
+              <label for="region">Región</label>
+              <div class="sw">
+                <select id="region">
+                  <option value="">Seleccione…</option>
+                  <option>Región Metropolitana</option><option>Valparaíso</option><option>Biobío</option>
+                  <option>Araucanía</option><option>O'Higgins</option><option>Maule</option>
+                  <option>Los Lagos</option><option>Antofagasta</option><option>Coquimbo</option>
+                  <option>Atacama</option><option>Tarapacá</option><option>Arica y Parinacota</option>
+                  <option>Aysén</option><option>Magallanes</option><option>Los Ríos</option><option>Ñuble</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notas">Notas internas</label>
+              <input type="text" id="notas" placeholder="Solo visible para el estudio">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICIO -->
+      <div class="card">
+        <div class="card-head"><div class="card-head-dot"></div><span class="card-head-title">Servicio</span></div>
+        <div class="card-body">
+          <div class="fg">
+            <div class="srv-grupos">
+
+              <div>
+                <span class="grupo-titulo">Derecho de familia</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Pensión de Alimentos — Fijación inicial"><div class="srv-name">Pensión de Alimentos</div><div class="srv-sub">Fijación inicial</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Aumento de Pensión de Alimentos"><div class="srv-name">Aumento de Alimentos</div><div class="srv-sub">Demanda de aumento</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Apremio por No Pago de Alimentos"><div class="srv-name">Apremio de Alimentos</div><div class="srv-sub">Cobro forzado</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Tuición y Cuidado Personal"><div class="srv-name">Tuición y Cuidado</div><div class="srv-sub">Cuidado del menor</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Régimen Comunicacional"><div class="srv-name">Régimen Comunicacional</div><div class="srv-sub">Visitas y contacto</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Violencia Intrafamiliar"><div class="srv-name">Violencia Intrafamiliar</div><div class="srv-sub">Medidas cautelares</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Divorcio y separación</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Divorcio de Mutuo Acuerdo"><div class="srv-name">Divorcio de Mutuo Acuerdo</div><div class="srv-sub">Ambas partes de acuerdo</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Divorcio Unilateral por Cese de Convivencia"><div class="srv-name">Divorcio Unilateral</div><div class="srv-sub">Sin acuerdo de partes</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Liquidación de Sociedad Conyugal"><div class="srv-name">Liquidación de Bienes</div><div class="srv-sub">División patrimonio conyugal</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Herencias y testamentos</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Posesión Efectiva"><div class="srv-name">Posesión Efectiva</div><div class="srv-sub">Tramitación completa</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Partición de Bienes Hereditarios"><div class="srv-name">Partición de Bienes</div><div class="srv-sub">División hereditaria</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Redacción de Testamento"><div class="srv-name">Testamento</div><div class="srv-sub">Redacción y validación</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Impugnación de Herencia"><div class="srv-name">Impugnación de Herencia</div><div class="srv-sub">Nulidad o reforma</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Arriendo — Ley 21.461</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Juicio Monitorio de Arriendo — Ley 21.461"><div class="srv-name">Juicio Monitorio</div><div class="srv-sub">Cobro y recuperación</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Lanzamiento y Restitución de Inmueble"><div class="srv-name">Lanzamiento</div><div class="srv-sub">Entrega forzada</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Ocupante Precario — Restitución de Inmueble"><div class="srv-name">Ocupante Precario</div><div class="srv-sub">Sin contrato vigente</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Contratos civiles</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Redacción o Revisión de Contrato Civil"><div class="srv-name">Redacción y Revisión</div><div class="srv-sub">Elaboración y análisis</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Incumplimiento de Contrato Civil"><div class="srv-name">Incumplimiento Contractual</div><div class="srv-sub">Demanda o defensa</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Resolución o Nulidad de Contrato Civil"><div class="srv-name">Resolución y Nulidad</div><div class="srv-sub">Efectos retroactivos</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Compraventa de Bien Raíz u Otro Bien"><div class="srv-name">Compraventa</div><div class="srv-sub">Bienes raíces y otros</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Indemnización de perjuicios</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Indemnización por Daños Contractuales"><div class="srv-name">Daños Contractuales</div><div class="srv-sub">Emergente, lucro, moral</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Responsabilidad Extracontractual"><div class="srv-name">Responsab. Extracontractual</div><div class="srv-sub">Hechos ilícitos</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Defensa en Demanda de Perjuicios"><div class="srv-name">Defensa en Demanda</div><div class="srv-sub">Representación demandado</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Cobro de deudas civiles</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Juicio Ejecutivo — Pagaré o Cheque"><div class="srv-name">Juicio Ejecutivo</div><div class="srv-sub">Pagaré, cheque u otro</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Juicio Ordinario de Cobro de Deuda"><div class="srv-name">Juicio Ordinario de Cobro</div><div class="srv-sub">Sin título ejecutivo</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Defensa del Deudor Civil"><div class="srv-name">Defensa del Deudor</div><div class="srv-sub">Frente a cobros</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Prescripción de Deuda Civil"><div class="srv-name">Prescripción de Deuda</div><div class="srv-sub">Extinción de obligaciones</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Juzgado de Policía Local</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Accidente de Tránsito — Policía Local"><div class="srv-name">Accidente de Tránsito</div><div class="srv-sub">Representación y cobro</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Ley del Consumidor — Policía Local"><div class="srv-name">Ley del Consumidor</div><div class="srv-sub">Ley 19.496</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Cobro de Autopistas o TAG"><div class="srv-name">Autopistas y TAG</div><div class="srv-sub">Defensa cobros viales</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Multas Municipales — Policía Local"><div class="srv-name">Multas Municipales</div><div class="srv-sub">Impugnación y defensa</div></label>
+                </div>
+              </div>
+
+              <div>
+                <span class="grupo-titulo">Propiedad y derechos reales</span>
+                <div class="srv-grid">
+                  <label class="srv-card"><input type="radio" name="srv" value="Prescripción Adquisitiva"><div class="srv-name">Prescripción Adquisitiva</div><div class="srv-sub">Dominio por posesión</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Acción Reivindicatoria"><div class="srv-name">Acción Reivindicatoria</div><div class="srv-sub">Recuperación del bien</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Servidumbre o Usufructo"><div class="srv-name">Servidumbre y Usufructo</div><div class="srv-sub">Constitución y extinción</div></label>
+                  <label class="srv-card"><input type="radio" name="srv" value="Regularización de Propiedad"><div class="srv-name">Regularización de Propiedad</div><div class="srv-sub">Saneamiento y registro</div></label>
+                </div>
+              </div>
+
+            </div><!-- /srv-grupos -->
+          </div>
+        </div>
+      </div>
+
+      <!-- HONORARIOS Y FORMA DE PAGO -->
+      <div class="card">
+        <div class="card-head"><div class="card-head-dot"></div><span class="card-head-title">Honorarios y forma de pago</span></div>
+        <div class="card-body">
+          <div class="fg">
+
+            <div class="fdiv"><span>Monto total</span></div>
+
+            <div class="pago-grid">
+              <div class="field">
+                <label>Honorarios totales (CLP) *</label>
+                <div class="monto-row">
+                  <span class="curr-prefix">$ CLP</span>
+                  <input type="number" id="honorarios" class="monto-input" placeholder="Ej: 450000" min="0">
+                </div>
+              </div>
+              <div class="field">
+                <label for="moneda">Moneda</label>
+                <div class="sw">
+                  <select id="moneda">
+                    <option value="CLP">Pesos chilenos (CLP)</option>
+                    <option value="UF">UF</option>
+                    <option value="USD">Dólares (USD)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="fdiv"><span>Forma de pago</span></div>
+
+            <div class="cuotas-opciones" id="forma-opciones">
+              <label class="cuota-card" id="fp-contado">
+                <input type="radio" name="forma_pago" value="Pago al contado" checked>
+                <div class="cuota-name">Pago al contado</div>
+                <div class="cuota-sub">Monto total en un solo pago</div>
+              </label>
+              <label class="cuota-card" id="fp-inicio">
+                <input type="radio" name="forma_pago" value="Pago al inicio del servicio">
+                <div class="cuota-name">Al inicio del servicio</div>
+                <div class="cuota-sub">Se paga antes de comenzar</div>
+              </label>
+              <label class="cuota-card" id="fp-termino">
+                <input type="radio" name="forma_pago" value="Pago al término del servicio">
+                <div class="cuota-name">Al término del servicio</div>
+                <div class="cuota-sub">Se paga al finalizar el caso</div>
+              </label>
+              <label class="cuota-card" id="fp-mitad">
+                <input type="radio" name="forma_pago" value="50% al inicio y 50% al término">
+                <div class="cuota-name">50% inicio / 50% término</div>
+                <div class="cuota-sub">Mitad ahora, mitad al final</div>
+              </label>
+              <label class="cuota-card" id="fp-cuotas">
+                <input type="radio" name="forma_pago" value="En cuotas mensuales">
+                <div class="cuota-name">En cuotas mensuales</div>
+                <div class="cuota-sub">Pagos iguales mes a mes</div>
+              </label>
+              <label class="cuota-card" id="fp-personalizado">
+                <input type="radio" name="forma_pago" value="Personalizado">
+                <div class="cuota-name">Personalizado</div>
+                <div class="cuota-sub">Otra modalidad acordada</div>
+              </label>
+            </div>
+
+            <!-- Detalle cuotas mensuales -->
+            <div class="cuotas-detalle" id="detalle-cuotas">
+              <div class="field">
+                <label for="n-cuotas">Número de cuotas</label>
+                <div class="sw">
+                  <select id="n-cuotas">
+                    <option value="2">2 cuotas</option><option value="3">3 cuotas</option>
+                    <option value="4">4 cuotas</option><option value="5">5 cuotas</option>
+                    <option value="6">6 cuotas</option><option value="12">12 cuotas</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="vence-cuota">Primera cuota vence</label>
+                <input type="text" id="vence-cuota" placeholder="Ej: 15 de cada mes">
+              </div>
+            </div>
+
+            <!-- Detalle personalizado -->
+            <div class="field full" id="detalle-personalizado" style="display:none;">
+              <label for="pago-descripcion">Descripción del acuerdo de pago</label>
+              <input type="text" id="pago-descripcion" placeholder="Ej: 40% al inicio, 30% a los 30 días, 30% al término">
+            </div>
+
+            <div class="fdiv"><span>Método de pago</span></div>
+
+            <div class="field">
+              <label for="metodo-pago">Método de pago aceptado</label>
+              <div class="sw">
+                <select id="metodo-pago">
+                  <option value="Transferencia bancaria">Transferencia bancaria</option>
+                  <option value="Transferencia o efectivo">Transferencia o efectivo</option>
+                  <option value="Cheque">Cheque</option>
+                  <option value="Cualquier método acordado">Cualquier método acordado</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="vence-pago">Plazo de pago (días)</label>
+              <div class="sw">
+                <select id="vence-pago">
+                  <option value="5 días hábiles">5 días hábiles</option>
+                  <option value="10 días hábiles" selected>10 días hábiles</option>
+                  <option value="15 días hábiles">15 días hábiles</option>
+                  <option value="30 días corridos">30 días corridos</option>
+                  <option value="Según acuerdo">Según acuerdo de pago</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="nota-preview">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="rgba(213,181,144,0.5)" stroke-width="1"/><path d="M7 6.5v3M7 4.5v.5" stroke="rgba(213,181,144,0.5)" stroke-width="1" stroke-linecap="round"/></svg>
+              <p>Todos los detalles de pago quedarán escritos en el contrato que verá el cliente. El link de firma expira en <strong style="color:rgba(245,240,232,0.4);">72 horas</strong>.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-error" id="form-error">Complete los campos obligatorios: nombre, RUT válido, correo, servicio y honorarios.</div>
+
+      <button class="btn-generar" id="btn-generar" onclick="generarContrato()">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="2" y="1.5" width="11" height="13" rx="1" stroke="white" stroke-width="1"/><path d="M5 5.5h5M5 7.5h5M5 9.5h3" stroke="white" stroke-width="0.8" stroke-linecap="round"/><path d="M9.5 1.5v2.5h3" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Generar contrato y enviar al cliente
+        <div class="spinner" id="spinner"></div>
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="result-section">
+      <div class="result-card">
+        <div class="result-head">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#4a7c6f" stroke-width="1"/><path d="M5 9l3 3 5-6" stroke="#4a7c6f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <p>Contrato generado correctamente</p>
+            <p id="result-sub">—</p>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-datos" id="result-datos"></div>
+          <div class="link-box">
+            <div class="link-lbl">Link de firma — enviar al cliente</div>
+            <div class="link-row">
+              <div class="link-url" id="link-url">—</div>
+              <button class="btn-copy" id="btn-copy" onclick="copiarLink()">Copiar</button>
+            </div>
+          </div>
+          <div class="result-actions">
+            <button class="btn-act primary" onclick="abrirLink()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Ver como cliente
+            </button>
+            <button class="btn-act" onclick="copiarLink()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1"/><path d="M3 3V2a1 1 0 011-1h6a1 1 0 011 1v7a1 1 0 01-1 1H9" stroke="currentColor" stroke-width="1"/></svg>
+              Copiar link
+            </button>
+          </div>
+          <button class="btn-nuevo" onclick="nuevoContrato()">+ Crear otro contrato</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  /* ── RUT ── */
+  let rutValido = false, servicioSel = '', formaPagoSel = 'Pago al contado';
+
+  function calcularDv(rut) {
+    let s = 0, m = 2;
+    for (const c of String(rut).split('').reverse()) { s += parseInt(c) * m; m = m === 7 ? 2 : m + 1; }
+    const r = 11 - (s % 11);
+    return r === 11 ? '0' : r === 10 ? 'K' : String(r);
+  }
+  function fmtRut(v) {
+    v = v.replace(/[^0-9kK]/g, '').toUpperCase();
+    if (v.length < 2) return v;
+    return v.slice(0, -1).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '-' + v.slice(-1);
+  }
+  function validaRut(r) {
+    const c = r.replace(/[^0-9kK]/g, '').toUpperCase();
+    if (c.length < 8 || c.length > 9) return false;
+    const n = parseInt(c.slice(0, -1));
+    return !isNaN(n) && calcularDv(n) === c.slice(-1);
+  }
+  document.getElementById('rut').addEventListener('input', function () {
+    const raw = this.value.replace(/[^0-9kK]/g, '');
+    if (raw.length > 1) this.value = fmtRut(raw);
+    rutValido = validaRut(this.value);
+    const hint = document.getElementById('rut-hint'), ok = document.getElementById('rut-ok');
+    if (this.value.length < 3) { this.className = ''; hint.textContent = ''; hint.className = 'field-hint'; ok.classList.remove('show'); }
+    else if (rutValido) { this.className = 'valid'; hint.textContent = ''; ok.classList.add('show'); }
+    else { this.className = 'invalid'; hint.textContent = 'RUT inválido — verifique el dígito verificador'; hint.className = 'field-hint error'; ok.classList.remove('show'); }
+  });
+
+  /* ── SERVICIOS ── */
+  document.querySelectorAll('.srv-card').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('.srv-card').forEach(x => x.classList.remove('sel'));
+      c.classList.add('sel');
+      servicioSel = c.querySelector('input').value;
+    });
+  });
+
+  /* ── FORMA DE PAGO ── */
+  document.querySelectorAll('[name="forma_pago"]').forEach(r => {
+    r.addEventListener('change', function () {
+      formaPagoSel = this.value;
+      document.querySelectorAll('.cuota-card').forEach(c => c.classList.remove('sel'));
+      this.closest('.cuota-card').classList.add('sel');
+      document.getElementById('detalle-cuotas').classList.toggle('show', this.value === 'En cuotas mensuales');
+      document.getElementById('detalle-personalizado').style.display = this.value === 'Personalizado' ? 'block' : 'none';
+    });
+  });
+  // Marca "al contado" por defecto
+  document.querySelector('[name="forma_pago"][value="Pago al contado"]').closest('.cuota-card').classList.add('sel');
+
+  /* ── GENERAR ── */
+  let linkGenerado = '';
+  async function generarContrato() {
+    const nombre     = document.getElementById('nombre').value.trim();
+    const rut        = document.getElementById('rut').value.trim();
+    const correo     = document.getElementById('correo').value.trim();
+    const celular    = document.getElementById('celular').value.trim();
+    const domicilio  = document.getElementById('domicilio').value.trim();
+    const ciudad     = document.getElementById('ciudad').value.trim();
+    const region     = document.getElementById('region').value;
+    const honorarios = document.getElementById('honorarios').value.trim();
+    const moneda     = document.getElementById('moneda').value;
+    const metodo     = document.getElementById('metodo-pago').value;
+    const vencePago  = document.getElementById('vence-pago').value;
+    const err        = document.getElementById('form-error');
+    const re         = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nombre || !rutValido || !re.test(correo) || !servicioSel || !honorarios || parseInt(honorarios) < 1) {
+      err.classList.add('show'); err.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); return;
+    }
+    err.classList.remove('show');
+
+    // Construir descripción de pago
+    let pagoDesc = formaPagoSel;
+    if (formaPagoSel === 'En cuotas mensuales') {
+      const n = document.getElementById('n-cuotas').value;
+      const v = document.getElementById('vence-cuota').value;
+      pagoDesc = `${n} cuotas mensuales${v ? ' — primera vence ' + v : ''}`;
+    } else if (formaPagoSel === 'Personalizado') {
+      const custom = document.getElementById('pago-descripcion').value.trim();
+      if (custom) pagoDesc = custom;
+    }
+
+    const btn = document.getElementById('btn-generar'), sp = document.getElementById('spinner');
+    btn.disabled = true; sp.classList.add('show');
+    await new Promise(r => setTimeout(r, 700));
+
+    const num   = 'SC-' + String(Math.floor(100000 + Math.random() * 900000));
+    const token = btoa(JSON.stringify({
+      v: 2, num, nombre, rut, correo, celular, domicilio, ciudad, region,
+      servicio: servicioSel, honorarios, moneda,
+      forma_pago: pagoDesc, metodo_pago: metodo, vence_pago: vencePago,
+      ts: Date.now(),
+    })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+
+    const base = window.location.href.replace('panel-abogado.html', '').replace(/\/?$/, '');
+    linkGenerado = `${base}/firma-cliente.html?c=${token}`;
+
+    sp.classList.remove('show');
+    mostrarResultado({ num, nombre, correo, servicio: servicioSel, honorarios, moneda, forma_pago: pagoDesc });
+    notificarEstudio({ num, nombre, rut, correo, celular, servicio: servicioSel, honorarios, moneda, forma_pago: pagoDesc }, linkGenerado);
+
+    // ── En producción: llama a tu backend para enviar el email al cliente ──
+    // await fetch('https://TU-PROYECTO.vercel.app/api/enviar-link', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ correo, nombre, num, link: linkGenerado })
+    // });
+  }
+
+  function mostrarResultado({ num, nombre, correo, servicio, honorarios, moneda, forma_pago }) {
+    document.getElementById('result-sub').textContent = `Link generado para ${correo}`;
+    document.getElementById('link-url').textContent = linkGenerado;
+    const fmt = `$${parseInt(honorarios).toLocaleString('es-CL')} ${moneda}`;
+    document.getElementById('result-datos').innerHTML = `
+      <div><div class="rd-label">N° Contrato</div><div class="rd-val hl">${num}</div></div>
+      <div><div class="rd-label">Cliente</div><div class="rd-val">${nombre}</div></div>
+      <div><div class="rd-label">Correo</div><div class="rd-val">${correo}</div></div>
+      <div><div class="rd-label">Servicio</div><div class="rd-val">${servicio}</div></div>
+      <div><div class="rd-label">Honorarios</div><div class="rd-val">${fmt}</div></div>
+      <div><div class="rd-label">Forma de pago</div><div class="rd-val">${forma_pago}</div></div>
+    `;
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('result-section').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function copiarLink() {
+    navigator.clipboard.writeText(linkGenerado).then(() => {
+      const b = document.getElementById('btn-copy');
+      b.textContent = '✓ Copiado'; b.classList.add('ok');
+      setTimeout(() => { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 2000);
+    });
+  }
+  function abrirLink() { window.open(linkGenerado, '_blank'); }
+  function nuevoContrato() {
+    document.getElementById('result-section').classList.remove('show');
+    document.getElementById('form-section').style.display = 'block';
+    document.getElementById('btn-generar').disabled = false;
+    document.querySelectorAll('.srv-card').forEach(c => c.classList.remove('sel'));
+    document.querySelectorAll('.cuota-card').forEach(c => c.classList.remove('sel'));
+    document.querySelector('[name="forma_pago"][value="Pago al contado"]').closest('.cuota-card').classList.add('sel');
+    servicioSel = ''; formaPagoSel = 'Pago al contado'; rutValido = false;
+    ['nombre','rut','correo','celular','ciudad','domicilio','honorarios'].forEach(id => {
+      const el = document.getElementById(id); if (el) { el.value = ''; el.className = ''; }
+    });
+    document.getElementById('rut-hint').textContent = '';
+    document.getElementById('rut-ok').classList.remove('show');
+    document.getElementById('detalle-cuotas').classList.remove('show');
+    document.getElementById('detalle-personalizado').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function notificarEstudio(d, link) {
+    try {
+      await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Contrato generado ${d.num} — ${d.nombre}`,
+          _template: 'table', _captcha: 'false',
+          contrato_num: d.num, cliente: d.nombre, rut: d.rut,
+          correo: d.correo, celular: d.celular || '—',
+          servicio: d.servicio,
+          honorarios: `$${parseInt(d.honorarios).toLocaleString('es-CL')} ${d.moneda}`,
+          forma_pago: d.forma_pago, estado: 'Pendiente de firma',
+          link_firma: link, generado: new Date().toLocaleString('es-CL'),
+        })
+      });
+    } catch (_) {}
+  }
+</script>
+</body>
+</html>
