@@ -1758,6 +1758,9 @@
       setStatus('Enviando…', 'rgba(213,181,144,0.7)');
 
       const payload = {
+access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
+  subject:    'Devuélveme mi casa — Santana & Cía Abogados',
+  from_name:  'Santana & Cía Web',
         nombre,
         email,
         telefono:      document.getElementById('telefono').value.trim() || '—',
@@ -1767,20 +1770,18 @@
         relato,
         archivos:      linksArchivos || 'Sin adjuntos',
         pagina_origen: 'santanaycia.cl/devuelveme-mi-casa',
-        _subject:      'Nueva consulta Devuélveme mi Casa — Santana & Cía',
-        _template:     'table',
-        _captcha:      'false'
+      
       };
 
       try {
-        const res = await fetch('https://formsubmit.co/ajax/contacto@santanaycia.cl', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
         });
         const data = await res.json();
 
-        if (data.success === 'true' || data.success === true) {
+        if (data.success === true) {
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
