@@ -623,6 +623,7 @@
         if (!obj.prestador_correo)    obj.prestador_correo    = 'contacto@santanaycia.cl';
         if (!obj.prestador_rut)       obj.prestador_rut       = '—';
         if (!obj.prestador_domicilio) obj.prestador_domicilio = 'Santiago, Región Metropolitana';
+        if (!obj.prestador_tipo)    obj.prestador_tipo    = 'estudio';
 
         // Valida expiración (72 horas)
         const EXPIRA_MS = 72 * 60 * 60 * 1000;
@@ -728,6 +729,9 @@
       const d = datos;
       const fecha = new Date(d.ts).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' });
       const monto = parseInt(d.honorarios).toLocaleString('es-CL');
+      const alias  = d.prestador_tipo === 'persona' ? 'el Abogado'  : 'el Estudio';
+      const Alias  = d.prestador_tipo === 'persona' ? 'El Abogado'  : 'El Estudio';
+      const dAlias = d.prestador_tipo === 'persona' ? 'del Abogado' : 'del Estudio';
       document.getElementById('contrato-num-display').textContent = d.num;
 
       document.getElementById('contrato-body').innerHTML = `
@@ -738,35 +742,35 @@
         </div>
         <div class="contrato-seccion">
           <h3>I. Partes</h3>
-          <p><strong>Prestador:</strong> <span class="dato-inline">${d.prestador_nombre || 'Santana &amp; Cía Abogados'}</span>${d.prestador_rut && d.prestador_rut !== '—' ? ', RUT <span class="dato-inline">'+d.prestador_rut+'</span>' : ''}, domicilio en <span class="dato-inline">${d.prestador_domicilio || 'Santiago, Región Metropolitana'}</span>, correo <span class="dato-inline">${d.prestador_correo || 'contacto@santanaycia.cl'}</span> (en adelante, <em>"el Estudio"</em>).</p>
-          <p><strong>Comitente:</strong> <span class="dato-inline">${d.nombre}</span>, RUT <span class="dato-inline">${d.rut || '—'}</span>, domicilio en <span class="dato-inline">${[d.domicilio, d.ciudad, d.region].filter(Boolean).join(', ') || '—'}</span>, correo <span class="dato-inline">${d.correo}</span>${d.celular ? `, teléfono <span class="dato-inline">${d.celular}</span>` : ''} (en adelante, <em>"el Cliente"</em>).</p>
+          <p><strong>Prestador:</strong> <span class="dato-inline">${d.prestador_nombre || 'Santana &amp; Cía Abogados'}</span>${d.prestador_rut && d.prestador_rut !== '—' ? ', RUT <span class="dato-inline">'+d.prestador_rut+'</span>' : ''}, domicilio en <span class="dato-inline">${d.prestador_domicilio || 'Santiago, Región Metropolitana'}</span>, correo <span class="dato-inline">${d.prestador_correo || 'contacto@santanaycia.cl'}</span> (en adelante, <em>"${alias}"</em>).</p>
+          <p><strong>Mandante:</strong> <span class="dato-inline">${d.nombre}</span>, RUT <span class="dato-inline">${d.rut || '—'}</span>, domicilio en <span class="dato-inline">${[d.domicilio, d.ciudad, d.region].filter(Boolean).join(', ') || '—'}</span>, correo <span class="dato-inline">${d.correo}</span>${d.celular ? `, teléfono <span class="dato-inline">${d.celular}</span>` : ''} (en adelante, <em>"el Mandante"</em>).</p>
         </div>
         <div class="contrato-seccion">
           <h3>II. Objeto del Contrato</h3>
-          <p>El Cliente encomienda al Estudio la prestación del siguiente servicio legal: <span class="dato-inline">${d.servicio}</span>.</p>
-          <p>El Estudio acepta el encargo y se obliga a tramitar, gestionar y representar al Cliente en las actuaciones judiciales y/o extrajudiciales necesarias, conforme a las leyes de Chile y a los estándares éticos de la profesión legal.</p>
+          <p>El Mandante encomienda a ${alias} la prestación del siguiente servicio legal: <span class="dato-inline">${d.servicio}</span>.</p>
+          <p>${Alias} acepta el encargo y se obliga a tramitar, gestionar y representar al Mandante en las actuaciones judiciales y/o extrajudiciales necesarias, conforme a las leyes de Chile y a los estándares éticos de la profesión legal.</p>
         </div>
         <div class="contrato-seccion">
           <h3>III. Honorarios</h3>
-          <p>El Cliente se obliga a pagar al Estudio la suma de <span class="dato-inline">$${monto} ${d.moneda}</span> en concepto de honorarios profesionales.</p>
+          <p>El Mandante se obliga a pagar a ${alias} la suma de <span class="dato-inline">$${monto} ${d.moneda}</span> en concepto de honorarios profesionales.</p>
           <p><strong>Forma de pago:</strong> <span class="dato-inline">${d.forma_pago}</span>. <strong>Método de pago:</strong> <span class="dato-inline">${d.metodo_pago}</span>. <strong>Plazo:</strong> <span class="dato-inline">${d.vence_pago || 'Según acuerdo'}</span>.</p>
-          <p>El incumplimiento en el pago faculta al Estudio para suspender el servicio, sin perjuicio de las acciones legales de cobro que correspondan.</p>
+          <p>El incumplimiento en el pago faculta a ${alias} para suspender el servicio, sin perjuicio de las acciones legales de cobro que correspondan.</p>
         </div>
         <div class="contrato-seccion">
-          <h3>IV. Obligaciones del Estudio</h3>
-          <p>(a) Prestar el servicio con diligencia profesional y conforme a los estándares legales vigentes; (b) mantener informado al Cliente sobre el estado de los procedimientos; (c) resguardar la confidencialidad de la información del Cliente; (d) actuar en representación del Cliente ante los tribunales o instancias que correspondan.</p>
+          <h3>IV. Obligaciones de ${Alias}</h3>
+          <p>(a) Prestar el servicio con diligencia profesional y conforme a los estándares legales vigentes; (b) mantener informado al Mandante sobre el estado de los procedimientos; (c) resguardar la confidencialidad de la información del Mandante; (d) actuar en representación del Mandante ante los tribunales o instancias que correspondan.</p>
         </div>
         <div class="contrato-seccion">
-          <h3>V. Obligaciones del Cliente</h3>
-          <p>(a) Proporcionar toda la información y documentos necesarios, respondiendo de su veracidad; (b) pagar oportunamente los honorarios; (c) mantener comunicación activa vía correo electrónico; (d) notificar al Estudio de cualquier cambio relevante en su situación jurídica.</p>
+          <h3>V. Obligaciones del Mandante</h3>
+          <p>(a) Proporcionar toda la información y documentos necesarios, respondiendo de su veracidad; (b) pagar oportunamente los honorarios; (c) mantener comunicación activa vía correo electrónico; (d) notificar a ${alias} de cualquier cambio relevante en su situación jurídica.</p>
         </div>
         <div class="contrato-seccion">
           <h3>VI. Confidencialidad y Secreto Profesional</h3>
-          <p>Toda la información estará protegida por el secreto profesional conforme al artículo 231 del Código Penal y las normas del Colegio de Abogados de Chile. El Estudio no divulgará información a terceros salvo requerimiento judicial expreso.</p>
+          <p>Toda la información estará protegida por el secreto profesional conforme al artículo 231 del Código Penal y las normas del Colegio de Abogados de Chile. ${Alias} no divulgará información a terceros salvo requerimiento judicial expreso.</p>
         </div>
         <div class="contrato-seccion">
           <h3>VII. Duración</h3>
-          <p>El contrato tendrá vigencia indefinida hasta la resolución definitiva del asunto, renuncia fundada del Estudio, o desistimiento del Cliente. Cualquier terminación anticipada debe comunicarse con al menos cinco días hábiles de anticipación.</p>
+          <p>El contrato tendrá vigencia indefinida hasta la resolución definitiva del asunto, renuncia fundada ${dAlias}, o desistimiento del Mandante. Cualquier terminación anticipada debe comunicarse con al menos cinco días hábiles de anticipación.</p>
         </div>
         <div class="contrato-seccion">
           <h3>VIII. Ley Aplicable y Jurisdicción</h3>
@@ -774,7 +778,7 @@
         </div>
         <div class="contrato-seccion">
           <h3>IX. Firma Electrónica Simple</h3>
-          <p>Este contrato es suscrito electrónicamente por el Cliente mediante Firma Electrónica Simple (FES) conforme a la Ley N° 19.799. La verificación de identidad se realiza mediante código OTP enviado al correo registrado. El registro incluye: correo verificado, IP del firmante, timestamp y hash del documento.</p>
+          <p>Este contrato es suscrito electrónicamente por el Mandante mediante Firma Electrónica Simple (FES) conforme a la Ley N° 19.799. La verificación de identidad se realiza mediante código OTP enviado al correo registrado. El registro incluye: correo verificado, IP del firmante, timestamp y hash del documento.</p>
           <p style="color:var(--muted);font-size:12px;">Fecha de preparación: ${fecha} · Contrato N° ${d.num}</p>
         </div>
       `;
