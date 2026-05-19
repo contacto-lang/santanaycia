@@ -807,6 +807,17 @@
     </div>
     <p class="modal-err" id="mp-err"></p>
     <div class="modal-btns">
+      <div class="field full" style="margin-bottom:0.75rem;">
+        <label style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.35);display:block;margin-bottom:8px;">Tipo de prestador</label>
+        <div style="display:flex;gap:0.75rem;">
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(245,240,232,0.6);cursor:pointer;">
+            <input type="radio" name="mp-tipo" value="estudio" checked style="accent-color:#8b5e3c;"> Estudio / Sociedad
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(245,240,232,0.6);cursor:pointer;">
+            <input type="radio" name="mp-tipo" value="persona"> Abogado particular
+          </label>
+        </div>
+      </div>
       <button class="modal-btn-cancel" onclick="cerrarModalPrestador()">Cancelar</button>
       <button class="modal-btn-save" onclick="guardarPrestador()">Guardar prestador</button>
     </div>
@@ -848,6 +859,7 @@
     correo:    'contacto@santanaycia.cl',
     rut:       '—',
     domicilio: 'Santiago, Región Metropolitana',
+    tipo:      'estudio',
   }];
   let prestadorIdx = 0;
 
@@ -942,6 +954,7 @@
     document.getElementById('mp-nombre').focus();
     document.getElementById('mp-err').classList.remove('show');
     ['mp-nombre','mp-correo','mp-rut','mp-domicilio'].forEach(id => document.getElementById(id).value = '');
+    document.querySelector('input[name="mp-tipo"][value="estudio"]').checked = true;
   }
   function cerrarModalPrestador() {
     document.getElementById('modal-prestador').classList.remove('show');
@@ -953,7 +966,8 @@
     const domicilio = document.getElementById('mp-domicilio').value.trim();
     const err       = document.getElementById('mp-err');
     if (!nombre || !correo) { err.textContent = 'Nombre y correo son obligatorios.'; err.classList.add('show'); return; }
-    PRESTADORES.push({ nombre, correo, rut: rut||'—', domicilio: domicilio||'Santiago, Chile' });
+    const tipo = document.querySelector('input[name="mp-tipo"]:checked')?.value || 'estudio';
+    PRESTADORES.push({ nombre, correo, rut: rut||'—', domicilio: domicilio||'Santiago, Chile', tipo });
     prestadorIdx = PRESTADORES.length - 1;
     cerrarModalPrestador();
     renderPrestadores();
@@ -1113,6 +1127,7 @@
       prestador_correo:    prest.correo,
       prestador_rut:       prest.rut,
       prestador_domicilio: prest.domicilio,
+      prestador_tipo:      prest.tipo || 'estudio',
       ts: Date.now(),
     })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 
