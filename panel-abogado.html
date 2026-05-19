@@ -256,6 +256,100 @@
     .btn-nuevo { margin-top: 0.75rem; width: 100%; padding: 10px; background: none; border: 0.5px solid rgba(213,181,144,0.08); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,232,0.18); cursor: pointer; transition: all 0.2s; }
     .btn-nuevo:hover { border-color: rgba(213,181,144,0.18); color: rgba(245,240,232,0.38); }
 
+    /* ─── PRESTADOR ─── */
+    .prestador-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; margin-bottom: 0.75rem; }
+    .prestador-card {
+      border: 0.5px solid rgba(213,181,144,0.1); border-radius: 3px;
+      padding: 0.85rem 1rem; cursor: pointer;
+      background: rgba(255,255,255,0.02); transition: all 0.18s; position: relative;
+    }
+    .prestador-card:hover { border-color: rgba(213,181,144,0.28); background: rgba(255,255,255,0.045); }
+    .prestador-card.sel { border-color: rgba(139,94,60,0.55); background: rgba(139,94,60,0.09); }
+    .prestador-card.sel::before { content:'✓'; position:absolute; top:6px; right:8px; font-size:10px; color:rgba(213,181,144,0.6); }
+    .prestador-card input[type="radio"] { display: none; }
+    .prestador-name { font-size: 12px; font-weight: 400; color: rgba(245,240,232,0.7); margin-bottom: 2px; line-height: 1.3; }
+    .prestador-sub { font-size: 10px; color: rgba(245,240,232,0.25); line-height: 1.4; }
+    .prestador-card.add-new {
+      border-style: dashed; border-color: rgba(139,94,60,0.2);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      color: rgba(213,181,144,0.4); font-size: 11px;
+      min-height: 62px;
+    }
+    .prestador-card.add-new:hover { border-color: rgba(139,94,60,0.4); color: rgba(213,181,144,0.7); background: rgba(139,94,60,0.05); }
+    .prestador-del {
+      position: absolute; top: 5px; right: 22px;
+      background: none; border: none; color: rgba(176,82,64,0.35);
+      cursor: pointer; font-size: 13px; line-height: 1; padding: 0; transition: color 0.2s;
+    }
+    .prestador-del:hover { color: rgba(176,82,64,0.8); }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: #1e1a17; border: 0.5px solid rgba(213,181,144,0.15);
+      border-radius: 4px; padding: 2rem; width: 100%; max-width: 460px;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .modal-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:rgba(245,240,232,0.85); margin-bottom:0.25rem; }
+    .modal-title em { font-style:italic; color:rgba(213,181,144,0.7); }
+    .modal-desc { font-size:11px; color:rgba(245,240,232,0.25); margin-bottom:1.5rem; line-height:1.6; }
+    .modal-field { display:flex; flex-direction:column; gap:5px; margin-bottom:0.9rem; }
+    .modal-field label { font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(213,181,144,0.35); }
+    .modal-field input {
+      background: rgba(255,255,255,0.04); border: 0.5px solid rgba(213,181,144,0.13);
+      border-radius: 2px; padding: 10px 12px;
+      font-family: 'Jost',sans-serif; font-size: 13px; color: rgba(245,240,232,0.8);
+      outline: none; transition: border-color 0.2s;
+    }
+    .modal-field input:focus { border-color: rgba(213,181,144,0.35); }
+    .modal-btns { display:flex; gap:0.75rem; margin-top:1.5rem; }
+    .modal-btn-cancel {
+      flex:1; padding:11px; background:none;
+      border:0.5px solid rgba(213,181,144,0.12); border-radius:2px;
+      font-family:'Jost',sans-serif; font-size:10px; letter-spacing:0.18em;
+      text-transform:uppercase; color:rgba(245,240,232,0.25); cursor:pointer; transition:all 0.2s;
+    }
+    .modal-btn-cancel:hover { color:rgba(245,240,232,0.5); border-color:rgba(213,181,144,0.25); }
+    .modal-btn-save {
+      flex:2; padding:11px; background:var(--terra); border:none; border-radius:2px;
+      font-family:'Jost',sans-serif; font-size:10px; letter-spacing:0.2em;
+      text-transform:uppercase; color:white; cursor:pointer; transition:background 0.2s;
+    }
+    .modal-btn-save:hover { background:var(--terra-d); }
+    .modal-err { font-size:11px; color:var(--error); margin-top:0.5rem; display:none; }
+    .modal-err.show { display:block; }
+
+    /* ─── SERVICIOS PERSONALIZADOS ─── */
+    .custom-srv-list { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.5rem; }
+    .custom-srv-item {
+      display:flex; align-items:center; gap:0.6rem;
+      background:rgba(255,255,255,0.02); border:0.5px solid rgba(213,181,144,0.1);
+      border-radius:3px; padding:0.75rem 0.9rem; cursor:pointer; transition:all 0.18s; position:relative;
+    }
+    .custom-srv-item:hover { border-color:rgba(213,181,144,0.25); background:rgba(255,255,255,0.04); }
+    .custom-srv-item.sel { border-color:rgba(139,94,60,0.55); background:rgba(139,94,60,0.09); }
+    .custom-srv-item.sel::after { content:'✓'; position:absolute; right:32px; top:50%; transform:translateY(-50%); font-size:10px; color:rgba(213,181,144,0.6); }
+    .custom-srv-dot { width:5px; height:5px; border-radius:50%; background:rgba(139,94,60,0.45); flex-shrink:0; }
+    .custom-srv-text { font-size:12px; color:rgba(245,240,232,0.65); flex:1; line-height:1.4; }
+    .custom-srv-del {
+      background:none; border:none; color:rgba(176,82,64,0.35); cursor:pointer;
+      font-size:15px; line-height:1; padding:0 4px; transition:color 0.2s; flex-shrink:0;
+    }
+    .custom-srv-del:hover { color:rgba(176,82,64,0.8); }
+    .btn-add-srv {
+      display:flex; align-items:center; justify-content:center; gap:6px; margin-top:0.6rem;
+      background:none; border:0.5px dashed rgba(139,94,60,0.2); border-radius:3px;
+      padding:9px 14px; font-family:'Jost',sans-serif; font-size:11px;
+      color:rgba(213,181,144,0.4); cursor:pointer; transition:all 0.2s; width:100%;
+    }
+    .btn-add-srv:hover { border-color:rgba(139,94,60,0.4); color:rgba(213,181,144,0.7); background:rgba(139,94,60,0.04); }
+
     /* ─── MOBILE ─── */
     @media (max-width: 860px) {
       .sidebar { display: none; }
@@ -319,6 +413,31 @@
 
     <!-- FORMULARIO -->
     <div id="form-section">
+
+      <!-- PRESTADOR -->
+      <div class="card">
+        <div class="card-head"><div class="card-head-dot"></div><span class="card-head-title">Prestador del servicio</span></div>
+        <div class="card-body">
+          <div class="prestador-cards" id="prestador-cards">
+            <!-- Santana & Cía por defecto (siempre visible) -->
+            <label class="prestador-card sel" data-idx="0">
+              <input type="radio" name="prestador_radio" value="0" checked>
+              <div class="prestador-name">Santana &amp; Cía Abogados</div>
+              <div class="prestador-sub">contacto@santanaycia.cl</div>
+            </label>
+            <!-- Las tarjetas personalizadas se insertan aquí por JS -->
+            <div class="prestador-card add-new" onclick="abrirModalPrestador()">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M6.5 1v11M1 6.5h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              Añadir prestador
+            </div>
+          </div>
+          <p style="font-size:10px;color:rgba(245,240,232,0.2);line-height:1.6;">
+            El prestador seleccionado aparecerá como parte del contrato. Puedes añadir abogados independientes u otros estudios.
+          </p>
+        </div>
+      </div>
 
       <!-- DATOS DEL CLIENTE -->
       <div class="card">
@@ -476,6 +595,24 @@
           </div>
         </div>
       </div>
+
+      <!-- SERVICIOS PERSONALIZADOS -->
+      <div class="card">
+        <div class="card-head"><div class="card-head-dot"></div><span class="card-head-title">Servicios personalizados</span></div>
+        <div class="card-body">
+          <p style="font-size:11px;color:rgba(245,240,232,0.25);line-height:1.6;margin-bottom:0.75rem;">
+            ¿El servicio no está en la lista de arriba? Añade uno personalizado aquí. También puedes seleccionarlo en lugar de los servicios predefinidos.
+          </p>
+          <div class="custom-srv-list" id="custom-srv-list"></div>
+          <button class="btn-add-srv" onclick="abrirModalServicio()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            Añadir servicio personalizado
+          </button>
+        </div>
+      </div>
+
 
       <!-- HONORARIOS Y FORMA DE PAGO -->
       <div class="card">
@@ -646,10 +783,81 @@
   </main>
 </div>
 
-<script>
-  /* ── RUT ── */
-  let rutValido = false, servicioSel = '', formaPagoSel = 'Pago al contado';
 
+<!-- ══ MODAL: AÑADIR PRESTADOR ══ -->
+<div class="modal-overlay" id="modal-prestador">
+  <div class="modal-box">
+    <h3 class="modal-title">Añadir <em>prestador</em></h3>
+    <p class="modal-desc">Los datos del prestador aparecerán en la cláusula I del contrato.</p>
+    <div class="modal-field">
+      <label for="mp-nombre">Nombre completo o razón social *</label>
+      <input type="text" id="mp-nombre" placeholder="Ej: María González Abogada" onkeydown="if(event.key==='Enter') guardarPrestador()">
+    </div>
+    <div class="modal-field">
+      <label for="mp-correo">Correo electrónico *</label>
+      <input type="email" id="mp-correo" placeholder="correo@ejemplo.cl" onkeydown="if(event.key==='Enter') guardarPrestador()">
+    </div>
+    <div class="modal-field">
+      <label for="mp-rut">RUT (opcional)</label>
+      <input type="text" id="mp-rut" placeholder="Ej: 12.345.678-9" onkeydown="if(event.key==='Enter') guardarPrestador()">
+    </div>
+    <div class="modal-field">
+      <label for="mp-domicilio">Domicilio (opcional)</label>
+      <input type="text" id="mp-domicilio" placeholder="Ej: Av. Providencia 1234, Santiago" onkeydown="if(event.key==='Enter') guardarPrestador()">
+    </div>
+    <p class="modal-err" id="mp-err"></p>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="cerrarModalPrestador()">Cancelar</button>
+      <button class="modal-btn-save" onclick="guardarPrestador()">Guardar prestador</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: AÑADIR SERVICIO ══ -->
+<div class="modal-overlay" id="modal-servicio">
+  <div class="modal-box">
+    <h3 class="modal-title">Añadir <em>servicio</em></h3>
+    <p class="modal-desc">El nombre del servicio aparecerá en la cláusula II del contrato.</p>
+    <div class="modal-field">
+      <label for="ms-nombre">Nombre del servicio *</label>
+      <input type="text" id="ms-nombre" placeholder="Ej: Asesoría en derecho laboral" onkeydown="if(event.key==='Enter') guardarServicio()">
+    </div>
+    <div class="modal-field">
+      <label for="ms-desc">Descripción breve (opcional)</label>
+      <input type="text" id="ms-desc" placeholder="Ej: Revisión y redacción de contratos de trabajo" onkeydown="if(event.key==='Enter') guardarServicio()">
+    </div>
+    <p class="modal-err" id="ms-err"></p>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="cerrarModalServicio()">Cancelar</button>
+      <button class="modal-btn-save" onclick="guardarServicio()">Guardar servicio</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ══════════════════════════════════════════
+     ESTADO GLOBAL
+  ══════════════════════════════════════════ */
+  let rutValido    = false;
+  let servicioSel  = '';       // valor de radio existente
+  let formaPagoSel = 'Pago al contado';
+
+  // Prestadores: [0] = Santana & Cía (fijo), resto = personalizados
+  const PRESTADORES = [{
+    nombre:    'Santana & Cía Abogados',
+    correo:    'contacto@santanaycia.cl',
+    rut:       '—',
+    domicilio: 'Santiago, Región Metropolitana',
+  }];
+  let prestadorIdx = 0;
+
+  // Servicios personalizados
+  const serviciosCustom = []; // { nombre, desc }
+  let customSel = -1; // índice en serviciosCustom, -1 = ninguno
+
+  /* ══════════════════════════════════════════
+     RUT
+  ══════════════════════════════════════════ */
   function calcularDv(rut) {
     let s = 0, m = 2;
     for (const c of String(rut).split('').reverse()) { s += parseInt(c) * m; m = m === 7 ? 2 : m + 1; }
@@ -672,21 +880,173 @@
     if (raw.length > 1) this.value = fmtRut(raw);
     rutValido = validaRut(this.value);
     const hint = document.getElementById('rut-hint'), ok = document.getElementById('rut-ok');
-    if (this.value.length < 3) { this.className = ''; hint.textContent = ''; hint.className = 'field-hint'; ok.classList.remove('show'); }
-    else if (rutValido) { this.className = 'valid'; hint.textContent = ''; ok.classList.add('show'); }
-    else { this.className = 'invalid'; hint.textContent = 'RUT inválido — verifique el dígito verificador'; hint.className = 'field-hint error'; ok.classList.remove('show'); }
+    if (this.value.length < 3) { this.className=''; hint.textContent=''; hint.className='field-hint'; ok.classList.remove('show'); }
+    else if (rutValido) { this.className='valid'; hint.textContent=''; ok.classList.add('show'); }
+    else { this.className='invalid'; hint.textContent='RUT inválido — verifique el dígito verificador'; hint.className='field-hint error'; ok.classList.remove('show'); }
   });
 
-  /* ── SERVICIOS ── */
+  /* ══════════════════════════════════════════
+     PRESTADORES
+  ══════════════════════════════════════════ */
+  function renderPrestadores() {
+    const container = document.getElementById('prestador-cards');
+    // Limpia tarjetas personalizadas (mantiene la primera = Santana y el botón "añadir")
+    container.querySelectorAll('.prestador-card:not(.add-new)').forEach(el => el.remove());
+    const btnAdd = container.querySelector('.add-new');
+
+    // Tarjeta Santana & Cía (siempre índice 0)
+    const cardSantana = document.createElement('label');
+    cardSantana.className = 'prestador-card' + (prestadorIdx === 0 ? ' sel' : '');
+    cardSantana.dataset.idx = '0';
+    cardSantana.innerHTML = `
+      <input type="radio" name="prestador_radio" value="0" ${prestadorIdx===0?'checked':''}>
+      <div class="prestador-name">Santana &amp; Cía Abogados</div>
+      <div class="prestador-sub">contacto@santanaycia.cl</div>`;
+    cardSantana.addEventListener('click', () => seleccionarPrestador(0));
+    container.insertBefore(cardSantana, btnAdd);
+
+    // Tarjetas personalizadas
+    PRESTADORES.slice(1).forEach((p, i) => {
+      const idx = i + 1;
+      const card = document.createElement('label');
+      card.className = 'prestador-card' + (prestadorIdx === idx ? ' sel' : '');
+      card.dataset.idx = idx;
+      card.innerHTML = `
+        <input type="radio" name="prestador_radio" value="${idx}" ${prestadorIdx===idx?'checked':''}>
+        <div class="prestador-name">${p.nombre}</div>
+        <div class="prestador-sub">${p.correo}</div>
+        <button class="prestador-del" title="Eliminar" onclick="eliminarPrestador(event,${idx})">×</button>`;
+      card.addEventListener('click', (e) => {
+        if (e.target.classList.contains('prestador-del')) return;
+        seleccionarPrestador(idx);
+      });
+      container.insertBefore(card, btnAdd);
+    });
+  }
+
+  function seleccionarPrestador(idx) {
+    prestadorIdx = idx;
+    renderPrestadores();
+  }
+
+  function eliminarPrestador(e, idx) {
+    e.preventDefault(); e.stopPropagation();
+    PRESTADORES.splice(idx, 1);
+    if (prestadorIdx >= PRESTADORES.length) prestadorIdx = PRESTADORES.length - 1;
+    renderPrestadores();
+  }
+
+  /* ── Modal: añadir prestador ── */
+  function abrirModalPrestador() {
+    document.getElementById('modal-prestador').classList.add('show');
+    document.getElementById('mp-nombre').focus();
+    document.getElementById('mp-err').classList.remove('show');
+    ['mp-nombre','mp-correo','mp-rut','mp-domicilio'].forEach(id => document.getElementById(id).value = '');
+  }
+  function cerrarModalPrestador() {
+    document.getElementById('modal-prestador').classList.remove('show');
+  }
+  function guardarPrestador() {
+    const nombre    = document.getElementById('mp-nombre').value.trim();
+    const correo    = document.getElementById('mp-correo').value.trim();
+    const rut       = document.getElementById('mp-rut').value.trim();
+    const domicilio = document.getElementById('mp-domicilio').value.trim();
+    const err       = document.getElementById('mp-err');
+    if (!nombre || !correo) { err.textContent = 'Nombre y correo son obligatorios.'; err.classList.add('show'); return; }
+    PRESTADORES.push({ nombre, correo, rut: rut||'—', domicilio: domicilio||'Santiago, Chile' });
+    prestadorIdx = PRESTADORES.length - 1;
+    cerrarModalPrestador();
+    renderPrestadores();
+  }
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { cerrarModalPrestador(); cerrarModalServicio(); }
+  });
+
+  /* ══════════════════════════════════════════
+     SERVICIOS FIJOS (radio buttons existentes)
+  ══════════════════════════════════════════ */
   document.querySelectorAll('.srv-card').forEach(c => {
     c.addEventListener('click', () => {
+      // Deselecciona todo
       document.querySelectorAll('.srv-card').forEach(x => x.classList.remove('sel'));
+      deselectCustom();
       c.classList.add('sel');
       servicioSel = c.querySelector('input').value;
+      customSel   = -1;
     });
   });
 
-  /* ── FORMA DE PAGO ── */
+  /* ══════════════════════════════════════════
+     SERVICIOS PERSONALIZADOS
+  ══════════════════════════════════════════ */
+  function renderCustomServicios() {
+    const list = document.getElementById('custom-srv-list');
+    list.innerHTML = '';
+    serviciosCustom.forEach((s, i) => {
+      const item = document.createElement('div');
+      item.className = 'custom-srv-item' + (customSel === i ? ' sel' : '');
+      item.innerHTML = `
+        <div class="custom-srv-dot"></div>
+        <div class="custom-srv-text">
+          <strong style="font-weight:500;display:block;">${s.nombre}</strong>
+          ${s.desc ? `<span style="font-size:10px;opacity:0.6;">${s.desc}</span>` : ''}
+        </div>
+        <button class="custom-srv-del" title="Eliminar" onclick="eliminarCustomSrv(event,${i})">×</button>`;
+      item.addEventListener('click', (e) => {
+        if (e.target.classList.contains('custom-srv-del')) return;
+        seleccionarCustomSrv(i);
+      });
+      list.appendChild(item);
+    });
+  }
+
+  function seleccionarCustomSrv(i) {
+    document.querySelectorAll('.srv-card').forEach(x => x.classList.remove('sel'));
+    servicioSel = '';
+    customSel   = i;
+    renderCustomServicios();
+  }
+
+  function deselectCustom() {
+    customSel = -1;
+    renderCustomServicios();
+  }
+
+  function eliminarCustomSrv(e, i) {
+    e.preventDefault(); e.stopPropagation();
+    serviciosCustom.splice(i, 1);
+    if (customSel === i) { customSel = -1; servicioSel = ''; }
+    else if (customSel > i) customSel--;
+    renderCustomServicios();
+  }
+
+  /* ── Modal: añadir servicio ── */
+  function abrirModalServicio() {
+    document.getElementById('modal-servicio').classList.add('show');
+    document.getElementById('ms-nombre').focus();
+    document.getElementById('ms-err').classList.remove('show');
+    ['ms-nombre','ms-desc'].forEach(id => document.getElementById(id).value = '');
+  }
+  function cerrarModalServicio() {
+    document.getElementById('modal-servicio').classList.remove('show');
+  }
+  function guardarServicio() {
+    const nombre = document.getElementById('ms-nombre').value.trim();
+    const desc   = document.getElementById('ms-desc').value.trim();
+    const err    = document.getElementById('ms-err');
+    if (!nombre) { err.textContent = 'Ingrese el nombre del servicio.'; err.classList.add('show'); return; }
+    serviciosCustom.push({ nombre, desc });
+    customSel   = serviciosCustom.length - 1;
+    servicioSel = '';
+    document.querySelectorAll('.srv-card').forEach(x => x.classList.remove('sel'));
+    cerrarModalServicio();
+    renderCustomServicios();
+  }
+
+  /* ══════════════════════════════════════════
+     FORMA DE PAGO
+  ══════════════════════════════════════════ */
   document.querySelectorAll('[name="forma_pago"]').forEach(r => {
     r.addEventListener('change', function () {
       formaPagoSel = this.value;
@@ -696,10 +1056,11 @@
       document.getElementById('detalle-personalizado').style.display = this.value === 'Personalizado' ? 'block' : 'none';
     });
   });
-  // Marca "al contado" por defecto
   document.querySelector('[name="forma_pago"][value="Pago al contado"]').closest('.cuota-card').classList.add('sel');
 
-  /* ── GENERAR ── */
+  /* ══════════════════════════════════════════
+     GENERAR CONTRATO
+  ══════════════════════════════════════════ */
   let linkGenerado = '';
   async function generarContrato() {
     const nombre     = document.getElementById('nombre').value.trim();
@@ -716,12 +1077,15 @@
     const err        = document.getElementById('form-error');
     const re         = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!nombre || !rutValido || !re.test(correo) || !servicioSel || !honorarios || parseInt(honorarios) < 1) {
-      err.classList.add('show'); err.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); return;
+    // Servicio final: fijo o personalizado
+    const srvFinal = customSel >= 0 ? serviciosCustom[customSel].nombre : servicioSel;
+
+    if (!nombre || !rutValido || !re.test(correo) || !srvFinal || !honorarios || parseInt(honorarios) < 1) {
+      err.classList.add('show'); err.scrollIntoView({ behavior:'smooth', block:'nearest' }); return;
     }
     err.classList.remove('show');
 
-    // Construir descripción de pago
+    // Forma de pago
     let pagoDesc = formaPagoSel;
     if (formaPagoSel === 'En cuotas mensuales') {
       const n = document.getElementById('n-cuotas').value;
@@ -732,6 +1096,9 @@
       if (custom) pagoDesc = custom;
     }
 
+    // Prestador seleccionado
+    const prest = PRESTADORES[prestadorIdx];
+
     const btn = document.getElementById('btn-generar'), sp = document.getElementById('spinner');
     btn.disabled = true; sp.classList.add('show');
     await new Promise(r => setTimeout(r, 700));
@@ -739,28 +1106,25 @@
     const num   = 'SC-' + String(Math.floor(100000 + Math.random() * 900000));
     const token = btoa(JSON.stringify({
       v: 2, num, nombre, rut, correo, celular, domicilio, ciudad, region,
-      servicio: servicioSel, honorarios, moneda,
+      servicio: srvFinal, honorarios, moneda,
       forma_pago: pagoDesc, metodo_pago: metodo, vence_pago: vencePago,
+      // Datos del prestador
+      prestador_nombre:    prest.nombre,
+      prestador_correo:    prest.correo,
+      prestador_rut:       prest.rut,
+      prestador_domicilio: prest.domicilio,
       ts: Date.now(),
     })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 
-    // Siempre construye el link desde la raíz del dominio, sin importar desde dónde se sirve el panel
     const base = 'https://santanaycia.cl';
     linkGenerado = `${base}/firma-cliente.html?c=${token}`;
 
     sp.classList.remove('show');
-    mostrarResultado({ num, nombre, correo, servicio: servicioSel, honorarios, moneda, forma_pago: pagoDesc });
-    notificarEstudio({ num, nombre, rut, correo, celular, servicio: servicioSel, honorarios, moneda, forma_pago: pagoDesc }, linkGenerado);
-
-    // ── En producción: llama a tu backend para enviar el email al cliente ──
-    // await fetch('https://TU-PROYECTO.vercel.app/api/enviar-link', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ correo, nombre, num, link: linkGenerado })
-    // });
+    mostrarResultado({ num, nombre, correo, servicio: srvFinal, honorarios, moneda, forma_pago: pagoDesc, prestador: prest.nombre });
+    notificarEstudio({ num, nombre, rut, correo, celular, servicio: srvFinal, honorarios, moneda, forma_pago: pagoDesc, prestador: prest.nombre }, linkGenerado);
   }
 
-  function mostrarResultado({ num, nombre, correo, servicio, honorarios, moneda, forma_pago }) {
+  function mostrarResultado({ num, nombre, correo, servicio, honorarios, moneda, forma_pago, prestador }) {
     document.getElementById('result-sub').textContent = `Link generado para ${correo}`;
     document.getElementById('link-url').textContent = linkGenerado;
     const fmt = `$${parseInt(honorarios).toLocaleString('es-CL')} ${moneda}`;
@@ -770,7 +1134,7 @@
       <div><div class="rd-label">Correo</div><div class="rd-val">${correo}</div></div>
       <div><div class="rd-label">Servicio</div><div class="rd-val">${servicio}</div></div>
       <div><div class="rd-label">Honorarios</div><div class="rd-val">${fmt}</div></div>
-      <div><div class="rd-label">Forma de pago</div><div class="rd-val">${forma_pago}</div></div>
+      <div><div class="rd-label">Prestador</div><div class="rd-val">${prestador}</div></div>
     `;
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('result-section').classList.add('show');
@@ -785,6 +1149,7 @@
     });
   }
   function abrirLink() { window.open(linkGenerado, '_blank'); }
+
   function nuevoContrato() {
     document.getElementById('result-section').classList.remove('show');
     document.getElementById('form-section').style.display = 'block';
@@ -792,7 +1157,7 @@
     document.querySelectorAll('.srv-card').forEach(c => c.classList.remove('sel'));
     document.querySelectorAll('.cuota-card').forEach(c => c.classList.remove('sel'));
     document.querySelector('[name="forma_pago"][value="Pago al contado"]').closest('.cuota-card').classList.add('sel');
-    servicioSel = ''; formaPagoSel = 'Pago al contado'; rutValido = false;
+    servicioSel = ''; customSel = -1; formaPagoSel = 'Pago al contado'; rutValido = false;
     ['nombre','rut','correo','celular','ciudad','domicilio','honorarios'].forEach(id => {
       const el = document.getElementById(id); if (el) { el.value = ''; el.className = ''; }
     });
@@ -800,6 +1165,7 @@
     document.getElementById('rut-ok').classList.remove('show');
     document.getElementById('detalle-cuotas').classList.remove('show');
     document.getElementById('detalle-personalizado').style.display = 'none';
+    renderCustomServicios();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -812,21 +1178,22 @@
           access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
           subject:    `Contrato generado ${d.num} — ${d.nombre}`,
           from_name:  'Santana & Cía — Panel de contratos',
-          contrato_num: d.num,
-          cliente:      d.nombre,
-          rut:          d.rut,
-          correo:       d.correo,
-          celular:      d.celular || '—',
-          servicio:     d.servicio,
-          honorarios:   `$${parseInt(d.honorarios).toLocaleString('es-CL')} ${d.moneda}`,
-          forma_pago:   d.forma_pago,
-          estado:       'Pendiente de firma del cliente',
-          link_firma:   link,
-          generado:     new Date().toLocaleString('es-CL'),
+          contrato_num: d.num, cliente: d.nombre, rut: d.rut,
+          correo: d.correo, celular: d.celular||'—',
+          servicio: d.servicio, prestador: d.prestador,
+          honorarios: `$${parseInt(d.honorarios).toLocaleString('es-CL')} ${d.moneda}`,
+          forma_pago: d.forma_pago, estado: 'Pendiente de firma',
+          link_firma: link, generado: new Date().toLocaleString('es-CL'),
         })
       });
     } catch (_) {}
   }
+
+  /* ══════════════════════════════════════════
+     INIT
+  ══════════════════════════════════════════ */
+  renderPrestadores();
+  renderCustomServicios();
 </script>
 </body>
 </html>
