@@ -615,9 +615,14 @@
         // Valida campos mínimos
         if (!obj.num || !obj.nombre || !obj.correo || !obj.servicio) return false;
         // Compatibilidad v1 sin forma_pago
-        if (!obj.forma_pago) obj.forma_pago = 'Según acuerdo entre las partes';
-        if (!obj.moneda) obj.moneda = 'CLP';
-        if (!obj.metodo_pago) obj.metodo_pago = 'Transferencia bancaria';
+        if (!obj.forma_pago)  obj.forma_pago  = 'Según acuerdo entre las partes';
+        if (!obj.moneda)      obj.moneda       = 'CLP';
+        if (!obj.metodo_pago) obj.metodo_pago  = 'Transferencia bancaria';
+        // Compatibilidad: si no tiene prestador, usa Santana & Cía por defecto
+        if (!obj.prestador_nombre)    obj.prestador_nombre    = 'Santana & Cía Abogados';
+        if (!obj.prestador_correo)    obj.prestador_correo    = 'contacto@santanaycia.cl';
+        if (!obj.prestador_rut)       obj.prestador_rut       = '—';
+        if (!obj.prestador_domicilio) obj.prestador_domicilio = 'Santiago, Región Metropolitana';
 
         // Valida expiración (72 horas)
         const EXPIRA_MS = 72 * 60 * 60 * 1000;
@@ -733,7 +738,7 @@
         </div>
         <div class="contrato-seccion">
           <h3>I. Partes</h3>
-          <p><strong>Prestador:</strong> Santana &amp; Cía Abogados, con domicilio en Santiago, Región Metropolitana, correo contacto@santanaycia.cl (en adelante, <em>"el Estudio"</em>).</p>
+          <p><strong>Prestador:</strong> <span class="dato-inline">${d.prestador_nombre || 'Santana &amp; Cía Abogados'}</span>${d.prestador_rut && d.prestador_rut !== '—' ? ', RUT <span class="dato-inline">'+d.prestador_rut+'</span>' : ''}, domicilio en <span class="dato-inline">${d.prestador_domicilio || 'Santiago, Región Metropolitana'}</span>, correo <span class="dato-inline">${d.prestador_correo || 'contacto@santanaycia.cl'}</span> (en adelante, <em>"el Estudio"</em>).</p>
           <p><strong>Comitente:</strong> <span class="dato-inline">${d.nombre}</span>, RUT <span class="dato-inline">${d.rut || '—'}</span>, domicilio en <span class="dato-inline">${[d.domicilio, d.ciudad, d.region].filter(Boolean).join(', ') || '—'}</span>, correo <span class="dato-inline">${d.correo}</span>${d.celular ? `, teléfono <span class="dato-inline">${d.celular}</span>` : ''} (en adelante, <em>"el Cliente"</em>).</p>
         </div>
         <div class="contrato-seccion">
