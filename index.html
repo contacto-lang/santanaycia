@@ -1010,6 +1010,37 @@
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+.upload-area {
+  border: 0.5px dashed rgba(213,181,144,0.25);
+  border-radius: 2px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.upload-area:hover, .upload-area.dragover {
+  border-color: rgba(213,181,144,0.5);
+  background: rgba(213,181,144,0.04);
+}
+.upload-area input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+.upload-icon { width: 28px; height: 28px; margin: 0 auto 10px; opacity: 0.3; }
+.upload-text { font-size: 12px; color: rgba(213,181,144,0.5); letter-spacing: 0.05em; line-height: 1.6; }
+.upload-text strong { color: rgba(213,181,144,0.8); }
+.file-list { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.file-item { font-size: 11px; color: rgba(213,181,144,0.7); display: flex; align-items: center; gap: 6px; }
+.file-item::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--terra); opacity: 0.6; }
+
   </style>
 </head>
 <body>
@@ -1267,6 +1298,28 @@
                 rows="5"
               ></textarea>
             </div>
+<div class="form-group full">
+  <label>Documentos adjuntos (opcional)</label>
+  <div class="upload-area" id="upload-area">
+    <input
+      type="file"
+      id="archivos"
+      name="archivos"
+      multiple
+      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+      onchange="mostrarArchivos(this)"
+    >
+    <svg class="upload-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 4v14M9 9l5-5 5 5" stroke="#d5b590" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 20v2a2 2 0 002 2h16a2 2 0 002-2v-2" stroke="#d5b590" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+    <p class="upload-text">
+      <strong>Haga clic o arrastre archivos aquí</strong><br>
+      PDF, Word, JPG o PNG · Máx. 10 MB por archivo
+    </p>
+    <div class="file-list" id="file-list"></div>
+  </div>
+</div>
 
             <div class="form-group full">
               <div class="consent-row">
@@ -1342,6 +1395,43 @@
       });
     });
 
+    /* ── Mostrar archivos ── */
+    function mostrarArchivos(input) {
+      const list = document.getElementById('file-list');
+      list.innerHTML = '';
+      Array.from(input.files).forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'file-item';
+        item.textContent = f.name + ' (' + (f.size / 1024 / 1024).toFixed(1) + ' MB)';
+        list.appendChild(item);
+      });
+    }
+
+    /* ── Drag & drop ── */
+    const uploadArea = document.getElementById('upload-area');
+    uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+    uploadArea.addEventListener('drop', e => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const fi = document.getElementById('archivos');
+      fi.files = e.dataTransfer.files;
+      mostrarArchivos(fi);
+    });
+
+    /* ── Subir archivo a GoFile ── */
+    async function subirArchivo(file) {
+      const serverRes = await fetch('https://api.gofile.io/servers');
+      const serverData = await serverRes.json();
+      const server = serverData.data.servers[0].name;
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch(`https://${server}.gofile.io/uploadFile`, { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.status !== 'ok') throw new Error('Error subiendo ' + file.name);
+      return `${file.name}: ${data.data.downloadPage}`;
+    }
+
     /* ── Envío formulario ── */
     document.getElementById('contacto-form').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -1350,6 +1440,7 @@
       const relato   = document.getElementById('relato').value.trim();
       const consent  = document.getElementById('consentimiento').checked;
       const errorMsg = document.getElementById('error-msg');
+      const files    = document.getElementById('archivos').files;
 
       if (!nombre || !email || !relato || !consent) {
         errorMsg.style.display = 'block';
@@ -1358,17 +1449,43 @@
       errorMsg.style.display = 'none';
 
       const btn = document.querySelector('.form-submit');
+
+      /* 1. Subir archivos si los hay */
+      let linksArchivos = '';
+      if (files.length > 0) {
+        btn.textContent = `Subiendo ${files.length} archivo(s)…`;
+        btn.disabled = true;
+        try {
+          const links = await Promise.all(Array.from(files).map(subirArchivo));
+          linksArchivos = links.join('\n');
+        } catch {
+          btn.textContent = 'Enviar consulta confidencial →';
+          btn.disabled = false;
+          let s = document.getElementById('fs-msg');
+          if (!s) {
+            s = document.createElement('p');
+            s.id = 'fs-msg';
+            s.style.cssText = 'font-size:12px;color:#d5a090;margin-top:.75rem;text-align:center;letter-spacing:.04em;';
+            btn.insertAdjacentElement('afterend', s);
+          }
+          s.textContent = 'Error al subir archivos. Intente sin adjuntos o escríbanos a contacto@santanaycia.cl';
+          return;
+        }
+      }
+
+      /* 2. Enviar a Web3Forms */
       btn.textContent = 'Enviando…';
       btn.disabled = true;
 
       const payload = {
- access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
-  subject:    'Nueva consulta — Santana & Cía Abogados',
-  from_name:  'Santana & Cía Web',
+        access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
+        subject:    'Nueva consulta — Santana & Cía Abogados',
+        from_name:  'Santana & Cía Web',
         nombre, email,
         telefono: document.getElementById('telefono').value.trim() || '—',
         area:     document.getElementById('area').value || '—',
         relato,
+        archivos: linksArchivos || 'Sin adjuntos',
         pagina:   'santanaycia.cl — Página de inicio',
       };
 
