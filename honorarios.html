@@ -412,344 +412,569 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream:    #f5f0e8;
-      --cream-d:  #ede5d5;
-      --sand:     #d9cdb8;
-      --terra:    #8b5e3c;
-      --terra-d:  #6b4528;
-      --charcoal: #2c2520;
-      --muted:    #7a6e64;
-      --white:    #fdfaf5;
-      --border:   rgba(139,94,60,0.15);
-      --gold:     #d5b590;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--cream);
-      color: var(--charcoal);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream:    #f5f0e8;
+    --cream-d:  #ede5d5;
+    --sand:     #d9cdb8;
+    --terra:    #8b5e3c;
+    --terra-d:  #6b4528;
+    --charcoal: #2c2520;
+    --muted:    #7a6e64;
+    --white:    #fdfaf5;
+    --border:   rgba(139,94,60,0.15);
+    --gold:     #d5b590;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--cream);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(139,94,60,0.025) 39px,
+        rgba(139,94,60,0.025) 40px
+      );
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(245,240,232,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 0.05em;
-      color: var(--charcoal);
-      text-decoration: none;
-      line-height: 1.2;
-    }
-    .nav-logo span {
-      display: block;
-      font-size: 9px;
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--terra);
-      margin-top: 2px;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 11px; font-weight: 400; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--muted); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--terra); }
-    .nav-cta {
-      font-size: 11px; font-weight: 400; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--terra); text-decoration: none;
-      padding: 7px 18px; border: 0.5px solid var(--terra); border-radius: 2px;
-      transition: all 0.2s;
-    }
-    .nav-cta:hover { background: var(--terra); color: var(--white); }
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(245,240,232,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400;
+    font-size: 18px; letter-spacing: 0.05em;
+    color: var(--charcoal); text-decoration: none; line-height: 1.2;
+  }
+  .nav-logo span {
+    display: block; font-size: 9px; font-family: 'Jost', sans-serif;
+    font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--terra); margin-top: 2px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terra); }
+  .nav-cta {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--terra); text-decoration: none;
+    padding: 7px 18px; border: 0.5px solid var(--terra); border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--terra); color: var(--white); }
 
-    /* ── BREADCRUMB ── */
-    .breadcrumb-bar {
-      background: var(--cream-d);
-      border-bottom: 0.5px solid var(--border);
-      padding: 0.6rem 2.5rem;
-    }
-    .breadcrumb {
-      max-width: 920px; margin: 0 auto;
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11px; color: var(--muted); list-style: none;
-    }
-    .breadcrumb li { display: flex; align-items: center; gap: 8px; }
-    .breadcrumb li + li::before { content: '›'; opacity: 0.5; }
-    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--terra); }
-    .breadcrumb li:last-child { color: var(--terra); font-weight: 400; }
+  /* ── BREADCRUMB ── */
+  .breadcrumb-bar {
+    background: rgba(237,229,213,0.7);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0.6rem 2.5rem;
+  }
+  .breadcrumb {
+    max-width: 920px; margin: 0 auto;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--muted); list-style: none;
+  }
+  .breadcrumb li { display: flex; align-items: center; gap: 8px; }
+  .breadcrumb li + li::before { content: '›'; opacity: 0.5; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--terra); }
+  .breadcrumb li:last-child { color: var(--terra); font-weight: 400; }
 
-    /* ── SECCIÓN PRINCIPAL ── */
-    section { padding: 4rem 2rem 5rem; }
-    .section-inner { max-width: 920px; margin: 0 auto; }
-    .section-tag {
-      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--terra); font-weight: 400; margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-tag::before {
-      content: ''; display: inline-block;
-      width: 22px; height: 0.5px;
-      background: var(--terra); opacity: 0.5;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(38px, 5.5vw, 64px); line-height: 1.04;
-      color: var(--charcoal); margin-bottom: 1.25rem; letter-spacing: -0.02em;
-    }
-    .section-title em { font-style: italic; color: var(--terra); }
-    .section-lead {
-      font-size: 15px; font-weight: 300; color: var(--muted);
-      line-height: 1.9; max-width: 620px; margin-bottom: 0.5rem;
-    }
+  /* ── SECCIÓN PRINCIPAL ── */
+  section { padding: 4rem 2rem 5rem; }
+  .section-inner { max-width: 920px; margin: 0 auto; }
+  .section-tag {
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--terra); font-weight: 400; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before {
+    content: ''; display: inline-block;
+    width: 22px; height: 0.5px; background: var(--terra); opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(38px, 5.5vw, 64px); line-height: 1.04;
+    color: var(--charcoal); margin-bottom: 1.25rem; letter-spacing: -0.02em;
+  }
+  .section-title em { font-style: italic; color: var(--terra); }
+  .section-lead {
+    font-size: 15px; font-weight: 300; color: var(--muted);
+    line-height: 1.9; max-width: 620px; margin-bottom: 0.5rem;
+  }
 
-    /* ── TABLA HONORARIOS ── */
-    .hon-wrap {
-      border: 0.5px solid var(--border); border-radius: 3px; overflow: hidden;
-      margin-top: 3rem; margin-bottom: 1.5rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.03);
-    }
-    .hon-thead {
-      background: var(--charcoal); display: grid;
-      grid-template-columns: 1fr auto; align-items: center;
-      padding: 0.8rem 1.75rem; gap: 1rem;
-    }
-    .hon-thead-l, .hon-thead-r {
-      font-size: 9px; font-weight: 400;
-      letter-spacing: 0.32em; text-transform: uppercase;
-    }
-    .hon-thead-l { color: rgba(213,181,144,0.38); }
-    .hon-thead-r { color: rgba(213,181,144,0.28); text-align: right; }
-    .hon-cat {
-      font-size: 9px; font-weight: 400; letter-spacing: 0.38em;
-      text-transform: uppercase; color: var(--terra); opacity: 0.6;
-      padding: 0.65rem 1.75rem;
-      background: rgba(139,94,60,0.04);
-      border-bottom: 0.5px solid var(--border);
-    }
+  /* ── BUSCADOR ── */
+  .hon-search-wrap { margin: 2.5rem 0 0; position: relative; }
+  .hon-search-label {
+    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--terra); font-weight: 400; margin-bottom: 0.65rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hon-search-label::before {
+    content: ''; display: inline-block;
+    width: 14px; height: 0.5px; background: var(--terra); opacity: 0.4;
+  }
+  .hon-search-box { position: relative; }
+  .hon-search-box svg {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; stroke: var(--muted); fill: none;
+    stroke-width: 1.5; pointer-events: none;
+  }
+  .hon-search-input {
+    width: 100%; padding: 13px 14px 13px 42px;
+    font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300;
+    color: var(--charcoal); background: var(--white);
+    border: 0.5px solid var(--border); border-radius: 3px;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  .hon-search-input::placeholder { color: var(--muted); opacity: 0.55; }
+  .hon-search-input:focus {
+    border-color: rgba(139,94,60,0.4);
+    box-shadow: 0 0 0 3px rgba(139,94,60,0.07);
+  }
+  .hon-search-dropdown {
+    display: none; position: absolute;
+    top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 3px; box-shadow: 0 12px 36px rgba(44,37,32,0.1);
+    z-index: 50; max-height: 320px; overflow-y: auto;
+  }
+  .hon-search-dropdown.is-open { display: block; }
+  .hon-sd-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1.5rem; padding: 11px 16px; cursor: pointer;
+    border-bottom: 0.5px solid rgba(139,94,60,0.07);
+    transition: background 0.15s;
+  }
+  .hon-sd-item:last-child { border-bottom: none; }
+  .hon-sd-item:hover { background: var(--cream); }
+  .hon-sd-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: var(--charcoal); line-height: 1.3;
+  }
+  .hon-sd-item-name mark {
+    background: rgba(213,181,144,0.38); color: var(--charcoal);
+    border-radius: 1px; padding: 0 2px;
+  }
+  .hon-sd-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; color: var(--terra); white-space: nowrap; flex-shrink: 0;
+  }
+  .hon-sd-item-cat {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.55; display: block; margin-top: 2px;
+  }
+  .hon-sd-empty { padding: 1.25rem 16px; font-size: 13px; color: var(--muted); text-align: center; }
+
+  /* ── TARJETA DE RESULTADO ── */
+  .hon-result-card {
+    display: none; margin-top: 1rem;
+    background: var(--white); border: 0.5px solid rgba(139,94,60,0.22);
+    border-radius: 3px; padding: 1.5rem 1.75rem;
+    position: relative; overflow: hidden;
+  }
+  .hon-result-card.is-visible { display: block; }
+  .hon-result-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--terra);
+  }
+  .hon-result-tag {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--terra); opacity: 0.6; margin-bottom: 0.5rem;
+  }
+  .hon-result-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; color: var(--charcoal);
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+  .hon-result-desc { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .hon-result-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+  }
+  .hon-result-price-label {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.6; margin-bottom: 3px;
+  }
+  .hon-result-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; color: var(--terra); line-height: 1;
+  }
+  .hon-result-note {
+    font-size: 10px; color: var(--muted); opacity: 0.6;
+    margin-top: 5px; display: flex; align-items: center; gap: 5px;
+  }
+  .hon-result-note::before {
+    content: ''; display: inline-block;
+    width: 8px; height: 0.5px; background: var(--muted); opacity: 0.5;
+  }
+  .hon-result-cta {
+    display: inline-block; font-size: 10px; font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--white); background: var(--terra); text-decoration: none;
+    padding: 11px 22px; border-radius: 2px; border: 0.5px solid var(--terra);
+    transition: background 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .hon-result-cta:hover { background: var(--terra-d); border-color: var(--terra-d); }
+  .hon-result-close {
+    position: absolute; top: 14px; right: 14px;
+    background: none; border: none; cursor: pointer;
+    font-size: 16px; color: var(--muted); opacity: 0.4;
+    line-height: 1; padding: 2px 6px; transition: opacity 0.2s;
+  }
+  .hon-result-close:hover { opacity: 0.8; }
+
+  /* ── TABLA: CABECERA ── */
+  .hon-wrap {
+    border: 0.5px solid var(--border); border-radius: 3px; overflow: hidden;
+    margin-top: 2.5rem; margin-bottom: 1.5rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+  }
+  .hon-thead {
+    background: var(--charcoal); display: grid;
+    grid-template-columns: 1fr auto; align-items: center;
+    padding: 0.9rem 1.75rem; gap: 1rem;
+  }
+  .hon-thead-l, .hon-thead-r {
+    font-size: 9px; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase;
+  }
+  .hon-thead-l { color: rgba(213,181,144,0.38); }
+  .hon-thead-r { color: rgba(213,181,144,0.28); text-align: right; }
+
+  /* ── TABLA: CATEGORÍAS — más peso visual ── */
+  .hon-cat {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.42em;
+    text-transform: uppercase; color: var(--terra);
+    padding: 0.9rem 1.75rem;
+    background: rgba(139,94,60,0.07);
+    border-bottom: 0.5px solid rgba(139,94,60,0.18);
+    border-top: 0.5px solid rgba(139,94,60,0.1);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hon-cat::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 0.5px;
+    background: var(--terra); opacity: 0.5; flex-shrink: 0;
+  }
+
+  /* ── TABLA: FILAS — hover con borde izquierdo ── */
+  .hon-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: start; gap: 2rem; padding: 1.5rem 1.75rem;
+    border-bottom: 0.5px solid var(--border); background: var(--white);
+    border-left: 3px solid transparent;
+    transition: background 0.18s ease, border-left-color 0.18s ease;
+    position: relative;
+  }
+  .hon-row:last-child { border-bottom: none; }
+  .hon-row:hover {
+    background: #fdf8f2;
+    border-left-color: var(--terra);
+  }
+
+  /* ── TABLA: TIPOGRAFÍA MEJORADA ── */
+  .hon-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    font-weight: 400; color: var(--charcoal); line-height: 1.25; margin-bottom: 7px;
+  }
+  /* descripción: 12 → 13px, line-height aumentado */
+  .hon-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.9; max-width: 560px;
+  }
+  .hon-note {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; color: var(--muted); opacity: 0.6; margin-top: 7px;
+  }
+  .hon-note::before {
+    content: ''; display: inline-block;
+    width: 8px; height: 0.5px; background: var(--muted); opacity: 0.5;
+  }
+
+  /* ── PRECIOS: diferenciados visualmente ── */
+  .hon-price {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    font-weight: 400; color: var(--terra);
+    white-space: nowrap; text-align: right; line-height: 1.2; flex-shrink: 0;
+  }
+  .hon-price small {
+    display: block; font-family: 'Jost', sans-serif; font-size: 9px;
+    font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-top: 4px;
+  }
+  /* UF confirmados */
+  .hon-price.--uf { color: var(--terra-d); }
+  /* "A convenir" — gris, más pequeño */
+  .hon-price.--muted {
+    font-size: 13px; color: var(--muted);
+    font-family: 'Jost', sans-serif; font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  /* "Incluido" — badge sutil */
+  .hon-price.--inc {
+    font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(139,94,60,0.45);
+    background: rgba(139,94,60,0.06);
+    padding: 4px 8px; border-radius: 2px;
+    border: 0.5px solid rgba(139,94,60,0.12);
+  }
+
+  /* ── CONDICIONES ── */
+  .hon-conditions {
+    background: rgba(237,229,213,0.6); border: 0.5px solid var(--border);
+    border-radius: 3px; padding: 2rem 1.75rem; margin-top: 2rem;
+  }
+  .hon-conditions-title {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); font-weight: 400; margin-bottom: 1.5rem;
+  }
+  .hon-cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
+  .hon-cond-item { display: flex; gap: 0.85rem; align-items: flex-start; }
+  .hon-cond-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 13px;
+    color: var(--terra); opacity: 0.38; flex-shrink: 0; padding-top: 1px;
+  }
+  .hon-cond-body strong {
+    display: block; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+  .hon-cond-body p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  /* ── CTA BAND — transición suavizada con puente ── */
+  .cta-bridge {
+    text-align: center; padding: 2.5rem 2rem 0;
+  }
+  .cta-bridge-quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px); font-weight: 300;
+    color: var(--muted); line-height: 1.5; opacity: 0.75;
+    max-width: 540px; margin: 0 auto;
+  }
+  .cta-bridge-rule {
+    width: 40px; height: 0.5px;
+    background: var(--terra); opacity: 0.3;
+    margin: 1.5rem auto 0;
+  }
+  .cta-band {
+    background: var(--charcoal);
+    padding: 3.5rem 2rem;
+    text-align: center; margin-top: 1.5rem;
+    border-radius: 3px;
+  }
+  .cta-band-eyebrow {
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: rgba(213,181,144,0.45); margin-bottom: 1rem;
+  }
+  .cta-band-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 300; color: #f5efe4; line-height: 1.2; margin-bottom: 0.75rem;
+  }
+  .cta-band-title em { font-style: italic; color: var(--gold); }
+  .cta-band-sub {
+    font-size: 13px; color: rgba(245,239,228,0.45);
+    max-width: 420px; margin: 0 auto 2rem; line-height: 1.8;
+  }
+  .cta-band-actions { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--charcoal); background: var(--gold); text-decoration: none;
+    padding: 13px 30px; border-radius: 2px; border: 0.5px solid var(--gold);
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .btn-primary:hover { background: #c8a878; border-color: #c8a878; }
+  .btn-outline {
+    display: inline-block; font-size: 11px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(213,181,144,0.7); text-decoration: none;
+    padding: 13px 26px; border: 0.5px solid rgba(213,181,144,0.3);
+    border-radius: 2px; transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-outline:hover { border-color: rgba(213,181,144,0.65); color: var(--gold); }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 3px; margin-top: 2.5rem; overflow: hidden;
+  }
+  .faq-header {
+    padding: 1.5rem 1.75rem; border-bottom: 0.5px solid var(--border);
+    background: rgba(237,229,213,0.6);
+  }
+  .faq-header-label {
+    font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
+    color: var(--terra); opacity: 0.7; margin-bottom: 0.4rem;
+  }
+  .faq-header-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px;
+    font-weight: 400; color: var(--charcoal);
+  }
+  .faq-item { border-bottom: 0.5px solid var(--border); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    text-align: left; padding: 1.25rem 1.75rem;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; transition: background 0.18s;
+  }
+  .faq-question:hover { background: var(--cream); }
+  .faq-q-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 17px;
+    font-weight: 400; color: var(--charcoal); line-height: 1.3;
+  }
+  .faq-icon {
+    flex-shrink: 0; width: 20px; height: 20px; border: 0.5px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--terra); transition: transform 0.3s;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s;
+    padding: 0 1.75rem;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.75rem 1.25rem; }
+  .faq-answer p { font-size: 13px; color: var(--muted); line-height: 1.9; }
+
+  /* ── ARANCEL REF ── */
+  .arancel-ref {
+    font-size: 10px; color: var(--muted); opacity: 0.55;
+    text-align: right; margin-bottom: 0.5rem; letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1e1a17; margin-top: 5rem;
+    padding: 2.5rem 2.5rem;
+    border-top: 0.5px solid rgba(213,181,144,0.09);
+  }
+  .footer-inner {
+    max-width: 920px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400; color: rgba(245,239,228,0.45);
+  }
+  .footer-logo span {
+    display: block; font-family: 'Jost', sans-serif;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(213,181,144,0.28); margin-top: 3px;
+  }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,239,228,0.2); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(213,181,144,0.55); }
+  .footer-note {
+    font-size: 11px; color: rgba(245,239,228,0.18);
+    text-align: right; line-height: 1.7;
+  }
+  .footer-note a { color: rgba(213,181,144,0.28); text-decoration: none; }
+
+  /* ══════════════════════════════════════
+     MOBILE
+  ══════════════════════════════════════ */
+  @media (max-width: 768px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .nav-links { display: none; }
+    .breadcrumb-bar { padding: 0.6rem 1.25rem; }
+    section { padding: 3rem 1.25rem 4rem; }
+
+    /* Filas: columna única, precio con fondo diferenciado */
     .hon-row {
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: start; gap: 2rem; padding: 1.4rem 1.75rem;
-      border-bottom: 0.5px solid var(--border); background: var(--white);
-      transition: background 0.2s ease;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 1.25rem 1.25rem 0;
+      border-left-width: 2px;
     }
-    .hon-row:last-child { border-bottom: none; }
-    .hon-row:hover { background: var(--cream); }
-    .hon-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 20px;
-      font-weight: 400; color: var(--charcoal); line-height: 1.2; margin-bottom: 6px;
-    }
-    .hon-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 560px; }
-    .hon-note {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 10px; color: var(--muted); opacity: 0.6; margin-top: 6px;
-    }
-    .hon-note::before {
-      content: ''; display: inline-block;
-      width: 8px; height: 0.5px; background: var(--muted); opacity: 0.5;
-    }
+    .hon-row:hover { border-left-color: var(--terra); }
+
+    /* bloque de precio en mobile: banda inferior */
     .hon-price {
-      font-family: 'Cormorant Garamond', serif; font-size: 20px;
-      font-weight: 400; color: var(--terra);
-      white-space: nowrap; text-align: right; line-height: 1.2; flex-shrink: 0;
+      text-align: left;
+      background: rgba(139,94,60,0.04);
+      border-top: 0.5px solid var(--border);
+      margin: 1rem -1.25rem 0;
+      padding: 0.75rem 1.25rem;
+      font-size: 18px;
+      display: flex; align-items: baseline; gap: 10px;
     }
     .hon-price small {
-      display: block; font-family: 'Jost', sans-serif; font-size: 9px;
-      font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted); margin-top: 4px;
+      display: inline; margin-top: 0;
+      font-size: 9px;
     }
-    .hon-price.--muted  { font-size: 15px; color: var(--muted); }
-    .hon-price.--uf     { color: var(--terra-d); }
-    .hon-price.--inc    { font-size: 14px; color: rgba(139,94,60,0.5); }
+    .hon-price.--muted { font-size: 13px; }
+    .hon-price.--inc   { font-size: 11px; }
 
-    /* ── CONDICIONES ── */
-    .hon-conditions {
-      background: var(--cream-d); border: 0.5px solid var(--border);
-      border-radius: 3px; padding: 2rem 1.75rem; margin-top: 2rem;
-    }
-    .hon-conditions-title {
-      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--muted); font-weight: 400; margin-bottom: 1.5rem;
-    }
-    .hon-cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
-    .hon-cond-item { display: flex; gap: 0.85rem; align-items: flex-start; }
-    .hon-cond-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 13px;
-      color: var(--terra); opacity: 0.38; flex-shrink: 0; padding-top: 1px;
-    }
-    .hon-cond-body strong {
-      display: block; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--charcoal); margin-bottom: 4px;
-    }
-    .hon-cond-body p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+    /* categorías más compactas en mobile */
+    .hon-cat { padding: 0.75rem 1.25rem; font-size: 8px; }
+    .hon-thead { padding: 0.75rem 1.25rem; }
 
-    /* ── CTA CONTACTO ── */
-    .cta-band {
-      background: var(--charcoal);
-      padding: 3.5rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
+    /* condiciones */
+    .hon-cond-grid { grid-template-columns: 1fr; }
+
+    /* resultado del buscador */
+    .hon-result-row { flex-direction: column; align-items: flex-start; }
+
+    /* ── BUSCADOR MOBILE: flujo normal, no fixed ── */
+    .hon-search-wrap { position: static; }
+    .hon-search-box  { position: static; }
+
+    .hon-search-box svg {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* contenedor relativo para el ícono */
+    .hon-search-box {
+      position: relative;
+    }
+
+    .hon-search-dropdown {
+      position: static;
+      display: none;
+      margin-top: 4px;
+      max-height: 240px;
+      overflow-y: auto;
       border-radius: 3px;
+      box-shadow: 0 8px 24px rgba(44,37,32,0.12);
+      z-index: auto;
     }
-    .cta-band-eyebrow {
-      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
-      color: rgba(213,181,144,0.45); margin-bottom: 1rem;
-    }
-    .cta-band-title {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 38px);
-      font-weight: 300; color: #f5efe4; line-height: 1.2; margin-bottom: 0.75rem;
-    }
-    .cta-band-title em { font-style: italic; color: var(--gold); }
-    .cta-band-sub {
-      font-size: 13px; color: rgba(245,239,228,0.45);
-      max-width: 420px; margin: 0 auto 2rem; line-height: 1.8;
-    }
-    .cta-band-actions { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-block; font-size: 11px; font-weight: 400;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--charcoal); background: var(--gold); text-decoration: none;
-      padding: 13px 30px; border-radius: 2px; border: 0.5px solid var(--gold);
-      transition: all 0.3s;
-    }
-    .btn-primary:hover { background: #c8a878; border-color: #c8a878; }
-    .btn-outline {
-      display: inline-block; font-size: 11px; font-weight: 400;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: rgba(213,181,144,0.7); text-decoration: none;
-      padding: 13px 26px; border: 0.5px solid rgba(213,181,144,0.3);
-      border-radius: 2px; transition: all 0.3s;
-    }
-    .btn-outline:hover { border-color: rgba(213,181,144,0.65); color: var(--gold); }
+    .hon-search-dropdown.is-open { display: block; }
 
-    /* ── FAQ VISIBLE ── */
-    .faq-section {
-      background: var(--white);
-      border: 0.5px solid var(--border);
-      border-radius: 3px;
-      margin-top: 2.5rem;
-      overflow: hidden;
-    }
-    .faq-header {
-      padding: 1.5rem 1.75rem;
-      border-bottom: 0.5px solid var(--border);
-      background: var(--cream-d);
-    }
-    .faq-header-label {
-      font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
-      color: var(--terra); opacity: 0.7; margin-bottom: 0.4rem;
-    }
-    .faq-header-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 22px;
-      font-weight: 400; color: var(--charcoal);
-    }
-    .faq-item {
-      border-bottom: 0.5px solid var(--border);
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-question {
-      width: 100%; background: none; border: none; cursor: pointer;
-      text-align: left; padding: 1.25rem 1.75rem;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 1rem; transition: background 0.2s;
-    }
-    .faq-question:hover { background: var(--cream); }
-    .faq-q-text {
-      font-family: 'Cormorant Garamond', serif; font-size: 17px;
-      font-weight: 400; color: var(--charcoal); line-height: 1.3;
-    }
-    .faq-icon {
-      flex-shrink: 0; width: 20px; height: 20px; border: 0.5px solid var(--border);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--terra); transition: transform 0.3s;
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-answer {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.3s;
-      padding: 0 1.75rem;
-    }
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding: 0 1.75rem 1.25rem;
-    }
-    .faq-answer p {
-      font-size: 13px; color: var(--muted); line-height: 1.8;
-    }
+    /* CTA bridge */
+    .cta-bridge { padding: 2rem 0 0; }
 
-    /* ── ARANCEL REF ── */
-    .arancel-ref {
-      font-size: 10px; color: var(--muted); opacity: 0.55;
-      text-align: right; margin-bottom: 0.5rem; letter-spacing: 0.05em;
-    }
+    /* footer */
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-note { text-align: left; }
+  }
+</style> 
 
-    /* ── FOOTER ── */
-    footer {
-      background: #1e1a17; margin-top: 5rem;
-      padding: 2.5rem 2.5rem;
-      border-top: 0.5px solid rgba(213,181,144,0.09);
-    }
-    .footer-inner {
-      max-width: 920px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 2rem; flex-wrap: wrap;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; font-weight: 400; color: rgba(245,239,228,0.45);
-    }
-    .footer-logo span {
-      display: block; font-family: 'Jost', sans-serif;
-      font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-      color: rgba(213,181,144,0.28); margin-top: 3px;
-    }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(245,239,228,0.2); text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: rgba(213,181,144,0.55); }
-    .footer-note {
-      font-size: 11px; color: rgba(245,239,228,0.18);
-      text-align: right; line-height: 1.7;
-    }
-    .footer-note a { color: rgba(213,181,144,0.28); text-decoration: none; }
 
-    @media (max-width: 768px) {
-      nav { padding: 0.9rem 1.25rem; }
-      .nav-links { display: none; }
-      .breadcrumb-bar { padding: 0.6rem 1.25rem; }
-      section { padding: 3rem 1.25rem 4rem; }
-      .hon-row { grid-template-columns: 1fr; gap: 0.75rem; }
-      .hon-price { text-align: left; }
-      .hon-cond-grid { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .footer-note { text-align: left; }
-    }
-  </style>
 </head>
 <body>
 
@@ -789,13 +1014,44 @@
       <span class="section-tag">Honorarios 2026</span>
       <h1 class="section-title">Transparencia<br>en cada <em>cobro</em></h1>
       <p class="section-lead">
-        Antes de comprometerse, conozca el valor del servicio. Los rangos son referenciales basados en el Arancel del Colegio de Abogados de Chile 2023; cada caso se evalúa individualmente antes de fijar honorarios definitivos.
+        Antes de comprometerse, conozca el valor del servicio. Cada caso se evalúa individualmente antes de fijar honorarios definitivos.
       </p>
       <p class="section-lead" style="margin-top:0.75rem; font-size:14px;">
         <strong style="color:var(--terra); font-weight:500;">Primera evaluación sin costo</strong> — Contáctenos en <a href="mailto:contacto@santanaycia.cl" style="color:var(--terra);">contacto@santanaycia.cl</a>
       </p>
 
       <p class="arancel-ref">Referencia: Arancel Colegio de Abogados de Chile 2023 · UF al día de cotización</p>
+<!-- ── BUSCADOR ── -->
+<div class="hon-search-wrap">
+  <p class="hon-search-label">Buscar servicio</p>
+  <div class="hon-search-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+    <input
+      type="search"
+      id="honSearch"
+      class="hon-search-input"
+      placeholder="Ej: divorcio mutuo acuerdo, pensión de alimentos, posesión efectiva…"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <div class="hon-search-dropdown" id="honDropdown" role="listbox"></div>
+  </div>
+  <!-- Tarjeta de resultado -->
+  <div class="hon-result-card" id="honResult">
+    <button class="hon-result-close" id="honResultClose" aria-label="Cerrar">×</button>
+    <p class="hon-result-tag" id="honResultTag"></p>
+    <p class="hon-result-name" id="honResultName"></p>
+    <p class="hon-result-desc" id="honResultDesc"></p>
+    <div class="hon-result-row">
+      <div class="hon-result-price-block">
+        <p class="hon-result-price-label">Valor referencial</p>
+        <p class="hon-result-price" id="honResultPrice"></p>
+        <p class="hon-result-note" id="honResultNote"></p>
+      </div>
+      <a href="https://www.santanaycia.cl/#contacto" class="hon-result-cta">Consulta gratuita →</a>
+    </div>
+  </div>
+</div>
 
       <div class="hon-wrap">
         <div class="hon-thead">
@@ -1345,6 +1601,12 @@
 
       </div><!-- /faq-section -->
 
+<!-- PUENTE CTA -->
+      <div class="cta-bridge" aria-hidden="true">
+        <p class="cta-bridge-quote">El honorario definitivo siempre se fija tras conocer su caso.</p>
+        <div class="cta-bridge-rule"></div>
+      </div>
+
       <!-- CTA BAND -->
       <div class="cta-band">
         <p class="cta-band-eyebrow">Primera evaluación sin costo</p>
@@ -1356,7 +1618,7 @@
         </div>
       </div>
 
-    </div>
+    </div>     
   </section>
 
   <!-- FOOTER -->
@@ -1382,25 +1644,164 @@
     </div>
   </footer>
 
-  <script>
-    /* ── FAQ accordion ── */
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const item = this.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
-        // Cerrar todos
-        document.querySelectorAll('.faq-item.open').forEach(el => {
-          el.classList.remove('open');
-          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-        });
-        // Abrir el clickeado si estaba cerrado
-        if (!isOpen) {
-          item.classList.add('open');
-          this.setAttribute('aria-expanded', 'true');
-        }
+<script>
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = this.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
+      if (!isOpen) {
+        item.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
     });
-  </script>
+  });
+
+  /* ── Accesibilidad: aria-live en dropdown del buscador ── */
+  const honDropdown = document.getElementById('honDropdown');
+  if (honDropdown) {
+    honDropdown.setAttribute('role', 'listbox');
+    honDropdown.setAttribute('aria-live', 'polite');
+    honDropdown.setAttribute('aria-label', 'Resultados de búsqueda de honorarios');
+  }
+
+  /* ── Accesibilidad: teclado en filas de la tabla ── */
+  document.querySelectorAll('.hon-row').forEach(row => {
+    row.setAttribute('tabindex', '0');
+    row.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const link = row.querySelector('a');
+        if (link) link.click();
+      }
+    });
+  });
+
+  /* ── BUSCADOR ── */
+  const HON_DATA = [
+    { cat: 'Consulta', name: 'Consulta Personal', desc: 'Atención por un abogado del estudio con análisis del caso y orientación sobre opciones legales disponibles.', price: 'UF 1', note: 'Ref. Colegio: 1 UF · por consulta' },
+    { cat: 'Consulta', name: 'Consulta con Estudio de Documentos e Informe', desc: 'Revisión de antecedentes, análisis estratégico y entrega de informe escrito con propuesta de ruta de acción.', price: 'UF 2', note: 'Ref. Colegio: 2 UF · descontable si contrata el servicio' },
+    { cat: 'Familia', name: 'Divorcio de Mutuo Acuerdo — Plan Preferente', desc: 'Para casos simplificados sin hijos ni bienes comunes relevantes, bajo condiciones estructurales del estudio.', price: '$130.000', note: 'Valor único' },
+    { cat: 'Familia', name: 'Divorcio de Mutuo Acuerdo — Tradicional', desc: 'Acuerdo completo de relaciones mutuas, compensación económica si aplica, y patrocinio de ambos cónyuges hasta sentencia.', price: 'UF 8', note: 'Ref. Colegio: 8 UF por cónyuge representado' },
+    { cat: 'Familia', name: 'Divorcio Unilateral', desc: 'Término del vínculo matrimonial sin acuerdo del cónyuge. Patrocinio en todas las audiencias hasta sentencia.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · según complejidad' },
+    { cat: 'Familia', name: 'Divorcio por Culpa', desc: 'Divorcio contencioso fundado en causal imputable al otro cónyuge. Requiere acreditación de los hechos en juicio.', price: 'UF 30', note: 'Ref. Colegio: 30 UF · según complejidad' },
+    { cat: 'Familia', name: 'Separación Judicial', desc: 'Declaración judicial de separación de los cónyuges sin disolución del vínculo matrimonial.', price: 'UF 15', note: 'Ref. Colegio: 15 UF · por causa' },
+    { cat: 'Familia', name: 'Nulidad del Matrimonio', desc: 'Acción para declarar la invalidez del vínculo matrimonial por vicios originarios de forma o fondo.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Familia', name: 'Compensación Económica en Divorcio', desc: 'Solicitud o defensa ante la compensación económica derivada del menoscabo producido por el matrimonio.', price: 'A convenir', note: 'Ref. Colegio: 10% obtenido o ahorrado (mín. 15 UF)' },
+    { cat: 'Familia', name: 'Pensión de Alimentos — Fijación', desc: 'Demanda para establecer la pensión del alimentario. Honorario calculado sobre la pensión efectivamente obtenida.', price: 'A convenir', note: 'Ref. Colegio: 15 UF + 50% de la pensión demandada' },
+    { cat: 'Familia', name: 'Pensión de Alimentos — Aumento o Rebaja', desc: 'Modificación judicial de la pensión vigente por cambio en las circunstancias económicas.', price: 'A convenir', note: 'Según caso' },
+    { cat: 'Familia', name: 'Apremio y Cobro de Deuda de Alimentos', desc: 'Arresto nocturno, retención de fondos previsionales y otras medidas de apremio por pensiones impagas.', price: 'A convenir', note: 'Ref.: 3 UF + 10% de lo que se obtenga' },
+    { cat: 'Familia', name: 'Tuición y Cuidado Personal', desc: 'Demanda o defensa en juicios de cuidado personal de hijos menores.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Familia', name: 'Patria Potestad — Ejercicio, Suspensión o Pérdida', desc: 'Causas relativas al ejercicio, suspensión o pérdida de la patria potestad sobre hijos menores.', price: 'UF 15', note: 'Ref. Colegio: 15 UF · por causa' },
+    { cat: 'Familia', name: 'Acciones de Filiación', desc: 'Investigación o impugnación de la paternidad o maternidad, reconocimiento de hijo.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Familia', name: 'Adopción', desc: 'Gestión de los procedimientos previos a la adopción y el procedimiento de adopción propiamente tal.', price: 'Desde UF 15', note: 'Ref. Colegio: 15 UF (previo) · 20 UF (adopción)' },
+    { cat: 'Familia', name: 'Bienes Familiares', desc: 'Declaración, desafectación de bienes familiares y constitución de derechos de usufructo, uso o habitación.', price: 'A convenir', note: 'Ref. Colegio: 5% bienes hasta 1.000 UF · 2% sobre 1.000 UF' },
+    { cat: 'Familia', name: 'Régimen Patrimonial del Matrimonio', desc: 'Liquidación de sociedad conyugal, separación de bienes y participación en los gananciales.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Familia', name: 'Guardas y Curatelas', desc: 'Nombramiento judicial de guardadores o curadores para personas que no pueden administrar sus bienes.', price: 'UF 15', note: 'Ref. Colegio: 15 UF · por gestión' },
+    { cat: 'Familia', name: 'Declaración de Interdicción', desc: 'Solicitud judicial para declarar la interdicción de una persona por demencia, prodigalidad u otras causales.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Familia', name: 'Autorización Judicial — Salida del País (Menor)', desc: 'Gestión ante el tribunal de familia para obtener autorización de salida del país de un menor sin consentimiento de un progenitor.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por gestión' },
+    { cat: 'Familia', name: 'Violencia Intrafamiliar y Medidas Cautelares', desc: 'Denuncia y representación en audiencias. Solicitud de medidas cautelares urgentes.', price: 'UF 15', note: 'Ref. Colegio: 15 UF · según urgencia' },
+    { cat: 'Herencias', name: 'Posesión Efectiva Intestada', desc: 'Tramitación ante el Registro Civil cuando el causante no dejó testamento.', price: 'A convenir', note: 'Según bienes involucrados' },
+    { cat: 'Herencias', name: 'Posesión Efectiva Testada', desc: 'Tramitación ante el Juzgado Civil cuando existe testamento. Incluye revisión del instrumento, inventario de bienes y sentencia.', price: 'Desde UF 20', note: 'Ref. Colegio: 20 UF · 0,5%–5% del valor comercial de los bienes' },
+    { cat: 'Herencias', name: 'Redacción y Validación de Testamento', desc: 'Asesoría en la estructuración del testamento y redacción del instrumento.', price: 'Desde UF 20', note: 'Ref. Colegio: 20 UF (hasta 1.000 UF en bienes) · 5% sobre exceso' },
+    { cat: 'Herencias', name: 'Apertura y Publicación de Testamento', desc: 'Gestión judicial para la apertura, lectura, protocolización y publicación del testamento cerrado o solemne.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por gestión' },
+    { cat: 'Herencias', name: 'Partición de Bienes Hereditarios', desc: 'Liquidación y adjudicación de los bienes entre los herederos. De común acuerdo o mediante juicio de partición.', price: 'A convenir', note: 'Ref. Colegio: 10% sobre la masa de bienes (mín. 30 UF)' },
+    { cat: 'Herencias', name: 'Albaceazgo', desc: 'Representación del albacea en la ejecución del testamento y administración de los bienes de la herencia.', price: 'A convenir', note: 'Ref. Colegio: 10% (mín. 20 UF) con tenencia · 5% (mín. 15 UF) sin tenencia' },
+    { cat: 'Herencias', name: 'Declaración de Muerte Presunta', desc: 'Gestión judicial para obtener la declaración de muerte presunta de una persona cuyo paradero se desconoce.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por gestión' },
+    { cat: 'Herencias', name: 'Declaración de Herencia Yacente', desc: 'Solicitud judicial de declaración de herencia yacente y nombramiento del curador de bienes.', price: 'UF 20', note: 'Ref. Colegio: 20 UF (incluye nombramiento de curador)' },
+    { cat: 'Herencias', name: 'Impugnación de Herencias', desc: 'Acción judicial para invalidar testamentos o reclamar la legítima rigorosa vulnerada por el testador.', price: 'A convenir', note: 'Según complejidad del caso' },
+    { cat: 'Arriendo', name: 'Procedimiento Monitorio — Arrendatario Moroso', desc: 'Juicio monitorio bajo la Ley 21.461 para cobrar rentas impagas y obtener el lanzamiento.', price: 'Desde UF 10', note: 'Ref. Colegio: 10 UF (deuda ≤50 UF) · 15 UF (51–100) · 20 UF (>100)' },
+    { cat: 'Arriendo', name: 'Cobro de Rentas Atrasadas e Intereses', desc: 'Liquidación y cobro judicial de rentas impagas, gastos comunes no pagados e intereses legales.', price: 'Incluido', note: 'En juicio monitorio Ley 21.461' },
+    { cat: 'Arriendo', name: 'Lanzamiento y Restitución del Inmueble', desc: 'Ejecución de la orden judicial de lanzamiento para recuperar la posesión del inmueble.', price: 'Incluido', note: 'En juicio monitorio Ley 21.461' },
+    { cat: 'Arriendo', name: 'Ocupante Precario y Sin Contrato', desc: 'Acción judicial para recuperar un inmueble ocupado sin título ni contrato. Acción de precario ante el Juzgado Civil.', price: 'Desde UF 10', note: 'Ref. Colegio: 10–50 UF según complejidad' },
+    { cat: 'Civil', name: 'Medidas Prejudiciales', desc: 'Diligencias previas al juicio para asegurar la prueba o el resultado de la acción.', price: 'UF 5 – 15', note: 'Ref. Colegio: 15 UF (resuelven el asunto) · 5 UF (juicio continúa)' },
+    { cat: 'Civil', name: 'Juicio Ordinario Mayor Cuantía', desc: 'Juicios civiles declarativos de mayor cuantía. Patrocinio en todas las etapas hasta sentencia.', price: 'UF 30', note: 'Ref. Colegio: 30 UF + 10% obtenido · Con reconvención: 50 UF' },
+    { cat: 'Civil', name: 'Juicio Ordinario Menor Cuantía', desc: 'Juicios civiles declarativos de menor cuantía. Procedimiento más expedito.', price: 'UF 20', note: 'Ref. Colegio: 20 UF + 10% obtenido' },
+    { cat: 'Civil', name: 'Juicio Ordinario Mínima Cuantía', desc: 'Juicios civiles de mínima cuantía con procedimiento simplificado.', price: 'UF 10', note: 'Ref. Colegio: 10 UF + 10% obtenido' },
+    { cat: 'Civil', name: 'Juicio Sumario', desc: 'Procedimiento breve y concentrado para materias que requieren tramitación rápida.', price: 'UF 20', note: 'Ref. Colegio: 20 UF + 10% obtenido' },
+    { cat: 'Civil', name: 'Preparación de la Vía Ejecutiva', desc: 'Gestiones judiciales para preparar el mérito ejecutivo de un título que no lo tiene por sí solo.', price: 'UF 10', note: 'Ref. Colegio: 10 UF · por gestión' },
+    { cat: 'Civil', name: 'Cobro de Deudas y Juicio Ejecutivo', desc: 'Cobro extrajudicial y judicial de deudas documentadas mediante pagarés, letras, contratos u otros títulos ejecutivos.', price: 'UF 20', note: 'Ref. Colegio: 20 UF + 10% recuperado' },
+    { cat: 'Civil', name: 'Tercerías en Juicio Ejecutivo', desc: 'Intervención de terceros: tercería de dominio, posesión, prelación o pago.', price: 'Desde UF 10', note: 'Ref. Colegio: 10 UF (dominio/posesión) · 10% obtenido mín. 10 UF (prelación/pago)' },
+    { cat: 'Civil', name: 'Juicios Posesorios', desc: 'Querellas posesorias para conservar o recuperar la posesión de bienes raíces.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por causa' },
+    { cat: 'Civil', name: 'Redacción de Contratos', desc: 'Contratos de arrendamiento, compraventa, prestación de servicios, mutuos y otros.', price: 'Desde UF 5', note: 'Ref. Colegio: 2% del negocio (mín. 5 UF) · sin cuantía: 8 UF' },
+    { cat: 'Civil', name: 'Examen y Estudio de Títulos de Bienes Raíces', desc: 'Revisión del historial de dominio, gravámenes, prohibiciones e hipotecas de un inmueble.', price: 'Desde UF 5', note: 'Ref. Colegio: 2% del valor del inmueble (mín. 5 UF)' },
+    { cat: 'Civil', name: 'Incumplimiento y Nulidad de Contratos', desc: 'Demanda o defensa por incumplimiento de obligaciones contractuales.', price: 'A convenir', note: 'Ref. mercado: desde $1.000.000 + 20–30% cuota litis' },
+    { cat: 'Civil', name: 'Indemnización de Perjuicios', desc: 'Daño emergente, lucro cesante o daño moral por actos ilícitos o incumplimientos contractuales.', price: 'UF 30', note: 'Ref. Colegio: 30 UF + 10% obtenido' },
+    { cat: 'Civil', name: 'Cambio de Nombre y Rectificación de Partida Civil', desc: 'Gestiones judiciales para cambio de nombre o apellido, y rectificar errores en partidas civiles.', price: 'UF 20', note: 'Ref. Colegio: 20 UF · por gestión' },
+    { cat: 'Civil', name: 'Accidentes de Tránsito y Juzgado de Policía Local', desc: 'Representación ante el Juzgado de Policía Local por infracciones de tránsito, accidentes y cobro de daños.', price: 'Desde UF 10', note: 'Ref. Colegio: 15 UF (querella infraccional) · 10 UF + 10% (indemnización)' },
+    { cat: 'Civil', name: 'Ley del Consumidor', desc: 'Representación de consumidores ante el Juzgado de Policía Local por infracciones a la Ley 19.496.', price: 'UF 10', note: 'Ref. Colegio: 10 UF + 10% de lo obtenido' },
+    { cat: 'Recursos', name: 'Apelación y Casación', desc: 'Interposición o defensa de recursos de apelación ante la Corte de Apelaciones o recursos de casación ante la Corte Suprema.', price: 'A convenir', note: 'Ref. Colegio: 50% del arancel de primera instancia' },
+    { cat: 'Recursos', name: 'Inaplicabilidad por Inconstitucionalidad', desc: 'Recurso ante el Tribunal Constitucional para declarar inaplicable un precepto legal contrario a la Constitución.', price: 'UF 30', note: 'Ref. Colegio: 30 UF · por recurso' },
+  ];
+
+  const input    = document.getElementById('honSearch');
+  const dropdown = document.getElementById('honDropdown');
+  const card     = document.getElementById('honResult');
+  const closeBtn = document.getElementById('honResultClose');
+
+  function normalize(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  function highlight(text, query) {
+    const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function showDropdown(query) {
+    const q = normalize(query.trim());
+    if (q.length < 2) { dropdown.classList.remove('is-open'); return; }
+    const results = HON_DATA.filter(item =>
+      normalize(item.name).includes(q) ||
+      normalize(item.cat).includes(q) ||
+      normalize(item.desc).includes(q)
+    ).slice(0, 8);
+
+    if (!results.length) {
+      dropdown.innerHTML = '<p class="hon-sd-empty">Sin resultados para "' + query + '"</p>';
+    } else {
+      dropdown.innerHTML = results.map(item =>
+        `<div class="hon-sd-item" data-idx="${HON_DATA.indexOf(item)}" role="option" tabindex="0">
+          <div>
+            <span class="hon-sd-item-name">${highlight(item.name, q)}</span>
+            <span class="hon-sd-item-cat">${item.cat}</span>
+          </div>
+          <span class="hon-sd-item-price">${item.price}</span>
+        </div>`
+      ).join('');
+      dropdown.querySelectorAll('.hon-sd-item').forEach(el => {
+        el.addEventListener('click', () => selectItem(+el.dataset.idx));
+        el.addEventListener('keydown', e => { if (e.key === 'Enter') selectItem(+el.dataset.idx); });
+      });
+    }
+    dropdown.classList.add('is-open');
+  }
+
+  function selectItem(idx) {
+    const item = HON_DATA[idx];
+    document.getElementById('honResultTag').textContent   = item.cat;
+    document.getElementById('honResultName').textContent  = item.name;
+    document.getElementById('honResultDesc').textContent  = item.desc;
+    document.getElementById('honResultPrice').textContent = item.price;
+    document.getElementById('honResultNote').textContent  = item.note;
+    input.value = item.name;
+    dropdown.classList.remove('is-open');
+    card.classList.add('is-visible');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  input.addEventListener('input', () => showDropdown(input.value));
+  input.addEventListener('focus', () => { if (input.value.length >= 2) showDropdown(input.value); });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.hon-search-wrap')) dropdown.classList.remove('is-open');
+  });
+  closeBtn.addEventListener('click', () => {
+    card.classList.remove('is-visible');
+    input.value = '';
+  });
+</script>
 
 </body>
 </html>
