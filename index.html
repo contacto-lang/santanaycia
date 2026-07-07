@@ -14,7 +14,6 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="bingbot" content="index, follow">
-  <meta name="Googlebot-News" content="index, follow">
   <meta name="author" content="Santana &amp; Cía Abogados">
   <meta name="publisher" content="Santana &amp; Cía Abogados">
   <meta name="copyright" content="Santana &amp; Cía Abogados 2026">
@@ -25,19 +24,13 @@
   <meta name="coverage" content="Chile">
   <meta name="target" content="all">
   <meta name="rating" content="general">
-  <meta name="revisit-after" content="7 days">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="format-detection" content="telephone=no">
 
   <!-- Fechas -->
   <meta name="date" content="2026-05-14">
-  <meta name="last-modified" content="2026-05-14">
-  <meta property="article:published_time" content="2026-05-14T00:00:00-04:00">
-  <meta property="article:modified_time" content="2026-05-14T00:00:00-04:00">
-  <meta property="article:author" content="Santana &amp; Cía Abogados">
-  <meta property="article:section" content="Servicios Legales">
-  <meta property="article:tag" content="abogados chile, familia, civil, herencias, arriendo, pensión de alimentos, divorcio">
+  <meta name="last-modified" content="2026-07-06">
 
   <!-- Geo -->
   <meta name="geo.region" content="CL-RM">
@@ -57,16 +50,6 @@
   <meta name="DC.subject" content="Abogados Chile, Derecho Familia, Derecho Civil, Herencias, Arriendo, Pensión Alimentos, Divorcio">
   <meta name="DC.type" content="Service">
   <meta name="DC.rights" content="https://www.santanaycia.cl/privacidad">
-
-  <!-- Citation -->
-  <meta name="citation_title" content="Santana &amp; Cía | Abogados Especialistas Chile — Familia, Civil, Herencias y Arriendo">
-  <meta name="citation_author" content="Santana &amp; Cía Abogados">
-  <meta name="citation_publication_date" content="2026/05/14">
-  <meta name="citation_online_date" content="2026/05/14">
-  <meta name="citation_language" content="es">
-  <meta name="citation_fulltext_html_url" content="https://www.santanaycia.cl/">
-  <meta name="citation_publisher" content="Santana &amp; Cía Abogados">
-  <meta name="citation_keywords" content="abogados chile, familia, civil, herencias, arriendo, pensión de alimentos, divorcio, tuición">
 
   <!-- ═══════════════════════════════════════════
        CANONICAL & ALTERNATES
@@ -148,7 +131,8 @@
       "@type": "ContactPoint",
       "contactType": "customer service",
       "email": "contacto@santanaycia.cl",
-      "availableLanguage": "Spanish"
+      "availableLanguage": "Spanish",
+      "url": "https://www.santanaycia.cl/#contacto"
     },
     "geo": { "@type": "GeoCoordinates", "latitude": -33.4489, "longitude": -70.6693 },
     "address": {
@@ -222,7 +206,7 @@
     "description": "Estudio jurídico integral en Chile. Derecho de familia, civil, herencias y arriendo. Primera evaluación sin costo. contacto@santanaycia.cl",
     "inLanguage": "es-CL",
     "datePublished": "2026-05-14",
-    "dateModified": "2026-05-14",
+    "dateModified": "2026-07-06",
     "keywords": "abogados chile, familia, civil, herencias, arriendo, pensión de alimentos, divorcio, tuición",
     "isPartOf": { "@id": "https://www.santanaycia.cl/#website" },
     "about": { "@id": "https://www.santanaycia.cl/#organization" },
@@ -237,23 +221,20 @@
   }
   </script>
 
-  <!-- BreadcrumbList -->
+  <!-- BreadcrumbList — solo la propia página; el detalle jerárquico (Inicio > Familia, etc.)
+       va en el JSON-LD de cada subpágina, no acá. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Inicio",           "item": "https://www.santanaycia.cl/" },
-      { "@type": "ListItem", "position": 2, "name": "Familia",          "item": "https://www.santanaycia.cl/familia" },
-      { "@type": "ListItem", "position": 3, "name": "Herencias",        "item": "https://www.santanaycia.cl/legatum" },
-      { "@type": "ListItem", "position": 4, "name": "Arriendo",         "item": "https://www.santanaycia.cl/devuelveme-mi-casa" },
-      { "@type": "ListItem", "position": 5, "name": "Civil",            "item": "https://www.santanaycia.cl/abogados" },
-      { "@type": "ListItem", "position": 6, "name": "Contacto",         "item": "https://www.santanaycia.cl/#contacto" }
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.santanaycia.cl/" }
     ]
   }
   </script>
 
-  <!-- FAQPage -->
+  <!-- FAQPage — estas mismas preguntas y respuestas están reproducidas de forma
+       visible en la sección #faq del body, tal como exige Google. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -288,7 +269,7 @@
         "name": "¿Cómo contactar a Santana & Cía Abogados?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A través del formulario de contacto en www.santanaycia.cl o por correo a contacto@santanaycia.cl. Respondemos en un máximo de 48 horas hábiles. Atendemos todo Chile de forma remota."
+          "text": "A través del formulario de contacto en www.santanaycia.cl o por correo a contacto@santanaycia.cl. Respondemos en un máximo de 48 horas hábiles. Atendemos todo Chile de forma remota. No contamos con atención telefónica."
         }
       },
       {
@@ -535,7 +516,7 @@
     @keyframes pulse { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:.7;transform:scaleY(1.1)} }
 
     /* ── ANCHOR OFFSET ── */
-    #areas, #nosotros, #contacto { scroll-margin-top: 72px; }
+    #areas, #nosotros, #contacto, #faq { scroll-margin-top: 72px; }
 
     /* ── SECCIONES GENÉRICAS ── */
     section { padding: 6rem 2.5rem; }
@@ -809,6 +790,40 @@
       color: rgba(213,181,144,0.38);
     }
 
+    /* ── FAQ ── */
+    #faq { background: var(--white); border-bottom: 0.5px solid var(--border); }
+    .faq-list { margin-top: 2.75rem; border-top: 0.5px solid var(--border); }
+    .faq-item { border-bottom: 0.5px solid var(--border); }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      color: var(--charcoal);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: 'Jost', sans-serif;
+      font-size: 20px;
+      color: var(--terra);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.85;
+      padding-bottom: 1.5rem;
+      max-width: 640px;
+    }
+
     /* ── FORMULARIO ── */
     #contacto { background: var(--charcoal); }
     #contacto .section-tag { color: var(--gold); opacity: 0.6; }
@@ -1054,6 +1069,7 @@
     <ul class="nav-links">
       <li><a href="#areas">Servicios</a></li>
       <li><a href="https://www.santanaycia.cl/honorarios">Honorarios</a></li>
+      <li><a href="#faq">Preguntas</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a href="#contacto" class="nav-cta">Consultar</a>
@@ -1079,7 +1095,7 @@
         Familia, civil, herencias y arriendo. Un solo estudio, cuatro áreas de práctica. Atendemos todo Chile de forma remota con rigor técnico y trato directo.
       </p>
       <div class="hero-actions">
-        <a href="#contacto" class="btn-primary">Iniciar consulta gratuita</a>
+        <a href="#contacto" class="btn-primary">Iniciar consulta</a>
         <a href="#areas" class="btn-outline">Ver servicios</a>
       </div>
     </div>
@@ -1229,13 +1245,44 @@
     </div>
   </div>
 
+  <!-- PREGUNTAS FRECUENTES (contenido visible, igual al FAQPage schema del head) -->
+  <section id="faq">
+    <div class="section-inner">
+      <span class="section-tag fade-in">Preguntas frecuentes</span>
+      <h2 class="section-title fade-in">Dudas <em>comunes</em></h2>
+      <p class="section-lead fade-in">
+        Antes de escribirnos, esto es lo que más nos preguntan.
+      </p>
+
+      <div class="faq-list fade-in">
+        <details class="faq-item">
+          <summary>¿En qué áreas jurídicas se especializa Santana &amp; Cía Abogados?</summary>
+          <p>Cuatro áreas: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble) y Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local).</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Atienden casos en regiones fuera de Santiago?</summary>
+          <p>Sí. Atendemos casos en todo Chile de forma remota mediante formulario web, videollamada o correo a contacto@santanaycia.cl. No hay barreras geográficas.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuánto cuesta la primera consulta?</summary>
+          <p>La primera evaluación del caso es sin costo. Analizamos cada situación antes de la primera reunión y respondemos en un máximo de 48 horas hábiles.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo contactar a Santana &amp; Cía Abogados?</summary>
+          <p>A través del formulario de contacto en esta página o por correo a contacto@santanaycia.cl. Respondemos en un máximo de 48 horas hábiles. No contamos con atención telefónica, solo por escrito.</p>
+        </details>
+        
+      </div>
+    </div>
+  </section>
+
   <!-- FORMULARIO -->
   <section id="contacto">
     <div class="section-inner">
       <span class="section-tag fade-in">contacto@santanaycia.cl</span>
       <h2 class="section-title fade-in">Cuéntanos<br>tu <em>caso</em></h2>
       <p class="section-lead fade-in">
-        Complete el formulario. Analizamos cada caso antes de responder y nos comunicamos en un máximo de 48 horas hábiles. Primera evaluación sin costo.
+        Complete el formulario. Analizamos cada caso antes de responder y nos comunicamos en un máximo de 48 horas hábiles. Primera evaluación sin costo. Toda nuestra atención es por escrito: formulario, correo o videollamada.
       </p>
 
       <div class="form-wrap fade-in">
