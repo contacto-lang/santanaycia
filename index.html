@@ -30,13 +30,7 @@
 
   <!-- Fechas -->
   <meta name="date" content="2026-05-14">
-  <meta name="last-modified" content="2026-07-06">
-
-  <!-- Geo -->
-  <meta name="geo.region" content="CL-RM">
-  <meta name="geo.placename" content="Santiago, Chile">
-  <meta name="geo.position" content="-33.4489;-70.6693">
-  <meta name="ICBM" content="-33.4489, -70.6693">
+  <meta name="last-modified" content="2026-08-08">
 
   <!-- Dublin Core -->
   <meta name="DC.title" content="Santana &amp; Cía | Abogados Chile — Familia, Civil, Herencias y Arriendo">
@@ -114,7 +108,18 @@
   }
   </script>
 
-  <!-- LegalService / Organization -->
+  <!-- LegalService / Organization.
+       IMPORTANTE: no se declara "address" ni "geo" porque Santana & Cía es un estudio
+       100% remoto a nivel nacional, sin oficina física verificable en ninguna comuna.
+       Declarar una dirección (aunque sea genérica, ej. "Santiago, RM") sin una oficina
+       real detrás puede hacer fallar la verificación de una futura ficha de Google
+       Business Profile y roza las normas de publicidad profesional del Colegio de
+       Abogados sobre información engañosa. En su lugar se usa "areaServed": Chile,
+       que es el patrón correcto de schema.org para un "Service Area Business".
+       Si en algún momento existe una oficina real, agregar aquí "address" y usar
+       EXACTAMENTE la misma dirección en Google Business Profile (consistencia NAP).
+       "telephone" y "sameAs" (WhatsApp) agregados 2026-08-08 — mismo número en
+       Google Business Profile cuando se cree la ficha (consistencia NAP). -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -127,19 +132,16 @@
     "image": "https://www.santanaycia.cl/og-image.jpg",
     "description": "Estudio jurídico integral en Chile especializado en derecho de familia, derecho civil, herencias y arriendo. Atendemos todo Chile de forma remota.",
     "email": "contacto@santanaycia.cl",
+    "telephone": "+56969051586",
+    "sameAs": ["https://wa.me/56969051586"],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
+      "telephone": "+56969051586",
       "email": "contacto@santanaycia.cl",
+      "areaServed": "CL",
       "availableLanguage": "Spanish",
       "url": "https://www.santanaycia.cl/#contacto"
-    },
-    "geo": { "@type": "GeoCoordinates", "latitude": -33.4489, "longitude": -70.6693 },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Santiago",
-      "addressRegion": "Región Metropolitana",
-      "addressCountry": "CL"
     },
     "areaServed": { "@type": "Country", "name": "Chile" },
     "priceRange": "$$",
@@ -206,7 +208,7 @@
     "description": "Estudio jurídico integral en Chile. Derecho de familia, civil, herencias y arriendo. Primera evaluación sin costo. contacto@santanaycia.cl",
     "inLanguage": "es-CL",
     "datePublished": "2026-05-14",
-    "dateModified": "2026-07-06",
+    "dateModified": "2026-08-08",
     "keywords": "abogados chile, familia, civil, herencias, arriendo, pensión de alimentos, divorcio, tuición",
     "isPartOf": { "@id": "https://www.santanaycia.cl/#website" },
     "about": { "@id": "https://www.santanaycia.cl/#organization" },
@@ -269,7 +271,7 @@
         "name": "¿Cómo contactar a Santana & Cía Abogados?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A través del formulario de contacto en www.santanaycia.cl o por correo a contacto@santanaycia.cl. Respondemos en un máximo de 48 horas hábiles. Atendemos todo Chile de forma remota. No contamos con atención telefónica."
+          "text": "A través del formulario de contacto en www.santanaycia.cl, por correo a contacto@santanaycia.cl o por WhatsApp. Respondemos en un máximo de 48 horas hábiles. Atendemos todo Chile de forma remota. No contamos con atención telefónica de voz."
         }
       },
       {
@@ -832,6 +834,26 @@
     #contacto .section-title em { color: var(--gold); }
     #contacto .section-lead { color: rgba(245,239,228,0.5); }
 
+    /* ── Contacto directo (teléfono / WhatsApp) ── */
+    .contact-direct {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 11.5px;
+      letter-spacing: 0.03em;
+      color: rgba(245,239,228,0.45);
+      margin-top: 1.5rem;
+    }
+    .contact-direct-icon { width: 15px; height: 15px; opacity: 0.55; flex-shrink: 0; }
+    .contact-direct a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(213,181,144,0.35);
+      padding-bottom: 1px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-direct a:hover { border-color: var(--gold); color: #e8cba0; }
+
     .form-wrap {
       margin-top: 3rem;
       background: rgba(255,255,255,0.04);
@@ -1011,6 +1033,7 @@
       .value-item { border-right: none; }
       .value-item:nth-last-child(-n+2) { border-bottom: 0.5px solid var(--border); }
       .value-item:last-child { border-bottom: none; }
+      .contact-direct { font-size: 11px; margin-top: 1.1rem; }
       .form-wrap { padding: 1.75rem 1.25rem; }
       .form-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -1269,7 +1292,7 @@
         </details>
         <details class="faq-item">
           <summary>¿Cómo contactar a Santana &amp; Cía Abogados?</summary>
-          <p>A través del formulario de contacto en esta página o por correo a contacto@santanaycia.cl. Respondemos en un máximo de 48 horas hábiles. No contamos con atención telefónica, solo por escrito.</p>
+          <p>A través del formulario de contacto en esta página, por correo a contacto@santanaycia.cl o por WhatsApp. Respondemos en un máximo de 48 horas hábiles. No contamos con atención telefónica de voz.</p>
         </details>
         
       </div>
@@ -1283,6 +1306,13 @@
       <h2 class="section-title fade-in">Cuéntanos<br>tu <em>caso</em></h2>
       <p class="section-lead fade-in">
         Complete el formulario. Analizamos cada caso antes de responder y nos comunicamos en un máximo de 48 horas hábiles. Primera evaluación sin costo. Toda nuestra atención es por escrito: formulario, correo o videollamada.
+      </p>
+      <p class="contact-direct fade-in">
+        <svg class="contact-direct-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3a9 9 0 00-7.79 13.5L3 21l4.68-1.19A9 9 0 1012 3z" stroke="#d5b590" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.5 8.5c0 4 3 7 7 7" stroke="#d5b590" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        También por WhatsApp: <a href="https://wa.me/56969051586" target="_blank" rel="noopener">+56 9 6905 1586</a>
       </p>
 
       <div class="form-wrap fade-in">
@@ -1415,6 +1445,7 @@
         <span>Abogados · Chile · 2026</span>
       </div>
       <div class="footer-links">
+        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.santanaycia.cl/familia">Familia</a>
         <a href="https://www.santanaycia.cl/legatum">Herencias</a>
         <a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a>
