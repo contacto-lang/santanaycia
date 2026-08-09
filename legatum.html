@@ -205,12 +205,12 @@
       {
         "@type": "Question",
         "name": "¿Cuánto es el impuesto de herencia en Chile?",
-        "acceptedAnswer": { "@type": "Answer", "text": "En Chile, el impuesto a las herencias (Ley 16.271) se calcula sobre la asignación individual que recibe cada heredero, no sobre el patrimonio total del causante. Cada asignación está exenta en sus primeras 600 UTM (aproximadamente $40 millones en 2026); solo el exceso sobre ese monto paga impuesto, con una escala progresiva del 1% al 25% según el tramo y el grado de parentesco. Por eso repartir entre más herederos suele reducir el impuesto total: cada uno aplica su propia exención. El cónyuge o conviviente civil tiene además una exención adicional sobre su porción. La calculadora Legatum estima el estado de cada asignación individual." }
+        "acceptedAnswer": { "@type": "Answer", "text": "En Chile, el impuesto a las herencias (Ley 16.271) se calcula sobre la asignación individual que recibe cada heredero, no sobre el patrimonio total del causante. Para cónyuge, ascendientes e hijos (o su descendencia), cada asignación está exenta en sus primeras 50 UTA —equivalentes a 600 UTM, aproximadamente $40 millones en 2026—; solo el exceso paga la escala progresiva del 1% al 25%. Para parientes colaterales (hermanos, sobrinos, tíos) la exención es mucho menor, de solo 5 UTA (60 UTM), y si no hay parentesco no hay exención y se recarga el impuesto en 40%. Por eso repartir entre más herederos directos suele reducir el impuesto total: cada uno aplica su propia exención. La calculadora Legatum estima el estado de cada asignación asumiendo parentesco directo." }
       },
       {
         "@type": "Question",
         "name": "¿Qué son las cuartas testamentarias en Chile?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Las cuartas testamentarias son las porciones del patrimonio que el testador puede asignar libremente dentro de ciertos límites. En Chile existen dos: (1) La cuarta de mejora: puede asignarse a descendientes, ascendientes o cónyuge, mejorando su asignación más allá de lo que correspondería por ley. (2) La cuarta de libre disposición: puede asignarse a cualquier persona o institución, incluso a quien no es heredero. Juntas suman un máximo del 50% del patrimonio; la otra mitad es la legítima rigorosa, que se reparte obligatoriamente entre los herederos forzosos." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Las cuartas testamentarias son las porciones del patrimonio que el testador puede asignar libremente dentro de ciertos límites. En Chile existen dos: (1) La cuarta de mejora: puede asignarse a descendientes, ascendientes o cónyuge, mejorando su asignación más allá de lo que correspondería por ley; mantiene la exención tributaria de 50 UTA propia de esos parentescos. (2) La cuarta de libre disposición: puede asignarse a cualquier persona o institución, incluso a quien no es heredero ni pariente; en ese caso la exención de impuesto de herencia es mucho menor o inexistente, según el vínculo con el causante. Juntas suman un máximo del 50% del patrimonio; la otra mitad es la legítima rigorosa, que se reparte obligatoriamente entre los herederos forzosos." }
       },
       {
         "@type": "Question",
@@ -314,7 +314,7 @@
       "@type": "HowToStep",
       "position": 5,
       "name": "Declarar el impuesto de herencia ante el SII",
-      "text": "El impuesto se calcula sobre la asignación individual de cada heredero, no sobre el total de la herencia. Cada asignación está exenta en sus primeras 600 UTM (aproximadamente $40 millones en 2026); el cónyuge o conviviente civil tiene además una exención adicional sobre su porción. Solo el exceso paga la escala progresiva. El plazo para declarar es de 2 años desde el fallecimiento del causante.",
+      "text": "El impuesto se calcula sobre la asignación individual de cada heredero, no sobre el total de la herencia. Para cónyuge, ascendientes e hijos, cada asignación está exenta en sus primeras 50 UTA (600 UTM, aproximadamente $40 millones en 2026); para parientes colaterales la exención es menor (5 UTA) y sin parentesco no hay exención. Solo el exceso paga la escala progresiva. El plazo para declarar es de 2 años desde el fallecimiento del causante.",
       "url": "https://www.santanaycia.cl/legatum"
     },
     {
@@ -674,6 +674,7 @@
     }
     .tax-tag.exento { background: rgba(139,94,60,0.1); color: var(--terra); }
     .tax-tag.afecto { background: rgba(217,177,90,0.18); color: #8a6a1f; }
+    .tax-tag.vinculo { background: rgba(122,110,100,0.14); color: var(--muted); }
 
     /* ── INFO CARDS ── */
     .info-row {
@@ -1012,7 +1013,7 @@
       <p class="hero-eyebrow">Santana &amp; Cía · Herramienta Legal · Todo Chile</p>
       <h1 class="hero-title">Calcula cómo se divide<br>tu <em>herencia</em></h1>
       <p class="hero-sub">Simula la distribución de un patrimonio hereditario según el Código Civil chileno. Ingresa los bienes, los herederos y visualiza el resultado en segundos.</p>
-      <p class="hero-disclaimer">Herramienta orientativa gratuita. No reemplaza asesoría legal. Los resultados aplican las reglas generales del Código Civil y pueden variar según las particularidades de cada caso. El impuesto de herencia se estima por asignación individual, no sobre el total.</p>
+      <p class="hero-disclaimer">Herramienta orientativa gratuita. No reemplaza asesoría legal. Los resultados aplican las reglas generales del Código Civil y pueden variar según las particularidades de cada caso. El impuesto de herencia se estima por asignación individual, no sobre el total, y asume parentesco directo (cónyuge, hijos, ascendientes). La cuarta de libre disposición puede ir a cualquier persona, y su exención real depende del vínculo con el causante — puede ser menor a la que muestra esta calculadora.</p>
     </div>
   </div>
 
@@ -1206,6 +1207,15 @@
       return `<span class="tax-tag ${exento ? 'exento' : 'afecto'}">${exento ? 'Exento' : 'Afecto'}</span>`;
     }
 
+    // La cuarta de libre disposición puede ir a cualquier persona (no solo familia
+    // directa). La exención de 600 UTM solo aplica a cónyuge, ascendientes y
+    // descendientes (Ley 16.271, Art. 2): 5 UTA (60 UTM) si es pariente colateral
+    // (hermano, sobrino, tío) y ninguna exención (+40% recargo) si no hay parentesco.
+    // Por eso esta porción no puede etiquetarse Exento/Afecto sin saber quién la recibe.
+    function taxTagLibre() {
+      return `<span class="tax-tag vinculo">Según vínculo</span>`;
+    }
+
     function run() {
       const raiz     = parseFloat(document.getElementById('raiz').value)    || 0;
       const mueble   = parseFloat(document.getElementById('mueble').value)  || 0;
@@ -1292,13 +1302,11 @@
         </div>`;
       }
       if (vLibre > 0) {
-        porcionesTotales++;
-        if (vLibre / VALOR_UTM <= UTM_EXENTA) porcionesExentas++;
         html += `
         <div class="resumen-item libre">
-          <div class="resumen-item-label">Libre disposición<small>Testamento</small></div>
+          <div class="resumen-item-label">Libre disposición<small>Testamento — puede ir a cualquier persona</small></div>
           <div class="resumen-item-right">
-            ${taxTag(vLibre)}
+            ${taxTagLibre()}
             <div class="resumen-item-value">${fmt(vLibre)}</div>
           </div>
         </div>`;
@@ -1306,13 +1314,19 @@
       if (!html) html = `<p style="font-size:13px;color:var(--muted);opacity:0.6;font-style:italic;padding:1rem 0;">Ingrese herederos para calcular.</p>`;
       document.getElementById('resumen').innerHTML = html;
 
-      // SII: exención de 600 UTM POR ASIGNACIÓN INDIVIDUAL (Ley 16.271), no sobre el total
-      if (porcionesTotales === 0) {
+      // SII: exención de 600 UTM POR ASIGNACIÓN INDIVIDUAL (Ley 16.271), no sobre el total.
+      // Aplica a cónyuge, ascendientes y descendientes directos. La cuarta de libre
+      // disposición queda fuera de este conteo porque su exención depende de a quién
+      // se asigne (ver taxTagLibre).
+      const libreNota = vLibre > 0 ? ' · Libre disposición no incluida: depende del vínculo del beneficiario' : '';
+      if (porcionesTotales === 0 && vLibre === 0) {
         document.getElementById('tax').innerHTML = '—';
+      } else if (porcionesTotales === 0 && vLibre > 0) {
+        document.getElementById('tax').innerHTML = `Depende del vínculo<small>La exención de la libre disposición varía según el beneficiario</small>`;
       } else if (porcionesExentas === porcionesTotales) {
-        document.getElementById('tax').innerHTML = `Todas las asignaciones exentas<small>600 UTM exentas por heredero, aplicadas individualmente</small>`;
+        document.getElementById('tax').innerHTML = `Todas las asignaciones exentas<small>600 UTM exentas por heredero directo, aplicadas individualmente${libreNota}</small>`;
       } else {
-        document.getElementById('tax').innerHTML = `${porcionesExentas} de ${porcionesTotales} asignaciones exentas<small>Las demás superan las 600 UTM exentas y pagan la escala progresiva</small>`;
+        document.getElementById('tax').innerHTML = `${porcionesExentas} de ${porcionesTotales} asignaciones exentas<small>Las demás superan las 600 UTM exentas y pagan la escala progresiva${libreNota}</small>`;
       }
 
       document.getElementById('fee').textContent  = fmt(monto * 0.015);
