@@ -34,9 +34,9 @@
 
   <!-- Fechas -->
   <meta name="date" content="2026-04-18">
-  <meta name="last-modified" content="2026-08-08">
+  <meta name="last-modified" content="2026-08-14">
   <meta property="article:published_time" content="2026-04-18T00:00:00-04:00">
-  <meta property="article:modified_time" content="2026-08-08T00:00:00-04:00">
+  <meta property="article:modified_time" content="2026-08-14T00:00:00-04:00">
   <meta property="article:author" content="Santana &amp; Cía Abogados">
   <meta property="article:section" content="Servicios Legales">
   <meta property="article:tag" content="pensión de alimentos, abogados familia, divorcio, tuición, violencia intrafamiliar, chile">
@@ -228,7 +228,7 @@
     "description": "Estudio jurídico especializado en pensión de alimentos, divorcio, tuición y violencia intrafamiliar en Chile. Atención 100% remota, también por WhatsApp.",
     "inLanguage": "es-CL",
     "datePublished": "2026-04-18",
-    "dateModified": "2026-08-08",
+    "dateModified": "2026-08-14",
     "keywords": "pensión de alimentos chile, abogado alimentos, aumento alimentos, apremio no pago alimentos, divorcio chile, tuición, violencia intrafamiliar",
     "isPartOf": { "@id": "https://www.santanaycia.cl/#website" },
     "about": { "@id": "https://www.santanaycia.cl/#organization" },
@@ -238,7 +238,7 @@
     },
     "speakable": {
       "@type": "SpeakableSpecification",
-      "cssSelector": [".hero-title", ".hero-sub", ".section-lead", ".service-title", ".service-desc"]
+      "cssSelector": [".hero-title", ".hero-sub", ".section-lead", ".service-title", ".service-desc", ".faq-question", ".faq-answer"]
     }
   }
   </script>
@@ -252,14 +252,15 @@
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.santanaycia.cl/" },
       { "@type": "ListItem", "position": 2, "name": "Familia", "item": "https://www.santanaycia.cl/familia" },
       { "@type": "ListItem", "position": 3, "name": "Servicios", "item": "https://www.santanaycia.cl/familia#servicios" },
-      { "@type": "ListItem", "position": 4, "name": "Contacto", "item": "https://www.santanaycia.cl/familia#contacto" }
+      { "@type": "ListItem", "position": 4, "name": "Marco Legal", "item": "https://www.santanaycia.cl/familia#legal" },
+      { "@type": "ListItem", "position": 5, "name": "Preguntas Frecuentes", "item": "https://www.santanaycia.cl/familia#faq" },
+      { "@type": "ListItem", "position": 6, "name": "Contacto", "item": "https://www.santanaycia.cl/familia#contacto" }
     ]
   }
   </script>
 
   <!-- FAQPage — estas mismas preguntas y respuestas están reproducidas de forma
-       visible en la sección #contacto...#servicios del body (bloque FAQ), en el
-       mismo orden. -->
+       visible en la sección #faq del body, en el mismo orden. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -336,12 +337,53 @@
           "@type": "Answer",
           "text": "Sí. Santana & Cía atiende casos de derecho de familia en todo Chile. Las consultas y asesorías se realizan por formulario web, videollamada, correo electrónico o WhatsApp. No hay barreras geográficas."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es obligatoria la mediación familiar antes de demandar en Chile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, en la mayoría de los casos. Antes de presentar una demanda de pensión de alimentos, divorcio con hijos menores o cuidado personal, la ley exige agotar una instancia de mediación familiar previa (artículo 106, Ley 19.968). Si la mediación fracasa, se entrega un certificado de mediación frustrada que permite continuar con la demanda ante el Tribunal de Familia. La violencia intrafamiliar está excluida de este requisito por su naturaleza urgente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hasta qué edad se paga la pensión de alimentos de un hijo en Chile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Por regla general, la obligación se extiende hasta que el hijo cumple 21 años. Si continúa estudiando de forma regular una enseñanza básica, media o superior, puede extenderse hasta los 28 años (artículo 332 del Código Civil). Si el hijo tiene una discapacidad que le impide subsistir por sí mismo, la pensión puede mantenerse de forma indefinida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué consecuencias tiene estar en el Registro Nacional de Deudores de Pensiones de Alimentos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se incorpora automáticamente a este registro público quien adeude 3 pensiones consecutivas o 5 discontinuas. Estar inscrito conlleva retención de la devolución anual de impuestos, imposibilidad de obtener o renovar la licencia de conducir y el pasaporte, y dificultades para acceder a créditos. Puede consultarse con Clave Única en el sitio del Poder Judicial. En Santana & Cía asesoramos tanto para solicitar la inscripción de un deudor como para tramitar la salida del registro una vez regularizada la deuda."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto dura un divorcio de mutuo acuerdo en Chile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un divorcio de mutuo acuerdo bien tramitado toma en general entre 3 y 6 meses desde la presentación de la demanda conjunta, dependiendo de la carga del Tribunal de Familia competente. Se requiere acreditar al menos 1 año de cese de convivencia y un acuerdo completo y suficiente que regule alimentos, cuidado personal y bienes (artículo 55, Ley 19.947). El divorcio unilateral exige acreditar 3 años de cese de convivencia y su tramitación suele ser más extensa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué debo hacer si estoy viviendo una situación de violencia intrafamiliar en este momento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si su integridad está en riesgo inmediato, llame a Carabineros al 133 o a Fonofamilia al 149. Puede además acudir a cualquier centro de salud para una constatación de lesiones, gratuita. Con el solo mérito de la denuncia, el Tribunal de Familia puede decretar medidas cautelares urgentes —como la prohibición de acercamiento o la salida del agresor del hogar común— generalmente dentro de 24 a 48 horas (Ley 20.066 y artículo 92, Ley 19.968). En Santana & Cía ofrecemos orientación confidencial en situaciones de crisis y representación en la tramitación de estas medidas."
+        }
       }
     ]
   }
   </script>
 
-  <!-- ItemList de servicios (para rich snippets y AEO) -->
+  <!-- ItemList de servicios (para rich snippets y AEO). Cada ítem apunta ahora
+       a la URL real de su sección para que sea un ItemList navegable. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -350,10 +392,10 @@
     "description": "Áreas de práctica del estudio jurídico Santana & Cía especializado en familia.",
     "numberOfItems": 4,
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Pensión de Alimentos — Fijación, aumento y cobro de alimentos no pagados en Chile" },
-      { "@type": "ListItem", "position": 2, "name": "Tuición y Cuidado Personal — Régimen comunicacional y visitas" },
-      { "@type": "ListItem", "position": 3, "name": "Divorcio y Separación — Mutuo acuerdo, unilateral y liquidación de bienes" },
-      { "@type": "ListItem", "position": 4, "name": "Violencia Intrafamiliar — Medidas de protección y representación en tribunal" }
+      { "@type": "ListItem", "position": 1, "name": "Pensión de Alimentos — Fijación, aumento y cobro de alimentos no pagados en Chile", "item": "https://www.santanaycia.cl/familia#servicios" },
+      { "@type": "ListItem", "position": 2, "name": "Tuición y Cuidado Personal — Régimen comunicacional y visitas", "item": "https://www.santanaycia.cl/familia#servicios" },
+      { "@type": "ListItem", "position": 3, "name": "Divorcio y Separación — Mutuo acuerdo, unilateral y liquidación de bienes", "item": "https://www.santanaycia.cl/familia#servicios" },
+      { "@type": "ListItem", "position": 4, "name": "Violencia Intrafamiliar — Medidas de protección y representación en tribunal", "item": "https://www.santanaycia.cl/familia#servicios" }
     ]
   }
   </script>
@@ -558,7 +600,7 @@
     }
 
     /* Offset para nav fija en anchor links */
-    #inicio, #servicios, #enfoque, #contacto { scroll-margin-top: 72px; }
+    #inicio, #servicios, #enfoque, #legal, #faq, #contacto { scroll-margin-top: 72px; }
 
     /* ── SECCIÓN GENÉRICA ── */
     section { padding: 6rem 2.5rem; }
@@ -741,6 +783,75 @@
       color: var(--muted);
       line-height: 1.9;
       max-width: 560px;
+    }
+
+    /* ── MARCO LEGAL ── */
+    #legal { background: var(--cream-d); }
+    .legal-note {
+      margin-top: 2.5rem;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--muted);
+      opacity: 0.8;
+      max-width: 520px;
+    }
+
+    /* ── FAQ ── */
+    #faq { background: var(--cream-d); border-top: 0.5px solid var(--border); }
+    .faq-list {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .faq-item {
+      border-bottom: 0.5px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 0.5px solid var(--border); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding: 1.5rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.4;
+    }
+    .faq-question:hover { color: var(--terra); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--terra);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .faq-icon::before { width: 12px; height: 0.5px; }
+    .faq-icon::after { width: 0.5px; height: 12px; transition: transform 0.25s ease; }
+    .faq-item.open .faq-icon::after { transform: translate(-50%,-50%) rotate(90deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding-bottom: 1.75rem;
+      max-width: 620px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.85;
     }
 
     /* ── FORMULARIO ── */
@@ -1023,6 +1134,7 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .footer-note { text-align: left; }
       .footer-links { flex-wrap: wrap; }
+      .faq-question { font-size: 17px; }
     }
 
     /* Animación entrada */
@@ -1046,6 +1158,7 @@
       <li><a href="#inicio">El Estudio</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#enfoque">Enfoque</a></li>
+      <li><a href="#faq">Preguntas</a></li>
       <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
     </ul>
     <a href="#contacto" class="nav-cta">Consultar</a>
@@ -1154,6 +1267,7 @@
             <span class="service-item">Divorcio unilateral</span>
             <span class="service-item">Liquidación de sociedad conyugal</span>
             <span class="service-item">Acuerdos de unión civil</span>
+            <span class="service-item">Cese de convivencia: 1 o 3 años según el caso</span>
           </div>
         </div>
 
@@ -1170,6 +1284,7 @@
             <span class="service-item">Régimen comunicacional</span>
             <span class="service-item">Fijación y aumento de alimentos</span>
             <span class="service-item">Apremios por incumplimiento</span>
+            <span class="service-item">Tope legal: hasta 50% de los ingresos del alimentante</span>
           </div>
         </div>
 
@@ -1185,6 +1300,7 @@
             <span class="service-item">Denuncia y querella</span>
             <span class="service-item">Representación en Tribunal de Familia</span>
             <span class="service-item">Orientación en crisis</span>
+            <span class="service-item">Urgencias: Fonofamilia 149 · Carabineros 133</span>
           </div>
         </div>
 
@@ -1226,6 +1342,201 @@
       <p class="enfoque-body fade-in" style="margin-top:1rem;">
         Atendemos únicamente mediante formulario, correo o WhatsApp para garantizar que cada caso sea analizado de forma estructurada antes de la primera reunión, lo que nos permite llegar a esa instancia con un diagnóstico real y no una conversación exploratoria general.
       </p>
+    </div>
+  </section>
+
+  <!-- MARCO LEGAL -->
+  <section id="legal">
+    <div class="section-inner">
+      <span class="section-tag fade-in">Marco legal</span>
+      <h2 class="section-title fade-in">El derecho, <em>citado</em><br>con precisión</h2>
+      <p class="section-lead fade-in">Cada área que trabajamos se apoya en normativa concreta. Así sabe exactamente qué respalda su caso.</p>
+
+      <div class="intro-values fade-in" style="margin-top:3rem;">
+        <div class="intro-value">
+          <span class="value-num">01</span>
+          <div class="value-text">
+            <strong>Pensión de Alimentos</strong>
+            <p>Código Civil, artículos 321 a 337 · Ley N° 14.908 (procedimiento y apremios) · Ley N° 21.484 (Registro Nacional de Deudores) · Ley N° 21.389.</p>
+          </div>
+        </div>
+        <div class="intro-value">
+          <span class="value-num">02</span>
+          <div class="value-text">
+            <strong>Tuición y Cuidado Personal</strong>
+            <p>Código Civil, artículos 224 a 228 · Ley N° 20.680 de 2013, que establece la corresponsabilidad parental y el interés superior del niño como principio rector.</p>
+          </div>
+        </div>
+        <div class="intro-value">
+          <span class="value-num">03</span>
+          <div class="value-text">
+            <strong>Divorcio y Separación</strong>
+            <p>Ley N° 19.947, Ley de Matrimonio Civil, artículo 55: requisitos de cese de convivencia y del acuerdo completo y suficiente para el divorcio de mutuo acuerdo.</p>
+          </div>
+        </div>
+        <div class="intro-value">
+          <span class="value-num">04</span>
+          <div class="value-text">
+            <strong>Violencia Intrafamiliar</strong>
+            <p>Ley N° 20.066 de Violencia Intrafamiliar · Ley N° 21.675, ley integral contra la violencia hacia las mujeres · Ley N° 19.968, artículo 92, sobre medidas cautelares.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="legal-note fade-in">La información de esta sección es de carácter general y referencial. No reemplaza la asesoría legal para un caso concreto: cada situación requiere un análisis individual.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+      <span class="section-tag fade-in">Preguntas frecuentes</span>
+      <h2 class="section-title fade-in">Dudas <em>comunes</em><br>sobre derecho de familia</h2>
+      <p class="section-lead fade-in">Respuestas breves a las consultas que más recibimos sobre pensión de alimentos, divorcio y tuición en Chile.</p>
+
+      <div class="faq-list fade-in" id="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cómo puedo cobrar una pensión de alimentos no pagada en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">En Chile, si el alimentante no paga la pensión de alimentos fijada por el tribunal, el alimentado puede solicitar un apremio ante el Tribunal de Familia. El apremio puede consistir en arresto nocturno (retención entre las 22:00 y las 06:00 horas) o en arresto de hasta 15 días. Además, se puede solicitar la retención directa del salario a través del empleador. El monto adeudado genera reajuste e intereses. En Santana &amp; Cía Abogados tramitamos apremios y cobros de alimentos atrasados en todo Chile. Contáctenos en contacto@santanaycia.cl o por WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cuánto se puede pedir de pensión de alimentos en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">En Chile, la pensión de alimentos no tiene un monto fijo: el Tribunal de Familia la fija considerando las necesidades del hijo y las capacidades económicas del alimentante. Por ley, no puede superar el 50% de los ingresos del alimentante si hay un solo beneficiario. En la práctica, los montos varían según el nivel de vida de la familia, los gastos del menor (educación, salud, actividades) y los ingresos del padre o madre que paga. Un abogado especialista puede ayudarte a calcular un monto razonable y fundado para pedir o ajustar la pensión.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Se puede aumentar la pensión de alimentos ya fijada?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Sí. En Chile se puede solicitar al Tribunal de Familia el aumento de la pensión de alimentos cuando han cambiado las circunstancias: aumento de ingresos del alimentante, mayores necesidades del hijo (cambio de colegio, enfermedad, actividades), aumento del costo de vida, o si el monto original fue insuficiente. El proceso se llama "demanda de aumento de alimentos" y requiere acreditar el cambio de circunstancias ante el tribunal. En Santana &amp; Cía tramitamos aumentos de pensión en todo Chile.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Qué es el apremio por no pago de pensión de alimentos?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">El apremio es una medida de presión legal que el Tribunal de Familia puede ordenar contra quien no paga la pensión de alimentos. En Chile existen dos tipos principales: arresto nocturno, donde el alimentante es detenido entre las 22:00 y las 06:00 horas hasta que pague, y arresto de hasta 15 días si el arresto nocturno no fue suficiente. Además, se puede retener el pasaporte o la licencia de conducir del deudor. Si el alimentante es trabajador dependiente, el tribunal puede ordenar que el empleador retenga directamente la pensión del sueldo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cuánto cuesta un abogado para pensión de alimentos en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">En Santana &amp; Cía Abogados la primera evaluación del caso es sin costo. Los honorarios por representación dependen de la complejidad del caso: fijación inicial, aumento, apremio o cobro de alimentos atrasados. Trabajamos con total transparencia: antes de comprometerse, el cliente conoce exactamente los costos y condiciones. Puede contactarnos en contacto@santanaycia.cl, por WhatsApp o a través del formulario más abajo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cómo iniciar un divorcio en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">En Chile existen dos vías principales de divorcio: de mutuo acuerdo, cuando ambos cónyuges están de acuerdo en divorciarse y en las condiciones (régimen de los hijos, alimentos, bienes), que es más rápido y menos costoso; o unilateral, cuando lo pide uno solo de los cónyuges alegando cese de convivencia de al menos un año con acuerdo, o tres años sin acuerdo. En Santana &amp; Cía tramitamos ambos tipos de divorcio en todo Chile mediante formulario, correo o WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Qué es la tuición y cómo se tramita en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">La tuición (hoy llamada "cuidado personal" en la ley chilena) es el derecho y deber de tener al hijo viviendo consigo y hacerse cargo de su crianza. Puede ser exclusiva, con un solo padre, o compartida, con ambos padres en forma alternada. Se tramita ante el Tribunal de Familia y el juez decide siempre en función del interés superior del niño. En Santana &amp; Cía representamos a padres y madres en disputas de cuidado personal y régimen comunicacional en todo Chile.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cómo puedo contactar a Santana &amp; Cía Abogados?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Santana &amp; Cía Abogados atiende mediante formulario web más abajo en esta página, por correo a contacto@santanaycia.cl o por WhatsApp. La primera evaluación del caso es sin costo y se responde en un plazo máximo de 48 horas hábiles. Atendemos todo Chile de forma remota.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Atienden casos en regiones fuera de Santiago?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Sí. Santana &amp; Cía atiende casos de derecho de familia en todo Chile. Las consultas y asesorías se realizan por formulario web, videollamada, correo electrónico o WhatsApp. No hay barreras geográficas.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Es obligatoria la mediación familiar antes de demandar en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Sí, en la mayoría de los casos. Antes de presentar una demanda de pensión de alimentos, divorcio con hijos menores o cuidado personal, la ley exige agotar una instancia de mediación familiar previa (artículo 106, Ley 19.968). Si la mediación fracasa, se entrega un certificado de mediación frustrada que permite continuar con la demanda ante el Tribunal de Familia. La violencia intrafamiliar está excluida de este requisito por su naturaleza urgente.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Hasta qué edad se paga la pensión de alimentos de un hijo en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Por regla general, la obligación se extiende hasta que el hijo cumple 21 años. Si continúa estudiando de forma regular una enseñanza básica, media o superior, puede extenderse hasta los 28 años (artículo 332 del Código Civil). Si el hijo tiene una discapacidad que le impide subsistir por sí mismo, la pensión puede mantenerse de forma indefinida.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Qué consecuencias tiene estar en el Registro Nacional de Deudores de Pensiones de Alimentos?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Se incorpora automáticamente a este registro público quien adeude 3 pensiones consecutivas o 5 discontinuas. Estar inscrito conlleva retención de la devolución anual de impuestos, imposibilidad de obtener o renovar la licencia de conducir y el pasaporte, y dificultades para acceder a créditos. Puede consultarse con Clave Única en el sitio del Poder Judicial. En Santana &amp; Cía asesoramos tanto para solicitar la inscripción de un deudor como para tramitar la salida del registro una vez regularizada la deuda.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Cuánto dura un divorcio de mutuo acuerdo en Chile?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Un divorcio de mutuo acuerdo bien tramitado toma en general entre 3 y 6 meses desde la presentación de la demanda conjunta, dependiendo de la carga del Tribunal de Familia competente. Se requiere acreditar al menos 1 año de cese de convivencia y un acuerdo completo y suficiente que regule alimentos, cuidado personal y bienes (artículo 55, Ley 19.947). El divorcio unilateral exige acreditar 3 años de cese de convivencia y su tramitación suele ser más extensa.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>¿Qué debo hacer si estoy viviendo una situación de violencia intrafamiliar en este momento?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Si su integridad está en riesgo inmediato, llame a Carabineros al 133 o a Fonofamilia al 149. Puede además acudir a cualquier centro de salud para una constatación de lesiones, gratuita. Con el solo mérito de la denuncia, el Tribunal de Familia puede decretar medidas cautelares urgentes —como la prohibición de acercamiento o la salida del agresor del hogar común— generalmente dentro de 24 a 48 horas (Ley 20.066 y artículo 92, Ley 19.968). En Santana &amp; Cía ofrecemos orientación confidencial en situaciones de crisis y representación en la tramitación de estas medidas.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -1433,6 +1744,30 @@
         const navH = document.querySelector('nav').offsetHeight;
         const top = target.getBoundingClientRect().top + window.scrollY - navH;
         window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    /* ── FAQ acordeón ── */
+    document.querySelectorAll('#faq-list .faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('#faq-list .faq-item.open').forEach(openItem => {
+          if (openItem !== item) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-answer').style.maxHeight = null;
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('open');
+          answer.style.maxHeight = null;
+        } else {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
       });
     });
 
