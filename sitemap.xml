@@ -3,10 +3,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
+
   <url>
     <loc>https://www.santanaycia.cl/</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -30,13 +30,19 @@
   </url>
   <url>
     <loc>https://www.santanaycia.cl/devuelveme-mi-casa</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.santanaycia.cl/aconcagua-abogados</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.santanaycia.cl/arriendo-san-felipe-los-andes</loc>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
