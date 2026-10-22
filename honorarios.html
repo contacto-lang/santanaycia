@@ -406,1269 +406,1372 @@
   }
   </script>
 
-  <!-- Fonts -->
+  <!-- Fonts (mismas que la web principal y la regional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* ─────────────────────────────────────────
+     RESET & TOKENS (alineados con la web)
+  ───────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --cream:    #f5f0e8;
-    --cream-d:  #ede5d5;
-    --sand:     #d9cdb8;
-    --terra:    #8b5e3c;
-    --terra-d:  #6b4528;
-    --charcoal: #2c2520;
-    --muted:    #7a6e64;
-    --white:    #fdfaf5;
-    --border:   rgba(139,94,60,0.15);
-    --gold:     #d5b590;
+    --white:     #ffffff;
+    --pale:      #f5f9fd;
+    --pale-2:    #ebf4fb;
+    --sky:       #cfe5f7;
+    --celeste:   #2c86c9;
+    --celeste-d: #1a65a0;
+    --celeste-l: #e6f1fa;
+    --navy:      #0e2740;
+    --navy-2:    #163a5c;
+    --ink:       #14263a;
+    --muted:     #5c7186;
+    --soft:      #8ea2b5;
+    --border:    #dce7f1;
+    --ok:        #1f9d6b;
+    --radius:    10px;
+    --maxw:      1120px;
+    --nav-h:     72px;
+    --shadow-sm: 0 2px 10px rgba(14,39,64,0.05);
+    --shadow:    0 24px 60px -18px rgba(14,39,64,0.22);
+    --serif:     'Cormorant Garamond', Georgia, serif;
+    --sans:      'Manrope', system-ui, -apple-system, sans-serif;
   }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
-    background-color: var(--cream);
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 39px,
-        rgba(139,94,60,0.025) 39px,
-        rgba(139,94,60,0.025) 40px
-      );
-    color: var(--charcoal);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
+    background: var(--white); color: var(--ink);
+    font-family: var(--sans); font-size: 15px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
+  a { color: inherit; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; }
 
-  /* ── NAV ── */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 2.5rem;
-    background: rgba(245,240,232,0.96);
-    backdrop-filter: blur(14px);
-    border-bottom: 0.5px solid var(--border);
+  /* ─────────────────────────────────────────
+     TOP BAR + NAV
+  ───────────────────────────────────────── */
+  .topbar { background: var(--navy); color: rgba(255,255,255,0.72); font-size: 12px; }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 38px; gap: 1rem; }
+  .topbar-left { display: flex; align-items: center; gap: 8px; }
+  .topbar-left::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #5fd3a0; box-shadow: 0 0 0 3px rgba(95,211,160,0.18); }
+  .topbar-right { display: flex; gap: 1.5rem; }
+  .topbar a { text-decoration: none; color: rgba(255,255,255,0.85); transition: color .2s; }
+  .topbar a:hover { color: #fff; }
+
+  nav#main-nav {
+    position: sticky; top: 0; z-index: 500;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
   }
+  nav#main-nav.scrolled { box-shadow: 0 6px 24px rgba(14,39,64,0.06); }
+  nav#main-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1.5rem; }
   .nav-logo {
-    font-family: 'Cormorant Garamond', serif; font-weight: 400;
-    font-size: 18px; letter-spacing: 0.05em;
-    color: var(--charcoal); text-decoration: none; line-height: 1.2;
+    font-family: var(--serif); font-weight: 500; font-size: 21px; letter-spacing: 0.05em;
+    color: var(--navy); text-decoration: none; line-height: 1.2; flex-shrink: 0;
   }
   .nav-logo span {
-    display: block; font-size: 9px; font-family: 'Jost', sans-serif;
-    font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--terra); margin-top: 2px;
+    display: block; font-family: var(--sans); font-size: 9px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--celeste); margin-top: 2px;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; }
   .nav-links a {
-    font-size: 11px; font-weight: 400; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
+    font-size: 13.5px; font-weight: 500; color: var(--muted); text-decoration: none;
+    padding: 0.5rem 0.9rem; border-radius: 6px; transition: color .2s, background .2s;
   }
-  .nav-links a:hover { color: var(--terra); }
+  .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--celeste-d); background: var(--celeste-l); }
+  .nav-right { display: flex; align-items: center; gap: 0.5rem; }
   .nav-cta {
-    font-size: 11px; font-weight: 400; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--terra); text-decoration: none;
-    padding: 7px 18px; border: 0.5px solid var(--terra); border-radius: 2px;
-    transition: background 0.2s, color 0.2s;
+    font-size: 13px; font-weight: 700; color: #fff; background: var(--celeste);
+    text-decoration: none; padding: 0.6rem 1.1rem; border-radius: 7px; white-space: nowrap;
+    transition: background .2s, box-shadow .2s;
   }
-  .nav-cta:hover { background: var(--terra); color: var(--white); }
+  .nav-cta:hover { background: var(--celeste-d); box-shadow: 0 8px 20px rgba(44,134,201,0.28); }
+  .hamburger {
+    display: none; width: 40px; height: 40px; border: none; background: none; cursor: pointer;
+    align-items: center; justify-content: center; color: var(--navy); padding: 0; border-radius: 8px;
+  }
+  .hamburger:hover { background: var(--celeste-l); }
+  .hamburger svg { width: 21px; height: 21px; }
+  .hamburger .icon-close { display: none; }
+  .hamburger.active .icon-bars { display: none; }
+  .hamburger.active .icon-close { display: block; }
+  .mobile-nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--border);
+    box-shadow: 0 14px 30px rgba(14,39,64,0.1); padding: 0.5rem;
+  }
+  .mobile-nav.active { display: block; }
+  .mobile-nav a { display: block; padding: 0.85rem 1rem; text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 500; border-radius: 7px; }
+  .mobile-nav a:hover { background: var(--pale); color: var(--celeste-d); }
 
-  /* ── BREADCRUMB ── */
-  .breadcrumb-bar {
-    background: rgba(237,229,213,0.7);
-    border-bottom: 0.5px solid var(--border);
-    padding: 0.6rem 2.5rem;
-  }
+  /* ─────────────────────────────────────────
+     BREADCRUMB
+  ───────────────────────────────────────── */
+  .breadcrumb-bar { background: var(--pale); border-bottom: 1px solid var(--border); }
   .breadcrumb {
-    max-width: 920px; margin: 0 auto;
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px; color: var(--muted); list-style: none;
+    display: flex; align-items: center; gap: 8px; list-style: none;
+    font-size: 12.5px; color: var(--muted); padding: 0.65rem 0;
   }
   .breadcrumb li { display: flex; align-items: center; gap: 8px; }
-  .breadcrumb li + li::before { content: '›'; opacity: 0.5; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .breadcrumb a:hover { color: var(--terra); }
-  .breadcrumb li:last-child { color: var(--terra); font-weight: 400; }
+  .breadcrumb li + li::before { content: '›'; color: var(--soft); }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .breadcrumb a:hover { color: var(--celeste-d); }
+  .breadcrumb li:last-child { color: var(--celeste-d); font-weight: 600; }
 
-  /* ── SECCIÓN PRINCIPAL ── */
-  section { padding: 4rem 2rem 5rem; }
-  .section-inner { max-width: 920px; margin: 0 auto; }
+  /* ─────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────── */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(900px 500px at 88% -10%, rgba(44,134,201,0.13), transparent 60%),
+      radial-gradient(700px 420px at -10% 30%, rgba(207,229,247,0.7), transparent 65%),
+      linear-gradient(180deg, #ffffff 0%, var(--pale) 100%);
+    padding: 4rem 0 4.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; }
   .section-tag {
-    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--terra); font-weight: 400; margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--celeste); margin-bottom: 1rem;
   }
-  .section-tag::before {
-    content: ''; display: inline-block;
-    width: 22px; height: 0.5px; background: var(--terra); opacity: 0.5;
-  }
+  .section-tag::before { content: ''; width: 24px; height: 2px; border-radius: 2px; background: var(--celeste); }
   .section-title {
-    font-family: 'Cormorant Garamond', serif; font-weight: 300;
-    font-size: clamp(38px, 5.5vw, 64px); line-height: 1.04;
-    color: var(--charcoal); margin-bottom: 1.25rem; letter-spacing: -0.02em;
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(40px, 5.2vw, 64px); line-height: 1.03;
+    color: var(--navy); letter-spacing: -0.015em; margin-bottom: 1.25rem;
   }
-  .section-title em { font-style: italic; color: var(--terra); }
-  .section-lead {
-    font-size: 15px; font-weight: 300; color: var(--muted);
-    line-height: 1.9; max-width: 620px; margin-bottom: 0.5rem;
+  .section-title em { font-style: italic; color: var(--celeste); }
+  .section-lead { font-size: 16.5px; color: var(--muted); line-height: 1.75; max-width: 520px; }
+  .hero-free {
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: nowrap; white-space: nowrap;
+    margin-top: 1.5rem; font-size: 14px; color: var(--muted);
+    background: var(--white); border: 1px solid var(--border); border-radius: 30px;
+    padding: 6px 16px 6px 6px; box-shadow: var(--shadow-sm);
   }
+  .hero-free b {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ok); background: rgba(31,157,107,0.1); padding: 4px 10px; border-radius: 20px;
+  }
+  .hero-free a { color: var(--celeste-d); font-weight: 600; text-decoration: none; }
+  .hero-free a:hover { text-decoration: underline; }
 
-  /* ── BUSCADOR ── */
-  .hon-search-wrap { margin: 2.5rem 0 0; position: relative; }
-  .hon-search-label {
-    font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--terra); font-weight: 400; margin-bottom: 0.65rem;
-    display: flex; align-items: center; gap: 8px;
+  /* ── Buscador (tarjeta del hero) ── */
+  .search-card {
+    position: relative; background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; box-shadow: var(--shadow);
   }
-  .hon-search-label::before {
-    content: ''; display: inline-block;
-    width: 14px; height: 0.5px; background: var(--terra); opacity: 0.4;
-  }
+  .search-card::before { content: ''; display: block; height: 4px; border-radius: 14px 14px 0 0; background: linear-gradient(90deg, var(--celeste), #7dc0ee); }
+  .search-inner { padding: 1.6rem 1.7rem 1.7rem; }
+  .search-card h2 { font-family: var(--serif); font-size: 27px; font-weight: 600; color: var(--navy); line-height: 1.1; }
+  .search-card > .search-inner > p { font-size: 13px; color: var(--muted); margin: 4px 0 1.1rem; }
   .hon-search-box { position: relative; }
-  .hon-search-box svg {
+  .hon-search-box > svg {
     position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-    width: 16px; height: 16px; stroke: var(--muted); fill: none;
-    stroke-width: 1.5; pointer-events: none;
+    width: 18px; height: 18px; color: var(--soft); pointer-events: none;
   }
   .hon-search-input {
-    width: 100%; padding: 13px 14px 13px 42px;
-    font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300;
-    color: var(--charcoal); background: var(--white);
-    border: 0.5px solid var(--border); border-radius: 3px;
-    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-    -webkit-appearance: none;
+    width: 100%; padding: 0.9rem 1rem 0.9rem 2.7rem;
+    font-family: var(--sans); font-size: 15px; color: var(--ink);
+    background: var(--pale); border: 1px solid var(--border); border-radius: 8px;
+    outline: none; transition: border-color .2s, background .2s, box-shadow .2s; -webkit-appearance: none;
   }
-  .hon-search-input::placeholder { color: var(--muted); opacity: 0.55; }
-  .hon-search-input:focus {
-    border-color: rgba(139,94,60,0.4);
-    box-shadow: 0 0 0 3px rgba(139,94,60,0.07);
-  }
+  .hon-search-input::placeholder { color: #a3b3c2; }
+  .hon-search-input:focus { border-color: var(--celeste); background: #fff; box-shadow: 0 0 0 3px rgba(44,134,201,0.12); }
   .hon-search-dropdown {
-    display: none; position: absolute;
-    top: calc(100% + 4px); left: 0; right: 0;
-    background: var(--white); border: 0.5px solid var(--border);
-    border-radius: 3px; box-shadow: 0 12px 36px rgba(44,37,32,0.1);
-    z-index: 50; max-height: 320px; overflow-y: auto;
+    display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 60;
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 18px 40px -10px rgba(14,39,64,0.25); max-height: 330px; overflow-y: auto;
   }
   .hon-search-dropdown.is-open { display: block; }
   .hon-sd-item {
-    display: flex; justify-content: space-between; align-items: baseline;
-    gap: 1.5rem; padding: 11px 16px; cursor: pointer;
-    border-bottom: 0.5px solid rgba(139,94,60,0.07);
-    transition: background 0.15s;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid var(--border); outline: none;
+    transition: background .15s;
   }
   .hon-sd-item:last-child { border-bottom: none; }
-  .hon-sd-item:hover { background: var(--cream); }
-  .hon-sd-item-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; color: var(--charcoal); line-height: 1.3;
+  .hon-sd-item:hover, .hon-sd-item:focus, .hon-sd-item.is-active { background: var(--celeste-l); }
+  .hon-sd-item-name { display: block; font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+  .hon-sd-item-name mark { background: var(--sky); color: var(--navy); border-radius: 3px; padding: 0 2px; }
+  .hon-sd-item-cat { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); margin-top: 2px; }
+  .hon-sd-item-price { font-size: 13px; font-weight: 700; color: var(--celeste-d); white-space: nowrap; flex-shrink: 0; }
+  .hon-sd-empty { padding: 1.1rem 1rem; font-size: 13.5px; color: var(--muted); text-align: center; }
+  .search-hints { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+  .search-hints span { font-size: 11.5px; color: var(--soft); margin-right: 2px; align-self: center; }
+  .hint-chip {
+    font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--navy-2);
+    background: var(--pale); border: 1px solid var(--border); border-radius: 30px;
+    padding: 4px 12px; cursor: pointer; transition: background .2s, border-color .2s, color .2s;
   }
-  .hon-sd-item-name mark {
-    background: rgba(213,181,144,0.38); color: var(--charcoal);
-    border-radius: 1px; padding: 0 2px;
-  }
-  .hon-sd-item-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; color: var(--terra); white-space: nowrap; flex-shrink: 0;
-  }
-  .hon-sd-item-cat {
-    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--muted); opacity: 0.55; display: block; margin-top: 2px;
-  }
-  .hon-sd-empty { padding: 1.25rem 16px; font-size: 13px; color: var(--muted); text-align: center; }
+  .hint-chip:hover { background: var(--celeste-l); border-color: var(--sky); color: var(--celeste-d); }
 
-  /* ── TARJETA DE RESULTADO ── */
+  /* Tarjeta de resultado */
   .hon-result-card {
-    display: none; margin-top: 1rem;
-    background: var(--white); border: 0.5px solid rgba(139,94,60,0.22);
-    border-radius: 3px; padding: 1.5rem 1.75rem;
-    position: relative; overflow: hidden;
+    display: none; position: relative; margin-top: 1rem;
+    background: linear-gradient(180deg, var(--white), var(--pale));
+    border: 1px solid var(--sky); border-radius: var(--radius); padding: 1.2rem 1.3rem;
   }
-  .hon-result-card.is-visible { display: block; }
-  .hon-result-card::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px; background: var(--terra);
+  .hon-result-card.is-visible { display: block; animation: pop .25s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .hon-result-tag { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--celeste); margin-bottom: 3px; }
+  .hon-result-name { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 0.4rem; padding-right: 1.5rem; }
+  .hon-result-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 0.9rem; }
+  .hon-result-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 0.9rem; border-top: 1px solid var(--border); }
+  .hon-result-price-label { font-size: 10.5px; font-weight: 600; color: var(--soft); text-transform: uppercase; letter-spacing: 0.1em; }
+  .hon-result-price { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--celeste-d); line-height: 1.05; }
+  .hon-result-note { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+  .hon-result-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .hon-result-cta, .hon-result-goto {
+    display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans);
+    font-size: 12.5px; font-weight: 700; text-decoration: none; padding: 0.6rem 1rem; border-radius: 7px; cursor: pointer;
+    transition: background .2s, border-color .2s;
   }
-  .hon-result-tag {
-    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--terra); opacity: 0.6; margin-bottom: 0.5rem;
-  }
-  .hon-result-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 400; color: var(--charcoal);
-    line-height: 1.2; margin-bottom: 0.5rem;
-  }
-  .hon-result-desc { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
-  .hon-result-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1rem; flex-wrap: wrap;
-  }
-  .hon-result-price-label {
-    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--muted); opacity: 0.6; margin-bottom: 3px;
-  }
-  .hon-result-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; color: var(--terra); line-height: 1;
-  }
-  .hon-result-note {
-    font-size: 10px; color: var(--muted); opacity: 0.6;
-    margin-top: 5px; display: flex; align-items: center; gap: 5px;
-  }
-  .hon-result-note::before {
-    content: ''; display: inline-block;
-    width: 8px; height: 0.5px; background: var(--muted); opacity: 0.5;
-  }
-  .hon-result-cta {
-    display: inline-block; font-size: 10px; font-weight: 400;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--white); background: var(--terra); text-decoration: none;
-    padding: 11px 22px; border-radius: 2px; border: 0.5px solid var(--terra);
-    transition: background 0.2s, border-color 0.2s; white-space: nowrap;
-  }
-  .hon-result-cta:hover { background: var(--terra-d); border-color: var(--terra-d); }
+  .hon-result-cta { color: #fff; background: var(--celeste); border: 1px solid var(--celeste); }
+  .hon-result-cta:hover { background: var(--celeste-d); border-color: var(--celeste-d); }
+  .hon-result-goto { color: var(--celeste-d); background: var(--white); border: 1px solid var(--border); }
+  .hon-result-goto:hover { border-color: var(--celeste); }
   .hon-result-close {
-    position: absolute; top: 14px; right: 14px;
-    background: none; border: none; cursor: pointer;
-    font-size: 16px; color: var(--muted); opacity: 0.4;
-    line-height: 1; padding: 2px 6px; transition: opacity 0.2s;
+    position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%;
+    background: none; border: none; cursor: pointer; font-size: 18px; color: var(--soft);
+    display: grid; place-items: center; transition: background .2s, color .2s;
   }
-  .hon-result-close:hover { opacity: 0.8; }
+  .hon-result-close:hover { background: var(--celeste-l); color: var(--celeste-d); }
+  .arancel-ref { font-size: 11.5px; color: var(--soft); margin-top: 1rem; display: flex; align-items: center; gap: 6px; }
+  .arancel-ref svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-  /* ── TABLA: CABECERA ── */
-  .hon-wrap {
-    border: 0.5px solid var(--border); border-radius: 3px; overflow: hidden;
-    margin-top: 2.5rem; margin-bottom: 1.5rem;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+  /* ─────────────────────────────────────────
+     NAVEGACIÓN POR CATEGORÍAS (sticky)
+  ───────────────────────────────────────── */
+  .cat-nav {
+    position: sticky; top: var(--nav-h); z-index: 400;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
   }
-  .hon-thead {
-    background: var(--charcoal); display: grid;
-    grid-template-columns: 1fr auto; align-items: center;
-    padding: 0.9rem 1.75rem; gap: 1rem;
+  .cat-nav .wrap { display: flex; gap: 0.4rem; overflow-x: auto; padding-top: 0.7rem; padding-bottom: 0.7rem; scrollbar-width: none; }
+  .cat-nav .wrap::-webkit-scrollbar { display: none; }
+  .cat-chip {
+    flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none;
+    background: var(--pale); border: 1px solid var(--border); border-radius: 30px; padding: 6px 14px;
+    transition: background .2s, border-color .2s, color .2s;
   }
-  .hon-thead-l, .hon-thead-r {
-    font-size: 9px; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase;
-  }
-  .hon-thead-l { color: rgba(213,181,144,0.38); }
-  .hon-thead-r { color: rgba(213,181,144,0.28); text-align: right; }
+  .cat-chip small { font-size: 11px; font-weight: 700; color: var(--soft); }
+  .cat-chip:hover { color: var(--celeste-d); border-color: var(--sky); background: var(--celeste-l); }
+  .cat-chip.is-active { background: var(--celeste); border-color: var(--celeste); color: #fff; }
+  .cat-chip.is-active small { color: rgba(255,255,255,0.75); }
 
-  /* ── TABLA: CATEGORÍAS — más peso visual ── */
+  /* ─────────────────────────────────────────
+     TABLA DE HONORARIOS
+  ───────────────────────────────────────── */
+  .prices { padding: 3.5rem 0 1rem; background: var(--white); }
+  .hon-wrap { display: flex; flex-direction: column; gap: 2rem; }
+  .hon-group {
+    background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    scroll-margin-top: calc(var(--nav-h) + 70px);
+  }
   .hon-cat {
-    font-size: 9px; font-weight: 500; letter-spacing: 0.42em;
-    text-transform: uppercase; color: var(--terra);
-    padding: 0.9rem 1.75rem;
-    background: rgba(139,94,60,0.07);
-    border-bottom: 0.5px solid rgba(139,94,60,0.18);
-    border-top: 0.5px solid rgba(139,94,60,0.1);
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.3rem 1.6rem; background: linear-gradient(180deg, var(--pale), var(--white));
+    border-bottom: 1px solid var(--border);
   }
-  .hon-cat::before {
-    content: ''; display: inline-block;
-    width: 16px; height: 0.5px;
-    background: var(--terra); opacity: 0.5; flex-shrink: 0;
-  }
+  .hon-cat-ico { width: 46px; height: 46px; border-radius: 11px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; flex-shrink: 0; }
+  .hon-cat-ico svg { width: 22px; height: 22px; }
+  .hon-cat-title { font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--navy); line-height: 1.1; }
+  .hon-cat-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .hon-cat-col { margin-left: auto; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soft); white-space: nowrap; }
 
-  /* ── TABLA: FILAS — hover con borde izquierdo ── */
   .hon-row {
-    display: grid; grid-template-columns: 1fr auto;
-    align-items: start; gap: 2rem; padding: 1.5rem 1.75rem;
-    border-bottom: 0.5px solid var(--border); background: var(--white);
-    border-left: 3px solid transparent;
-    transition: background 0.18s ease, border-left-color 0.18s ease;
-    position: relative;
+    position: relative; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    padding: 1.25rem 1.6rem; border-bottom: 1px solid var(--border); outline: none;
+    transition: background .2s;
   }
   .hon-row:last-child { border-bottom: none; }
-  .hon-row:hover {
-    background: #fdf8f2;
-    border-left-color: var(--terra);
+  .hon-row::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--celeste);
+    transform: scaleY(0); transform-origin: top; transition: transform .3s ease;
   }
-
-  /* ── TABLA: TIPOGRAFÍA MEJORADA ── */
-  .hon-name {
-    font-family: 'Cormorant Garamond', serif; font-size: 20px;
-    font-weight: 400; color: var(--charcoal); line-height: 1.25; margin-bottom: 7px;
-  }
-  /* descripción: 12 → 13px, line-height aumentado */
-  .hon-desc {
-    font-size: 13px; color: var(--muted); line-height: 1.9; max-width: 560px;
-  }
+  .hon-row:hover, .hon-row:focus-visible { background: var(--pale); }
+  .hon-row:hover::before, .hon-row:focus-visible::before, .hon-row.is-hit::before { transform: scaleY(1); }
+  .hon-row.is-hit { background: var(--celeste-l); }
+  .hon-name { font-size: 15.5px; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 4px; }
+  .hon-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; max-width: 620px; }
   .hon-note {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 10px; color: var(--muted); opacity: 0.6; margin-top: 7px;
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
+    font-size: 11.5px; font-weight: 500; color: var(--navy-2);
+    background: var(--pale); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px;
   }
-  .hon-note::before {
-    content: ''; display: inline-block;
-    width: 8px; height: 0.5px; background: var(--muted); opacity: 0.5;
-  }
+  .hon-note::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--celeste); opacity: 0.6; flex-shrink: 0; }
 
-  /* ── PRECIOS: diferenciados visualmente ── */
   .hon-price {
-    font-family: 'Cormorant Garamond', serif; font-size: 20px;
-    font-weight: 400; color: var(--terra);
-    white-space: nowrap; text-align: right; line-height: 1.2; flex-shrink: 0;
+    min-width: 150px; text-align: right; white-space: nowrap;
+    font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--celeste-d); line-height: 1.05;
   }
   .hon-price small {
-    display: block; font-family: 'Jost', sans-serif; font-size: 9px;
-    font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted); margin-top: 4px;
+    display: block; font-family: var(--sans); font-size: 11px; font-weight: 600;
+    color: var(--soft); margin-top: 4px; letter-spacing: 0.02em;
   }
-  /* UF confirmados */
-  .hon-price.--uf { color: var(--terra-d); }
-  /* "A convenir" — gris, más pequeño */
-  .hon-price.--muted {
-    font-size: 13px; color: var(--muted);
-    font-family: 'Jost', sans-serif; font-weight: 300;
-    letter-spacing: 0.05em;
-  }
-  /* "Incluido" — badge sutil */
-  .hon-price.--inc {
-    font-size: 11px; font-family: 'Jost', sans-serif; font-weight: 400;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(139,94,60,0.45);
-    background: rgba(139,94,60,0.06);
-    padding: 4px 8px; border-radius: 2px;
-    border: 0.5px solid rgba(139,94,60,0.12);
-  }
+  .hon-price.--uf { color: var(--celeste-d); }
+  .hon-price.--muted { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--navy-2); }
+  .hon-price.--muted small { font-weight: 500; }
+  .hon-price.--inc { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ok); }
+  .hon-price.--inc small { text-transform: none; letter-spacing: 0.02em; font-weight: 500; }
 
-  /* ── CONDICIONES ── */
-  .hon-conditions {
-    background: rgba(237,229,213,0.6); border: 0.5px solid var(--border);
-    border-radius: 3px; padding: 2rem 1.75rem; margin-top: 2rem;
+  /* ─────────────────────────────────────────
+     CONDICIONES
+  ───────────────────────────────────────── */
+  .conditions { padding: 3.5rem 0; }
+  .hon-conditions-title { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--navy); margin-bottom: 1.5rem; }
+  .hon-cond-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .hon-cond-item {
+    background: linear-gradient(180deg, var(--white), var(--pale));
+    border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem 1.3rem;
+    transition: border-color .2s, box-shadow .2s;
   }
-  .hon-conditions-title {
-    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--muted); font-weight: 400; margin-bottom: 1.5rem;
-  }
-  .hon-cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
-  .hon-cond-item { display: flex; gap: 0.85rem; align-items: flex-start; }
-  .hon-cond-num {
-    font-family: 'Cormorant Garamond', serif; font-size: 13px;
-    color: var(--terra); opacity: 0.38; flex-shrink: 0; padding-top: 1px;
-  }
-  .hon-cond-body strong {
-    display: block; font-size: 11px; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--charcoal); margin-bottom: 4px;
-  }
-  .hon-cond-body p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .hon-cond-item:hover { border-color: var(--sky); box-shadow: var(--shadow-sm); }
+  .hon-cond-num { width: 36px; height: 36px; border-radius: 9px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; margin-bottom: 0.9rem; }
+  .hon-cond-num svg { width: 17px; height: 17px; }
+  .hon-cond-body strong { display: block; font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .hon-cond-body p { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
-  /* ── CTA BAND — transición suavizada con puente ── */
-  .cta-bridge {
-    text-align: center; padding: 2.5rem 2rem 0;
+  /* ─────────────────────────────────────────
+     FAQ
+  ───────────────────────────────────────── */
+  .faq { padding: 4.5rem 0; background: var(--pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: start; }
+  .faq-header-label { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--celeste); margin-bottom: 1rem; }
+  .faq-header-label::before { content: ''; width: 24px; height: 2px; border-radius: 2px; background: var(--celeste); }
+  .faq-header-title { font-family: var(--serif); font-size: clamp(30px, 3.6vw, 42px); font-weight: 600; color: var(--navy); line-height: 1.08; }
+  .faq-aside { font-size: 15px; color: var(--muted); line-height: 1.7; margin-top: 1rem; }
+  .faq-aside a { color: var(--celeste-d); font-weight: 700; text-decoration: none; }
+  .faq-list { display: flex; flex-direction: column; gap: 0.7rem; }
+  .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color .2s, box-shadow .2s; }
+  .faq-item[open] { border-color: var(--sky); box-shadow: var(--shadow-sm); }
+  .faq-item summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.15rem 1.35rem;
   }
-  .cta-bridge-quote {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(18px, 2.2vw, 24px); font-weight: 300;
-    color: var(--muted); line-height: 1.5; opacity: 0.75;
-    max-width: 540px; margin: 0 auto;
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center;
+    font-size: 17px; font-weight: 500; line-height: 1; transition: transform .25s, background .25s, color .25s;
   }
-  .cta-bridge-rule {
-    width: 40px; height: 0.5px;
-    background: var(--terra); opacity: 0.3;
-    margin: 1.5rem auto 0;
-  }
-  .cta-band {
-    background: var(--charcoal);
-    padding: 3.5rem 2rem;
-    text-align: center; margin-top: 1.5rem;
-    border-radius: 3px;
-  }
-  .cta-band-eyebrow {
-    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
-    color: rgba(213,181,144,0.45); margin-bottom: 1rem;
-  }
-  .cta-band-title {
-    font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3.5vw, 38px);
-    font-weight: 300; color: #f5efe4; line-height: 1.2; margin-bottom: 0.75rem;
-  }
-  .cta-band-title em { font-style: italic; color: var(--gold); }
-  .cta-band-sub {
-    font-size: 13px; color: rgba(245,239,228,0.45);
-    max-width: 420px; margin: 0 auto 2rem; line-height: 1.8;
-  }
-  .cta-band-actions { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-block; font-size: 11px; font-weight: 400;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--charcoal); background: var(--gold); text-decoration: none;
-    padding: 13px 30px; border-radius: 2px; border: 0.5px solid var(--gold);
-    transition: background 0.25s, border-color 0.25s;
-  }
-  .btn-primary:hover { background: #c8a878; border-color: #c8a878; }
-  .btn-outline {
-    display: inline-block; font-size: 11px; font-weight: 400;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: rgba(213,181,144,0.7); text-decoration: none;
-    padding: 13px 26px; border: 0.5px solid rgba(213,181,144,0.3);
-    border-radius: 2px; transition: border-color 0.25s, color 0.25s;
-  }
-  .btn-outline:hover { border-color: rgba(213,181,144,0.65); color: var(--gold); }
+  .faq-item[open] summary::after { transform: rotate(45deg); background: var(--celeste); color: #fff; }
+  .faq-q-text { font-size: 15.5px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+  .faq-answer p { font-size: 14.5px; color: var(--muted); line-height: 1.75; padding: 0 1.35rem 1.3rem; }
 
-  /* ── FAQ ── */
-  .faq-section {
-    background: var(--white); border: 0.5px solid var(--border);
-    border-radius: 3px; margin-top: 2.5rem; overflow: hidden;
+  /* ─────────────────────────────────────────
+     CTA FINAL
+  ───────────────────────────────────────── */
+  .cta-band { padding: 4.5rem 0 5rem; background: var(--white); }
+  .cta-bridge-quote { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(20px, 2.4vw, 26px); color: var(--muted); text-align: center; margin-bottom: 2rem; }
+  .cta-box {
+    position: relative; overflow: hidden; border-radius: 16px;
+    background: linear-gradient(110deg, var(--celeste-d) 0%, var(--celeste) 60%, #57a9e2 100%);
+    padding: 3.25rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
   }
-  .faq-header {
-    padding: 1.5rem 1.75rem; border-bottom: 0.5px solid var(--border);
-    background: rgba(237,229,213,0.6);
+  .cta-box::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px); background-size: 20px 20px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000); mask-image: linear-gradient(90deg, transparent, #000);
   }
-  .faq-header-label {
-    font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase;
-    color: var(--terra); opacity: 0.7; margin-bottom: 0.4rem;
-  }
-  .faq-header-title {
-    font-family: 'Cormorant Garamond', serif; font-size: 22px;
-    font-weight: 400; color: var(--charcoal);
-  }
-  .faq-item { border-bottom: 0.5px solid var(--border); }
-  .faq-item:last-child { border-bottom: none; }
-  .faq-question {
-    width: 100%; background: none; border: none; cursor: pointer;
-    text-align: left; padding: 1.25rem 1.75rem;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 1rem; transition: background 0.18s;
-  }
-  .faq-question:hover { background: var(--cream); }
-  .faq-q-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 17px;
-    font-weight: 400; color: var(--charcoal); line-height: 1.3;
-  }
-  .faq-icon {
-    flex-shrink: 0; width: 20px; height: 20px; border: 0.5px solid var(--border);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 14px; color: var(--terra); transition: transform 0.3s;
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-  .faq-answer {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.3s;
-    padding: 0 1.75rem;
-  }
-  .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.75rem 1.25rem; }
-  .faq-answer p { font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .cta-box > div { position: relative; }
+  .cta-band-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+  .cta-band-title { font-family: var(--serif); font-size: clamp(28px, 3.2vw, 38px); font-weight: 600; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+  .cta-band-title em { font-style: italic; }
+  .cta-band-sub { font-size: 15px; color: rgba(255,255,255,0.85); max-width: 460px; }
+  .cta-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--celeste-d); background: #fff; padding: 0.9rem 1.5rem; border-radius: 8px; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(14,39,64,0.25); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.45); padding: 0.9rem 1.3rem; border-radius: 8px; text-decoration: none; transition: background .2s, border-color .2s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  .btn-white svg, .btn-ghost svg { width: 17px; height: 17px; }
 
-  /* ── ARANCEL REF ── */
-  .arancel-ref {
-    font-size: 10px; color: var(--muted); opacity: 0.55;
-    text-align: right; margin-bottom: 0.5rem; letter-spacing: 0.05em;
-  }
+  /* ─────────────────────────────────────────
+     FOOTER
+  ───────────────────────────────────────── */
+  footer { background: var(--navy); padding: 4rem 0 2rem; color: rgba(255,255,255,0.62); }
+  .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.25rem; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 1.5rem; }
+  .footer-brand .nav-logo { display: inline-block; color: #fff; margin-bottom: 1rem; }
+  .footer-brand .nav-logo span { color: #9fd1f4; }
+  .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 300px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a { font-size: 13.5px; color: rgba(255,255,255,0.62); text-decoration: none; transition: color .2s; }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.4); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: #1e1a17; margin-top: 5rem;
-    padding: 2.5rem 2.5rem;
-    border-top: 0.5px solid rgba(213,181,144,0.09);
-  }
-  .footer-inner {
-    max-width: 920px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 2rem; flex-wrap: wrap;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; font-weight: 400; color: rgba(245,239,228,0.45);
-  }
-  .footer-logo span {
-    display: block; font-family: 'Jost', sans-serif;
-    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: rgba(213,181,144,0.28); margin-top: 3px;
-  }
-  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .footer-links a {
-    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(245,239,228,0.2); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: rgba(213,181,144,0.55); }
-  .footer-note {
-    font-size: 11px; color: rgba(245,239,228,0.18);
-    text-align: right; line-height: 1.7;
-  }
-  .footer-note a { color: rgba(213,181,144,0.28); text-decoration: none; }
+  /* ─────────────────────────────────────────
+     FADE-IN
+  ───────────────────────────────────────── */
+  .fi { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .fi.visible { opacity: 1; transform: none; }
 
-  /* ══════════════════════════════════════
-     MOBILE
-  ══════════════════════════════════════ */
-  @media (max-width: 768px) {
-    nav { padding: 0.9rem 1.25rem; }
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2.25rem; }
+    .search-card { max-width: 640px; }
+    .hon-cond-grid { grid-template-columns: 1fr 1fr; }
+    .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 860px) {
     .nav-links { display: none; }
-    .breadcrumb-bar { padding: 0.6rem 1.25rem; }
-    section { padding: 3rem 1.25rem 4rem; }
-
-    /* Filas: columna única, precio con fondo diferenciado */
-    .hon-row {
-      grid-template-columns: 1fr;
-      gap: 0;
-      padding: 1.25rem 1.25rem 0;
-      border-left-width: 2px;
-    }
-    .hon-row:hover { border-left-color: var(--terra); }
-
-    /* bloque de precio en mobile: banda inferior */
-    .hon-price {
-      text-align: left;
-      background: rgba(139,94,60,0.04);
-      border-top: 0.5px solid var(--border);
-      margin: 1rem -1.25rem 0;
-      padding: 0.75rem 1.25rem;
-      font-size: 18px;
-      display: flex; align-items: baseline; gap: 10px;
-    }
-    .hon-price small {
-      display: inline; margin-top: 0;
-      font-size: 9px;
-    }
-    .hon-price.--muted { font-size: 13px; }
-    .hon-price.--inc   { font-size: 11px; }
-
-    /* categorías más compactas en mobile */
-    .hon-cat { padding: 0.75rem 1.25rem; font-size: 8px; }
-    .hon-thead { padding: 0.75rem 1.25rem; }
-
-    /* condiciones */
-    .hon-cond-grid { grid-template-columns: 1fr; }
-
-    /* resultado del buscador */
-    .hon-result-row { flex-direction: column; align-items: flex-start; }
-
-    /* ── BUSCADOR MOBILE: flujo normal, no fixed ── */
-    .hon-search-wrap { position: static; }
-    .hon-search-box  { position: static; }
-
-    .hon-search-box svg {
-      position: absolute;
-      left: 14px; top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* contenedor relativo para el ícono */
-    .hon-search-box {
-      position: relative;
-    }
-
-    .hon-search-dropdown {
-      position: static;
-      display: none;
-      margin-top: 4px;
-      max-height: 240px;
-      overflow-y: auto;
-      border-radius: 3px;
-      box-shadow: 0 8px 24px rgba(44,37,32,0.12);
-      z-index: auto;
-    }
-    .hon-search-dropdown.is-open { display: block; }
-
-    /* CTA bridge */
-    .cta-bridge { padding: 2rem 0 0; }
-
-    /* footer */
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-    .footer-note { text-align: left; }
+    .hamburger { display: flex; }
   }
-</style> 
+  @media (max-width: 768px) {
+    :root { --nav-h: 60px; }
+    body { font-size: 14.5px; }
+    .wrap { padding: 0 1.15rem; }
+    .topbar { display: none; }
+    .nav-logo { font-size: 19px; }
+    .nav-cta { font-size: 12px; padding: 0.5rem 0.85rem; }
+
+    .hero { padding: 2rem 0 2.5rem; }
+    .section-title { font-size: clamp(34px, 10vw, 42px); margin-bottom: 0.8rem; }
+    .section-lead { font-size: 14.5px; }
+    .hero-free { font-size: 13px; border-radius: 12px; flex-wrap: wrap; white-space: normal; padding: 8px 12px; }
+    .search-inner { padding: 1.2rem 1.1rem 1.3rem; }
+    .search-card h2 { font-size: 22px; }
+    .hon-search-input { font-size: 16px; } /* evita zoom en iOS */
+    .hon-search-dropdown { max-height: 260px; }
+    .hon-result-row { flex-direction: column; align-items: stretch; }
+    .hon-result-actions > * { flex: 1; justify-content: center; }
+
+    .prices { padding: 2rem 0 0.5rem; }
+    .hon-wrap { gap: 1.25rem; }
+    .hon-group { border-radius: 12px; scroll-margin-top: calc(var(--nav-h) + 60px); }
+    .hon-cat { padding: 1rem 1.1rem; gap: 0.8rem; }
+    .hon-cat-ico { width: 40px; height: 40px; }
+    .hon-cat-ico svg { width: 19px; height: 19px; }
+    .hon-cat-title { font-size: 22px; }
+    .hon-cat-col { display: none; }
+    .hon-row { grid-template-columns: 1fr; gap: 0; padding: 1.05rem 1.1rem 0; }
+    .hon-name { font-size: 15px; }
+    .hon-desc { font-size: 13px; line-height: 1.6; }
+    .hon-note { font-size: 11px; white-space: normal; }
+    .hon-price {
+      text-align: left; min-width: 0; white-space: normal;
+      display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      margin: 0.9rem -1.1rem 0; padding: 0.7rem 1.1rem;
+      background: var(--pale); border-top: 1px dashed var(--border); font-size: 22px;
+    }
+    .hon-row:hover .hon-price, .hon-row.is-hit .hon-price { background: transparent; }
+    .hon-price small { display: inline; margin-top: 0; }
+    .hon-price.--muted { font-size: 14px; }
+    .hon-price.--inc { font-size: 12px; }
+
+    .conditions { padding: 2.5rem 0; }
+    .hon-conditions-title { font-size: 25px; margin-bottom: 1rem; }
+    .hon-cond-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+    .hon-cond-item { display: grid; grid-template-columns: auto 1fr; column-gap: 0.9rem; padding: 1rem 1.05rem; }
+    .hon-cond-num { margin: 0; width: 32px; height: 32px; }
+
+    .faq { padding: 3rem 0; }
+    .faq-grid { gap: 1.25rem; }
+    .faq-aside { display: none; }
+    .faq-list { gap: 0.5rem; }
+    .faq-item summary { padding: 0.95rem 1rem; }
+    .faq-q-text { font-size: 14.5px; }
+    .faq-item summary::after { width: 22px; height: 22px; font-size: 15px; }
+    .faq-answer p { font-size: 13.5px; padding: 0 1rem 1rem; }
+
+    .cta-band { padding: 2.75rem 0 3.25rem; }
+    .cta-bridge-quote { font-size: 19px; margin-bottom: 1.25rem; }
+    .cta-box { padding: 1.75rem 1.25rem; border-radius: 12px; gap: 1.25rem; }
+    .cta-band-title { font-size: 26px; }
+    .cta-band-sub { font-size: 14px; }
+    .cta-actions { width: 100%; flex-direction: column; gap: 0.55rem; }
+    .btn-white, .btn-ghost { width: 100%; justify-content: center; padding: 0.85rem 1rem; }
+
+    footer { padding: 2.5rem 0 1.5rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; padding-bottom: 1.5rem; margin-bottom: 1.1rem; }
+    .footer-brand p { display: none; }
+    .footer-brand .nav-logo { margin-bottom: 0; }
+    .footer-col:last-child { grid-column: 1 / -1; }
+    .footer-bottom { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+    .fi { opacity: 1; transform: none; }
+  }
+</style>
 
 
 </head>
 <body>
 
+  <!-- Iconos reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 00-7.79 13.5L3 21l4.68-1.19A9 9 0 1012 3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.6 8.4c.2-.5.5-.6.9-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .4-.2.7-.6.9-.5.2-1.4.4-2.6-.1-1.9-.8-3.6-2.5-4.4-4.4-.5-1.2-.3-2.1-.1-2.6z" fill="currentColor"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5M12 8v.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+      <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.5-2 1.5-1.5-1.5-1.5 1.5-2-1.5L6 20.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8.5h6M9 12h6M9 15.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M6 20h12M5 7h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 7l-3 6.5a3 3 0 006 0L7 7zM17 7l-3 6.5a3 3 0 006 0L17 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="wrap">
+      <span class="topbar-left">Atención remota en todo Chile</span>
+      <span class="topbar-right">
+        <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
+        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a>
+      </span>
+    </div>
+  </div>
+
   <!-- NAV -->
-  <nav>
-    <a href="https://www.santanaycia.cl/" class="nav-logo">
-      Santana &amp; Cía
-      <span>Abogados · Chile</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="https://www.santanaycia.cl/#areas">Servicios</a></li>
-      <li><a href="https://www.santanaycia.cl/#nosotros">El Estudio</a></li>
-      <li><a href="https://www.santanaycia.cl/honorarios" aria-current="page">Honorarios</a></li>
-      <li><a href="https://www.santanaycia.cl/#contacto">Contacto</a></li>
-    </ul>
-    <a href="https://www.santanaycia.cl/#contacto" class="nav-cta">Consulta gratis</a>
+  <nav id="main-nav">
+    <div class="wrap">
+      <a href="https://www.santanaycia.cl/" class="nav-logo">
+        Santana &amp; Cía
+        <span>Abogados · Chile</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="https://www.santanaycia.cl/#areas">Servicios</a></li>
+        <li><a href="https://www.santanaycia.cl/#nosotros">El Estudio</a></li>
+        <li><a href="https://www.santanaycia.cl/honorarios" aria-current="page">Honorarios</a></li>
+        <li><a href="https://www.santanaycia.cl/#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://www.santanaycia.cl/#contacto" class="nav-cta">Consulta gratis</a>
+        <button class="hamburger" id="hamBtn" type="button" aria-label="Menú" aria-expanded="false">
+          <svg class="icon-bars" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="https://www.santanaycia.cl/#areas">Servicios</a>
+      <a href="https://www.santanaycia.cl/#nosotros">El Estudio</a>
+      <a href="https://www.santanaycia.cl/honorarios" aria-current="page">Honorarios</a>
+      <a href="https://www.santanaycia.cl/#contacto">Contacto</a>
+    </div>
   </nav>
 
   <!-- BREADCRUMB -->
   <div class="breadcrumb-bar">
-    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="https://www.santanaycia.cl/" itemprop="item"><span itemprop="name">Inicio</span></a>
-        <meta itemprop="position" content="1">
-      </li>
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">Honorarios</span>
-        <meta itemprop="position" content="2">
-      </li>
-    </ol>
-  </div>
-
-  <!-- CONTENIDO PRINCIPAL -->
-  <section>
-    <div class="section-inner">
-
-      <span class="section-tag">Honorarios 2026</span>
-      <h1 class="section-title">Transparencia<br>en cada <em>cobro</em></h1>
-      <p class="section-lead">
-        Antes de comprometerse, conozca el valor del servicio. Cada caso se evalúa individualmente antes de fijar honorarios definitivos.
-      </p>
-      <p class="section-lead" style="margin-top:0.75rem; font-size:14px;">
-        <strong style="color:var(--terra); font-weight:500;">Primera evaluación sin costo</strong> — Contáctenos en <a href="mailto:contacto@santanaycia.cl" style="color:var(--terra);">contacto@santanaycia.cl</a>
-      </p>
-
-      <p class="arancel-ref">Referencia: Arancel Colegio de Abogados de Chile 2023 · UF al día de cotización</p>
-<!-- ── BUSCADOR ── -->
-<div class="hon-search-wrap">
-  <p class="hon-search-label">Buscar servicio</p>
-  <div class="hon-search-box">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-    <input
-      type="search"
-      id="honSearch"
-      class="hon-search-input"
-      placeholder="Ej: divorcio mutuo acuerdo, pensión de alimentos, posesión efectiva…"
-      autocomplete="off"
-      spellcheck="false"
-    >
-    <div class="hon-search-dropdown" id="honDropdown" role="listbox"></div>
-  </div>
-  <!-- Tarjeta de resultado -->
-  <div class="hon-result-card" id="honResult">
-    <button class="hon-result-close" id="honResultClose" aria-label="Cerrar">×</button>
-    <p class="hon-result-tag" id="honResultTag"></p>
-    <p class="hon-result-name" id="honResultName"></p>
-    <p class="hon-result-desc" id="honResultDesc"></p>
-    <div class="hon-result-row">
-      <div class="hon-result-price-block">
-        <p class="hon-result-price-label">Valor referencial</p>
-        <p class="hon-result-price" id="honResultPrice"></p>
-        <p class="hon-result-note" id="honResultNote"></p>
-      </div>
-      <a href="https://www.santanaycia.cl/#contacto" class="hon-result-cta">Consulta gratuita →</a>
+    <div class="wrap">
+      <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://www.santanaycia.cl/" itemprop="item"><span itemprop="name">Inicio</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">Honorarios</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
     </div>
   </div>
-</div>
 
-      <div class="hon-wrap">
-        <div class="hon-thead">
-          <span class="hon-thead-l">Servicio</span>
-          <span class="hon-thead-r">Valor referencial</span>
+  <!-- HERO + BUSCADOR -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="section-tag">Honorarios 2026</span>
+        <h1 class="section-title">Transparencia en cada <em>cobro</em></h1>
+        <p class="section-lead">
+          Antes de comprometerse, conozca el valor del servicio. Cada caso se evalúa individualmente antes de fijar honorarios definitivos.
+        </p>
+        <p class="hero-free">
+          <b>Primera evaluación sin costo</b>
+          <span>Contáctenos en <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></span>
+        </p>
+      </div>
+
+      <div class="search-card">
+        <div class="search-inner">
+          <h2>¿Qué trámite necesita?</h2>
+          <p>Busque el servicio y vea su valor referencial al instante.</p>
+
+          <div class="hon-search-wrap">
+            <label class="sr-only" for="honSearch" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Buscar servicio</label>
+            <div class="hon-search-box">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input
+                type="search"
+                id="honSearch"
+                class="hon-search-input"
+                placeholder="Ej: divorcio, pensión de alimentos, posesión efectiva…"
+                autocomplete="off"
+                spellcheck="false"
+                aria-controls="honDropdown"
+              >
+              <div class="hon-search-dropdown" id="honDropdown" role="listbox"></div>
+            </div>
+            <div class="search-hints">
+              <span>Populares:</span>
+              <button type="button" class="hint-chip" data-q="divorcio">Divorcio</button>
+              <button type="button" class="hint-chip" data-q="pensión de alimentos">Pensión de alimentos</button>
+              <button type="button" class="hint-chip" data-q="posesión efectiva">Posesión efectiva</button>
+              <button type="button" class="hint-chip" data-q="monitorio">Arrendatario moroso</button>
+            </div>
+
+            <!-- Tarjeta de resultado -->
+            <div class="hon-result-card" id="honResult" aria-live="polite">
+              <button class="hon-result-close" id="honResultClose" type="button" aria-label="Cerrar">×</button>
+              <p class="hon-result-tag" id="honResultTag"></p>
+              <p class="hon-result-name" id="honResultName"></p>
+              <p class="hon-result-desc" id="honResultDesc"></p>
+              <div class="hon-result-row">
+                <div>
+                  <p class="hon-result-price-label">Valor referencial</p>
+                  <p class="hon-result-price" id="honResultPrice"></p>
+                  <p class="hon-result-note" id="honResultNote"></p>
+                </div>
+                <div class="hon-result-actions">
+                  <button type="button" class="hon-result-goto" id="honResultGoto">Ver en la tabla</button>
+                  <a href="https://www.santanaycia.cl/#contacto" class="hon-result-cta">Consulta gratuita →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="arancel-ref"><svg aria-hidden="true"><use href="#i-info"/></svg>Referencia: Arancel Colegio de Abogados de Chile 2023 · UF al día de cotización</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVEGACIÓN POR CATEGORÍA -->
+  <div class="cat-nav" id="catNav">
+    <div class="wrap">
+      <a href="#cat-consulta" class="cat-chip">Consulta <small>2</small></a>
+      <a href="#cat-familia" class="cat-chip">Familia <small>20</small></a>
+      <a href="#cat-herencias" class="cat-chip">Herencias <small>9</small></a>
+      <a href="#cat-arriendo" class="cat-chip">Arriendo <small>4</small></a>
+      <a href="#cat-civil" class="cat-chip">Civil <small>16</small></a>
+      <a href="#cat-recursos" class="cat-chip">Recursos <small>2</small></a>
+    </div>
+  </div>
+
+  <!-- TABLA DE HONORARIOS -->
+  <section class="prices">
+    <div class="wrap">
+      <div class="hon-wrap">
 
         <!-- ── CONSULTA ── -->
-        <div class="hon-cat">Consulta y evaluación</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Consulta Personal</div>
-            <div class="hon-desc">Atención por un abogado del estudio con análisis del caso y orientación sobre opciones legales disponibles.</div>
-            <div class="hon-note">Ref. Colegio: 1 UF</div>
+        <div class="hon-group fi" id="cat-consulta">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg><use href="#i-mail"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Consulta y evaluación</h2>
+              <p class="hon-cat-sub">Orientación inicial y estudio de antecedentes</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price --uf">UF 1<small>por consulta</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Consulta con Estudio de Documentos e Informe</div>
-            <div class="hon-desc">Revisión de antecedentes, análisis estratégico y entrega de informe escrito con propuesta de ruta de acción.</div>
-            <div class="hon-note">Ref. Colegio: 2 UF · se descuenta si contrata el servicio</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Consulta Personal</div>
+              <div class="hon-desc">Atención por un abogado del estudio con análisis del caso y orientación sobre opciones legales disponibles.</div>
+              <div class="hon-note">Ref. Colegio: 1 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 1<small>por consulta</small></div>
           </div>
-          <div class="hon-price --uf">UF 2<small>descontable</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Consulta con Estudio de Documentos e Informe</div>
+              <div class="hon-desc">Revisión de antecedentes, análisis estratégico y entrega de informe escrito con propuesta de ruta de acción.</div>
+              <div class="hon-note">Ref. Colegio: 2 UF · se descuenta si contrata el servicio</div>
+            </div>
+            <div class="hon-price --uf">UF 2<small>descontable</small></div>
+          </div>
         </div>
 
         <!-- ── FAMILIA ── -->
-        <div class="hon-cat">Derecho de Familia</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Divorcio de Mutuo Acuerdo — Plan Preferente</div>
-            <div class="hon-desc">Para casos simplificados sin hijos ni bienes comunes relevantes, bajo condiciones estructurales del estudio.</div>
+        <div class="hon-group fi" id="cat-familia">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.6" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2-5 4.5-5s4.5 2 4.5 5M13 19c0-2.4 1.6-4.2 3.5-4.2S20 16.6 20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Derecho de Familia</h2>
+              <p class="hon-cat-sub">Divorcio, alimentos, cuidado personal y más</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price">$130.000<small>valor único</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Divorcio de Mutuo Acuerdo — Tradicional</div>
-            <div class="hon-desc">Acuerdo completo de relaciones mutuas, compensación económica si aplica, y patrocinio de ambos cónyuges hasta sentencia de primera instancia.</div>
-            <div class="hon-note">Ref. Colegio: 8 UF por cónyuge representado · Mercado: $300.000 – $1.000.000</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Divorcio de Mutuo Acuerdo — Plan Preferente</div>
+              <div class="hon-desc">Para casos simplificados sin hijos ni bienes comunes relevantes, bajo condiciones estructurales del estudio.</div>
+            </div>
+            <div class="hon-price">$130.000<small>valor único</small></div>
           </div>
-          <div class="hon-price --uf">UF 8<small>por cónyuge</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Divorcio Unilateral</div>
-            <div class="hon-desc">Término del vínculo matrimonial sin acuerdo del cónyuge. Patrocinio en todas las audiencias hasta sentencia.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Divorcio de Mutuo Acuerdo — Tradicional</div>
+              <div class="hon-desc">Acuerdo completo de relaciones mutuas, compensación económica si aplica, y patrocinio de ambos cónyuges hasta sentencia de primera instancia.</div>
+              <div class="hon-note">Ref. Colegio: 8 UF por cónyuge representado · Mercado: $300.000 – $1.000.000</div>
+            </div>
+            <div class="hon-price --uf">UF 8<small>por cónyuge</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>según complejidad</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Divorcio por Culpa</div>
-            <div class="hon-desc">Divorcio contencioso fundado en causal imputable al otro cónyuge. Requiere acreditación de los hechos en juicio.</div>
-            <div class="hon-note">Ref. Colegio: 30 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Divorcio Unilateral</div>
+              <div class="hon-desc">Término del vínculo matrimonial sin acuerdo del cónyuge. Patrocinio en todas las audiencias hasta sentencia.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>según complejidad</small></div>
           </div>
-          <div class="hon-price --uf">UF 30<small>según complejidad</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Separación Judicial</div>
-            <div class="hon-desc">Declaración judicial de separación de los cónyuges sin disolución del vínculo matrimonial.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Divorcio por Culpa</div>
+              <div class="hon-desc">Divorcio contencioso fundado en causal imputable al otro cónyuge. Requiere acreditación de los hechos en juicio.</div>
+              <div class="hon-note">Ref. Colegio: 30 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 30<small>según complejidad</small></div>
           </div>
-          <div class="hon-price --uf">UF 15<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Nulidad del Matrimonio</div>
-            <div class="hon-desc">Acción para declarar la invalidez del vínculo matrimonial por vicios originarios de forma o fondo.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Separación Judicial</div>
+              <div class="hon-desc">Declaración judicial de separación de los cónyuges sin disolución del vínculo matrimonial.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 15<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Compensación Económica en Divorcio</div>
-            <div class="hon-desc">Solicitud o defensa ante la compensación económica derivada del menoscabo producido por el matrimonio. Se tramita conjuntamente con el juicio de divorcio.</div>
-            <div class="hon-note">Ref. Colegio: 10% de lo obtenido o ahorrado (mín. 15 UF)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Nulidad del Matrimonio</div>
+              <div class="hon-desc">Acción para declarar la invalidez del vínculo matrimonial por vicios originarios de forma o fondo.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>mín. 15 UF + %</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Pensión de Alimentos — Fijación</div>
-            <div class="hon-desc">Demanda para establecer la pensión del alimentario. Honorario calculado sobre la pensión efectivamente obtenida, con piso mínimo garantizado.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF + 50% de la pensión demandada</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Compensación Económica en Divorcio</div>
+              <div class="hon-desc">Solicitud o defensa ante la compensación económica derivada del menoscabo producido por el matrimonio. Se tramita conjuntamente con el juicio de divorcio.</div>
+              <div class="hon-note">Ref. Colegio: 10% de lo obtenido o ahorrado (mín. 15 UF)</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>mín. 15 UF + %</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>mín. 15 UF</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Pensión de Alimentos — Aumento o Rebaja</div>
-            <div class="hon-desc">Modificación judicial de la pensión vigente por cambio en las circunstancias económicas del alimentante o en las necesidades del alimentario.</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Pensión de Alimentos — Fijación</div>
+              <div class="hon-desc">Demanda para establecer la pensión del alimentario. Honorario calculado sobre la pensión efectivamente obtenida, con piso mínimo garantizado.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF + 50% de la pensión demandada</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>mín. 15 UF</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>según caso</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Apremio y Cobro de Deuda de Alimentos</div>
-            <div class="hon-desc">Arresto nocturno, retención de fondos previsionales y otras medidas de apremio por pensiones impagas. Gestión judicial de la deuda acumulada.</div>
-            <div class="hon-note">Ref.: 3 UF + 10% de lo que se obtenga</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Pensión de Alimentos — Aumento o Rebaja</div>
+              <div class="hon-desc">Modificación judicial de la pensión vigente por cambio en las circunstancias económicas del alimentante o en las necesidades del alimentario.</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>según caso</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>+ % obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Tuición y Cuidado Personal</div>
-            <div class="hon-desc">Demanda o defensa en juicios de cuidado personal de hijos menores. Incluye solicitud de medidas cautelares urgentes cuando corresponde.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Apremio y Cobro de Deuda de Alimentos</div>
+              <div class="hon-desc">Arresto nocturno, retención de fondos previsionales y otras medidas de apremio por pensiones impagas. Gestión judicial de la deuda acumulada.</div>
+              <div class="hon-note">Ref.: 3 UF + 10% de lo que se obtenga</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>+ % obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Patria Potestad — Ejercicio, Suspensión o Pérdida</div>
-            <div class="hon-desc">Causas relativas al ejercicio, suspensión o pérdida de la patria potestad sobre hijos menores.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Tuición y Cuidado Personal</div>
+              <div class="hon-desc">Demanda o defensa en juicios de cuidado personal de hijos menores. Incluye solicitud de medidas cautelares urgentes cuando corresponde.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">UF 15<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Acciones de Filiación</div>
-            <div class="hon-desc">Investigación o impugnación de la paternidad o maternidad, reconocimiento de hijo y acciones relacionadas.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Patria Potestad — Ejercicio, Suspensión o Pérdida</div>
+              <div class="hon-desc">Causas relativas al ejercicio, suspensión o pérdida de la patria potestad sobre hijos menores.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 15<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Adopción</div>
-            <div class="hon-desc">Gestión de los procedimientos previos a la adopción y el procedimiento de adopción propiamente tal ante los tribunales competentes.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF (previo) · 20 UF (adopción)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Acciones de Filiación</div>
+              <div class="hon-desc">Investigación o impugnación de la paternidad o maternidad, reconocimiento de hijo y acciones relacionadas.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 15<small>según etapa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Bienes Familiares</div>
-            <div class="hon-desc">Declaración, desafectación de bienes familiares y constitución de derechos de usufructo, uso o habitación sobre los mismos.</div>
-            <div class="hon-note">Ref. Colegio: 5% (bienes hasta 1.000 UF) · 2% (sobre 1.000 UF)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Adopción</div>
+              <div class="hon-desc">Gestión de los procedimientos previos a la adopción y el procedimiento de adopción propiamente tal ante los tribunales competentes.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF (previo) · 20 UF (adopción)</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 15<small>según etapa</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>% sobre bienes</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Régimen Patrimonial del Matrimonio</div>
-            <div class="hon-desc">Asuntos entre cónyuges relativos al régimen patrimonial: liquidación de sociedad conyugal, separación de bienes y participación en los gananciales.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Bienes Familiares</div>
+              <div class="hon-desc">Declaración, desafectación de bienes familiares y constitución de derechos de usufructo, uso o habitación sobre los mismos.</div>
+              <div class="hon-note">Ref. Colegio: 5% (bienes hasta 1.000 UF) · 2% (sobre 1.000 UF)</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>% sobre bienes</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Guardas y Curatelas</div>
-            <div class="hon-desc">Nombramiento judicial de guardadores o curadores para personas que no pueden administrar sus bienes por sí mismas.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Régimen Patrimonial del Matrimonio</div>
+              <div class="hon-desc">Asuntos entre cónyuges relativos al régimen patrimonial: liquidación de sociedad conyugal, separación de bienes y participación en los gananciales.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">UF 15<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Declaración de Interdicción</div>
-            <div class="hon-desc">Solicitud judicial para declarar la interdicción de una persona por demencia, prodigalidad u otras causales contempladas en la ley.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Guardas y Curatelas</div>
+              <div class="hon-desc">Nombramiento judicial de guardadores o curadores para personas que no pueden administrar sus bienes por sí mismas.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 15<small>por gestión</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Autorización Judicial — Salida del País (Menor)</div>
-            <div class="hon-desc">Gestión ante el tribunal de familia para obtener autorización judicial de salida del país de un menor de edad sin el consentimiento de uno de los progenitores.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Declaración de Interdicción</div>
+              <div class="hon-desc">Solicitud judicial para declarar la interdicción de una persona por demencia, prodigalidad u otras causales contempladas en la ley.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Violencia Intrafamiliar y Medidas Cautelares</div>
-            <div class="hon-desc">Denuncia y representación en audiencias. Solicitud de medidas cautelares urgentes: prohibición de acercamiento, salida del hogar y otras.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Autorización Judicial — Salida del País (Menor)</div>
+              <div class="hon-desc">Gestión ante el tribunal de familia para obtener autorización judicial de salida del país de un menor de edad sin el consentimiento de uno de los progenitores.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por gestión</small></div>
           </div>
-          <div class="hon-price --uf">UF 15<small>según urgencia</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Violencia Intrafamiliar y Medidas Cautelares</div>
+              <div class="hon-desc">Denuncia y representación en audiencias. Solicitud de medidas cautelares urgentes: prohibición de acercamiento, salida del hogar y otras.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 15<small>según urgencia</small></div>
+          </div>
         </div>
 
         <!-- ── HERENCIAS ── -->
-        <div class="hon-cat">Herencias y Sucesiones</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Posesión Efectiva Intestada</div>
-            <div class="hon-desc">Tramitación ante el Registro Civil cuando el causante no dejó testamento: formularios, pago o exención de impuesto de herencia e inscripciones.</div>
+        <div class="hon-group fi" id="cat-herencias">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Herencias y Sucesiones</h2>
+              <p class="hon-cat-sub">Posesión efectiva, testamentos y partición</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price --muted">A convenir<small>según bienes</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Posesión Efectiva Testada</div>
-            <div class="hon-desc">Tramitación ante el Juzgado Civil cuando existe testamento. Incluye revisión del instrumento, inventario de bienes, publicaciones legales y sentencia.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF · 0,5%–5% del valor comercial de los bienes</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Posesión Efectiva Intestada</div>
+              <div class="hon-desc">Tramitación ante el Registro Civil cuando el causante no dejó testamento: formularios, pago o exención de impuesto de herencia e inscripciones.</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>según bienes</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 20<small>según cuantía</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Redacción y Validación de Testamento</div>
-            <div class="hon-desc">Asesoría en la estructuración del testamento y redacción del instrumento. Coordinación con Notaría para su otorgamiento y depósito.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF (bienes hasta 1.000 UF) · 5% del valor de la masa sobre 1.000 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Posesión Efectiva Testada</div>
+              <div class="hon-desc">Tramitación ante el Juzgado Civil cuando existe testamento. Incluye revisión del instrumento, inventario de bienes, publicaciones legales y sentencia.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF · 0,5%–5% del valor comercial de los bienes</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 20<small>según cuantía</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 20<small>según cuantía</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Apertura y Publicación de Testamento</div>
-            <div class="hon-desc">Gestión judicial para la apertura, lectura, protocolización y publicación del testamento cerrado o solemne ante el tribunal competente.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Redacción y Validación de Testamento</div>
+              <div class="hon-desc">Asesoría en la estructuración del testamento y redacción del instrumento. Coordinación con Notaría para su otorgamiento y depósito.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF (bienes hasta 1.000 UF) · 5% del valor de la masa sobre 1.000 UF</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 20<small>según cuantía</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Partición de Bienes Hereditarios</div>
-            <div class="hon-desc">Liquidación y adjudicación de los bienes entre los herederos. Puede realizarse de común acuerdo o mediante juicio de partición con árbitro.</div>
-            <div class="hon-note">Ref. Colegio: 10% sobre la masa de bienes (mín. 30 UF)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Apertura y Publicación de Testamento</div>
+              <div class="hon-desc">Gestión judicial para la apertura, lectura, protocolización y publicación del testamento cerrado o solemne ante el tribunal competente.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por gestión</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>mín. 30 UF</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Albaceazgo</div>
-            <div class="hon-desc">Representación del albacea en la ejecución del testamento y administración de los bienes de la herencia hasta su entrega a los herederos.</div>
-            <div class="hon-note">Ref. Colegio: 10% de los bienes (mín. 20 UF) con tenencia · 5% (mín. 15 UF) sin tenencia</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Partición de Bienes Hereditarios</div>
+              <div class="hon-desc">Liquidación y adjudicación de los bienes entre los herederos. Puede realizarse de común acuerdo o mediante juicio de partición con árbitro.</div>
+              <div class="hon-note">Ref. Colegio: 10% sobre la masa de bienes (mín. 30 UF)</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>mín. 30 UF</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>% sobre bienes</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Declaración de Muerte Presunta</div>
-            <div class="hon-desc">Gestión judicial para obtener la declaración de muerte presunta de una persona cuyo paradero se desconoce, cumplidos los plazos legales.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Albaceazgo</div>
+              <div class="hon-desc">Representación del albacea en la ejecución del testamento y administración de los bienes de la herencia hasta su entrega a los herederos.</div>
+              <div class="hon-note">Ref. Colegio: 10% de los bienes (mín. 20 UF) con tenencia · 5% (mín. 15 UF) sin tenencia</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>% sobre bienes</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Declaración de Herencia Yacente</div>
-            <div class="hon-desc">Solicitud judicial de declaración de herencia yacente y nombramiento del curador de bienes correspondiente.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF (incluye nombramiento de curador)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Declaración de Muerte Presunta</div>
+              <div class="hon-desc">Gestión judicial para obtener la declaración de muerte presunta de una persona cuyo paradero se desconoce, cumplidos los plazos legales.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por gestión</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Impugnación de Herencias</div>
-            <div class="hon-desc">Acción judicial para invalidar testamentos por vicios de forma o fondo, o para reclamar la legítima rigorosa vulnerada por el testador.</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Declaración de Herencia Yacente</div>
+              <div class="hon-desc">Solicitud judicial de declaración de herencia yacente y nombramiento del curador de bienes correspondiente.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF (incluye nombramiento de curador)</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por gestión</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>según complejidad</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Impugnación de Herencias</div>
+              <div class="hon-desc">Acción judicial para invalidar testamentos por vicios de forma o fondo, o para reclamar la legítima rigorosa vulnerada por el testador.</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>según complejidad</small></div>
+          </div>
         </div>
 
         <!-- ── ARRIENDO ── -->
-        <div class="hon-cat">Arriendo — Ley 21.461 · Devuélveme mi Casa</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Procedimiento Monitorio — Arrendatario Moroso</div>
-            <div class="hon-desc">Juicio monitorio bajo la Ley 21.461 para cobrar rentas impagas y obtener el lanzamiento en un solo procedimiento. Honorario según monto adeudado.</div>
-            <div class="hon-note">Ref. Colegio: 10 UF (deuda hasta 50 UF) · 15 UF (51–100 UF) · 20 UF (sobre 100 UF)</div>
+        <div class="hon-group fi" id="cat-arriendo">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Arriendo — Ley 21.461 · Devuélveme mi Casa</h2>
+              <p class="hon-cat-sub">Cobro de rentas y restitución en un solo juicio</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price --uf">Desde UF 10<small>según deuda</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Cobro de Rentas Atrasadas e Intereses</div>
-            <div class="hon-desc">Liquidación y cobro judicial de rentas impagas, gastos comunes no pagados e intereses legales. Se tramita conjuntamente con el procedimiento de restitución.</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Procedimiento Monitorio — Arrendatario Moroso</div>
+              <div class="hon-desc">Juicio monitorio bajo la Ley 21.461 para cobrar rentas impagas y obtener el lanzamiento en un solo procedimiento. Honorario según monto adeudado.</div>
+              <div class="hon-note">Ref. Colegio: 10 UF (deuda hasta 50 UF) · 15 UF (51–100 UF) · 20 UF (sobre 100 UF)</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 10<small>según deuda</small></div>
           </div>
-          <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Lanzamiento y Restitución del Inmueble</div>
-            <div class="hon-desc">Ejecución de la orden judicial de lanzamiento para recuperar la posesión material del inmueble con auxilio de la fuerza pública.</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Cobro de Rentas Atrasadas e Intereses</div>
+              <div class="hon-desc">Liquidación y cobro judicial de rentas impagas, gastos comunes no pagados e intereses legales. Se tramita conjuntamente con el procedimiento de restitución.</div>
+            </div>
+            <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
           </div>
-          <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Ocupante Precario y Sin Contrato</div>
-            <div class="hon-desc">Acción judicial para recuperar un inmueble ocupado sin título ni contrato que lo habilite. Se tramita como acción de precario ante el Juzgado Civil.</div>
-            <div class="hon-note">Ref. Colegio: 10–50 UF según complejidad</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Lanzamiento y Restitución del Inmueble</div>
+              <div class="hon-desc">Ejecución de la orden judicial de lanzamiento para recuperar la posesión material del inmueble con auxilio de la fuerza pública.</div>
+            </div>
+            <div class="hon-price --inc">Incluido<small>en juicio monitorio</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 10<small>según complejidad</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Ocupante Precario y Sin Contrato</div>
+              <div class="hon-desc">Acción judicial para recuperar un inmueble ocupado sin título ni contrato que lo habilite. Se tramita como acción de precario ante el Juzgado Civil.</div>
+              <div class="hon-note">Ref. Colegio: 10–50 UF según complejidad</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 10<small>según complejidad</small></div>
+          </div>
         </div>
 
         <!-- ── CIVIL ── -->
-        <div class="hon-cat">Derecho Civil</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Medidas Prejudiciales</div>
-            <div class="hon-desc">Diligencias previas al juicio para asegurar la prueba o el resultado de la acción. Si con ellas se soluciona el conflicto sin juicio posterior, el honorario es mayor.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF (si resuelven el asunto) · 5 UF (si el juicio continúa)</div>
+        <div class="hon-group fi" id="cat-civil">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg><use href="#i-scale"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Derecho Civil</h2>
+              <p class="hon-cat-sub">Juicios, contratos, cobranza e indemnizaciones</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price --uf">UF 5 – 15<small>según resultado</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Juicio Ordinario Mayor Cuantía</div>
-            <div class="hon-desc">Juicios civiles declarativos de mayor cuantía ante el Juzgado Civil. Patrocinio y representación en todas las etapas hasta sentencia de primera instancia.</div>
-            <div class="hon-note">Ref. Colegio: 30 UF + 10% de lo obtenido o ahorrado · Con reconvención: 50 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Medidas Prejudiciales</div>
+              <div class="hon-desc">Diligencias previas al juicio para asegurar la prueba o el resultado de la acción. Si con ellas se soluciona el conflicto sin juicio posterior, el honorario es mayor.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF (si resuelven el asunto) · 5 UF (si el juicio continúa)</div>
+            </div>
+            <div class="hon-price --uf">UF 5 – 15<small>según resultado</small></div>
           </div>
-          <div class="hon-price --uf">UF 30<small>+ 10% obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Juicio Ordinario Menor Cuantía</div>
-            <div class="hon-desc">Juicios civiles declarativos de menor cuantía. Procedimiento más expedito que el ordinario de mayor cuantía.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Juicio Ordinario Mayor Cuantía</div>
+              <div class="hon-desc">Juicios civiles declarativos de mayor cuantía ante el Juzgado Civil. Patrocinio y representación en todas las etapas hasta sentencia de primera instancia.</div>
+              <div class="hon-note">Ref. Colegio: 30 UF + 10% de lo obtenido o ahorrado · Con reconvención: 50 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 30<small>+ 10% obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>+ 10% obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Juicio Ordinario Mínima Cuantía</div>
-            <div class="hon-desc">Juicios civiles de mínima cuantía con procedimiento simplificado.</div>
-            <div class="hon-note">Ref. Colegio: 10 UF + 10% de lo obtenido o ahorrado</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Juicio Ordinario Menor Cuantía</div>
+              <div class="hon-desc">Juicios civiles declarativos de menor cuantía. Procedimiento más expedito que el ordinario de mayor cuantía.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>+ 10% obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 10<small>+ 10% obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Juicio Sumario</div>
-            <div class="hon-desc">Procedimiento breve y concentrado para materias que requieren tramitación rápida por su naturaleza o por disposición legal expresa.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Juicio Ordinario Mínima Cuantía</div>
+              <div class="hon-desc">Juicios civiles de mínima cuantía con procedimiento simplificado.</div>
+              <div class="hon-note">Ref. Colegio: 10 UF + 10% de lo obtenido o ahorrado</div>
+            </div>
+            <div class="hon-price --uf">UF 10<small>+ 10% obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>+ 10% obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Preparación de la Vía Ejecutiva</div>
-            <div class="hon-desc">Gestiones judiciales para preparar el mérito ejecutivo de un título que no lo tiene por sí solo: reconocimiento de firma, gestiones de notificación y otras.</div>
-            <div class="hon-note">Ref. Colegio: 10 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Juicio Sumario</div>
+              <div class="hon-desc">Procedimiento breve y concentrado para materias que requieren tramitación rápida por su naturaleza o por disposición legal expresa.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>+ 10% obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 10<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Cobro de Deudas y Juicio Ejecutivo</div>
-            <div class="hon-desc">Cobro extrajudicial y judicial de deudas documentadas mediante pagarés, letras, contratos u otros títulos ejecutivos. Honorario sobre lo recuperado.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Preparación de la Vía Ejecutiva</div>
+              <div class="hon-desc">Gestiones judiciales para preparar el mérito ejecutivo de un título que no lo tiene por sí solo: reconocimiento de firma, gestiones de notificación y otras.</div>
+              <div class="hon-note">Ref. Colegio: 10 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 10<small>por gestión</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>+ 10% recuperado</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Tercerías en Juicio Ejecutivo</div>
-            <div class="hon-desc">Intervención de terceros en un juicio ejecutivo ya iniciado: tercería de dominio, posesión, prelación o pago según el derecho que se invoque.</div>
-            <div class="hon-note">Ref. Colegio: 10 UF (dominio/posesión) · 10% de lo obtenido, mín. 10 UF (prelación/pago)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Cobro de Deudas y Juicio Ejecutivo</div>
+              <div class="hon-desc">Cobro extrajudicial y judicial de deudas documentadas mediante pagarés, letras, contratos u otros títulos ejecutivos. Honorario sobre lo recuperado.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF + 10% de lo obtenido o ahorrado</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>+ 10% recuperado</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 10<small>según tipo</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Juicios Posesorios</div>
-            <div class="hon-desc">Querellas posesorias para conservar o recuperar la posesión de bienes raíces: querella de amparo, restitución y restablecimiento.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Tercerías en Juicio Ejecutivo</div>
+              <div class="hon-desc">Intervención de terceros en un juicio ejecutivo ya iniciado: tercería de dominio, posesión, prelación o pago según el derecho que se invoque.</div>
+              <div class="hon-note">Ref. Colegio: 10 UF (dominio/posesión) · 10% de lo obtenido, mín. 10 UF (prelación/pago)</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 10<small>según tipo</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por causa</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Redacción de Contratos</div>
-            <div class="hon-desc">Contratos de arrendamiento, compraventa, prestación de servicios, mutuos y otros. Incluye revisión de cláusulas y asesoría para la firma.</div>
-            <div class="hon-note">Ref. Colegio: 2% del negocio (mín. 5 UF) · sin cuantía: 8 UF · modificaciones: 50% del honorario base</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Juicios Posesorios</div>
+              <div class="hon-desc">Querellas posesorias para conservar o recuperar la posesión de bienes raíces: querella de amparo, restitución y restablecimiento.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por causa</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 5<small>según cuantía</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Examen y Estudio de Títulos de Bienes Raíces</div>
-            <div class="hon-desc">Revisión del historial de dominio, gravámenes, prohibiciones e hipotecas de un inmueble. Informe de títulos y recomendaciones previo a la compraventa.</div>
-            <div class="hon-note">Ref. Colegio: 2% del valor del inmueble (mín. 5 UF)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Redacción de Contratos</div>
+              <div class="hon-desc">Contratos de arrendamiento, compraventa, prestación de servicios, mutuos y otros. Incluye revisión de cláusulas y asesoría para la firma.</div>
+              <div class="hon-note">Ref. Colegio: 2% del negocio (mín. 5 UF) · sin cuantía: 8 UF · modificaciones: 50% del honorario base</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 5<small>según cuantía</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 5<small>2% del inmueble</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Incumplimiento y Nulidad de Contratos</div>
-            <div class="hon-desc">Demanda o defensa por incumplimiento de obligaciones contractuales. Modelo mixto: suma fija más porcentaje sobre lo efectivamente obtenido.</div>
-            <div class="hon-note">Ref. mercado: desde $1.000.000 + 20–30% cuota litis</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Examen y Estudio de Títulos de Bienes Raíces</div>
+              <div class="hon-desc">Revisión del historial de dominio, gravámenes, prohibiciones e hipotecas de un inmueble. Informe de títulos y recomendaciones previo a la compraventa.</div>
+              <div class="hon-note">Ref. Colegio: 2% del valor del inmueble (mín. 5 UF)</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 5<small>2% del inmueble</small></div>
           </div>
-          <div class="hon-price --muted">A convenir<small>+ cuota litis</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Indemnización de Perjuicios</div>
-            <div class="hon-desc">Daño emergente, lucro cesante o daño moral por actos ilícitos o incumplimientos contractuales. Honorario mixto sobre el monto obtenido.</div>
-            <div class="hon-note">Ref. Colegio: 30 UF + 10% de lo obtenido</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Incumplimiento y Nulidad de Contratos</div>
+              <div class="hon-desc">Demanda o defensa por incumplimiento de obligaciones contractuales. Modelo mixto: suma fija más porcentaje sobre lo efectivamente obtenido.</div>
+              <div class="hon-note">Ref. mercado: desde $1.000.000 + 20–30% cuota litis</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>+ cuota litis</small></div>
           </div>
-          <div class="hon-price --uf">UF 30<small>+ 10% obtenido</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Cambio de Nombre y Rectificación de Partida Civil</div>
-            <div class="hon-desc">Gestiones judiciales para cambio de nombre propio o apellido, y para rectificar errores u omisiones en partidas de nacimiento, matrimonio o defunción.</div>
-            <div class="hon-note">Ref. Colegio: 20 UF por gestión</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Indemnización de Perjuicios</div>
+              <div class="hon-desc">Daño emergente, lucro cesante o daño moral por actos ilícitos o incumplimientos contractuales. Honorario mixto sobre el monto obtenido.</div>
+              <div class="hon-note">Ref. Colegio: 30 UF + 10% de lo obtenido</div>
+            </div>
+            <div class="hon-price --uf">UF 30<small>+ 10% obtenido</small></div>
           </div>
-          <div class="hon-price --uf">UF 20<small>por gestión</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Accidentes de Tránsito y Juzgado de Policía Local</div>
-            <div class="hon-desc">Representación en procedimientos ante el Juzgado de Policía Local por infracciones de tránsito, accidentes con lesiones y cobro de daños materiales.</div>
-            <div class="hon-note">Ref. Colegio: 15 UF (querella infraccional) · 10 UF + 10% (indemnización)</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Cambio de Nombre y Rectificación de Partida Civil</div>
+              <div class="hon-desc">Gestiones judiciales para cambio de nombre propio o apellido, y para rectificar errores u omisiones en partidas de nacimiento, matrimonio o defunción.</div>
+              <div class="hon-note">Ref. Colegio: 20 UF por gestión</div>
+            </div>
+            <div class="hon-price --uf">UF 20<small>por gestión</small></div>
           </div>
-          <div class="hon-price --uf">Desde UF 10<small>según caso</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Ley del Consumidor</div>
-            <div class="hon-desc">Representación de consumidores ante el Juzgado de Policía Local por infracciones a la Ley 19.496. Cobro de multas e indemnizaciones.</div>
-            <div class="hon-note">Ref. Colegio: 10 UF + 10% de lo obtenido</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Accidentes de Tránsito y Juzgado de Policía Local</div>
+              <div class="hon-desc">Representación en procedimientos ante el Juzgado de Policía Local por infracciones de tránsito, accidentes con lesiones y cobro de daños materiales.</div>
+              <div class="hon-note">Ref. Colegio: 15 UF (querella infraccional) · 10 UF + 10% (indemnización)</div>
+            </div>
+            <div class="hon-price --uf">Desde UF 10<small>según caso</small></div>
           </div>
-          <div class="hon-price --uf">UF 10<small>+ 10% obtenido</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Ley del Consumidor</div>
+              <div class="hon-desc">Representación de consumidores ante el Juzgado de Policía Local por infracciones a la Ley 19.496. Cobro de multas e indemnizaciones.</div>
+              <div class="hon-note">Ref. Colegio: 10 UF + 10% de lo obtenido</div>
+            </div>
+            <div class="hon-price --uf">UF 10<small>+ 10% obtenido</small></div>
+          </div>
         </div>
 
         <!-- ── RECURSOS ── -->
-        <div class="hon-cat">Recursos y Segunda Instancia</div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Apelación y Casación</div>
-            <div class="hon-desc">Interposición o defensa de recursos de apelación ante la Corte de Apelaciones o recursos de casación en la forma o en el fondo ante la Corte Suprema.</div>
-            <div class="hon-note">Ref. Colegio: 50% del arancel de primera instancia</div>
+        <div class="hon-group fi" id="cat-recursos">
+          <div class="hon-cat">
+            <span class="hon-cat-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 20V9l7-5 7 5v11" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 20h17M9 20v-6M12 20v-6M15 20v-6M7.5 11.5h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <div>
+              <h2 class="hon-cat-title">Recursos y Segunda Instancia</h2>
+              <p class="hon-cat-sub">Cortes de Apelaciones, Suprema y Tribunal Constitucional</p>
+            </div>
+            <span class="hon-cat-col">Valor referencial</span>
           </div>
-          <div class="hon-price --muted">A convenir<small>50% del honorario base</small></div>
-        </div>
-        <div class="hon-row">
-          <div>
-            <div class="hon-name">Inaplicabilidad por Inconstitucionalidad</div>
-            <div class="hon-desc">Recurso ante el Tribunal Constitucional para declarar inaplicable en el caso concreto un precepto legal contrario a la Constitución.</div>
-            <div class="hon-note">Ref. Colegio: 30 UF</div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Apelación y Casación</div>
+              <div class="hon-desc">Interposición o defensa de recursos de apelación ante la Corte de Apelaciones o recursos de casación en la forma o en el fondo ante la Corte Suprema.</div>
+              <div class="hon-note">Ref. Colegio: 50% del arancel de primera instancia</div>
+            </div>
+            <div class="hon-price --muted">A convenir<small>50% del honorario base</small></div>
           </div>
-          <div class="hon-price --uf">UF 30<small>por recurso</small></div>
+          <div class="hon-row">
+            <div>
+              <div class="hon-name">Inaplicabilidad por Inconstitucionalidad</div>
+              <div class="hon-desc">Recurso ante el Tribunal Constitucional para declarar inaplicable en el caso concreto un precepto legal contrario a la Constitución.</div>
+              <div class="hon-note">Ref. Colegio: 30 UF</div>
+            </div>
+            <div class="hon-price --uf">UF 30<small>por recurso</small></div>
+          </div>
         </div>
 
       </div><!-- /hon-wrap -->
+    </div>
+  </section>
 
-      <!-- Condiciones Generales -->
-      <div class="hon-conditions">
-        <p class="hon-conditions-title">Condiciones generales</p>
-        <div class="hon-cond-grid">
-          <div class="hon-cond-item">
-            <span class="hon-cond-num">01</span>
-            <div class="hon-cond-body">
-              <strong>Exclusión de costas</strong>
-              <p>Ningún honorario incluye gastos notariales, derechos del CBR, archiveros, tasas judiciales ni cobros de receptores por notificaciones. Se informan antes de iniciar.</p>
-            </div>
+  <!-- CONDICIONES GENERALES -->
+  <section class="conditions">
+    <div class="wrap hon-conditions">
+      <p class="hon-conditions-title fi">Condiciones generales</p>
+      <div class="hon-cond-grid fi">
+        <div class="hon-cond-item">
+          <span class="hon-cond-num"><svg><use href="#i-receipt"/></svg></span>
+          <div class="hon-cond-body">
+            <strong>Exclusión de costas</strong>
+            <p>Ningún honorario incluye gastos notariales, derechos del CBR, archiveros, tasas judiciales ni cobros de receptores por notificaciones. Se informan antes de iniciar.</p>
           </div>
-          <div class="hon-cond-item">
-            <span class="hon-cond-num">02</span>
-            <div class="hon-cond-body">
-              <strong>Facilidades de pago</strong>
-              <p>En litigios con honorarios altos es posible pactar el saldo en cuotas fijas, iguales y sucesivas mensuales, según acuerdo previo con el estudio.</p>
-            </div>
+        </div>
+        <div class="hon-cond-item">
+          <span class="hon-cond-num"><svg><use href="#i-cal"/></svg></span>
+          <div class="hon-cond-body">
+            <strong>Facilidades de pago</strong>
+            <p>En litigios con honorarios altos es posible pactar el saldo en cuotas fijas, iguales y sucesivas mensuales, según acuerdo previo con el estudio.</p>
           </div>
-          <div class="hon-cond-item">
-            <span class="hon-cond-num">03</span>
-            <div class="hon-cond-body">
-              <strong>Valores referenciales</strong>
-              <p>Los rangos indicados son orientativos y se basan en el Arancel del Colegio de Abogados de Chile. El honorario definitivo se fija tras la evaluación inicial.</p>
-            </div>
+        </div>
+        <div class="hon-cond-item">
+          <span class="hon-cond-num"><svg><use href="#i-scale"/></svg></span>
+          <div class="hon-cond-body">
+            <strong>Valores referenciales</strong>
+            <p>Los rangos indicados son orientativos y se basan en el Arancel del Colegio de Abogados de Chile. El honorario definitivo se fija tras la evaluación inicial.</p>
           </div>
-          <div class="hon-cond-item">
-            <span class="hon-cond-num">04</span>
-            <div class="hon-cond-body">
-              <strong>Atención en todo Chile</strong>
-              <p>Atendemos todas las regiones del país de forma remota. Sin cargos adicionales por ubicación del cliente ni del tribunal.</p>
-            </div>
+        </div>
+        <div class="hon-cond-item">
+          <span class="hon-cond-num"><svg><use href="#i-pin"/></svg></span>
+          <div class="hon-cond-body">
+            <strong>Atención en todo Chile</strong>
+            <p>Atendemos todas las regiones del país de forma remota. Sin cargos adicionales por ubicación del cliente ni del tribunal.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- FAQ VISIBLE (también indexable) -->
-      <div class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
-        <div class="faq-header">
-          <p class="faq-header-label">Preguntas frecuentes</p>
-          <h2 class="faq-header-title">¿Cuánto cuesta un abogado en Chile?</h2>
-        </div>
+  <!-- FAQ VISIBLE (también indexable) -->
+  <section class="faq">
+    <div class="wrap faq-grid faq-section" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="faq-header">
+        <p class="faq-header-label">Preguntas frecuentes</p>
+        <h2 class="faq-header-title">¿Cuánto cuesta un abogado en Chile?</h2>
+        <p class="faq-aside">¿Su caso no aparece aquí? <a href="https://www.santanaycia.cl/#contacto">Escríbanos</a> y le entregamos honorarios definitivos sin costo.</p>
+      </div>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Cuánto cobra un abogado por un divorcio en Chile?</span>
-            <span class="faq-icon">+</span>
-          </button>
+      <div class="faq-list">
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Cuánto cobra un abogado por un divorcio en Chile?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">El divorcio de mutuo acuerdo tiene tres modalidades en Santana & Cía: el Plan Preferente (casos sin hijos ni bienes comunes) parte desde $130.000; el proceso Tradicional tiene un honorario de 8 UF por cónyuge. El divorcio unilateral parte desde 20 UF, y el divorcio por culpa desde 30 UF. Todos incluyen patrocinio hasta sentencia de primera instancia.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Cuánto cuesta un abogado de pensión de alimentos?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Cuánto cuesta un abogado de pensión de alimentos?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">La fijación de pensión de alimentos se cotiza a convenir con un mínimo de 15 UF, más un porcentaje sobre la pensión efectivamente obtenida. Para apremios y cobro de deuda alimentaria, el honorario parte desde 3 UF más el 10% de lo que se recupere. La primera evaluación del caso es siempre sin costo.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Cuánto cobra un abogado por una posesión efectiva?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Cuánto cobra un abogado por una posesión efectiva?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">La posesión efectiva intestada (sin testamento, ante el Registro Civil) se cotiza a convenir según los bienes. La posesión efectiva testada (con testamento, ante el Juzgado Civil) parte desde 20 UF, pudiendo llegar al 0,5%–5% del valor comercial de los bienes según el Arancel del Colegio de Abogados.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Cuánto cuesta el procedimiento Ley Devuélveme mi Casa?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Cuánto cuesta el procedimiento Ley Devuélveme mi Casa?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">El procedimiento monitorio bajo la Ley 21.461 parte desde 10 UF para deudas de hasta 50 UF, 15 UF para deudas entre 51 y 100 UF, y 20 UF para deudas sobre 100 UF. El honorario incluye cobro de rentas atrasadas y gestión de lanzamiento. Se tramita en todo Chile de forma remota.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Los honorarios incluyen gastos notariales y de receptor judicial?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Los honorarios incluyen gastos notariales y de receptor judicial?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">No. Los honorarios no incluyen gastos notariales, derechos del Conservador de Bienes Raíces, tasas judiciales ni cobros de receptores por notificaciones. Estos gastos se informan con precisión antes de iniciar el proceso para que no haya sorpresas.</p>
           </div>
-        </div>
+        </details>
 
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-question" aria-expanded="false">
-            <span class="faq-q-text" itemprop="name">¿Se puede pagar en cuotas?</span>
-            <span class="faq-icon">+</span>
-          </button>
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question"><span class="faq-q-text" itemprop="name">¿Se puede pagar en cuotas?</span></summary>
           <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <p itemprop="text">Sí. Para litigios con honorarios elevados es posible acordar el saldo en cuotas fijas, iguales y sucesivas mensuales, según acuerdo previo con el estudio. Cada caso se evalúa individualmente.</p>
           </div>
-        </div>
-
-      </div><!-- /faq-section -->
-
-<!-- PUENTE CTA -->
-      <div class="cta-bridge" aria-hidden="true">
-        <p class="cta-bridge-quote">El honorario definitivo siempre se fija tras conocer su caso.</p>
-        <div class="cta-bridge-rule"></div>
+        </details>
       </div>
-
-      <!-- CTA BAND -->
-      <div class="cta-band">
-        <p class="cta-band-eyebrow">Primera evaluación sin costo</p>
-        <h2 class="cta-band-title">¿Necesita un <em>presupuesto</em><br>para su caso?</h2>
-        <p class="cta-band-sub">Cuéntenos su situación y le entregamos honorarios definitivos en un máximo de 48 horas hábiles. Sin compromiso.</p>
-        <div class="cta-band-actions">
-          <a href="https://www.santanaycia.cl/#contacto" class="btn-primary">Consulta gratuita</a>
-          <a href="https://wa.me/56969051586" target="_blank" rel="noopener" class="btn-outline">WhatsApp</a>
-          <a href="mailto:contacto@santanaycia.cl" class="btn-outline">contacto@santanaycia.cl</a>
-        </div>
-      </div>
-
-    </div>     
+    </div>
   </section>
+
+  <!-- CTA FINAL -->
+  <div class="cta-band">
+    <div class="wrap">
+      <p class="cta-bridge-quote fi" aria-hidden="true">El honorario definitivo siempre se fija tras conocer su caso.</p>
+      <div class="cta-box fi">
+        <div>
+          <p class="cta-band-eyebrow">Primera evaluación sin costo</p>
+          <h2 class="cta-band-title">¿Necesita un <em>presupuesto</em> para su caso?</h2>
+          <p class="cta-band-sub">Cuéntenos su situación y le entregamos honorarios definitivos en un máximo de 48 horas hábiles. Sin compromiso.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="https://www.santanaycia.cl/#contacto" class="btn-white">Consulta gratuita <svg><use href="#i-arrow"/></svg></a>
+          <a href="https://wa.me/56969051586" target="_blank" rel="noopener" class="btn-ghost"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          <a href="mailto:contacto@santanaycia.cl" class="btn-ghost"><svg><use href="#i-mail"/></svg>Correo</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        Santana &amp; Cía
-        <span>Abogados · Chile · 2026</span>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="https://www.santanaycia.cl/" class="nav-logo">
+            Santana &amp; Cía
+            <span>Abogados · Chile · 2026</span>
+          </a>
+          <p>Estudio jurídico integral. Familia, civil, herencias y arriendo, con atención remota en todo Chile.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Áreas</h4>
+          <ul>
+            <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
+            <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
+            <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a></li>
+            <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Estudio</h4>
+          <ul>
+            <li><a href="https://www.santanaycia.cl/">Inicio</a></li>
+            <li><a href="https://www.santanaycia.cl/honorarios" aria-current="page">Honorarios</a></li>
+            <li><a href="https://www.santanaycia.cl/privacidad">Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://www.santanaycia.cl/#contacto">Escribir consulta</a></li>
+            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://www.santanaycia.cl/familia">Familia</a>
-        <a href="https://www.santanaycia.cl/legatum">Herencias</a>
-        <a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a>
-        <a href="https://www.santanaycia.cl/abogados">Civil</a>
-        <a href="https://www.santanaycia.cl/honorarios" aria-current="page">Honorarios</a>
-        <a href="https://www.santanaycia.cl/privacidad">Privacidad</a>
+      <div class="footer-bottom">
+        <span>© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</span>
+        <span><a href="https://www.santanaycia.cl" style="color:inherit;text-decoration:none">www.santanaycia.cl</a></span>
       </div>
-      <p class="footer-note">
-        © 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.<br>
-        <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a> &nbsp;·&nbsp;
-        <a href="https://www.santanaycia.cl">www.santanaycia.cl</a>
-      </p>
     </div>
   </footer>
 
 <script>
-  /* ── FAQ accordion ── */
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const item = this.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(el => {
-        el.classList.remove('open');
-        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen) {
-        item.classList.add('open');
-        this.setAttribute('aria-expanded', 'true');
-      }
+  'use strict';
+
+  const nav = document.getElementById('main-nav');
+  const catNav = document.getElementById('catNav');
+
+  /* ── Sombra del nav al hacer scroll ── */
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 10); ticking = false; });
+  }, { passive: true });
+
+  /* ── Menú móvil ── */
+  const hamBtn = document.getElementById('hamBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  function closeNav() { mobileNav.classList.remove('active'); hamBtn.classList.remove('active'); hamBtn.setAttribute('aria-expanded', 'false'); }
+  hamBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('active');
+    hamBtn.classList.toggle('active', open);
+    hamBtn.setAttribute('aria-expanded', open);
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+  /* ── Scroll con offset (nav + barra de categorías) ── */
+  function scrollToEl(el) {
+    const offset = nav.offsetHeight + catNav.offsetHeight + 14;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const id = this.getAttribute('href');
+      if (id.length < 2) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      scrollToEl(target);
     });
   });
 
-  /* ── Accesibilidad: aria-live en dropdown del buscador ── */
-  const honDropdown = document.getElementById('honDropdown');
-  if (honDropdown) {
-    honDropdown.setAttribute('role', 'listbox');
-    honDropdown.setAttribute('aria-live', 'polite');
-    honDropdown.setAttribute('aria-label', 'Resultados de búsqueda de honorarios');
+  /* ── Categoría activa en la barra ── */
+  const chips = Array.from(document.querySelectorAll('.cat-chip'));
+  const groups = Array.from(document.querySelectorAll('.hon-group'));
+  function updateActiveChip() {
+    const line = nav.offsetHeight + catNav.offsetHeight + 40;
+    let current = null;
+    groups.forEach(g => { if (g.getBoundingClientRect().top <= line) current = g.id; });
+    chips.forEach(c => {
+      const on = c.getAttribute('href') === '#' + current;
+      if (on && !c.classList.contains('is-active')) c.scrollIntoView({ block: 'nearest', inline: 'center' });
+      c.classList.toggle('is-active', on);
+    });
   }
+  window.addEventListener('scroll', () => requestAnimationFrame(updateActiveChip), { passive: true });
+  updateActiveChip();
 
   /* ── Accesibilidad: teclado en filas de la tabla ── */
   document.querySelectorAll('.hon-row').forEach(row => {
@@ -1742,34 +1845,54 @@
   const dropdown = document.getElementById('honDropdown');
   const card     = document.getElementById('honResult');
   const closeBtn = document.getElementById('honResultClose');
+  const gotoBtn  = document.getElementById('honResultGoto');
+  let activeIdx = -1;
+  let currentRow = null;
 
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
-  function highlight(text, query) {
-    const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return text.replace(re, '<mark>$1</mark>');
+  function esc(s) {
+    return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  /* Resalta cada término ignorando tildes (las posiciones coinciden tras normalizar) */
+  function highlight(text, terms) {
+    const norm = normalize(text);
+    const marks = new Array(text.length).fill(false);
+    terms.forEach(t => {
+      if (!t) return;
+      let i = norm.indexOf(t);
+      while (i !== -1) { for (let k = i; k < i + t.length; k++) marks[k] = true; i = norm.indexOf(t, i + t.length); }
+    });
+    let out = '', open = false;
+    for (let i = 0; i < text.length; i++) {
+      if (marks[i] && !open) { out += '<mark>'; open = true; }
+      if (!marks[i] && open) { out += '</mark>'; open = false; }
+      out += esc(text[i]);
+    }
+    return out + (open ? '</mark>' : '');
   }
 
   function showDropdown(query) {
     const q = normalize(query.trim());
+    activeIdx = -1;
     if (q.length < 2) { dropdown.classList.remove('is-open'); return; }
-    const results = HON_DATA.filter(item =>
-      normalize(item.name).includes(q) ||
-      normalize(item.cat).includes(q) ||
-      normalize(item.desc).includes(q)
-    ).slice(0, 8);
+    const terms = q.split(/\s+/).filter(Boolean);
+    const results = HON_DATA.filter(item => {
+      const hay = normalize(item.name + ' ' + item.cat + ' ' + item.desc);
+      return terms.every(t => hay.includes(t));
+    }).slice(0, 8);
 
     if (!results.length) {
-      dropdown.innerHTML = '<p class="hon-sd-empty">Sin resultados para "' + query + '"</p>';
+      dropdown.innerHTML = '<p class="hon-sd-empty">Sin resultados para "' + esc(query) + '". Escríbanos y lo cotizamos sin costo.</p>';
     } else {
       dropdown.innerHTML = results.map(item =>
-        `<div class="hon-sd-item" data-idx="${HON_DATA.indexOf(item)}" role="option" tabindex="0">
+        `<div class="hon-sd-item" data-idx="${HON_DATA.indexOf(item)}" role="option" tabindex="-1">
           <div>
-            <span class="hon-sd-item-name">${highlight(item.name, q)}</span>
-            <span class="hon-sd-item-cat">${item.cat}</span>
+            <span class="hon-sd-item-name">${highlight(item.name, terms)}</span>
+            <span class="hon-sd-item-cat">${esc(item.cat)}</span>
           </div>
-          <span class="hon-sd-item-price">${item.price}</span>
+          <span class="hon-sd-item-price">${esc(item.price)}</span>
         </div>`
       ).join('');
       dropdown.querySelectorAll('.hon-sd-item').forEach(el => {
@@ -1778,6 +1901,13 @@
       });
     }
     dropdown.classList.add('is-open');
+  }
+
+  function findRow(name) {
+    return Array.from(document.querySelectorAll('.hon-row')).find(r => {
+      const n = r.querySelector('.hon-name');
+      return n && n.textContent.trim() === name;
+    }) || null;
   }
 
   function selectItem(idx) {
@@ -1790,17 +1920,63 @@
     input.value = item.name;
     dropdown.classList.remove('is-open');
     card.classList.add('is-visible');
+    document.querySelectorAll('.hon-row.is-hit').forEach(r => r.classList.remove('is-hit'));
+    currentRow = findRow(item.name);
+    if (currentRow) currentRow.classList.add('is-hit');
+    gotoBtn.style.display = currentRow ? '' : 'none';
     card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   input.addEventListener('input', () => showDropdown(input.value));
   input.addEventListener('focus', () => { if (input.value.length >= 2) showDropdown(input.value); });
+  input.addEventListener('keydown', e => {
+    const items = dropdown.querySelectorAll('.hon-sd-item');
+    if (!dropdown.classList.contains('is-open') || !items.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = e.key === 'ArrowDown' ? (activeIdx + 1) % items.length : (activeIdx - 1 + items.length) % items.length;
+      items.forEach((el, i) => el.classList.toggle('is-active', i === activeIdx));
+      items[activeIdx].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      selectItem(+items[activeIdx >= 0 ? activeIdx : 0].dataset.idx);
+    } else if (e.key === 'Escape') {
+      dropdown.classList.remove('is-open');
+    }
+  });
   document.addEventListener('click', e => {
     if (!e.target.closest('.hon-search-wrap')) dropdown.classList.remove('is-open');
   });
   closeBtn.addEventListener('click', () => {
     card.classList.remove('is-visible');
+    document.querySelectorAll('.hon-row.is-hit').forEach(r => r.classList.remove('is-hit'));
     input.value = '';
+    input.focus();
+  });
+  gotoBtn.addEventListener('click', () => {
+    if (!currentRow) return;
+    scrollToEl(currentRow);
+    setTimeout(() => currentRow.focus({ preventScroll: true }), 500);
+  });
+  document.querySelectorAll('.hint-chip').forEach(chip => {
+    chip.addEventListener('click', () => { input.value = chip.dataset.q; input.focus(); showDropdown(input.value); });
+  });
+
+  /* ── Fade-in ── */
+  function initFadeIn() {
+    const els = document.querySelectorAll('.fi');
+    if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('visible')); return; }
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.04, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(el => obs.observe(el));
+    /* Fallback para bots / capturas */
+    setTimeout(() => document.querySelectorAll('.fi:not(.visible)').forEach(el => el.classList.add('visible')), 2500);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFadeIn);
+  else initFadeIn();
+  window.addEventListener('pageshow', ev => {
+    if (ev.persisted) document.querySelectorAll('.fi').forEach(el => el.classList.add('visible'));
   });
 </script>
 
