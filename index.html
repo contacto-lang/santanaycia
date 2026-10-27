@@ -528,8 +528,10 @@
     .value-body p { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
     /* Quote band */
-    .quote-band { background: var(--celeste); padding: 4.25rem 2.5rem; text-align: center; }
-    .quote-band-inner { max-width: 620px; margin: 0 auto; }
+    .quote-band { position: relative; overflow: hidden; background: var(--celeste-d); padding: 5.5rem 2.5rem; text-align: center; }
+    .quote-band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; color: transparent; }
+    .quote-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(29,95,153,0.82) 0%, rgba(14,39,64,0.78) 100%); }
+    .quote-band-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
     .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 68px; color: rgba(255,255,255,0.22); line-height: 0.6; margin-bottom: 1.4rem; display: block; }
     .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(19px, 2.6vw, 28px); font-weight: 300; font-style: italic; color: #ffffff; line-height: 1.55; margin-bottom: 1.2rem; }
     .quote-attr { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
@@ -807,6 +809,7 @@
 
   <!-- QUOTE -->
   <div class="quote-band">
+    <img class="quote-band-img" src="https://images.pexels.com/photos/21533323/pexels-photo-21533323.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="" width="1920" height="1080" loading="lazy" aria-hidden="true">
     <div class="quote-band-inner fade-in">
       <span class="quote-mark">"</span>
       <p class="quote-text" data-en="The most important legal matters in life deserve dedicated attention, not generic solutions.">Los asuntos legales más importantes de la vida merecen atención dedicada, no soluciones genéricas.</p>
@@ -877,6 +880,8 @@
           <li><a href="#hero-form" data-en="Send an Inquiry">Escribir consulta</a></li>
           <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
           <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
+          <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener" data-en="Google Profile">Perfil en Google</a></li>
+          <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener" data-en="Leave a Review">Dejar una reseña</a></li>
         </ul>
       </div>
     </div>
