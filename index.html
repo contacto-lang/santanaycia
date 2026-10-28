@@ -450,6 +450,13 @@
       transition: border-color .2s, box-shadow .2s, transform .2s;
     }
     .area-card:hover { border-color: var(--celeste); box-shadow: 0 14px 40px rgba(16,31,51,0.08); transform: translateY(-3px); }
+    /* Foto de cabecera de cada tarjeta (como en las subwebs) */
+    .area-card:not(.tool) { position: relative; overflow: hidden; padding-top: 0; }
+    .area-photo { height: 160px; margin: 0 -1.8rem; background: var(--pale) center/cover no-repeat; position: relative; overflow: hidden; }
+    .area-photo::before { content: ''; position: absolute; inset: 0; background: inherit; background-size: cover; transition: transform .6s ease; }
+    .area-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,31,51,0.04), rgba(16,31,51,0.32)); }
+    .area-card:hover .area-photo::before { transform: scale(1.06); }
+    .area-photo + .area-ring { position: relative; z-index: 2; margin-top: -21px; box-shadow: 0 0 0 4px var(--white); }
     .area-ring {
       width: 42px; height: 42px; border-radius: 50%;
       border: 1px solid var(--celeste); background: var(--celeste-l);
@@ -591,6 +598,10 @@
     }
     @media (max-width: 640px) {
       .areas-grid { grid-template-columns: 1fr; }
+      /* Móvil: sin fotos en las tarjetas, para mantenerlo liviano */
+      .area-photo { display: none; }
+      .area-card:not(.tool) { padding-top: 2.1rem; }
+      .area-photo + .area-ring { margin-top: 0; box-shadow: none; }
       .area-card.tool { grid-template-columns: 1fr; gap: 1.25rem; }
       .footer-inner { grid-template-columns: 1fr; }
     }
@@ -709,6 +720,7 @@
       <div class="areas-grid fade-in">
 
         <a href="https://www.santanaycia.cl/familia" class="area-card">
+          <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1758227365187-016878604d94?q=80&w=1000&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-ring">①</div>
           <h3 data-en="Family and Individuals">Familia y personas</h3>
           <p class="area-desc" data-en="Comprehensive guidance through the most sensitive legal moments.">Asesoría integral en los momentos legales más sensibles.</p>
@@ -720,6 +732,7 @@
         </a>
 
         <a href="https://www.santanaycia.cl/legatum" class="area-card">
+          <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-ring">②</div>
           <h3 data-en="Estates and Wills">Herencias y testamentos</h3>
           <p class="area-desc" data-en="Full estate processing, with clarity at every stage.">Tramitación completa de herencias con claridad en cada etapa.</p>
@@ -731,6 +744,7 @@
         </a>
 
         <a href="https://www.santanaycia.cl/devuelveme-mi-casa" class="area-card">
+          <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1729855637715-99192904aac5?q=80&w=900&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-ring">③</div>
           <h3 data-en="Landlord Recovery Law">Devuélveme mi casa</h3>
           <p class="area-desc" data-en="Collect unpaid rent and recover your property in a single proceeding.">Cobro de rentas impagas y recuperación de tu propiedad en un solo juicio.</p>
@@ -742,6 +756,7 @@
         </a>
 
         <a href="https://www.santanaycia.cl/abogados" class="area-card">
+          <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-ring">④</div>
           <h3 data-en="Civil and Contracts">Civil y contratos</h3>
           <p class="area-desc" data-en="Contracts, debts and damages claims across Chile.">Contratos, deudas e indemnizaciones en todo Chile.</p>
