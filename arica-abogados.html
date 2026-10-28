@@ -190,7 +190,6 @@
         linear-gradient(90deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.92) 38%, rgba(245,249,253,0.55) 70%, rgba(235,244,251,0.35) 100%),
         linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(245,249,253,0.1) 60%, rgba(255,255,255,0.85) 100%);
     }
-    .hero-mountains { position: absolute; z-index: 1; left: 0; right: 0; bottom: -1px; width: 100%; height: 170px; pointer-events: none; }
     .hero-inner {
       position: relative; z-index: 2;
       display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 4rem; align-items: start;
@@ -641,7 +640,6 @@
       .hero-eyebrow, .hero-sub, .hero-checks, .hero-stats, .hero-wa { display: none; }
       .hero-title { font-size: clamp(34px, 10vw, 42px); line-height: 1.05; margin-bottom: 0.7rem; }
       .hero-sub-m { display: block; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
-      .hero-mountains { display: none; }
 
       /* Formulario compacto: etiquetas ocultas, placeholders autoexplicativos */
       .form-card { border-radius: 12px; box-shadow: 0 16px 40px -16px rgba(14,39,64,0.25); }
@@ -977,12 +975,6 @@
 
     </div>
 
-    <!-- Silueta del Morro de Arica y el mar (decorativa) -->
-    <svg class="hero-mountains" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 170V132c90-6 170-4 250 2 70 5 120 2 170-6 40-6 70-10 110-8 30 2 50 0 70-8 30-14 40-46 70-58 22-9 52-10 86-8 40 2 70 6 92 14 14 5 22 14 30 26 8 12 18 22 40 30 40 14 120 18 210 18 100 0 190-6 270-10 50-2 80 0 112 4v74z" fill="#e3eff9"/>
-      <path d="M0 170v-22c120-14 240-14 360-4s240 10 360-2 240-12 360-2 240 10 360 0v30z" fill="#f1f7fc"/>
-      <path d="M0 170v-10c140-10 280-10 420-2s280 8 420-2 280-8 420 0 140 6 180 4v10z" fill="#ffffff"/>
-    </svg>
   </section>
 
   <!-- ══════════════════════════════════
