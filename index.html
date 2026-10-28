@@ -456,7 +456,12 @@
     .area-photo::before { content: ''; position: absolute; inset: 0; background: inherit; background-size: cover; transition: transform .6s ease; }
     .area-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,31,51,0.04), rgba(16,31,51,0.32)); }
     .area-card:hover .area-photo::before { transform: scale(1.06); }
-    .area-photo + .area-ring { position: relative; z-index: 2; margin-top: -21px; box-shadow: 0 0 0 4px var(--white); }
+    .area-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.1rem; }
+    .area-photo + .area-top { position: relative; z-index: 2; margin-top: -25px; }
+    .area-ico { width: 50px; height: 50px; border-radius: 11px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; border: 3px solid var(--white); box-shadow: 0 6px 16px rgba(16,31,51,0.14); transition: background .25s, color .25s; }
+    .area-ico svg { width: 22px; height: 22px; }
+    .area-card:hover .area-ico { background: var(--celeste); color: var(--white); }
+    .area-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: rgba(47,127,196,0.3); line-height: 1; }
     .area-ring {
       width: 42px; height: 42px; border-radius: 50%;
       border: 1px solid var(--celeste); background: var(--celeste-l);
@@ -601,7 +606,9 @@
       /* Móvil: sin fotos en las tarjetas, para mantenerlo liviano */
       .area-photo { display: none; }
       .area-card:not(.tool) { padding-top: 2.1rem; }
-      .area-photo + .area-ring { margin-top: 0; box-shadow: none; }
+      .area-photo + .area-top { margin-top: 0; }
+      .area-ico { width: 44px; height: 44px; border-width: 0; box-shadow: none; }
+      .area-ico svg { width: 19px; height: 19px; }
       .area-card.tool { grid-template-columns: 1fr; gap: 1.25rem; }
       .footer-inner { grid-template-columns: 1fr; }
     }
@@ -721,7 +728,10 @@
 
         <a href="https://www.santanaycia.cl/familia" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1758227365187-016878604d94?q=80&w=1000&auto=format&fit=crop')" aria-hidden="true"></div>
-          <div class="area-ring">①</div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.6" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2-5 4.5-5s4.5 2 4.5 5M13 19c0-2.4 1.6-4.2 3.5-4.2S20 16.6 20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-num">01</span>
+          </div>
           <h3 data-en="Family and Individuals">Familia y personas</h3>
           <p class="area-desc" data-en="Comprehensive guidance through the most sensitive legal moments.">Asesoría integral en los momentos legales más sensibles.</p>
           <div class="area-list">
@@ -733,7 +743,10 @@
 
         <a href="https://www.santanaycia.cl/legatum" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
-          <div class="area-ring">②</div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-num">02</span>
+          </div>
           <h3 data-en="Estates and Wills">Herencias y testamentos</h3>
           <p class="area-desc" data-en="Full estate processing, with clarity at every stage.">Tramitación completa de herencias con claridad en cada etapa.</p>
           <div class="area-list">
@@ -745,7 +758,10 @@
 
         <a href="https://www.santanaycia.cl/devuelveme-mi-casa" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1729855637715-99192904aac5?q=80&w=900&auto=format&fit=crop')" aria-hidden="true"></div>
-          <div class="area-ring">③</div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-num">03</span>
+          </div>
           <h3 data-en="Landlord Recovery Law">Devuélveme mi casa</h3>
           <p class="area-desc" data-en="Collect unpaid rent and recover your property in a single proceeding.">Cobro de rentas impagas y recuperación de tu propiedad en un solo juicio.</p>
           <div class="area-list">
@@ -757,7 +773,10 @@
 
         <a href="https://www.santanaycia.cl/abogados" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
-          <div class="area-ring">④</div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 20h12M5 7h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 7l-3 6.5a3 3 0 006 0L7 7zM17 7l-3 6.5a3 3 0 006 0L17 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="area-num">04</span>
+          </div>
           <h3 data-en="Civil and Contracts">Civil y contratos</h3>
           <p class="area-desc" data-en="Contracts, debts and damages claims across Chile.">Contratos, deudas e indemnizaciones en todo Chile.</p>
           <div class="area-list">
