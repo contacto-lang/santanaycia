@@ -331,464 +331,375 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://i.postimg.cc">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" fetchpriority="high" href="https://i.postimg.cc/G2k4nBFS/476531221-1063690762468539-6084965534244979362-n.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --white:      #ffffff;
-      --pale:       #f6f9fc;
-      --pale-d:     #edf3f9;
-      --celeste:    #2f7fc4;
-      --celeste-d:  #1d5f99;
-      --celeste-l:  #e9f3fb;
-      --celeste-soft: #a9d2f2;
-      --ink:        #101f33;
-      --muted:      #607488;
-      --border:     rgba(16,31,51,0.10);
-      --radius:     4px;
-      --maxw:       1120px;
+      --white: #ffffff; --pale: #f6f9fc; --pale-d: #edf3f9;
+      --celeste: #2f7fc4; --celeste-d: #1d5f99; --celeste-l: #e9f3fb; --celeste-soft: #a9d2f2;
+      --ink: #101f33; --navy: #0e2740; --muted: #607488; --soft: #8ea2b5;
+      --border: rgba(16,31,51,0.10); --radius: 6px; --maxw: 1180px; --nav-h: 76px;
+      --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+      --shadow: 0 30px 70px -24px rgba(16,31,51,0.35);
     }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--white);
-      color: var(--ink);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--sans); color: var(--ink); background: var(--white); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; }
     img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; }
+    .fade-in { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-    /* ── NAV ── */
-    /* ── TOP BAR (igual que en las subwebs; se oculta al hacer scroll) ── */
-    :root { --tb: 38px; }
-    .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 1001; height: 38px; background: #0e2740; color: rgba(255,255,255,0.72); font-family: 'Manrope', 'Jost', system-ui, sans-serif; font-size: 12px; }
-    .topbar-inner { height: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0 2.5rem; }
+    /* ── TOP BAR + NAV ── */
+    .topbar { background: var(--navy); color: rgba(255,255,255,0.72); font-size: 12px; }
+    .topbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 38px; gap: 1rem; }
     .topbar-left { display: flex; align-items: center; gap: 8px; }
     .topbar-left::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #5fd3a0; box-shadow: 0 0 0 3px rgba(95,211,160,0.18); }
     .topbar-right { display: flex; gap: 1.5rem; }
-    .topbar a { text-decoration: none; color: rgba(255,255,255,0.85); transition: color .2s; }
+    .topbar a { text-decoration: none; color: rgba(255,255,255,0.85); }
     .topbar a:hover { color: #fff; }
-
-    nav {
-      position: fixed;
-      top: var(--tb); left: 0; right: 0;
-      z-index: 1000;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      column-gap: 1.5rem;
-      padding: 1.1rem 2.5rem;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo { justify-self: start; }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 0.05em;
-      color: var(--ink);
-      text-decoration: none;
-      line-height: 1.2;
-    }
-    .nav-logo span {
-      display: block;
-      font-size: 9px;
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--celeste);
-      margin-top: 2px;
-    }
-    .nav-links {
-      justify-self: center;
-      display: flex;
-      gap: 0.25rem;
-      list-style: none;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.5rem 0.85rem;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .nav-links a:hover { color: var(--celeste); background: var(--celeste-l); }
-    .nav-right { justify-self: end; display: flex; align-items: center; gap: 0.85rem; }
-
-    /* ── Selector de idioma ── */
-    .lang-switch {
-      display: flex; align-items: center; gap: 2px;
-      border: 0.5px solid var(--border);
-      border-radius: 20px; padding: 3px;
-    }
-    .lang-btn {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Jost', sans-serif; font-size: 10.5px; font-weight: 500;
-      letter-spacing: 0.05em; padding: 5px 11px; border-radius: 16px;
-      color: var(--muted); transition: all .2s;
-    }
-    .lang-btn:hover:not(.active) { color: var(--celeste); }
-    .lang-btn.active { background: var(--celeste); color: #fff; }
-
-    .hamburger {
-      display: none; width: 38px; height: 38px; border: none; background: none; cursor: pointer;
-      align-items: center; justify-content: center; color: var(--ink); padding: 0; flex-shrink: 0;
-    }
-    .hamburger svg { width: 19px; height: 19px; display: block; }
+    nav#siteNav { position: sticky; top: 0; z-index: 500; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    nav#siteNav .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1.5rem; }
+    .nav-logo { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: 0.04em; color: var(--navy); text-decoration: none; line-height: 1.15; }
+    .nav-logo span { display: block; font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--celeste); margin-top: 2px; }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--muted); text-decoration: none; padding: 0.5rem 0.85rem; border-radius: 6px; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--celeste-d); background: var(--celeste-l); }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+    .lang-switch { display: flex; border: 1px solid var(--border); border-radius: 30px; padding: 3px; }
+    .lang-btn { border: 0; background: none; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); padding: 4px 10px; border-radius: 20px; cursor: pointer; }
+    .lang-btn.active { background: var(--navy); color: #fff; }
+    .nav-cta { font-size: 13px; font-weight: 700; color: #fff; background: var(--navy); padding: 0.6rem 1.1rem; border-radius: 6px; text-decoration: none; transition: background .2s; }
+    .nav-cta:hover { background: var(--celeste-d); }
+    .hamburger { display: none; width: 40px; height: 40px; border: none; background: none; cursor: pointer; align-items: center; justify-content: center; color: var(--navy); border-radius: 8px; }
+    .hamburger svg { width: 21px; height: 21px; }
     .hamburger .icon-close { display: none; }
     .hamburger.active .icon-bars { display: none; }
     .hamburger.active .icon-close { display: block; }
-    .mobile-nav {
-      display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 998;
-      background: #fff; border-bottom: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(16,31,51,0.10); padding: 0.5rem;
-    }
+    .mobile-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); box-shadow: 0 14px 30px rgba(16,31,51,0.1); padding: 0.5rem; }
     .mobile-nav.active { display: block; }
-    .mobile-nav a {
-      display: block; padding: 0.9rem 1rem; text-decoration: none; color: var(--ink);
-      font-size: 13px; border-radius: 6px;
-    }
-    .mobile-nav a:hover { background: var(--pale); color: var(--celeste); }
+    .mobile-nav a { display: block; padding: 0.85rem 1rem; text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 500; border-radius: 7px; }
+    .mobile-nav a:hover { background: var(--pale); }
+    .mobile-lang { display: flex; gap: 0.5rem; padding: 0.75rem 1rem 0.5rem; }
 
     /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--ink);
-      padding: calc(7.5rem + 38px) 2.5rem 4rem;
-    }
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 25%;
-    }
-    .hero-img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(8,20,36,0.74) 0%, rgba(13,35,64,0.42) 55%, rgba(13,35,64,0.62) 100%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      position: relative; z-index: 2;
-      max-width: var(--maxw); margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center;
-    }
-    .hero-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: rgba(169,210,242,0.78);
-      margin-bottom: 1.4rem;
-      font-weight: 400;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .hero-eyebrow::before { content:''; display:inline-block; width:30px; height:0.5px; background: rgba(169,210,242,0.5); }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(38px, 5vw, 62px);
-      line-height: 1.05;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-    }
-    .hero-title em { font-style: italic; color: var(--celeste-soft); }
-    .hero-sub {
-      font-size: 14.5px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.75);
-      max-width: 460px;
-      line-height: 1.85;
-      margin-bottom: 1.6rem;
-      letter-spacing: 0.02em;
-    }
-    .hero-trust { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-    .hero-trust span {
-      font-size: 11px; color: rgba(255,255,255,0.7);
-      display: flex; align-items: center; gap: 7px;
-    }
-    .hero-trust span::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--celeste-soft); flex-shrink:0; }
+    .hero { position: relative; overflow: hidden; background: var(--navy); color: #fff; padding: 6rem 0 7.5rem; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; color: transparent; }
+    .hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(14,39,64,0.94) 0%, rgba(14,39,64,0.82) 45%, rgba(14,39,64,0.55) 100%); }
+    .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4.5rem; align-items: center; }
+    .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--celeste-soft); display: flex; align-items: center; gap: 12px; margin-bottom: 1.6rem; }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--celeste-soft); }
+    .hero-title { font-family: var(--serif); font-weight: 600; font-size: clamp(52px, 6.4vw, 86px); line-height: 0.98; letter-spacing: -0.01em; }
+    .hero-title span { display: block; font-family: var(--sans); font-size: clamp(13px, 1.2vw, 15px); font-weight: 600; letter-spacing: 0.5em; text-transform: uppercase; color: rgba(255,255,255,0.72); margin-top: 1.1rem; }
+    .hero-areas { margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.16); font-family: var(--serif); font-size: clamp(20px, 2vw, 25px); font-style: italic; color: #fff; }
+    .hero-areas b { font-style: normal; font-weight: 500; color: var(--celeste-soft); margin: 0 0.45rem; }
+    .hero-values { margin-top: 0.9rem; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
 
-    /* Hero form card */
-    .hero-form-card {
-      background: var(--white);
-      border-radius: 8px;
-      padding: 2rem 2rem 1.75rem;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.30);
-    }
-    .hf-head { margin-bottom: 1.1rem; }
-    .hf-head h3 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
-    .hf-head p { font-size: 11.5px; color: var(--muted); }
-    .hf-group { margin-bottom: 0.75rem; }
-    .hf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-    .hf-input {
-      width: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 4px;
-      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; color: var(--ink);
-      background: var(--pale); outline: none; transition: border-color .2s, background .2s;
-    }
-    .hf-input::placeholder { color: #9fb0bf; }
-    .hf-input:focus { border-color: var(--celeste); background: #fff; }
-    textarea.hf-input { resize: vertical; min-height: 78px; line-height: 1.5; }
-    select.hf-input { cursor: pointer; }
-    .hf-consent { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 0.9rem; }
-    .hf-consent input { width: 14px; height: 14px; margin-top: 2px; accent-color: var(--celeste); flex-shrink: 0; }
-    .hf-consent label { font-size: 10.5px; color: var(--muted); line-height: 1.6; cursor: pointer; }
-    .hf-submit {
-      width: 100%; padding: 0.85rem; background: var(--celeste); color: #fff; border: none; border-radius: 4px;
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      cursor: pointer; transition: background .2s;
-    }
+    /* Formulario empresarial */
+    .hero-form-card { background: #fff; color: var(--ink); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; scroll-margin-top: calc(var(--nav-h) + 16px); }
+    .hf-head { padding: 1.7rem 2rem 1.2rem; border-bottom: 1px solid var(--border); }
+    .hf-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--celeste); }
+    .hf-head h2 { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1.1; margin-top: 0.35rem; }
+    form#contacto-form { padding: 1.4rem 2rem 1.6rem; }
+    .hf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+    .hf-field { margin-bottom: 0.95rem; }
+    .hf-field label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .hf-field label small { font-weight: 500; letter-spacing: 0.04em; text-transform: none; color: var(--soft); }
+    .hf-input { width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #d6e0ea; border-radius: 4px; font-family: var(--sans); font-size: 14.5px; color: var(--ink); background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .hf-input::placeholder { color: #a9b6c3; }
+    .hf-input:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(14,39,64,0.08); }
+    select.hf-input { appearance: none; -webkit-appearance: none; padding-right: 2.2rem; cursor: pointer;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23607488' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 0.85rem center / 11px; }
+    textarea.hf-input { resize: vertical; min-height: 84px; line-height: 1.55; }
+    #hf-error { display: none; font-size: 12.5px; color: #b23b3b; background: #fdf1f1; border: 1px solid #f3d4d4; border-radius: 4px; padding: 0.55rem 0.8rem; margin-bottom: 0.8rem; }
+    .hf-consent { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 1.1rem; }
+    .hf-consent input { width: 16px; height: 16px; margin-top: 2px; accent-color: var(--navy); flex-shrink: 0; }
+    .hf-consent label { font-size: 12px; color: var(--muted); line-height: 1.55; }
+    .hf-consent a { color: var(--celeste-d); }
+    .hf-submit { width: 100%; border: 0; border-radius: 4px; background: var(--navy); color: #fff; font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem; cursor: pointer; transition: background .2s; }
     .hf-submit:hover { background: var(--celeste-d); }
-    .hf-submit:disabled { opacity: .5; cursor: not-allowed; }
-    #hf-error { display: none; font-size: 11px; color: #b23b3b; margin-bottom: 0.6rem; }
-    #hf-success { display: none; text-align: center; padding: 1rem 0; }
-    #hf-success .ok-icon { width: 38px; height: 38px; margin: 0 auto 0.9rem; color: var(--celeste); }
-    #hf-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
-    #hf-success p { font-size: 12px; color: var(--muted); line-height: 1.65; }
+    .hf-submit:disabled { opacity: .6; cursor: not-allowed; }
+    .hf-foot { margin-top: 0.85rem; font-size: 11.5px; color: var(--soft); text-align: center; }
+    #hf-success { display: none; text-align: center; padding: 3.5rem 2rem; }
+    #hf-success .ok-icon { width: 54px; height: 54px; color: var(--celeste); margin: 0 auto 1rem; }
+    #hf-success h4 { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+    #hf-success p { font-size: 14px; color: var(--muted); }
 
-    /* ── ANCHOR OFFSET ── */
-    #areas, #nosotros, #faq { scroll-margin-top: 72px; }
+    /* ── BARRA DE CONFIANZA ── */
+    .trust { position: relative; z-index: 3; margin-top: -3.25rem; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 18px 44px -20px rgba(16,31,51,0.25); }
+    .trust-item { padding: 1.4rem 1.6rem; border-right: 1px solid var(--border); text-decoration: none; }
+    .trust-item:last-child { border-right: 0; }
+    .trust-item strong { display: block; font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--navy); line-height: 1; }
+    .trust-item span { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+    a.trust-item:hover strong { color: var(--celeste-d); }
 
-    /* ── SECCIONES GENÉRICAS ── */
-    section { padding: 5.5rem 2.5rem; }
-    .section-inner { max-width: var(--maxw); margin: 0 auto; }
-    .section-tag {
-      font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--celeste); font-weight: 400; margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-tag::before { content:''; display:inline-block; width:22px; height:0.5px; background:var(--celeste); opacity:0.55; }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300;
-      font-size: clamp(28px, 3.6vw, 42px); line-height: 1.12;
-      color: var(--ink); margin-bottom: 1.25rem; letter-spacing: -0.01em;
-    }
-    .section-title em { font-style: italic; color: var(--celeste); }
-    .section-lead { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.85; max-width: 540px; }
+    /* ── SECCIONES ── */
+    section { padding: 6.5rem 0; }
+    #areas, #proceso, #nosotros, #cobertura, #extranjero, #faq { scroll-margin-top: var(--nav-h); }
+    .head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 3rem; }
+    .tag { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--celeste); margin-bottom: 1rem; }
+    .tag::before { content: ''; width: 28px; height: 1px; background: var(--celeste); }
+    .title { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 4vw, 50px); line-height: 1.05; color: var(--navy); letter-spacing: -0.01em; }
+    .title em { font-style: italic; color: var(--celeste); }
+    .lead { font-size: 15.5px; color: var(--muted); line-height: 1.8; max-width: 520px; }
 
-    /* ── ÁREAS / SERVICIOS — grid corporativo 3x2, sin celdas vacías ── */
-    #areas { background: var(--white); }
-    .areas-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 2.75rem;
-    }
-    .area-card {
-      background: var(--white);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.1rem 1.8rem;
-      text-decoration: none;
-      display: flex; flex-direction: column;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
-    }
-    .area-card:hover { border-color: var(--celeste); box-shadow: 0 14px 40px rgba(16,31,51,0.08); transform: translateY(-3px); }
-    /* Foto de cabecera de cada tarjeta (como en las subwebs) */
-    .area-card:not(.tool) { position: relative; overflow: hidden; padding-top: 0; }
-    .area-photo { height: 160px; margin: 0 -1.8rem; background: var(--pale) center/cover no-repeat; position: relative; overflow: hidden; }
+    /* Áreas */
+    #areas { padding-top: 7rem; }
+    .areas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    .area-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.4rem 1.5rem; overflow: hidden; text-decoration: none; transition: border-color .25s, box-shadow .25s, transform .25s; }
+    .area-card:hover { border-color: rgba(47,127,196,0.45); box-shadow: 0 22px 50px -22px rgba(16,31,51,0.3); transform: translateY(-3px); }
+    .area-photo { height: 150px; margin: 0 -1.4rem; background: var(--pale) center/cover no-repeat; position: relative; overflow: hidden; }
     .area-photo::before { content: ''; position: absolute; inset: 0; background: inherit; background-size: cover; transition: transform .6s ease; }
-    .area-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,31,51,0.04), rgba(16,31,51,0.32)); }
+    .area-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,39,64,0.05), rgba(14,39,64,0.4)); }
     .area-card:hover .area-photo::before { transform: scale(1.06); }
-    .area-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.1rem; }
-    .area-photo + .area-top { position: relative; z-index: 2; margin-top: -25px; }
-    .area-ico { width: 50px; height: 50px; border-radius: 11px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; border: 3px solid var(--white); box-shadow: 0 6px 16px rgba(16,31,51,0.14); transition: background .25s, color .25s; }
-    .area-ico svg { width: 22px; height: 22px; }
-    .area-card:hover .area-ico { background: var(--celeste); color: var(--white); }
-    .area-num { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: rgba(47,127,196,0.3); line-height: 1; }
-    .area-ring {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1px solid var(--celeste); background: var(--celeste-l);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem; color: var(--celeste); font-size: 1rem; flex-shrink: 0;
-    }
-    .area-card h3 {
-      font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 21px;
-      color: var(--ink); margin-bottom: 0.6rem;
-    }
-    .area-card p.area-desc { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 1.1rem; }
-    .area-list { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1.4rem; }
-    .area-list span {
-      font-size: 11.5px; color: var(--celeste-d); display: flex; align-items: center; gap: 7px;
-    }
-    .area-list span::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--celeste); flex-shrink:0; }
-    .area-link {
-      margin-top: auto;
-      font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--celeste); text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
-      transition: gap .2s;
-    }
-    .area-card:hover .area-link { gap: 11px; }
+    .area-top { display: flex; align-items: flex-end; justify-content: space-between; margin: -24px 0 1rem; position: relative; z-index: 2; }
+    .area-ico { width: 48px; height: 48px; border-radius: 10px; background: #fff; color: var(--celeste-d); display: grid; place-items: center; border: 1px solid var(--border); box-shadow: 0 8px 20px rgba(16,31,51,0.14); transition: background .25s, color .25s; }
+    .area-ico svg { width: 21px; height: 21px; }
+    .area-card:hover .area-ico { background: var(--navy); color: #fff; }
+    .area-num { font-family: var(--serif); font-size: 26px; font-weight: 600; color: rgba(47,127,196,0.35); line-height: 1; }
+    .area-card h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 0.5rem; }
+    .area-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .area-list { display: flex; flex-direction: column; gap: 5px; padding-top: 0.9rem; border-top: 1px solid var(--border); margin-bottom: 1.2rem; }
+    .area-list span { font-size: 12.5px; color: var(--ink); display: flex; gap: 8px; align-items: baseline; }
+    .area-list span::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--celeste); flex-shrink: 0; transform: translateY(-2px); }
+    .area-link { margin-top: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--celeste-d); }
+    .area-card.tool { flex-direction: row; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 1.1rem; padding: 1.6rem 2rem; background: var(--navy); border-color: transparent; color: #fff; }
+    .area-card.tool:hover { transform: none; }
+    .area-card.tool h3 { color: #fff; margin: 0.4rem 0 0.25rem; }
+    .area-card.tool .area-desc { color: rgba(255,255,255,0.7); margin: 0; }
+    .tool-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--celeste-soft); }
+    .tool-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #5fd3a0; }
+    .area-card.tool .tool-cta { margin: 0; flex-shrink: 0; color: var(--navy); background: #fff; padding: 0.8rem 1.3rem; border-radius: 4px; }
+    .swipe-hint { display: none; }
 
-    /* Tarjeta Legatum — misma línea visual, ocupa todo el ancho */
-    .area-card.tool {
-      background: var(--pale);
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 2.5rem;
-      padding: 1.9rem 2.1rem;
-    }
-    .area-card.tool:hover { background: var(--pale-d); }
-    .area-card.tool .tool-left { display: flex; flex-direction: column; }
-    .area-card.tool .area-link.tool-cta {
-      margin-top: 0;
-      font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--celeste-d); padding: 10px 22px; border: 0.5px solid var(--border);
-      border-radius: 3px; white-space: nowrap; transition: all 0.2s;
-    }
-    .area-card.tool:hover .area-link.tool-cta { background: var(--celeste); color: var(--white); border-color: var(--celeste); }
-    .tool-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--celeste-d); background: rgba(47,127,196,0.08);
-      border: 0.5px solid var(--border); border-radius: 20px;
-      padding: 4px 12px; margin-bottom: 1.1rem; width: fit-content;
-    }
-    .tool-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--celeste); opacity: 0.7; }
+    /* Proceso */
+    #proceso { background: var(--pale); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(14,39,64,0.18); }
+    .step { padding: 2rem 2rem 0 0; position: relative; }
+    .step::before { content: ''; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--celeste); }
+    .step-n { font-family: var(--serif); font-size: 46px; font-weight: 600; color: rgba(47,127,196,0.3); line-height: 1; }
+    .step h3 { font-family: var(--serif); font-size: 25px; font-weight: 600; color: var(--navy); margin: 0.5rem 0 0.5rem; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 320px; }
+    .step-tag { display: inline-block; margin-top: 1rem; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--celeste-d); background: var(--celeste-l); padding: 5px 10px; border-radius: 20px; }
 
-    /* ── NOSOTROS ── */
-    #nosotros { background: var(--pale); }
-    .values-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-      border: 0.5px solid var(--border); margin-top: 3rem;
-      border-radius: var(--radius); overflow: hidden; background: var(--white);
-    }
-    .value-item {
-      padding: 2rem 1.75rem;
-      border-bottom: 0.5px solid var(--border); border-right: 0.5px solid var(--border);
-      display: flex; gap: 1rem; align-items: flex-start; transition: background 0.2s;
-    }
-    .value-item:nth-child(even) { border-right: none; }
-    .value-item:nth-last-child(-n+2) { border-bottom: none; }
-    .value-item:hover { background: var(--pale); }
-    .value-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--celeste);
-      opacity: 0.6; padding-top: 2px; flex-shrink: 0; letter-spacing: 0.08em;
-    }
-    .value-body strong {
-      display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--ink); margin-bottom: 5px;
-    }
-    .value-body p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    /* Estudio */
+    .studio { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 4.5rem; align-items: center; }
+    .studio-img { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--pale-d); }
+    .studio-img img { width: 100%; height: 100%; object-fit: cover; }
+    .studio-badge { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem; background: rgba(255,255,255,0.96); border-radius: 4px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 12px; }
+    .studio-badge strong { display: block; font-size: 14px; color: var(--navy); }
+    .studio-badge span { font-size: 12.5px; color: var(--muted); }
+    .values { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 2rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .value { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .value-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; flex-shrink: 0; }
+    .value-ico svg { width: 19px; height: 19px; }
+    .value strong { display: block; font-size: 14.5px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .value p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
 
-    /* ── CHILENOS EN EL EXTRANJERO ── */
-    #extranjero { background: var(--white); scroll-margin-top: 72px; }
-    .abroad-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.75rem; }
-    .abroad-card { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.6rem 1.4rem; background: var(--white); transition: border-color .2s, box-shadow .2s; }
-    .abroad-card:hover { border-color: var(--celeste); box-shadow: 0 14px 40px rgba(16,31,51,0.08); }
-    .abroad-ico { width: 42px; height: 42px; border-radius: 10px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; margin-bottom: 1rem; }
-    .abroad-ico svg { width: 20px; height: 20px; }
-    .abroad-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; color: var(--ink); line-height: 1.2; margin-bottom: 0.5rem; }
-    .abroad-card p { font-size: 12.5px; color: var(--muted); line-height: 1.7; }
-    .abroad-foot { margin-top: 1.75rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
-    .abroad-foot a { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white); background: var(--celeste); padding: 11px 20px; border-radius: 3px; text-decoration: none; transition: background .2s; }
-    .abroad-foot a:hover { background: var(--celeste-d); }
+    /* Cita */
+    .quote-band { position: relative; overflow: hidden; background: var(--celeste-d); padding: 5.5rem 2rem; text-align: center; }
+    .quote-band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; color: transparent; }
+    .quote-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(29,95,153,0.82) 0%, rgba(14,39,64,0.84) 100%); }
+    .quote-band-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .quote-mark { font-family: var(--serif); font-size: 68px; color: rgba(255,255,255,0.25); line-height: 0.6; display: block; margin-bottom: 1.2rem; }
+    .quote-text { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 32px); font-style: italic; font-weight: 500; color: #fff; line-height: 1.45; margin-bottom: 1.2rem; }
+    .quote-attr { font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
 
-    /* Quote band */
-    .quote-band { position: relative; overflow: hidden; background: var(--celeste-d); padding: 5.5rem 2.5rem; text-align: center; }
-    .quote-band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; color: transparent; }
-    .quote-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(29,95,153,0.82) 0%, rgba(14,39,64,0.78) 100%); }
-    .quote-band-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
-    .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 68px; color: rgba(255,255,255,0.22); line-height: 0.6; margin-bottom: 1.4rem; display: block; }
-    .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(19px, 2.6vw, 28px); font-weight: 300; font-style: italic; color: #ffffff; line-height: 1.55; margin-bottom: 1.2rem; }
-    .quote-attr { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    /* Cobertura */
+    #cobertura { background: #fff; }
+    .cov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .cov-col { border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2rem 1.6rem; background: #fff; }
+    .cov-col.dark { background: var(--navy); border-color: transparent; color: #fff; }
+    .cov-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--celeste); }
+    .cov-col.dark .cov-kicker { color: var(--celeste-soft); }
+    .cov-col h3 { font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1.15; color: var(--navy); margin: 0.4rem 0 0.6rem; }
+    .cov-col.dark h3 { color: #fff; }
+    .cov-col > p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .cov-col.dark > p { color: rgba(255,255,255,0.72); }
+    .cov-list { list-style: none; }
+    .cov-list li { border-top: 1px solid var(--border); }
+    .cov-col.dark .cov-list li { border-color: rgba(255,255,255,0.12); }
+    .cov-list a, .cov-list li > div, .cov-list li { text-decoration: none; }
+    .cov-list a { display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 0; }
+    .cov-col.dark .cov-list li { display: flex; align-items: flex-start; gap: 0.9rem; padding: 0.85rem 0; }
+    .cov-ico { width: 34px; height: 34px; border-radius: 8px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; flex-shrink: 0; }
+    .cov-col.dark .cov-ico { background: rgba(255,255,255,0.08); color: var(--celeste-soft); }
+    .cov-ico svg { width: 17px; height: 17px; }
+    .cov-list strong { display: block; font-size: 14.5px; font-weight: 700; color: var(--navy); }
+    .cov-col.dark .cov-list strong { color: #fff; }
+    .cov-list div span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+    .cov-col.dark .cov-list div span { color: rgba(255,255,255,0.62); }
+    .cov-go { margin-left: auto; color: var(--celeste); }
+    .cov-go svg { width: 16px; height: 16px; transition: transform .2s; }
+    .cov-list a:hover .cov-go svg { transform: translateX(3px); }
+    .cov-list a:hover strong { color: var(--celeste-d); }
+    .cov-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.2rem; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); background: #fff; padding: 0.8rem 1.2rem; border-radius: 4px; text-decoration: none; }
+    .cov-cta svg { width: 15px; height: 15px; }
 
-    /* ── FAQ ── */
-    #faq { background: var(--white); }
-    .faq-list { margin-top: 2.5rem; border-top: 0.5px solid var(--border); max-width: 760px; }
-    .faq-item { border-bottom: 0.5px solid var(--border); }
-    .faq-item summary {
-      cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; padding: 1.35rem 0; font-family: 'Cormorant Garamond', serif; font-size: 18.5px; color: var(--ink);
-    }
+    /* FAQ */
+    #faq { background: var(--pale); border-top: 1px solid var(--border); }
+    .faq-grid { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 4rem; align-items: start; }
+    .faq-aside { position: sticky; top: calc(var(--nav-h) + 2rem); }
+    .gbp-card { margin-top: 1.75rem; display: flex; align-items: center; gap: 12px; text-decoration: none; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.2rem; }
+    .gbp-g { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--celeste-l); color: var(--celeste-d); font-weight: 700; }
+    .gbp-card strong { display: block; font-size: 14px; color: var(--navy); }
+    .gbp-card > span > span { font-size: 12.5px; color: var(--muted); }
+    .gbp-card svg { width: 16px; height: 16px; color: var(--celeste-d); margin-left: auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); }
+    .faq-item[open] { border-color: rgba(47,127,196,0.35); }
+    .faq-item summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.35rem; font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.45; }
     .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content:'+'; font-family:'Jost',sans-serif; font-size:19px; color:var(--celeste); flex-shrink:0; transition: transform .25s ease; }
-    .faq-item[open] summary::after { transform: rotate(45deg); }
-    .faq-item p { font-size: 13.5px; color: var(--muted); line-height: 1.85; padding-bottom: 1.4rem; max-width: 640px; }
+    .faq-item summary::after { content: '+'; flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; font-size: 17px; transition: transform .25s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); background: var(--navy); color: #fff; }
+    .faq-item p { font-size: 14.5px; color: var(--muted); line-height: 1.75; padding: 0 1.35rem 1.3rem; }
+    .faq-more { display: none; }
+    .faq-list.expanded .faq-more { display: block; }
+    .faq-toggle { margin-top: 1rem; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: var(--sans); font-size: 13.5px; font-weight: 700; color: var(--celeste-d); background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1.2rem; }
 
-    /* ── FOOTER — corporativo, 4 columnas ── */
-    footer { background: var(--ink); padding: 4rem 2.5rem 2rem; }
-    .footer-inner {
-      max-width: var(--maxw); margin: 0 auto;
-      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem;
-      padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem;
-    }
-    .footer-brand-logo {
-      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400;
-      color: rgba(255,255,255,0.9); margin-bottom: 3px;
-    }
-    .footer-brand-sub { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--celeste-soft); opacity: 0.85; margin-bottom: 1rem; }
-    .footer-brand p { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 300px; }
-    .footer-col h4 { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+    /* CTA + footer */
+    .cta { padding: 6rem 0; }
+    .cta-box { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-radius: var(--radius); padding: 3rem; background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+    .cta-box::after { content: ''; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); }
+    .cta-box h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 38px); font-weight: 600; line-height: 1.1; }
+    .cta-box p { font-size: 14.5px; color: rgba(255,255,255,0.72); margin-top: 0.4rem; }
+    .cta-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-white { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); background: #fff; padding: 0.95rem 1.4rem; border-radius: 4px; text-decoration: none; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 0.95rem 1.3rem; border-radius: 4px; text-decoration: none; }
+    .btn-white svg, .btn-ghost svg { width: 16px; height: 16px; }
+    footer { background: var(--navy); color: rgba(255,255,255,0.62); padding: 4rem 0 2rem; }
+    .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.25rem; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 1.5rem; }
+    .footer-brand-logo { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; }
+    .footer-brand-sub { font-size: 9.5px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--celeste-soft); margin: 3px 0 1rem; }
+    .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 300px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col ul li a { font-size: 12.5px; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: #ffffff; }
-    .footer-bottom { max-width: var(--maxw); margin: 0 auto; text-align: center; font-size: 11px; color: rgba(255,255,255,0.28); }
-
-    /* ── FADE IN ── */
-    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .footer-col a { font-size: 13.5px; color: rgba(255,255,255,0.62); text-decoration: none; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .mobile-bar { display: none; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 968px) {
-      nav { display: flex; justify-content: space-between; padding: 0.9rem 1.25rem; column-gap: 0.75rem; }
-      .nav-links { display: none; }
-      .lang-switch { display: none; }
-      .hamburger { display: flex; }
-      .hero { min-height: auto; padding: calc(7.5rem + 38px) 1.25rem 3rem; }
-      .topbar-inner { padding: 0 1.25rem; }
-      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width: 1100px) {
       .areas-grid { grid-template-columns: 1fr 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .abroad-grid { grid-template-columns: 1fr 1fr; }
-      .value-item { border-right: none; }
-      .value-item:nth-last-child(-n+2) { border-bottom: 0.5px solid var(--border); }
-      .value-item:last-child { border-bottom: none; }
-      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+    }
+    @media (max-width: 1024px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner, .studio, .faq-grid, .head { grid-template-columns: 1fr; gap: 2.5rem; }
+      .head { gap: 1rem; }
+      .faq-aside { position: static; }
+      .hero-form-card { max-width: 620px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .cov-grid { grid-template-columns: 1fr; }
+      .studio-img { aspect-ratio: 16 / 10; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
-      section { padding: 4rem 1.25rem; }
     }
     @media (max-width: 768px) {
+      :root { --nav-h: 62px; }
+      body { font-size: 14.5px; padding-bottom: 66px; }
+      .wrap { padding: 0 1.15rem; }
       .topbar { display: none; }
-      :root { --tb: 0px; }
-      .hero { padding-top: 7.5rem; }
+      .lang-switch { display: none; }
+      .nav-logo { font-size: 19px; }
+      section { padding: 3.5rem 0; }
+      .head { margin-bottom: 1.5rem; }
+      .lead { font-size: 14px; }
+      .title { font-size: clamp(28px, 8.4vw, 34px); }
+
+      .hero { padding: 2.25rem 0 4.5rem; }
+      .hero::before { background: linear-gradient(180deg, rgba(14,39,64,0.9), rgba(14,39,64,0.86)); }
+      .hero-inner { gap: 1.75rem; }
+      .hero-eyebrow { margin-bottom: 1rem; font-size: 10px; }
+      .hero-title { font-size: clamp(44px, 13vw, 56px); }
+      .hero-title span { letter-spacing: 0.38em; margin-top: 0.7rem; }
+      .hero-areas { margin-top: 1.25rem; padding-top: 1rem; font-size: 18px; }
+      .hero-areas b { margin: 0 0.25rem; }
+      .hero-values { display: none; }
+      .hf-head { padding: 1.25rem 1.2rem 0.9rem; }
+      .hf-head h2 { font-size: 23px; }
+      form#contacto-form { padding: 1.1rem 1.2rem 1.25rem; }
+      .hf-row { grid-template-columns: 1fr; }
+      .hf-row.pair { grid-template-columns: 1fr 1fr; gap: 0 0.6rem; }
+      .hf-submit { letter-spacing: 0.06em; font-size: 12.5px; padding: 0.95rem 0.5rem; }
+      textarea.hf-input { min-height: 74px; }
+      .hf-field { margin-bottom: 0.75rem; }
+      .hf-input { font-size: 16px; }
+      .hf-foot { display: none; }
+
+      .trust { margin-top: -2.5rem; }
+      .trust-item { padding: 0.95rem 1rem; }
+      .trust-item strong { font-size: 22px; }
+      .trust-item span { font-size: 11.5px; }
+
+      /* Áreas: carrusel deslizable con fotos */
+      #areas { padding-top: 4rem; }
+      .areas-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 0.75rem; margin: 0 -1.15rem; padding: 0 1.15rem 0.5rem; scrollbar-width: none; }
+      .areas-grid::-webkit-scrollbar { display: none; }
+      .area-card { flex: 0 0 80%; scroll-snap-align: start; padding: 0 1.1rem 1.2rem; }
+      .area-card:hover { transform: none; }
+      .area-photo { height: 130px; margin: 0 -1.1rem; }
+      .area-top { margin-top: -22px; }
+      .area-ico { width: 44px; height: 44px; }
+      .area-card h3 { font-size: 21px; }
+      .area-desc { font-size: 13px; }
+      .swipe-hint { display: flex; align-items: center; gap: 6px; margin-top: 0.75rem; font-size: 12px; color: var(--soft); }
+      .swipe-hint svg { width: 14px; height: 14px; }
+      .area-card.tool { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
+
+      .steps { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid rgba(14,39,64,0.18); margin-left: 4px; }
+      .step { padding: 0 0 1.5rem 1.4rem; }
+      .step:last-child { padding-bottom: 0; }
+      .step::before { top: 8px; left: -4px; }
+      .step-n { font-size: 30px; }
+      .step h3 { font-size: 20px; margin: 0.15rem 0 0.25rem; }
+      .step p { font-size: 13px; }
+      .step-tag { display: none; }
+
+      .studio { gap: 1.5rem; }
+      .studio-img { display: none; }
+      .values { grid-template-columns: 1fr; gap: 0.9rem; margin-top: 1.25rem; padding-top: 1.25rem; }
+      .value p { font-size: 12.5px; }
+
+      .quote-band { padding: 3.5rem 1.25rem; }
+      .quote-text { font-size: 21px; }
+
+      .cov-col { padding: 1.4rem 1.2rem 1.2rem; }
+      .cov-col h3 { font-size: 23px; }
+      .cov-col > p { font-size: 13px; }
+      .cov-col.dark .cov-list div span { display: none; }
+
+      .faq-grid { gap: 1.25rem; }
+      .gbp-card { margin-top: 1rem; }
+      .faq-item summary { font-size: 14.5px; padding: 0.95rem 1rem; }
+      .faq-item p { font-size: 13.5px; padding: 0 1rem 1rem; }
+      .faq-toggle { width: 100%; justify-content: center; }
+
+      .cta { padding: 3.5rem 0; }
+      .cta-box { padding: 1.75rem 1.25rem; }
+      .cta-box p { display: none; }
+      .cta-actions { width: 100%; flex-direction: column; }
+      .btn-white, .btn-ghost { justify-content: center; }
+      footer { padding: 2.5rem 0 1.5rem; }
+      .footer-inner { gap: 1.5rem 1rem; }
+      .footer-brand p { display: none; }
+
+      /* Barra fija inferior */
+      .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; position: fixed; left: 0; right: 0; bottom: 0; z-index: 600; padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom)); background: rgba(255,255,255,0.97); border-top: 1px solid var(--border); box-shadow: 0 -8px 24px rgba(16,31,51,0.08); }
+      .mobile-bar a { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 6px; padding: 0.8rem; }
+      .mb-main { background: var(--navy); color: #fff; }
+      .mb-wa { background: #fff; color: var(--navy); border: 1px solid var(--border); }
+      .mobile-bar svg { width: 17px; height: 17px; }
     }
-    @media (max-width: 640px) {
-      .areas-grid { grid-template-columns: 1fr; }
-      /* Móvil: sin fotos en las tarjetas, para mantenerlo liviano */
-      .area-photo { display: none; }
-      .area-card:not(.tool) { padding-top: 2.1rem; }
-      .area-photo + .area-top { margin-top: 0; }
-      .area-ico { width: 44px; height: 44px; border-width: 0; box-shadow: none; }
-      .area-ico svg { width: 19px; height: 19px; }
-      .area-card.tool { grid-template-columns: 1fr; gap: 1.25rem; }
-      /* Móvil: tarjetas compactas, solo título y texto */
-      .abroad-grid { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.5rem; }
-      .abroad-card { display: grid; grid-template-columns: auto 1fr; column-gap: 0.85rem; padding: 1rem 1.05rem; }
-      .abroad-ico { width: 36px; height: 36px; margin: 0; grid-row: span 2; }
-      .abroad-card h3 { font-size: 18px; margin-bottom: 0.2rem; }
-      .footer-inner { grid-template-columns: 1fr; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+      .fade-in { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -796,7 +707,7 @@
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <div class="topbar-inner">
+    <div class="wrap">
       <span class="topbar-left" data-en="Remote service across Chile">Atención remota en todo Chile</span>
       <span class="topbar-right">
         <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
@@ -807,96 +718,99 @@
 
   <!-- NAV -->
   <nav id="siteNav">
-    <a href="https://www.santanaycia.cl/" class="nav-logo">
-      Santana &amp; Cía
-      <span>Abogados</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#areas" data-en="Services">Servicios</a></li>
-      <li><a href="#nosotros" data-en="About Us">Nosotros</a></li>
-      <li><a href="https://www.santanaycia.cl/honorarios" data-en="Fees">Honorarios</a></li>
-      <li><a href="#faq" data-en="FAQ">Preguntas</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-switch" role="group" aria-label="Seleccionar idioma">
+    <div class="wrap">
+      <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span data-en="Lawyers">Abogados</span></a>
+      <ul class="nav-links">
+        <li><a href="#areas" data-en="Services">Servicios</a></li>
+        <li><a href="#nosotros" data-en="The Firm">El estudio</a></li>
+        <li><a href="#cobertura" data-en="Coverage">Cobertura</a></li>
+        <li><a href="https://www.santanaycia.cl/honorarios" data-en="Fees">Honorarios</a></li>
+        <li><a href="#faq" data-en="FAQ">Preguntas</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Seleccionar idioma">
+          <button type="button" class="lang-btn active" data-lang="es" onclick="setLang('es')">ES</button>
+          <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="#hero-form" class="nav-cta" data-en="Free consultation">Consulta sin costo</a>
+        <button class="hamburger" id="hamBtn" type="button" onclick="toggleNav()" aria-label="Menú" aria-expanded="false">
+          <svg class="icon-bars" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#areas" onclick="closeNav()" data-en="Services">Servicios</a>
+      <a href="#nosotros" onclick="closeNav()" data-en="The Firm">El estudio</a>
+      <a href="#cobertura" onclick="closeNav()" data-en="Coverage">Cobertura</a>
+      <a href="https://www.santanaycia.cl/honorarios" onclick="closeNav()" data-en="Fees">Honorarios</a>
+      <a href="#faq" onclick="closeNav()" data-en="FAQ">Preguntas</a>
+      <a href="#hero-form" onclick="closeNav()" data-en="Send an Inquiry">Escribir consulta</a>
+      <div class="mobile-lang">
         <button type="button" class="lang-btn active" data-lang="es" onclick="setLang('es')">ES</button>
         <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       </div>
-      <button class="hamburger" id="hamBtn" onclick="toggleNav()" aria-label="Menú" aria-expanded="false">
-        <svg class="icon-bars" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <svg class="icon-close" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </button>
     </div>
-  </nav>
-
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#areas" onclick="closeNav()" data-en="Services">Servicios</a>
-    <a href="#nosotros" onclick="closeNav()" data-en="About Us">Nosotros</a>
-    <a href="https://www.santanaycia.cl/honorarios" onclick="closeNav()" data-en="Fees">Honorarios</a>
-    <a href="#faq" onclick="closeNav()" data-en="Frequently Asked Questions">Preguntas frecuentes</a>
-    <a href="#hero-form" onclick="closeNav()" data-en="Send an Inquiry">Escribir consulta</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <img
-      class="hero-img"
-      src="https://i.postimg.cc/G2k4nBFS/476531221-1063690762468539-6084965534244979362-n.jpg"
-      alt="Santana &amp; Cía — Abogados Chile"
-      loading="eager"
-      fetchpriority="high"
-    >
-    <div class="hero-img-overlay"></div>
-    <div class="hero-inner">
+    <img class="hero-img" src="https://i.postimg.cc/G2k4nBFS/476531221-1063690762468539-6084965534244979362-n.jpg" alt="Santana &amp; Cía — Abogados Chile" width="1600" height="1067" loading="eager" fetchpriority="high">
+    <div class="wrap hero-inner">
       <div>
-        <p class="hero-eyebrow">contacto@santanaycia.cl</p>
-        <h1 class="hero-title" data-en="Lawyers for&lt;br&gt;what &lt;em&gt;truly&lt;/em&gt;&lt;br&gt;matters">Abogados para<br>lo que <em>realmente</em><br>importa</h1>
-        <p class="hero-sub" data-en="Family, civil, estate and rental law. One firm, four practice areas, service across Chile.">Familia, civil, herencias y arriendo. Un solo estudio, cuatro áreas de práctica, atención en todo Chile.</p>
-        <div class="hero-trust">
-          <span data-en="Free Initial Assessment">Primera evaluación sin costo</span>
-         
-          <span data-en="Service Across Chile">Atención en todo Chile</span>
-        </div>
+        <p class="hero-eyebrow" data-en="Law firm · Chile">Estudio jurídico · Chile</p>
+        <h1 class="hero-title">Santana &amp; Cía <span data-en="Lawyers">Abogados</span></h1>
+        <p class="hero-areas" data-en="Family &lt;b&gt;·&lt;/b&gt; Estates &lt;b&gt;·&lt;/b&gt; Rentals &lt;b&gt;·&lt;/b&gt; Civil">Familia <b>·</b> Herencias <b>·</b> Arriendo <b>·</b> Civil</p>
+        <p class="hero-values" data-en="Closeness · Rigor · Transparency · All of Chile">Cercanía · Rigor · Transparencia · Todo Chile</p>
       </div>
 
       <div class="hero-form-card" id="hero-form">
         <div class="hf-head">
-          <h3 data-en="Tell Us About Your Case">Cuéntanos tu caso</h3>
-          <p data-en="Free assessment, no obligation">Primera evaluación gratuita y sin compromiso</p>
+          <span class="hf-kicker" data-en="Confidential inquiry">Consulta confidencial</span>
+          <h2 data-en="Tell us about your case">Cuéntenos su caso</h2>
         </div>
         <form id="contacto-form" novalidate>
-          <div class="hf-group">
-            <input type="text" id="nombre" class="hf-input" placeholder="Nombre completo *" data-en-placeholder="Full name *" required>
-          </div>
           <div class="hf-row">
-            <input type="email" id="email" class="hf-input" placeholder="Correo *" data-en-placeholder="Email *" required>
-            <input type="tel" id="telefono" class="hf-input" placeholder="Teléfono" data-en-placeholder="Phone">
+            <div class="hf-field">
+              <label for="nombre" data-en="Full name">Nombre completo</label>
+              <input type="text" id="nombre" class="hf-input" autocomplete="name" required>
+            </div>
+            <div class="hf-field">
+              <label for="email" data-en="Email">Correo electrónico</label>
+              <input type="email" id="email" class="hf-input" autocomplete="email" required>
+            </div>
           </div>
-          <div class="hf-group">
-            <select id="area" class="hf-input">
-              <option value="" data-en="Legal area">Área legal</option>
-              <option data-en="Family">Familia</option>
-              <option data-en="Estates and successions">Herencias y sucesiones</option>
-              <option data-en="Rental — Landlord Recovery Law">Arriendo — Devuélveme mi casa</option>
-              <option data-en="Civil and contracts">Civil y contratos</option>
-              <option value="otro" data-en="Other">Otro</option>
-            </select>
+          <div class="hf-row pair">
+            <div class="hf-field">
+              <label for="telefono" data-en="Phone (optional)">Teléfono <small>(opcional)</small></label>
+              <input type="tel" id="telefono" class="hf-input" autocomplete="tel">
+            </div>
+            <div class="hf-field">
+              <label for="area" data-en="Practice area">Área</label>
+              <select id="area" class="hf-input">
+                <option value="" data-en="Select">Seleccione</option>
+                <option data-en="Family">Familia</option>
+                <option data-en="Estates and successions">Herencias y sucesiones</option>
+                <option data-en="Rental — Landlord Recovery Law">Arriendo — Devuélveme mi casa</option>
+                <option data-en="Civil and contracts">Civil y contratos</option>
+                <option value="otro" data-en="Other">Otro</option>
+              </select>
+            </div>
           </div>
-          <div class="hf-group">
-            <textarea id="relato" class="hf-input" placeholder="Cuéntanos brevemente tu situación *" data-en-placeholder="Briefly describe your situation *" required></textarea>
+          <div class="hf-field">
+            <label for="relato" data-en="Your situation">Su situación</label>
+            <textarea id="relato" class="hf-input" rows="3" placeholder="Describa brevemente su caso" data-en-placeholder="Briefly describe your case" required></textarea>
           </div>
-          <div id="hf-error" data-en="Please complete the required fields (*) and accept the privacy policy.">Complete los campos obligatorios (*) y acepte la política de privacidad.</div>
+          <div id="hf-error" data-en="Please complete the required fields and accept the privacy policy.">Complete los campos obligatorios y acepte la política de privacidad.</div>
           <div class="hf-consent">
             <input type="checkbox" id="consentimiento">
-            <label for="consentimiento" data-en="I authorize the processing of my data in accordance with the &lt;a href=&quot;https://www.santanaycia.cl/privacidad&quot; target=&quot;_blank&quot; style=&quot;color:var(--celeste);&quot;&gt;privacy policy&lt;/a&gt;.">Autorizo el tratamiento de mis datos conforme a la <a href="https://www.santanaycia.cl/privacidad" target="_blank" style="color:var(--celeste);">política de privacidad</a>.</label>
+            <label for="consentimiento" data-en="I authorize the processing of my data in accordance with the &lt;a href=&quot;https://www.santanaycia.cl/privacidad&quot; target=&quot;_blank&quot;&gt;privacy policy&lt;/a&gt;.">Autorizo el tratamiento de mis datos conforme a la <a href="https://www.santanaycia.cl/privacidad" target="_blank">política de privacidad</a>.</label>
           </div>
           <button type="submit" class="hf-submit" id="hf-btn" data-en="Send confidential inquiry →">Enviar consulta confidencial →</button>
+          <p class="hf-foot" data-en="Protected by attorney–client privilege · Reply within 24 business hours">Protegido por el secreto profesional · Respuesta en máx. 24 h hábiles</p>
         </form>
         <div id="hf-success">
-          <svg class="ok-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1"/>
-            <path d="M14 24l7 7 13-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="ok-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.2"/><path d="M14 24l7 7 13-14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h4 data-en="Inquiry received">Consulta recibida</h4>
           <p data-en="We will get back to you within 24 business hours at the email provided.">Nos comunicaremos en un máximo de 24 horas hábiles al correo indicado.</p>
         </div>
@@ -904,18 +818,30 @@
     </div>
   </section>
 
+  <!-- BARRA DE CONFIANZA -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="trust-grid">
+        <div class="trust-item"><strong>24 h</strong><span data-en="Maximum response time">Plazo máximo de respuesta</span></div>
+        <div class="trust-item"><strong data-en="Free">Sin costo</strong><span data-en="Initial case assessment">Primera evaluación del caso</span></div>
+        <div class="trust-item"><strong data-en="All of Chile">Todo Chile</strong><span data-en="And clients living abroad">Y clientes en el extranjero</span></div>
+        <a class="trust-item" href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener"><strong>Google</strong><span data-en="Read our client reviews →">Opiniones de clientes →</span></a>
+      </div>
+    </div>
+  </div>
+
   <!-- ÁREAS DE PRÁCTICA -->
   <section id="areas">
-    <div class="section-inner">
-      <span class="section-tag fade-in" data-en="Practice Areas">Áreas de práctica</span>
-      <h2 class="section-title fade-in" data-en="Four areas.&lt;br&gt;One &lt;em&gt;firm&lt;/em&gt;.">Cuatro áreas.<br>Un solo <em>estudio</em>.</h2>
-      <p class="section-lead fade-in" data-en="We take on the cases we can handle in depth. Every client has direct access to the lawyer in charge, from the first conversation through resolution.">
-        Seleccionamos los casos que podemos atender con profundidad. Cada cliente tiene acceso directo al abogado a cargo, desde la primera conversación hasta la resolución.
-      </p>
-
-      <div class="areas-grid fade-in">
-
-        <a href="https://www.santanaycia.cl/familia" class="area-card">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag fade-in" data-en="Practice Areas">Áreas de práctica</span>
+          <h2 class="title fade-in" data-en="Four areas.&lt;br&gt;One &lt;em&gt;firm&lt;/em&gt;.">Cuatro áreas.<br>Un solo <em>estudio</em>.</h2>
+        </div>
+        <p class="lead fade-in" data-en="We take on the cases we can handle in depth. Every client has direct access to the lawyer in charge, from the first conversation through resolution.">Seleccionamos los casos que podemos atender con profundidad. Cada cliente tiene acceso directo al abogado a cargo, desde la primera conversación hasta la resolución.</p>
+      </div>
+      <div class="areas-grid">
+        <a href="https://www.santanaycia.cl/familia" class="area-card fade-in">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1758227365187-016878604d94?q=80&w=1000&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-top">
             <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.6" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2-5 4.5-5s4.5 2 4.5 5M13 19c0-2.4 1.6-4.2 3.5-4.2S20 16.6 20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -929,8 +855,7 @@
           </div>
           <span class="area-link" data-en="View family law →">Ver área de familia →</span>
         </a>
-
-        <a href="https://www.santanaycia.cl/legatum" class="area-card">
+        <a href="https://www.santanaycia.cl/legatum" class="area-card fade-in">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-top">
             <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -944,8 +869,7 @@
           </div>
           <span class="area-link" data-en="View estate law →">Ver área de herencias →</span>
         </a>
-
-        <a href="https://www.santanaycia.cl/devuelveme-mi-casa" class="area-card">
+        <a href="https://www.santanaycia.cl/devuelveme-mi-casa" class="area-card fade-in">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1729855637715-99192904aac5?q=80&w=900&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-top">
             <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -959,8 +883,7 @@
           </div>
           <span class="area-link" data-en="View Landlord Recovery Law →">Ver Ley Devuélveme mi Casa →</span>
         </a>
-
-        <a href="https://www.santanaycia.cl/abogados" class="area-card">
+        <a href="https://www.santanaycia.cl/abogados" class="area-card fade-in">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-top">
             <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 20h12M5 7h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 7l-3 6.5a3 3 0 006 0L7 7zM17 7l-3 6.5a3 3 0 006 0L17 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
@@ -974,8 +897,9 @@
           </div>
           <span class="area-link" data-en="View civil law →">Ver área civil →</span>
         </a>
-
-        <a href="https://www.santanaycia.cl/legatum" class="area-card tool">
+      </div>
+      <p class="swipe-hint" data-en="Swipe to see the four areas &lt;svg viewBox=&quot;0 0 20 20&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 10h12M11 5l5 5-5 5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;">Desliza para ver las cuatro áreas <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      <a href="https://www.santanaycia.cl/legatum" class="area-card tool">
           <div class="tool-left">
             <div class="tool-badge" data-en="&lt;div class=&quot;tool-badge-dot&quot;&gt;&lt;/div&gt; Free tool"><div class="tool-badge-dot"></div> Herramienta gratuita</div>
             <h3 data-en="Legatum — Inheritance Calculator">Legatum — Calculadora de herencias</h3>
@@ -983,89 +907,78 @@
           </div>
           <span class="area-link tool-cta" data-en="Use the calculator →">Usar calculadora →</span>
         </a>
+    </div>
+  </section>
 
+  <!-- CÓMO TRABAJAMOS -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag fade-in" data-en="How we work">Cómo trabajamos</span>
+          <h2 class="title fade-in" data-en="A &lt;em&gt;clear&lt;/em&gt; process from day one">Un proceso <em>claro</em> desde el primer día</h2>
+        </div>
+        <p class="lead fade-in" data-en="No in-person paperwork and no fine print: you know what we will do, how long it takes and what it costs before committing.">Sin trámites presenciales ni letra chica: sabe qué haremos, cuánto demora y cuánto cuesta antes de comprometerse.</p>
+      </div>
+      <div class="steps">
+        <div class="step fade-in">
+          <span class="step-n">01</span>
+          <h3 data-en="You tell us about your case">Nos cuenta su caso</h3>
+          <p data-en="By form, email or WhatsApp. You can attach any documents you have.">Por el formulario, correo o WhatsApp. Puede adjuntar los documentos que tenga a mano.</p>
+          <span class="step-tag" data-en="5 minutes">5 minutos</span>
+        </div>
+        <div class="step fade-in">
+          <span class="step-n">02</span>
+          <h3 data-en="Free assessment">Evaluación sin costo</h3>
+          <p data-en="We review your situation before replying and give you a well-founded first opinion.">Analizamos su situación antes de responder y le damos una primera opinión fundada.</p>
+          <span class="step-tag" data-en="Within 24 business hours">Máx. 24 h hábiles</span>
+        </div>
+        <div class="step fade-in">
+          <span class="step-n">03</span>
+          <h3 data-en="Transparent proposal">Propuesta transparente</h3>
+          <p data-en="Strategy, timelines and fees in writing. You decide whether we proceed, with no obligation.">Estrategia, plazos y honorarios por escrito. Usted decide si avanzamos, sin compromiso.</p>
+          <span class="step-tag" data-en="No fine print">Sin letra chica</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EL ESTUDIO -->
   <section id="nosotros">
-    <div class="section-inner">
-      <span class="section-tag fade-in" data-en="The Firm">El estudio</span>
-      <h2 class="section-title fade-in" data-en="Technical depth&lt;br&gt;and a &lt;em&gt;human touch&lt;/em&gt;">Profundidad técnica<br>y <em>trato humano</em></h2>
-      <p class="section-lead fade-in" data-en="Santana &amp; Cía does not chase volume. We take on the cases we can give real dedication to. That makes the difference.">
-        Santana &amp; Cía no gestiona volumen. Seleccionamos los casos que podemos atender con dedicación real. Eso marca la diferencia.
-      </p>
-
-      <div class="values-grid fade-in">
-        <div class="value-item">
-          <span class="value-num">01</span>
-          <div class="value-body">
-            <strong data-en="Specialization">Especialización</strong>
-            <p data-en="We focus exclusively on family, civil and estate law. Depth is our differentiator.">Nos dedicamos exclusivamente al derecho de familia, civil y sucesiones. La profundidad es nuestro diferencial.</p>
-          </div>
+    <div class="wrap studio">
+      <div class="studio-img fade-in">
+        <img src="https://images.pexels.com/photos/5669619/pexels-photo-5669619.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Santana &amp; Cía Abogados — El estudio" width="800" height="1000" loading="lazy">
+        <div class="studio-badge">
+          <div><strong>Santana &amp; Cía Abogados</strong><span data-en="Remote service · All of Chile">Atención remota · Todo Chile</span></div>
         </div>
-        <div class="value-item">
-          <span class="value-num">02</span>
-          <div class="value-body">
-            <strong data-en="Confidentiality">Confidencialidad</strong>
-            <p data-en="Every account and document is handled under strict professional confidentiality from the first contact.">Todo relato y documentación es tratado con estricta reserva profesional desde el primer contacto.</p>
+      </div>
+      <div>
+        <span class="tag fade-in" data-en="The Firm">El estudio</span>
+        <h2 class="title fade-in" data-en="Technical depth&lt;br&gt;and a &lt;em&gt;human touch&lt;/em&gt;">Profundidad técnica<br>y <em>trato humano</em></h2>
+        <p class="lead fade-in" style="margin-top:1rem" data-en="Santana &amp; Cía does not chase volume. We take on the cases we can give real dedication to. That makes the difference.">Santana &amp; Cía no gestiona volumen. Seleccionamos los casos que podemos atender con dedicación real. Eso marca la diferencia.</p>
+        <div class="values fade-in">
+          <div class="value">
+            <span class="value-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+            <div><strong data-en="Specialization">Especialización</strong><p data-en="We focus exclusively on family, civil and estate law. Depth is our differentiator.">Nos dedicamos exclusivamente al derecho de familia, civil y sucesiones. La profundidad es nuestro diferencial.</p></div>
           </div>
-        </div>
-        <div class="value-item">
-          <span class="value-num">03</span>
-          <div class="value-body">
-            <strong data-en="Fee Transparency">Transparencia de costos</strong>
-            <p data-en="Before committing, clients know exactly the legal strategy, timelines and fees involved.">Antes de comprometerse, el cliente conoce con exactitud la estrategia legal, los plazos y los honorarios.</p>
+          <div class="value">
+            <span class="value-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10.5V7.5a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.6"/></svg></span>
+            <div><strong data-en="Confidentiality">Confidencialidad</strong><p data-en="Every account and document is handled under strict professional confidentiality from the first contact.">Todo relato y documentación es tratado con estricta reserva profesional desde el primer contacto.</p></div>
           </div>
-        </div>
-        <div class="value-item">
-          <span class="value-num">04</span>
-          <div class="value-body">
-            <strong data-en="Service Across Chile">Atención en todo Chile</strong>
-            <p data-en="We work remotely by form, video call or email. No geographic barriers.">Atendemos de forma remota por formulario, videollamada o correo. Sin barreras geográficas.</p>
+          <div class="value">
+            <span class="value-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><strong data-en="Fee Transparency">Transparencia de costos</strong><p data-en="Before committing, clients know exactly the legal strategy, timelines and fees involved.">Antes de comprometerse, el cliente conoce con exactitud la estrategia legal, los plazos y los honorarios.</p></div>
+          </div>
+          <div class="value">
+            <span class="value-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+            <div><strong data-en="Service Across Chile">Atención en todo Chile</strong><p data-en="We work remotely by form, video call or email. No geographic barriers.">Atendemos de forma remota por formulario, videollamada o correo. Sin barreras geográficas.</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHILENOS EN EL EXTRANJERO -->
-  <section id="extranjero">
-    <div class="section-inner">
-      <span class="section-tag fade-in" data-en="Living abroad">Chilenos en el extranjero</span>
-      <h2 class="section-title fade-in" data-en="Live outside Chile?&lt;br&gt;We &lt;em&gt;represent you&lt;/em&gt; here">¿Vive fuera de Chile?<br>Lo <em>representamos</em> aquí</h2>
-      <p class="section-lead fade-in" data-en="We assist Chileans and foreigners living in Europe, the United States, Canada, Australia or any other country who need to resolve a legal matter in Chile. Everything is handled remotely by video call, email and WhatsApp, taking the time difference into account.">Atendemos a chilenos y extranjeros que viven en Europa, Estados Unidos, Canadá, Australia o cualquier otro país y necesitan resolver un asunto legal en Chile. Todo se gestiona a distancia, por videollamada, correo y WhatsApp, coordinando la diferencia horaria.</p>
-      <div class="abroad-grid fade-in">
-        <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          <h3 data-en="Inheritances in Chile">Herencias en Chile</h3>
-          <p data-en="Probate, division and sale of inherited assets in Chile, even if you or other heirs live abroad.">Posesión efectiva, partición y venta de bienes heredados en Chile, aunque usted u otros herederos vivan afuera.</p>
-        </div>
-        <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5.5 20.5h13M7 20.5V9.5M17 20.5V9.5M12 20.5V9.5M4 9.5h16L12 3.5 4 9.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3 data-en="Power of attorney from abroad">Poder desde el extranjero</h3>
-          <p data-en="We explain how to grant the power of attorney at the Chilean consulate or before a local notary with an apostille, so we can act on your behalf.">Le indicamos cómo otorgar el poder ante el consulado de Chile o ante un notario de su país con apostilla, para actuar en su nombre.</p>
-        </div>
-        <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          <h3 data-en="Your property in Chile">Su propiedad en Chile</h3>
-          <p data-en="Leases, tenants who do not pay, title regularization or sale of your property in Chile while you live abroad.">Arriendos, arrendatarios que no pagan, regularización o venta de su propiedad en Chile mientras vive fuera.</p>
-        </div>
-        <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5S9.7 5.9 12 3.5z" stroke="currentColor" stroke-width="1.5"/></svg></span>
-          <h3 data-en="Family matters at a distance">Familia a distancia</h3>
-          <p data-en="Child support, divorce and travel authorizations when one parent lives in another country.">Pensión de alimentos, divorcio y autorizaciones de viaje cuando uno de los padres vive en otro país.</p>
-        </div>
-      </div>
-      <div class="abroad-foot fade-in">
-        <a href="#hero-form" data-en="Tell us about your case →">Cuéntenos su caso →</a>
-        <span data-en="Free initial assessment · Reply within 24 business hours">Primera evaluación sin costo · Respuesta en máx. 24 h hábiles</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
+<!-- QUOTE -->
   <div class="quote-band">
     <img class="quote-band-img" src="https://images.pexels.com/photos/21533323/pexels-photo-21533323.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="" width="1920" height="1080" loading="lazy" aria-hidden="true">
     <div class="quote-band-inner fade-in">
@@ -1075,14 +988,61 @@
     </div>
   </div>
 
-  <!-- PREGUNTAS FRECUENTES -->
-  <section id="faq">
-    <div class="section-inner">
-      <span class="section-tag fade-in" data-en="Frequently Asked Questions">Preguntas frecuentes</span>
-      <h2 class="section-title fade-in" data-en="Common &lt;em&gt;Questions&lt;/em&gt;">Dudas <em>comunes</em></h2>
-      <p class="section-lead fade-in" data-en="Before you write to us, here is what people ask most.">Antes de escribirnos, esto es lo que más nos preguntan.</p>
+  
+  <!-- COBERTURA: CHILE + EXTRANJERO -->
+  <section id="cobertura">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="tag fade-in" data-en="Coverage">Cobertura</span>
+          <h2 class="title fade-in" data-en="All of Chile, &lt;em&gt;and beyond&lt;/em&gt;">Todo Chile, <em>y desde afuera</em></h2>
+        </div>
+        <p class="lead fade-in" data-en="We work remotely by video call, email and WhatsApp. These cities have their own page, and we also represent people who live abroad.">Atendemos de forma remota por videollamada, correo y WhatsApp. Estas ciudades tienen su propia página, y también representamos a quienes viven fuera de Chile.</p>
+      </div>
+      <div class="cov-grid">
+        <div class="cov-col fade-in">
+          <span class="cov-kicker" data-en="In Chile">En Chile</span>
+          <h3 data-en="Pages by city">Páginas por ciudad</h3>
+          <p data-en="Same team and same standard, with local content for each region.">El mismo equipo y el mismo estándar, con contenido propio de cada región.</p>
+          <ul class="cov-list">
+            <li><a href="https://www.santanaycia.cl/arica-abogados"><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span><div><strong>Arica</strong><span data-en="Lawyers in Arica and Parinacota">Abogados en Arica y Parinacota</span></div><span class="cov-go"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+            <li><a href="https://www.santanaycia.cl/iquique-abogados"><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span><div><strong>Iquique y Alto Hospicio</strong><span data-en="Lawyers in Tarapacá">Abogados en Tarapacá</span></div><span class="cov-go"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+            <li><a href="https://www.santanaycia.cl/arriendo-antofagasta"><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span><div><strong>Antofagasta y Calama</strong><span data-en="Rentals and property recovery">Arriendo y recuperación de propiedades</span></div><span class="cov-go"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+            <li><a href="https://www.santanaycia.cl/arriendo-la-serena-coquimbo"><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span><div><strong>La Serena y Coquimbo</strong><span data-en="Rentals and property recovery">Arriendo y recuperación de propiedades</span></div><span class="cov-go"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+            <li><a href="https://www.santanaycia.cl/aconcagua-abogados"><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></span><div><strong>San Felipe y Los Andes</strong><span data-en="Lawyers in the Aconcagua Valley">Abogados en el Valle de Aconcagua</span></div><span class="cov-go"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+          </ul>
+        </div>
+        <div class="cov-col dark fade-in" id="extranjero">
+          <span class="cov-kicker" data-en="Living abroad">Chilenos en el extranjero</span>
+          <h3 data-en="Live outside Chile? We represent you here">¿Vive fuera de Chile? Lo representamos aquí</h3>
+          <p data-en="We assist Chileans and foreigners living in Europe, the United States, Canada, Australia or any other country who need to resolve a legal matter in Chile. Everything is handled remotely by video call, email and WhatsApp, taking the time difference into account.">Atendemos a chilenos y extranjeros que viven en Europa, Estados Unidos, Canadá, Australia o cualquier otro país y necesitan resolver un asunto legal en Chile. Todo se gestiona a distancia, por videollamada, correo y WhatsApp, coordinando la diferencia horaria.</p>
+          <ul class="cov-list">
+            <li><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><strong data-en="Inheritances in Chile">Herencias en Chile</strong><span data-en="Probate, division and sale of inherited assets in Chile, even if you or other heirs live abroad.">Posesión efectiva, partición y venta de bienes heredados en Chile, aunque usted u otros herederos vivan afuera.</span></div></li>
+            <li><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5.5 20.5h13M7 20.5V9.5M17 20.5V9.5M12 20.5V9.5M4 9.5h16L12 3.5 4 9.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><strong data-en="Power of attorney from abroad">Poder desde el extranjero</strong><span data-en="We explain how to grant the power of attorney at the Chilean consulate or before a local notary with an apostille, so we can act on your behalf.">Le indicamos cómo otorgar el poder ante el consulado de Chile o ante un notario de su país con apostilla, para actuar en su nombre.</span></div></li>
+            <li><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><strong data-en="Your property in Chile">Su propiedad en Chile</strong><span data-en="Leases, tenants who do not pay, title regularization or sale of your property in Chile while you live abroad.">Arriendos, arrendatarios que no pagan, regularización o venta de su propiedad en Chile mientras vive fuera.</span></div></li>
+            <li><span class="cov-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5S9.7 5.9 12 3.5z" stroke="currentColor" stroke-width="1.5"/></svg></span><div><strong data-en="Family matters at a distance">Familia a distancia</strong><span data-en="Child support, divorce and travel authorizations when one parent lives in another country.">Pensión de alimentos, divorcio y autorizaciones de viaje cuando uno de los padres vive en otro país.</span></div></li>
+          </ul>
+          <a href="#hero-form" class="cov-cta" data-en="Tell us about your case &lt;svg viewBox=&quot;0 0 20 20&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 10h12M11 5l5 5-5 5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;">Cuéntenos su caso <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="faq-list fade-in">
+  <!-- PREGUNTAS FRECUENTES (mismo contenido que el FAQPage del head) -->
+  <section id="faq">
+    <div class="wrap faq-grid">
+      <div class="faq-aside">
+        <span class="tag fade-in" data-en="Frequently Asked Questions">Preguntas frecuentes</span>
+        <h2 class="title fade-in" data-en="Common &lt;em&gt;Questions&lt;/em&gt;">Dudas <em>comunes</em></h2>
+        <p class="lead fade-in" style="margin-top:1rem" data-en="Before you write to us, here is what people ask most.">Antes de escribirnos, esto es lo que más nos preguntan.</p>
+        <a class="gbp-card fade-in" href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener">
+          <span class="gbp-g" aria-hidden="true">G</span>
+          <span><strong data-en="Google reviews">Opiniones en Google</strong><span data-en="What our clients say">Lo que dicen nuestros clientes</span></span>
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div>
+        <div class="faq-list">
         <details class="faq-item">
           <summary data-en="What areas of law does Santana &amp; Cía specialize in?">¿En qué áreas jurídicas se especializa Santana &amp; Cía Abogados?</summary>
           <p data-en="Four areas: Family Law (child support, divorce, custody, domestic violence), Estates and Successions (probate, asset division, wills), Rental Law under Law 21.461 — Landlord Recovery Law (summary proceedings, rent collection, property restitution) and Civil Law (contracts, damages, debt collection, Local Police Court).">Cuatro áreas: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble) y Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local).</p>
@@ -1103,77 +1063,89 @@
           <summary data-en="What is the Landlord Recovery Law (Law 21.461) and how can it help me?">¿Qué es la Ley Devuélveme mi Casa y cómo puede ayudarme?</summary>
           <p data-en="Law 21.461, known as “Devuélveme mi Casa”, lets property owners recover their property from tenants who do not pay through a special summary proceeding. In a single lawsuit the overdue rent is collected and the tenant’s eviction is obtained. Santana &amp; Cía handles these cases across Chile. More information at santanaycia.cl/devuelveme-mi-casa.">La Ley 21.461, conocida como Devuélveme mi Casa, permite a los propietarios recuperar su inmueble de arrendatarios morosos a través de un Procedimiento Monitorio especial. En un solo juicio se cobran las rentas atrasadas y se obtiene el lanzamiento del arrendatario. Santana &amp; Cía tramita estos casos en todo Chile. Más información en santanaycia.cl/devuelveme-mi-casa.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item faq-more">
           <summary data-en="I live abroad. Can you represent me in Chile?">Vivo en el extranjero, ¿pueden representarme en Chile?</summary>
           <p data-en="Yes. We assist Chileans and foreigners living in Europe, the United States, Canada, Australia or elsewhere who need to resolve a legal matter in Chile: inheritances, property, rentals, child support or divorce. The assessment is done by video call, email or WhatsApp, and you only need to grant a power of attorney for us to act on your behalf, without travelling.">Sí. Atendemos a chilenos y extranjeros que viven en Europa, Estados Unidos, Canadá, Australia u otros países y necesitan resolver un asunto legal en Chile: herencias, propiedades, arriendos, pensiones de alimentos o divorcio. La evaluación se hace por videollamada, correo o WhatsApp, y para que actuemos en su nombre basta con otorgar un poder, sin necesidad de viajar.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item faq-more">
           <summary data-en="How do I grant a power of attorney from abroad for a matter or lawsuit in Chile?">¿Cómo otorgo un poder desde el extranjero para un trámite o juicio en Chile?</summary>
           <p data-en="There are two usual routes: sign it at the Chilean consulate in your country, or sign it before a local notary and have it apostilled, if that country is party to the Hague Apostille Convention. If the document is not in Spanish, it may need a translation. We send you the text of the power of attorney and explain the steps for your country.">Hay dos vías habituales: firmar el mandato ante el consulado de Chile en el país donde vive, o firmarlo ante un notario local y apostillarlo, si ese país es parte del Convenio de La Haya sobre la Apostilla. Si el documento no está en español, puede requerir traducción. Le enviamos el texto del poder y le indicamos los pasos según su país.</p>
         </details>
+        </div>
+        <button type="button" class="faq-toggle" id="faqToggle" aria-expanded="false"><span data-en="More questions (2)">Ver más preguntas (2)</span></button>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-brand-logo">Santana &amp; Cía</div>
-        <div class="footer-brand-sub" data-en="Lawyers · Chile">Abogados · Chile</div>
-        <p data-en="Full-service law firm. Family, civil, estate and rental law, with remote service across Chile.">Estudio jurídico integral. Familia, civil, herencias y arriendo, con atención remota en todo Chile.</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Practice Areas">Áreas</h4>
-        <ul>
-          <li><a href="https://www.santanaycia.cl/familia" data-en="Family">Familia</a></li>
-          <li><a href="https://www.santanaycia.cl/legatum" data-en="Estates">Herencias</a></li>
-          <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa" data-en="Rental">Arriendo</a></li>
-          <li><a href="https://www.santanaycia.cl/abogados" data-en="Civil">Civil</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Firm">Estudio</h4>
-        <ul>
-          <li><a href="#nosotros" data-en="About Us">Nosotros</a></li>
-          <li><a href="https://www.santanaycia.cl/honorarios" data-en="Fees">Honorarios</a></li>
-          <li><a href="https://www.santanaycia.cl/arica-abogados" data-en="Arica">Abogados en Arica</a></li>
-          <li><a href="https://www.santanaycia.cl/iquique-abogados" data-en="Iquique">Abogados en Iquique</a></li>
-          <li><a href="https://www.santanaycia.cl/aconcagua-abogados" data-en="Aconcagua Valley">Valle de Aconcagua</a></li>
-          <li><a href="#extranjero" data-en="Living abroad">Chilenos en el extranjero</a></li>
-          <li><a href="#faq" data-en="FAQ">Preguntas frecuentes</a></li>
-          <li><a href="https://www.santanaycia.cl/privacidad" data-en="Privacy">Privacidad</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Contact">Contacto</h4>
-        <ul>
-          <li><a href="#hero-form" data-en="Send an Inquiry">Escribir consulta</a></li>
-          <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-          <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener" data-en="Google Profile">Perfil en Google</a></li>
-          <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener" data-en="Leave a Review">Dejar una reseña</a></li>
-        </ul>
+  <!-- CTA -->
+  <div class="cta">
+    <div class="wrap">
+      <div class="cta-box fade-in">
+        <div>
+          <h2 data-en="Ready to tell us about your case?">¿Listo para contarnos su caso?</h2>
+          <p data-en="Free initial assessment. Reply within 24 business hours.">Primera evaluación sin costo. Respuesta en un máximo de 24 horas hábiles.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="#hero-form" class="btn-white" data-en="Start inquiry &lt;svg viewBox=&quot;0 0 20 20&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 10h12M11 5l5 5-5 5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;">Iniciar consulta <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="https://wa.me/56969051586" target="_blank" rel="noopener" class="btn-ghost"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 00-7.79 13.5L3 21l4.68-1.19A9 9 0 1012 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.6 8.4c.2-.5.5-.6.9-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .4-.2.7-.6.9-.5.2-1.4.4-2.6-.1-1.9-.8-3.6-2.5-4.4-4.4-.5-1.2-.3-2.1-.1-2.6z" fill="currentColor"/></svg>WhatsApp</a>
+        </div>
       </div>
     </div>
-    <p class="footer-bottom" data-en="© 2026 Santana &amp; Cía Abogados. All rights reserved.">© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">Santana &amp; Cía</div>
+          <div class="footer-brand-sub" data-en="Lawyers · Chile">Abogados · Chile</div>
+          <p data-en="Full-service law firm. Family, civil, estate and rental law, with remote service across Chile.">Estudio jurídico integral. Familia, civil, herencias y arriendo, con atención remota en todo Chile.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Practice Areas">Áreas</h4>
+          <ul>
+            <li><a href="https://www.santanaycia.cl/familia" data-en="Family">Familia</a></li>
+            <li><a href="https://www.santanaycia.cl/legatum" data-en="Estates">Herencias</a></li>
+            <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa" data-en="Rental">Arriendo</a></li>
+            <li><a href="https://www.santanaycia.cl/abogados" data-en="Civil">Civil</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Firm">Estudio</h4>
+          <ul>
+            <li><a href="#nosotros" data-en="About Us">Nosotros</a></li>
+            <li><a href="https://www.santanaycia.cl/honorarios" data-en="Fees">Honorarios</a></li>
+            <li><a href="https://www.santanaycia.cl/arica-abogados" data-en="Arica">Abogados en Arica</a></li>
+            <li><a href="https://www.santanaycia.cl/iquique-abogados" data-en="Iquique">Abogados en Iquique</a></li>
+            <li><a href="https://www.santanaycia.cl/aconcagua-abogados" data-en="Aconcagua Valley">Valle de Aconcagua</a></li>
+            <li><a href="#extranjero" data-en="Living abroad">Chilenos en el extranjero</a></li>
+            <li><a href="https://www.santanaycia.cl/privacidad" data-en="Privacy">Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-en="Contact">Contacto</h4>
+          <ul>
+            <li><a href="https://www.santanaycia.cl/contacto" data-en="Send an Inquiry">Escribir consulta</a></li>
+            <li><a href="https://www.santanaycia.cl/agendar-cita" data-en="Book a video call">Agendar videollamada</a></li>
+            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
+            <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener" data-en="Google Profile">Perfil en Google</a></li>
+            <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener" data-en="Leave a Review">Dejar una reseña</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-bottom" data-en="© 2026 Santana &amp; Cía Abogados. All rights reserved.">© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
-  <script>
-    /* ── Top bar: la nav fija baja 38px y sube a medida que la franja sale de la pantalla ── */
-    (function () {
-      const root = document.documentElement, tb = document.querySelector('.topbar');
-      let ticking = false;
-      function update() {
-        const h = tb && tb.offsetParent !== null ? tb.offsetHeight : 0;
-        root.style.setProperty('--tb', Math.max(0, h - window.scrollY) + 'px');
-        ticking = false;
-      }
-      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-    })();
+  <!-- BARRA FIJA (MÓVIL) -->
+  <div class="mobile-bar">
+    <a href="#hero-form" class="mb-main" data-en="Free consultation">Consulta sin costo</a>
+    <a href="https://wa.me/56969051586" target="_blank" rel="noopener" class="mb-wa"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 00-7.79 13.5L3 21l4.68-1.19A9 9 0 1012 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.6 8.4c.2-.5.5-.6.9-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .4-.2.7-.6.9-.5.2-1.4.4-2.6-.1-1.9-.8-3.6-2.5-4.4-4.4-.5-1.2-.3-2.1-.1-2.6z" fill="currentColor"/></svg>WhatsApp</a>
+  </div>
 
+  <script>
     /* ── Mobile nav ── */
     function toggleNav(){
       const menu = document.getElementById('mobileNav');
@@ -1181,7 +1153,6 @@
       const open = menu.classList.toggle('active');
       btn.classList.toggle('active', open);
       btn.setAttribute('aria-expanded', open);
-      menu.style.top = document.getElementById('siteNav').getBoundingClientRect().bottom + 'px';
     }
     function closeNav(){
       document.getElementById('mobileNav').classList.remove('active');
@@ -1223,7 +1194,7 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (!target) return;
         e.preventDefault();
-        const navH = document.querySelector('nav').offsetHeight;
+        const navH = document.getElementById('siteNav').offsetHeight + 12;
         window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH, behavior: 'smooth' });
         closeNav();
       });
@@ -1276,6 +1247,22 @@
         errorMsg.textContent = uiStrings[currentLang].error;
         errorMsg.style.display = 'block';
       }
+    });
+
+    /* ── FAQ: una abierta a la vez + ver más ── */
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) document.querySelectorAll('.faq-item[open]').forEach(o => { if (o !== item) o.open = false; });
+      });
+    });
+    const faqToggle = document.getElementById('faqToggle');
+    faqToggle.addEventListener('click', () => {
+      const list = document.querySelector('.faq-list');
+      const open = list.classList.toggle('expanded');
+      faqToggle.setAttribute('aria-expanded', open);
+      const sp = faqToggle.querySelector('span');
+      if (open) { sp.dataset.closed = sp.innerHTML; sp.innerHTML = currentLang === 'en' ? 'Fewer questions' : 'Ver menos preguntas'; }
+      else sp.innerHTML = currentLang === 'en' ? sp.dataset.en : sp.dataset.es;
     });
 
     /* ── Animaciones scroll ── */
