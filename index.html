@@ -331,7 +331,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://i.postimg.cc">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -356,8 +356,8 @@
     body {
       background: var(--white);
       color: var(--ink);
-      font-family: 'Manrope', sans-serif;
-      font-weight: 400;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
@@ -367,7 +367,7 @@
     /* ── NAV ── */
     /* ── TOP BAR (igual que en las subwebs; se oculta al hacer scroll) ── */
     :root { --tb: 38px; }
-    .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 1001; height: 38px; background: #0e2740; color: rgba(255,255,255,0.72); font-family: 'Manrope', system-ui, sans-serif; font-size: 12px; }
+    .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 1001; height: 38px; background: #0e2740; color: rgba(255,255,255,0.72); font-family: 'Manrope', 'Jost', system-ui, sans-serif; font-size: 12px; }
     .topbar-inner { height: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0 2.5rem; }
     .topbar-left { display: flex; align-items: center; gap: 8px; }
     .topbar-left::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #5fd3a0; box-shadow: 0 0 0 3px rgba(95,211,160,0.18); }
@@ -401,7 +401,7 @@
     .nav-logo span {
       display: block;
       font-size: 9px;
-      font-family: 'Manrope', sans-serif;
+      font-family: 'Jost', sans-serif;
       font-weight: 400;
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -437,7 +437,7 @@
     }
     .lang-btn {
       background: none; border: none; cursor: pointer;
-      font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 500;
+      font-family: 'Jost', sans-serif; font-size: 10.5px; font-weight: 500;
       letter-spacing: 0.05em; padding: 5px 11px; border-radius: 16px;
       color: var(--muted); transition: all .2s;
     }
@@ -504,7 +504,7 @@
     .hero-eyebrow::before { content:''; display:inline-block; width:30px; height:0.5px; background: rgba(169,210,242,0.5); }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
+      font-weight: 300;
       font-size: clamp(38px, 5vw, 62px);
       line-height: 1.05;
       color: #ffffff;
@@ -514,7 +514,7 @@
     .hero-title em { font-style: italic; color: var(--celeste-soft); }
     .hero-sub {
       font-size: 14.5px;
-      font-weight: 400;
+      font-weight: 300;
       color: rgba(255,255,255,0.75);
       max-width: 460px;
       line-height: 1.85;
@@ -538,11 +538,12 @@
     .hf-head { margin-bottom: 1.1rem; }
     .hf-head h3 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
     .hf-head p { font-size: 11.5px; color: var(--muted); }
+    .hf-mail { display: none; }
     .hf-group { margin-bottom: 0.75rem; }
     .hf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
     .hf-input {
       width: 100%; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 4px;
-      font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 400; color: var(--ink);
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; color: var(--ink);
       background: var(--pale); outline: none; transition: border-color .2s, background .2s;
     }
     .hf-input::placeholder { color: #9fb0bf; }
@@ -554,7 +555,7 @@
     .hf-consent label { font-size: 10.5px; color: var(--muted); line-height: 1.6; cursor: pointer; }
     .hf-submit {
       width: 100%; padding: 0.85rem; background: var(--celeste); color: #fff; border: none; border-radius: 4px;
-      font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
       cursor: pointer; transition: background .2s;
     }
     .hf-submit:hover { background: var(--celeste-d); }
@@ -578,12 +579,12 @@
     }
     .section-tag::before { content:''; display:inline-block; width:22px; height:0.5px; background:var(--celeste); opacity:0.55; }
     .section-title {
-      font-family: 'Cormorant Garamond', serif; font-weight: 600;
-      font-size: clamp(30px, 3.8vw, 44px); line-height: 1.12;
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(28px, 3.6vw, 42px); line-height: 1.12;
       color: var(--ink); margin-bottom: 1.25rem; letter-spacing: -0.01em;
     }
     .section-title em { font-style: italic; color: var(--celeste); }
-    .section-lead { font-size: 14.5px; font-weight: 400; color: var(--muted); line-height: 1.85; max-width: 540px; }
+    .section-lead { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.85; max-width: 540px; }
 
     /* ── ÁREAS / SERVICIOS — grid corporativo 3x2, sin celdas vacías ── */
     #areas { background: var(--white); }
@@ -715,7 +716,7 @@
     .quote-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(29,95,153,0.82) 0%, rgba(14,39,64,0.78) 100%); }
     .quote-band-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
     .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 68px; color: rgba(255,255,255,0.22); line-height: 0.6; margin-bottom: 1.4rem; display: block; }
-    .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(19px, 2.6vw, 28px); font-weight: 500; font-style: italic; color: #ffffff; line-height: 1.55; margin-bottom: 1.2rem; }
+    .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(19px, 2.6vw, 28px); font-weight: 300; font-style: italic; color: #ffffff; line-height: 1.55; margin-bottom: 1.2rem; }
     .quote-attr { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
 
     /* ── FAQ ── */
@@ -724,10 +725,10 @@
     .faq-item { border-bottom: 0.5px solid var(--border); }
     .faq-item summary {
       cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; padding: 1.35rem 0; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; color: var(--ink);
+      gap: 1rem; padding: 1.35rem 0; font-family: 'Cormorant Garamond', serif; font-size: 18.5px; color: var(--ink);
     }
     .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after { content:'+'; font-family:'Manrope',sans-serif; font-size:19px; color:var(--celeste); flex-shrink:0; transition: transform .25s ease; }
+    .faq-item summary::after { content:'+'; font-family:'Jost',sans-serif; font-size:19px; color:var(--celeste); flex-shrink:0; transition: transform .25s ease; }
     .faq-item[open] summary::after { transform: rotate(45deg); }
     .faq-item p { font-size: 13.5px; color: var(--muted); line-height: 1.85; padding-bottom: 1.4rem; max-width: 640px; }
 
@@ -739,7 +740,7 @@
       padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem;
     }
     .footer-brand-logo {
-      font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 600;
+      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400;
       color: rgba(255,255,255,0.9); margin-bottom: 3px;
     }
     .footer-brand-sub { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--celeste-soft); opacity: 0.85; margin-bottom: 1rem; }
@@ -779,6 +780,9 @@
       .hero-title .t-last { font-style: italic; color: var(--celeste-soft); }
       .hero-title { font-size: clamp(38px, 11vw, 46px); line-height: 1.04; }
       .hf-submit { letter-spacing: 0.08em; }
+      /* Móvil: el correo sale del hero y queda discreto dentro del formulario */
+      .hero-eyebrow { display: none; }
+      .hf-mail { display: inline-block; margin-top: 6px; font-size: 11px; letter-spacing: 0.04em; color: var(--celeste); text-decoration: none; opacity: 0.85; }
       /* Entrada sobria y escalonada del hero */
       .hero-eyebrow, .hero-title, .hero-sub, .hero-trust, .hero-form-card { animation: heroUp .8s cubic-bezier(.2,.7,.2,1) both; }
       .hero-eyebrow { animation-delay: .05s; }
@@ -883,6 +887,7 @@
         <div class="hf-head">
           <h3 data-en="Tell Us About Your Case">Cuéntanos tu caso</h3>
           <p data-en="Free assessment, no obligation">Primera evaluación gratuita y sin compromiso</p>
+          <a class="hf-mail" href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
         </div>
         <form id="contacto-form" novalidate>
           <div class="hf-group">
