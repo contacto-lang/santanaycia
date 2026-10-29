@@ -331,7 +331,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://i.postimg.cc">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -416,24 +416,11 @@
       align-items: center;
     }
     .nav-links a {
-      position: relative;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: normal;
-      font-size: 18.5px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: var(--ink);
-      text-decoration: none;
-      padding: 0.4rem 0.95rem;
-      transition: color 0.25s;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13.5px; font-weight: 500; color: var(--muted); text-decoration: none;
+      padding: 0.5rem 0.9rem; border-radius: 6px; transition: color .2s, background .2s;
     }
-    .nav-links a::after {
-      content: ''; position: absolute; left: 0.95rem; right: 0.95rem; bottom: 0.2rem;
-      height: 0.5px; background: var(--celeste); transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    .nav-links a:hover { color: var(--celeste); }
-    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover { color: var(--celeste-d); background: var(--celeste-l); }
     .nav-right { justify-self: end; display: flex; align-items: center; gap: 0.85rem; }
 
     /* ── Selector de idioma ── */
@@ -467,7 +454,7 @@
     .mobile-nav.active { display: block; }
     .mobile-nav a {
       display: block; padding: 0.9rem 1rem; text-decoration: none; color: var(--ink);
-      font-family: 'Cormorant Garamond', serif; font-size: 20px; border-radius: 6px;
+      font-family: 'Manrope', sans-serif; font-size: 14.5px; font-weight: 500; border-radius: 7px;
     }
     .mobile-nav a:hover { background: var(--pale); color: var(--celeste); }
 
