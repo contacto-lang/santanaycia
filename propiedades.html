@@ -863,6 +863,16 @@
     .cases-note a { color: var(--celeste-d); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--sky); }
     .cases-note a:hover { border-color: var(--celeste); }
     .faq-a-inner a { color: var(--celeste-d); font-weight: 600; }
+    #materia optgroup { font-weight: 700; color: var(--navy); }
+    #materia option { font-weight: 400; color: var(--ink); }
+    .upload-note { margin-top: 0.45rem; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
+    .pref-label { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .pref-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pref { flex: 1 1 0; min-width: 0; cursor: pointer; }
+    .pref input { position: absolute; opacity: 0; pointer-events: none; }
+    .pref span { display: block; text-align: center; padding: 0.55rem 0.5rem; border: 1px solid var(--border); border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); background: var(--pale); transition: all .15s; }
+    .pref input:checked + span { border-color: var(--celeste); background: var(--celeste-l); color: var(--celeste-d); }
+    .pref input:focus-visible + span { outline: 2px solid var(--celeste); outline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -921,7 +931,7 @@
 
       <div class="hero-copy">
         <p class="hero-eyebrow"><b>Propiedades</b> Derecho inmobiliario en todo Chile</p>
-        <h1 class="hero-title">Tu casa o tu terreno, <em>con los papeles en regla</em></h1>
+        <h1 class="hero-title">Tu propiedad, <em>con los papeles en regla</em></h1>
         <p class="hero-sub-m">Comprar, vender, heredar o defender un inmueble sin riesgos legales. Evaluación sin costo.</p>
         <p class="hero-sub">Una compraventa, una herencia o un vecino que corrió el cerco: cuando hay un inmueble de por medio, un error legal sale caro. Revisamos cada documento, redactamos los contratos y hacemos los trámites ante notaría, Conservador o tribunal, estés donde estés.</p>
 
@@ -967,19 +977,44 @@
               </div>
             </div>
             <div class="f-group">
-              <label class="f-label" for="materia">¿Qué necesita? *</label>
+              <label class="f-label" for="materia">Tipo de asunto *</label>
               <select id="materia" name="materia" class="f-input" required>
-                <option value="">¿Qué necesita? *</option>
-                <option>Compra: revisar la propiedad antes de pagar</option>
-                <option>Venta: preparar la documentación</option>
-                <option>Redactar o revisar una promesa o escritura</option>
-                <option>Herencia que incluye una casa, depto o terreno</option>
-                <option>Corregir inscripciones o regularizar un terreno sin título</option>
-                <option>Ocupación sin permiso, deslindes o servidumbres</option>
-                <option>La otra parte no cumplió la promesa</option>
-                <option>Fallas de construcción en una propiedad nueva</option>
-                <option>Sociedad, donación u organización de bienes raíces</option>
-                <option value="otro">Otra situación (describa abajo)</option>
+                <option value="">Elija el tipo de asunto *</option>
+                <optgroup label="Comprar o vender">
+                  <option>Quiero comprar: revisar la propiedad antes de pagar</option>
+                  <option>Quiero vender: ordenar papeles y redactar la escritura</option>
+                  <option>Acompañamiento completo de una compraventa</option>
+                  <option>Redactar o revisar una promesa</option>
+                  <option>Compra con crédito hipotecario: revisar lo que voy a firmar</option>
+                  <option>Compra o venta de un terreno, parcela o sitio</option>
+                </optgroup>
+                <optgroup label="Contratos sobre inmuebles">
+                  <option>Redactar un contrato de arriendo</option>
+                  <option>Usufructo, donación o cesión de derechos</option>
+                </optgroup>
+                <optgroup label="Títulos e inscripciones">
+                  <option>Inscripción con errores o que hay que rectificar</option>
+                  <option>Casa o terreno sin título inscrito (DL 2.695)</option>
+                  <option>Alzar una hipoteca, prohibición o embargo</option>
+                  <option>Permisos municipales, recepción final o subdivisión</option>
+                </optgroup>
+                <optgroup label="Herencias con inmuebles">
+                  <option>Inscribir a nombre de los herederos una propiedad heredada</option>
+                  <option>Vender o repartir un inmueble entre herederos</option>
+                </optgroup>
+                <optgroup label="Conflictos y defensa">
+                  <option>Persona que ocupa mi propiedad sin permiso</option>
+                  <option>Arrendatario que no paga o no entrega</option>
+                  <option>Cercos, deslindes o servidumbres de paso</option>
+                  <option>Condominio, copropiedad o gastos comunes</option>
+                  <option>Promesa incumplida o devolución del pie</option>
+                  <option>Fallas de construcción en una propiedad nueva</option>
+                </optgroup>
+                <optgroup label="Organizar bienes raíces">
+                  <option>Tener propiedades a nombre de una sociedad</option>
+                  <option>Ordenar mis inmuebles pensando en mi familia</option>
+                </optgroup>
+                <option value="otro">Otro tema inmobiliario (descríbalo abajo)</option>
               </select>
             </div>
             <div class="f-row">
@@ -1009,7 +1044,7 @@
                 <label class="f-label" for="etapa">¿En qué etapa está?</label>
                 <select id="etapa" name="etapa" class="f-input">
                   <option value="">¿En qué etapa está?</option>
-                  <option>Recién evaluando</option>
+                  <option>Solo estoy averiguando</option>
                   <option>Hay una oferta o negociación</option>
                   <option>Ya se firmó la promesa</option>
                   <option>Ya se firmó la escritura</option>
@@ -1019,15 +1054,24 @@
             </div>
             <div class="f-group">
               <label class="f-label" for="relato">Descripción *</label>
-              <textarea id="relato" name="relato" class="f-input" rows="4" placeholder="Cuéntenos su caso: tipo de propiedad, comuna, plazos y qué documentos tiene *" required></textarea>
+              <textarea id="relato" name="relato" class="f-input" rows="4" placeholder="Ej.: quiero comprar una casa en Maipú, el vendedor la heredó de su madre y nos piden firmar la promesa este mes. *" required></textarea>
             </div>
             <div class="f-group">
               <div class="upload-area" id="upload-area">
                 <input type="file" id="archivos" name="archivos" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="mostrarArchivos(this)" aria-label="Adjuntar documentos (opcional)">
                 <span class="upload-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-                <span class="upload-text"><strong>Adjuntar documentos</strong> (opcional)<br><span class="u-hint">Escrituras, certificados o promesa · máx. 10 MB c/u</span></span>
+                <span class="upload-text"><strong>Adjuntar documentos</strong> (opcional)<br><span class="u-hint">Inscripción de dominio, certificados o promesa · máx. 10 MB c/u</span></span>
               </div>
               <div class="file-list" id="file-list"></div>
+              <p class="upload-note">Con la inscripción de dominio o el certificado de hipotecas a la vista, nuestra primera respuesta será mucho más concreta.</p>
+            </div>
+            <div class="f-group">
+              <span class="pref-label">¿Cómo prefiere que lo contactemos?</span>
+              <div class="pref-row" role="radiogroup" aria-label="Medio de contacto preferido">
+                <label class="pref"><input type="radio" name="preferencia" value="Correo" checked><span>Correo</span></label>
+                <label class="pref"><input type="radio" name="preferencia" value="WhatsApp"><span>WhatsApp</span></label>
+                <label class="pref"><input type="radio" name="preferencia" value="Videollamada"><span>Videollamada</span></label>
+              </div>
             </div>
 
             <div class="consent-row">
@@ -1460,6 +1504,7 @@
         materia,
         etapa:         document.getElementById('etapa').value || '—',
         relato,
+        contacto_preferido: (document.querySelector('input[name=preferencia]:checked') || {}).value || 'Correo',
         archivos:      linksArchivos || 'Sin adjuntos',
         pagina_origen: 'santanaycia.cl/propiedades',
       };
