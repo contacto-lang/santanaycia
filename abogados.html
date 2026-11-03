@@ -1556,7 +1556,7 @@
       setBtnState('Enviando…', true);
 
       /* Código único por consulta: evita que Gmail agrupe correos con el mismo asunto */
-      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(9)), b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
+      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(5)), b => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b % 32]).join(''); // sin 0/O/1/I
       const payload = {
         access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
         subject:    'Nueva consulta civil — Santana & Cía Abogados',
@@ -1575,7 +1575,7 @@
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ ...payload, subject: payload.subject + ' #' + codigoConsulta, codigo_consulta: '#' + codigoConsulta })
+          body: JSON.stringify({ ...payload, subject: '#' + codigoConsulta + ' — ' + payload.subject, codigo_consulta: '#' + codigoConsulta })
         });
         const data = await res.json();
         if (data.success === true) {
