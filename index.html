@@ -273,7 +273,7 @@
         "name": "¿En qué áreas jurídicas se especializa Santana & Cía Abogados?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Santana & Cía Abogados se especializa en cuatro grandes áreas: (1) Derecho de Familia: pensión de alimentos, divorcio, tuición y violencia intrafamiliar (santanaycia.cl/familia). (2) Herencias y Sucesiones: posesión efectiva, partición de bienes y testamentos (santanaycia.cl/legatum). (3) Arriendo bajo la Ley 21.461 Devuélveme mi Casa: juicio monitorio, cobro de rentas y restitución de inmueble (santanaycia.cl/devuelveme-mi-casa). (4) Derecho Civil: contratos, indemnizaciones, cobro de deudas y Juzgado de Policía Local (santanaycia.cl/abogados)."
+          "text": "Santana & Cía Abogados se especializa en estas áreas de práctica: (1) Derecho de Familia: pensión de alimentos, divorcio, tuición y violencia intrafamiliar (santanaycia.cl/familia). (2) Herencias y Sucesiones: posesión efectiva, partición de bienes y testamentos (santanaycia.cl/legatum). (3) Arriendo bajo la Ley 21.461 Devuélveme mi Casa: juicio monitorio, cobro de rentas y restitución de inmueble (santanaycia.cl/devuelveme-mi-casa). (4) Derecho Civil: contratos, indemnizaciones, cobro de deudas y Juzgado de Policía Local (santanaycia.cl/abogados). (5) Propiedades y derecho inmobiliario: estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes (santanaycia.cl/propiedades)."
         }
       },
       {
@@ -750,6 +750,14 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
+    /* Tarjeta ancha (5.ª área): foto a la izquierda en escritorio */
+    @media (min-width: 769px) {
+      .area-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 42%) 1fr; column-gap: 2.2rem; padding: 0 2rem 0 0; }
+      .area-card.wide > * { grid-column: 2; }
+      .area-card.wide .area-photo { grid-column: 1; grid-row: 1 / span 5; height: auto; min-height: 230px; margin: 0; }
+      .area-card.wide .area-photo + .area-top { margin-top: 1.8rem; }
+      .area-card.wide .area-link { margin-bottom: 1.8rem; }
+    }
     @media (max-width: 968px) {
       nav { display: flex; justify-content: space-between; padding: 0.9rem 1.25rem; column-gap: 0.75rem; }
       .nav-links { display: none; }
@@ -869,7 +877,7 @@
       <div>
         <p class="hero-eyebrow">contacto@santanaycia.cl</p>
         <h1 class="hero-title" data-en="Lawyers for&lt;br&gt;what &lt;em class=&quot;t-opt&quot;&gt;truly&lt;/em&gt;&lt;br class=&quot;t-br&quot;&gt; &lt;span class=&quot;t-last&quot;&gt;matters&lt;/span&gt;">Abogados para<br>lo que <em class="t-opt">realmente</em><br class="t-br"> <span class="t-last">importa</span></h1>
-        <p class="hero-sub" data-en="Family, civil, estate and rental law. One firm, four practice areas, service across Chile.">Familia, civil, herencias y arriendo. Un solo estudio, cuatro áreas de práctica, atención en todo Chile.</p>
+        <p class="hero-sub" data-en="Family, civil, estate, rental and property law. One firm, service across Chile.">Familia, civil, herencias, arriendo y propiedades. Un solo estudio, atención en todo Chile.</p>
         <div class="hero-trust">
           <span data-en="Free Initial Assessment">Primera evaluación sin costo</span>
          
@@ -898,6 +906,7 @@
               <option data-en="Estates and successions">Herencias y sucesiones</option>
               <option data-en="Rental — Landlord Recovery Law">Arriendo — Devuélveme mi casa</option>
               <option data-en="Civil and contracts">Civil y contratos</option>
+              <option data-en="Property law">Propiedades — compra, venta y títulos</option>
               <option value="otro" data-en="Other">Otro</option>
             </select>
           </div>
@@ -927,7 +936,7 @@
   <section id="areas">
     <div class="section-inner">
       <span class="section-tag fade-in" data-en="Practice Areas">Áreas de práctica</span>
-      <h2 class="section-title fade-in" data-en="Four areas.&lt;br&gt;One &lt;em&gt;firm&lt;/em&gt;.">Cuatro áreas.<br>Un solo <em>estudio</em>.</h2>
+      <h2 class="section-title fade-in" data-en="Our &lt;em&gt;practice areas&lt;/em&gt;">Nuestras <em>áreas de práctica</em></h2>
       <p class="section-lead fade-in" data-en="We take on the cases we can handle in depth. Every client has direct access to the lawyer in charge, from the first conversation through resolution.">
         Seleccionamos los casos que podemos atender con profundidad. Cada cliente tiene acceso directo al abogado a cargo, desde la primera conversación hasta la resolución.
       </p>
@@ -992,6 +1001,21 @@
             <span data-en="Debt collection and Local Police Court">Cobro de deudas y Policía Local</span>
           </div>
           <span class="area-link" data-en="View civil law →">Ver área civil →</span>
+        </a>
+
+        <a href="https://www.santanaycia.cl/propiedades" class="area-card wide">
+          <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/37136626/pexels-photo-37136626.jpeg?auto=compress&cs=tinysrgb&w=1200')" aria-hidden="true"></div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 13l1.8 1.8L15 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="area-num">05</span>
+          </div>
+          <h3 data-en="Property Law">Propiedades</h3>
+          <p class="area-desc" data-en="Title reviews, purchases, inheritances and protection of your real estate, with every document in order.">Compraventas, títulos, herencias y defensa de tu inmueble, con cada documento en regla.</p>
+          <div class="area-list">
+            <span data-en="Title review, purchase agreements and deeds">Estudio de títulos, promesa y escritura</span>
+            <span data-en="Title corrections, inherited property, land seizures and boundaries">Corrección de títulos, herencias, tomas de terreno y deslindes</span>
+          </div>
+          <span class="area-link" data-en="View property law →">Ver área de propiedades →</span>
         </a>
 
         <a href="https://www.santanaycia.cl/legatum" class="area-card tool">
@@ -1104,7 +1128,7 @@
       <div class="faq-list fade-in">
         <details class="faq-item">
           <summary data-en="What areas of law does Santana &amp; Cía specialize in?">¿En qué áreas jurídicas se especializa Santana &amp; Cía Abogados?</summary>
-          <p data-en="Four areas: Family Law (child support, divorce, custody, domestic violence), Estates and Successions (probate, asset division, wills), Rental Law under Law 21.461 — Landlord Recovery Law (summary proceedings, rent collection, property restitution) and Civil Law (contracts, damages, debt collection, Local Police Court).">Cuatro áreas: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble) y Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local).</p>
+          <p data-en="Our practice areas: Family Law (child support, divorce, custody, domestic violence), Estates and Successions (probate, asset division, wills), Rental Law under Law 21.461 — Landlord Recovery Law (summary proceedings, rent collection, property restitution), Civil Law (contracts, damages, debt collection, Local Police Court) and Property Law (title review, purchases and sales, title clean-up, inherited property, land seizures and boundaries).">Nuestras áreas de práctica: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble), Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local) y Propiedades (estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes).</p>
         </details>
         <details class="faq-item">
           <summary data-en="Do you handle cases outside Santiago?">¿Atienden casos en regiones fuera de Santiago?</summary>
@@ -1148,6 +1172,7 @@
           <li><a href="https://www.santanaycia.cl/familia" data-en="Family">Familia</a></li>
           <li><a href="https://www.santanaycia.cl/legatum" data-en="Estates">Herencias</a></li>
           <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa" data-en="Rental">Arriendo</a></li>
+          <li><a href="https://www.santanaycia.cl/propiedades" data-en="Property law">Propiedades</a></li>
           <li><a href="https://www.santanaycia.cl/abogados" data-en="Civil">Civil</a></li>
         </ul>
       </div>
@@ -1267,6 +1292,8 @@
       btn.textContent = uiStrings[currentLang].sending;
       btn.disabled = true;
 
+      /* Código único por consulta: evita que Gmail agrupe correos con el mismo asunto */
+      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(5)), b => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b % 32]).join(''); // sin 0/O/1/I
       const payload = {
         access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
         subject:    'Nueva consulta — Santana & Cía Abogados',
@@ -1282,12 +1309,16 @@
         const res  = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ ...payload, subject: '#' + codigoConsulta + ' — ' + payload.subject, codigo_consulta: '#' + codigoConsulta })
         });
         const data = await res.json();
         if (data.success === true) {
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('hf-success').style.display = 'block';
+          const okCode = document.createElement('p');
+          okCode.style.cssText = 'margin-top:.8rem;font-weight:700;letter-spacing:.04em;color:inherit;';
+          okCode.textContent = (currentLang === 'en' ? 'Your inquiry code: #' : 'Código de su consulta: #') + codigoConsulta;
+          document.getElementById('hf-success').appendChild(okCode);
         } else throw new Error('error');
       } catch {
         btn.textContent = uiStrings[currentLang].submit;

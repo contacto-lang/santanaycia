@@ -811,6 +811,7 @@
             <a href="https://www.santanaycia.cl/familia">Familia</a>
             <a href="https://www.santanaycia.cl/legatum">Herencias</a>
             <a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a>
+            <a href="https://www.santanaycia.cl/propiedades">Propiedades</a>
             <a href="https://www.santanaycia.cl/abogados">Civil</a>
           </div>
         </div>
@@ -864,6 +865,13 @@
                   <option>Indemnización de perjuicios</option>
                   <option>Cobro de deuda</option>
                   <option>Accidente de tránsito / Policía Local</option>
+                </optgroup>
+                <optgroup label="Propiedades">
+                  <option>Compra de propiedad / estudio de títulos</option>
+                  <option>Venta de propiedad</option>
+                  <option>Corrección de inscripciones o terreno sin título</option>
+                  <option>Toma de terreno, cercos o deslindes</option>
+                  <option>Promesa incumplida o fallas de construcción</option>
                 </optgroup>
                 <option value="otro">Otro (lo describo abajo)</option>
               </select>
@@ -953,6 +961,7 @@
             <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
             <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
             <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a></li>
+            <li><a href="https://www.santanaycia.cl/propiedades">Propiedades</a></li>
             <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
           </ul>
         </div>
@@ -1071,6 +1080,8 @@
         }
       }
       btnLabel.textContent = 'Enviando…';
+      /* Código único por consulta: evita que Gmail agrupe correos con el mismo asunto */
+      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(5)), b => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b % 32]).join(''); // sin 0/O/1/I
       const payload = {
         access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
         subject:    'Nueva consulta — Página de Contacto Santana & Cía',
@@ -1086,12 +1097,16 @@
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ ...payload, subject: '#' + codigoConsulta + ' — ' + payload.subject, codigo_consulta: '#' + codigoConsulta })
         });
         const data = await res.json();
         if (data.success === true) {
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
+          const okCode = document.createElement('p');
+          okCode.style.cssText = 'margin-top:.8rem;font-weight:700;letter-spacing:.04em;color:inherit;';
+          okCode.textContent = 'Código de su consulta: #' + codigoConsulta;
+          document.getElementById('form-success').appendChild(okCode);
         } else throw new Error('error');
       } catch {
         btnLabel.textContent = LABEL; btn.disabled = false;

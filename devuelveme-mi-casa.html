@@ -766,6 +766,9 @@
     .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
     .cases-grid .service-card, .cases-grid .service-card:nth-child(4), .cases-grid .service-card:nth-child(5) { grid-column: auto; }
     .case-via { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 12.5px; font-weight: 600; color: var(--celeste-d); }
+    .cases-note { margin-top: 2rem; text-align: center; font-size: 14px; color: var(--muted); }
+    .cases-note a { color: var(--celeste-d); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--sky); }
+    .cases-note a:hover { border-color: var(--celeste); }
     .case-via::before { content: '→ '; color: var(--celeste); }
 
     /* ─────────────────────────────────────────
@@ -1274,6 +1277,7 @@
           <span class="case-via">Vía: cobro de perjuicios</span>
         </div>
       </div>
+      <p class="cases-note fi">¿Vas a comprar, vender o heredar una propiedad, o tienes un problema de títulos o deslindes? Eso lo vemos en <a href="https://www.santanaycia.cl/propiedades">asesoría inmobiliaria →</a></p>
     </div>
   </section>
 
@@ -1480,6 +1484,7 @@
           <h4>Áreas</h4>
           <ul>
             <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a></li>
+            <li><a href="https://www.santanaycia.cl/propiedades">Propiedades</a></li>
             <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
             <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
             <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
@@ -1650,6 +1655,8 @@
 
       setBtnState('Enviando…', true);
 
+      /* Código único por consulta: evita que Gmail agrupe correos con el mismo asunto */
+      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(5)), b => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[b % 32]).join(''); // sin 0/O/1/I
       const payload = {
         access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
         subject:    'Devuélveme mi casa — Santana & Cía Abogados',
@@ -1669,12 +1676,16 @@
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ ...payload, subject: '#' + codigoConsulta + ' — ' + payload.subject, codigo_consulta: '#' + codigoConsulta })
         });
         const data = await res.json();
         if (data.success === true) {
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
+          const okCode = document.createElement('p');
+          okCode.style.cssText = 'margin-top:.8rem;font-weight:700;letter-spacing:.04em;color:inherit;';
+          okCode.textContent = 'Código de su consulta: #' + codigoConsulta;
+          document.getElementById('form-success').appendChild(okCode);
         } else throw new Error('FormSubmit error');
       } catch {
         setBtnState(LABEL, false);
