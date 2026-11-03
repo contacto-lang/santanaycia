@@ -869,13 +869,6 @@
     #materia optgroup { font-weight: 700; color: var(--navy); }
     #materia option { font-weight: 400; color: var(--ink); }
     .upload-note { margin-top: 0.45rem; font-size: 11.5px; line-height: 1.5; color: var(--muted); }
-    .pref-label { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-    .pref-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .pref { flex: 1 1 0; min-width: 0; cursor: pointer; }
-    .pref input { position: absolute; opacity: 0; pointer-events: none; }
-    .pref span { display: block; text-align: center; padding: 0.55rem 0.5rem; border: 1px solid var(--border); border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); background: var(--pale); transition: all .15s; }
-    .pref input:checked + span { border-color: var(--celeste); background: var(--celeste-l); color: var(--celeste-d); }
-    .pref input:focus-visible + span { outline: 2px solid var(--celeste); outline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -1067,14 +1060,6 @@
               </div>
               <div class="file-list" id="file-list"></div>
               <p class="upload-note">Por ejemplo: certificado de dominio vigente, contrato de arriendo, promesa de compraventa, etc.</p>
-            </div>
-            <div class="f-group">
-              <span class="pref-label">¿Cómo prefiere que lo contactemos?</span>
-              <div class="pref-row" role="radiogroup" aria-label="Medio de contacto preferido">
-                <label class="pref"><input type="radio" name="preferencia" value="Correo" checked><span>Correo</span></label>
-                <label class="pref"><input type="radio" name="preferencia" value="WhatsApp"><span>WhatsApp</span></label>
-                <label class="pref"><input type="radio" name="preferencia" value="Videollamada"><span>Videollamada</span></label>
-              </div>
             </div>
 
             <div class="consent-row">
@@ -1509,7 +1494,6 @@
         materia,
         etapa:         document.getElementById('etapa').value || '—',
         relato,
-        contacto_preferido: (document.querySelector('input[name=preferencia]:checked') || {}).value || 'Correo',
         archivos:      linksArchivos || 'Sin adjuntos',
         pagina_origen: 'santanaycia.cl/propiedades',
       };
