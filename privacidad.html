@@ -136,6 +136,9 @@
     td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; color: #34485c; line-height: 1.55; }
     tr:last-child td { border-bottom: none; }
     td:first-child { font-weight: 600; color: var(--ink); }
+    .id-table { max-width: 520px; }
+    .id-table table { min-width: 0; }
+    .id-table td:first-child { width: 42%; color: var(--muted); font-weight: 600; }
     td small { display: block; color: var(--soft); font-size: 12px; margin-top: 2px; }
 
     .rights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1rem 0 1.4rem; }
@@ -317,7 +320,17 @@
 
       <section id="responsable">
         <h2><span class="num">01</span>Quiénes somos</h2>
-        <p>El responsable del tratamiento de sus datos personales es <strong>Santana &amp; Cía Abogados</strong>, estudio jurídico chileno que atiende de forma 100% remota en todo Chile y a chilenos en el extranjero. Puede contactarnos en <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>.</p>
+        <p>El responsable del tratamiento de sus datos personales es <strong>Santana &amp; Cía Abogados</strong>, estudio jurídico chileno que atiende de forma 100% remota en todo Chile y a chilenos en el extranjero.</p>
+        <div class="table-wrap id-table">
+          <table>
+            <tbody>
+              <tr><td>Razón social</td><td>Santana y Cía. SpA</td></tr>
+              <tr><td>Nombre de fantasía</td><td>Santana &amp; Cía Abogados</td></tr>
+              <tr><td>RUT</td><td>78.517.127-6</td></tr>
+              <tr><td>Correo</td><td><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></td></tr>
+            </tbody>
+          </table>
+        </div>
         <p>Esta política se aplica a los datos que recibimos a través de este sitio web y sus formularios, por correo electrónico, por WhatsApp, al agendar una videollamada y al firmar electrónicamente un contrato de servicios con el estudio.</p>
         <p>La aplicamos conforme a la <strong>Ley N° 19.628 sobre Protección de la Vida Privada</strong> y, desde ya, adoptamos los estándares de la <strong>Ley N° 21.719</strong>, que moderniza esa normativa, amplía los derechos de las personas y crea la Agencia de Protección de Datos Personales.</p>
       </section>
