@@ -862,6 +862,15 @@
   <style>
     /* Propiedades — complementos */
     #servicios { background: var(--white); scroll-margin-top: var(--nav-h); }
+    /* Hero: velo más liviano para que la foto se note más */
+    .hero::before {
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.93) 0%, rgba(255,255,255,0.82) 38%, rgba(245,249,253,0.35) 70%, rgba(235,244,251,0.15) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%, #fff 100%);
+    }
+    @media (max-width: 768px) {
+      .hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.95) 75%, #fff 100%); }
+    }
     .cases-note { margin-top: 2rem; text-align: center; font-size: 14px; color: var(--muted); }
     .cases-note a { color: var(--celeste-d); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--sky); }
     .cases-note a:hover { border-color: var(--celeste); }
