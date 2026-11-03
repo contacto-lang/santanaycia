@@ -1292,6 +1292,8 @@
       btn.textContent = uiStrings[currentLang].sending;
       btn.disabled = true;
 
+      /* Código único por consulta: evita que Gmail agrupe correos con el mismo asunto */
+      const codigoConsulta = Array.from(crypto.getRandomValues(new Uint8Array(9)), b => 'abcdefghijkmnpqrstuvwxyz23456789'[b % 32]).join('');
       const payload = {
         access_key: 'd7e35043-05c0-4a26-9565-2c55b0a024fa',
         subject:    'Nueva consulta — Santana & Cía Abogados',
@@ -1307,12 +1309,16 @@
         const res  = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ ...payload, subject: payload.subject + ' #' + codigoConsulta, codigo_consulta: '#' + codigoConsulta })
         });
         const data = await res.json();
         if (data.success === true) {
           document.getElementById('contacto-form').style.display = 'none';
           document.getElementById('hf-success').style.display = 'block';
+          const okCode = document.createElement('p');
+          okCode.style.cssText = 'margin-top:.8rem;font-weight:700;letter-spacing:.04em;color:inherit;';
+          okCode.textContent = (currentLang === 'en' ? 'Your inquiry code: #' : 'Código de su consulta: #') + codigoConsulta;
+          document.getElementById('hf-success').appendChild(okCode);
         } else throw new Error('error');
       } catch {
         btn.textContent = uiStrings[currentLang].submit;
