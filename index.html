@@ -273,7 +273,7 @@
         "name": "¿En qué áreas jurídicas se especializa Santana & Cía Abogados?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Santana & Cía Abogados se especializa en estas áreas de práctica: (1) Derecho de Familia: pensión de alimentos, divorcio, tuición y violencia intrafamiliar (santanaycia.cl/familia). (2) Herencias y Sucesiones: posesión efectiva, partición de bienes y testamentos (santanaycia.cl/legatum). (3) Arriendo bajo la Ley 21.461 Devuélveme mi Casa: juicio monitorio, cobro de rentas y restitución de inmueble (santanaycia.cl/devuelveme-mi-casa). (4) Derecho Civil: contratos, indemnizaciones, cobro de deudas y Juzgado de Policía Local (santanaycia.cl/abogados). (5) Propiedades y derecho inmobiliario: estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes (santanaycia.cl/propiedades)."
+          "text": "Santana & Cía Abogados se especializa en estas áreas de práctica: (1) Derecho de Familia: pensión de alimentos, divorcio, tuición y violencia intrafamiliar (santanaycia.cl/familia). (2) Herencias y Sucesiones: posesión efectiva, partición de bienes y testamentos (santanaycia.cl/legatum). (3) Arriendo bajo la Ley 21.461 Devuélveme mi Casa: juicio monitorio, cobro de rentas y restitución de inmueble (santanaycia.cl/devuelveme-mi-casa). (4) Derecho Civil: contratos, indemnizaciones, cobro de deudas y Juzgado de Policía Local (santanaycia.cl/abogados). (5) Propiedades y derecho inmobiliario: estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes (santanaycia.cl/propiedades). (6) Litigios de seguros contra aseguradoras, a través de nuestro sitio especializado exigetuseguro.cl."
         }
       },
       {
@@ -750,14 +750,6 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
-    /* Tarjeta ancha (5.ª área): foto a la izquierda en escritorio */
-    @media (min-width: 769px) {
-      .area-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 42%) 1fr; column-gap: 2.2rem; padding: 0 2rem 0 0; }
-      .area-card.wide > * { grid-column: 2; }
-      .area-card.wide .area-photo { grid-column: 1; grid-row: 1 / span 5; height: auto; min-height: 230px; margin: 0; }
-      .area-card.wide .area-photo + .area-top { margin-top: 1.8rem; }
-      .area-card.wide .area-link { margin-bottom: 1.8rem; }
-    }
     @media (max-width: 968px) {
       nav { display: flex; justify-content: space-between; padding: 0.9rem 1.25rem; column-gap: 0.75rem; }
       .nav-links { display: none; }
@@ -1003,7 +995,7 @@
           <span class="area-link" data-en="View civil law →">Ver área civil →</span>
         </a>
 
-        <a href="https://www.santanaycia.cl/propiedades" class="area-card wide">
+        <a href="https://www.santanaycia.cl/propiedades" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/37136626/pexels-photo-37136626.jpeg?auto=compress&cs=tinysrgb&w=1200')" aria-hidden="true"></div>
           <div class="area-top">
             <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 13l1.8 1.8L15 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1016,6 +1008,21 @@
             <span data-en="Title corrections, inherited property, land seizures and boundaries">Corrección de títulos, herencias, tomas de terreno y deslindes</span>
           </div>
           <span class="area-link" data-en="View property law →">Ver área de propiedades →</span>
+        </a>
+
+        <a href="https://www.exigetuseguro.cl" class="area-card" target="_blank" rel="noopener">
+          <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6863332/pexels-photo-6863332.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
+          <div class="area-top">
+            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5l7 2.8v5.2c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6.3l7-2.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="area-num">06</span>
+          </div>
+          <h3 data-en="Insurance Claims">Seguros</h3>
+          <p class="area-desc" data-en="When an insurer wrongly denies or underpays your claim, we take it on through our specialized site.">Cuando la aseguradora rechaza o paga menos de lo que corresponde, lo enfrentamos a través de nuestro sitio especializado.</p>
+          <div class="area-list">
+            <span data-en="Denied claims and underpayments">Siniestros rechazados o mal liquidados</span>
+            <span data-en="Life, health, home and vehicle insurance">Seguros de vida, salud, hogar y vehículos</span>
+          </div>
+          <span class="area-link" data-en="Go to exigetuseguro.cl →">Ir a exigetuseguro.cl →</span>
         </a>
 
         <a href="https://www.santanaycia.cl/legatum" class="area-card tool">
@@ -1128,7 +1135,7 @@
       <div class="faq-list fade-in">
         <details class="faq-item">
           <summary data-en="What areas of law does Santana &amp; Cía specialize in?">¿En qué áreas jurídicas se especializa Santana &amp; Cía Abogados?</summary>
-          <p data-en="Our practice areas: Family Law (child support, divorce, custody, domestic violence), Estates and Successions (probate, asset division, wills), Rental Law under Law 21.461 — Landlord Recovery Law (summary proceedings, rent collection, property restitution), Civil Law (contracts, damages, debt collection, Local Police Court) and Property Law (title review, purchases and sales, title clean-up, inherited property, land seizures and boundaries).">Nuestras áreas de práctica: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble), Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local) y Propiedades (estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes).</p>
+          <p data-en="Our practice areas: Family Law (child support, divorce, custody, domestic violence), Estates and Successions (probate, asset division, wills), Rental Law under Law 21.461 — Landlord Recovery Law (summary proceedings, rent collection, property restitution), Civil Law (contracts, damages, debt collection, Local Police Court) Property Law (title review, purchases and sales, title clean-up, inherited property, land seizures and boundaries) and Insurance litigation through our specialized site exigetuseguro.cl.">Nuestras áreas de práctica: Derecho de Familia (pensión de alimentos, divorcio, tuición, violencia intrafamiliar), Herencias y Sucesiones (posesión efectiva, partición de bienes, testamentos), Arriendo bajo la Ley 21.461 Devuélveme mi Casa (juicio monitorio, cobro de rentas, restitución de inmueble), Derecho Civil (contratos, indemnizaciones, cobro de deudas, Juzgado de Policía Local) Propiedades (estudio de títulos, compraventa, saneamiento, propiedades heredadas, tomas de terreno y deslindes) y litigios de seguros, a través de nuestro sitio especializado <a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener">exigetuseguro.cl</a>.</p>
         </details>
         <details class="faq-item">
           <summary data-en="Do you handle cases outside Santiago?">¿Atienden casos en regiones fuera de Santiago?</summary>
@@ -1173,6 +1180,7 @@
           <li><a href="https://www.santanaycia.cl/legatum" data-en="Estates">Herencias</a></li>
           <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa" data-en="Rental">Arriendo</a></li>
           <li><a href="https://www.santanaycia.cl/propiedades" data-en="Property law">Propiedades</a></li>
+          <li><a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener" data-en="Insurance">Seguros</a></li>
           <li><a href="https://www.santanaycia.cl/abogados" data-en="Civil">Civil</a></li>
         </ul>
       </div>
