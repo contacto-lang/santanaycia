@@ -119,6 +119,21 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
+          "name": "Indemnización por lesiones",
+          "description": "Si tú o tus acompañantes resultaron heridos, además del SOAP se reclaman al responsable los gastos médicos no cubiertos, los ingresos perdidos por licencia y el daño moral.",
+          "provider": {
+            "@id": "https://www.santanaycia.cl/#organization"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Chile"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
           "name": "Indemnización de daños",
           "description": "No tenías seguro o preferiste no usarlo. Reclamamos al responsable el costo de la reparación o el valor del vehículo si fue pérdida total.",
           "provider": {
@@ -134,8 +149,8 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Perjuicios adicionales",
-          "description": "El tiempo en el taller, el arriendo de un auto de reemplazo y la pérdida de valor de tu vehículo también son daños que se pueden reclamar, según la prueba.",
+          "name": "Lucro cesante y otros perjuicios",
+          "description": "El tiempo en el taller, el arriendo de un auto de reemplazo, la pérdida de valor del vehículo y, si es tu herramienta de trabajo, lo que dejaste de ganar.",
           "provider": {
             "@id": "https://www.santanaycia.cl/#organization"
           },
@@ -166,21 +181,6 @@
           "@type": "Service",
           "name": "Defensa y demanda civil",
           "description": "Te defendemos si te atribuyen la culpa del choque y, si el responsable fue el otro, presentamos tu demanda en el mismo juicio.",
-          "provider": {
-            "@id": "https://www.santanaycia.cl/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Chile"
-          }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Recupero para empresas",
-          "description": "Gestionamos los choques de tus vehículos de forma continua: reclamos, demandas y un reporte del estado de cada caso.",
           "provider": {
             "@id": "https://www.santanaycia.cl/#organization"
           },
@@ -277,7 +277,7 @@
       "name": "¿Qué daños puedo reclamar además de la reparación?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Según el caso y la prueba, puedes reclamar el deducible, la reparación, la pérdida total, los días que estuviste sin vehículo o el arriendo de uno de reemplazo, la desvalorización del auto y otros gastos que el choque te haya causado. Si hubo lesiones, también los gastos médicos y el daño moral."
+        "text": "Según el caso y la prueba, puedes reclamar el deducible, la reparación, la pérdida total, los días que estuviste sin vehículo o el arriendo de uno de reemplazo y la desvalorización del auto. Si el vehículo es tu herramienta de trabajo, como un taxi, un auto de aplicación o de reparto, también lo que dejaste de ganar mientras estuvo detenido (lucro cesante). Si hubo lesiones, se suman los gastos médicos, los ingresos perdidos por licencia y el daño moral."
       }
     },
     {
@@ -301,7 +301,7 @@
       "name": "¿El SOAP cubre los daños de mi auto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. El Seguro Obligatorio de Accidentes Personales (SOAP) cubre a las personas lesionadas o fallecidas en un accidente, no los daños materiales de los vehículos. Los daños del auto se reclaman al responsable o a su seguro de responsabilidad civil, si lo tiene."
+        "text": "No. El Seguro Obligatorio de Accidentes Personales (SOAP) cubre a las personas lesionadas o fallecidas en un accidente, no los daños materiales de los vehículos. Los daños del auto se reclaman al responsable o a su seguro de responsabilidad civil, si lo tiene. Y si hubo lesionados, lo que el SOAP no alcanza a cubrir, junto con el daño moral, también se puede reclamar al responsable."
       }
     },
     {
@@ -1004,6 +1004,7 @@
                 <option value="">¿Qué necesita recuperar o resolver? *</option>
                 <optgroup label="Personas">
                   <option>Recuperar el deducible que pagué a mi seguro</option>
+                  <option>Hubo lesionados (gastos médicos, licencia, daño moral)</option>
                   <option>Cobrar la reparación de mi vehículo (sin usar seguro)</option>
                   <option>Pérdida total de mi vehículo</option>
                   <option>Días sin auto o arriendo de reemplazo</option>
@@ -1053,6 +1054,30 @@
                   <option>No lo sé</option>
                   <option>Se dio a la fuga</option>
                   <option>No aplica (empresa / varios casos)</option>
+                </select>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="f-group">
+                <label class="f-label" for="cuando">¿Hace cuánto fue el accidente?</label>
+                <select id="cuando" name="cuando" class="f-input">
+                  <option value="">¿Hace cuánto fue?</option>
+                  <option>Menos de 1 semana</option>
+                  <option>1 a 4 semanas</option>
+                  <option>1 a 3 meses</option>
+                  <option>3 a 6 meses</option>
+                  <option>Más de 6 meses</option>
+                </select>
+              </div>
+              <div class="f-group">
+                <label class="f-label" for="monto">Monto aproximado de los daños</label>
+                <select id="monto" name="monto" class="f-input">
+                  <option value="">Monto aproximado</option>
+                  <option>Menos de $500.000</option>
+                  <option>$500.000 a $2.000.000</option>
+                  <option>$2.000.000 a $5.000.000</option>
+                  <option>Más de $5.000.000</option>
+                  <option>No lo sé aún</option>
                 </select>
               </div>
             </div>
@@ -1113,34 +1138,34 @@
           <span class="case-via">Cobro al responsable o a su seguro</span>
         </div>
         <div class="service-card fi" data-delay="1">
+          <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 9v7M8.5 12.5h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 5.5V4h6v1.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+          <h3 class="service-title">Hubo lesionados</h3>
+          <p class="service-desc">Si tú o tus acompañantes resultaron heridos, además del SOAP se reclaman al responsable los gastos médicos no cubiertos, los ingresos perdidos por licencia y el daño moral.</p>
+          <span class="case-via">Indemnización por lesiones</span>
+        </div>
+        <div class="service-card fi" data-delay="2">
           <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 13.5l1.6-4.3A2 2 0 018 8h8a2 2 0 011.9 1.2l1.6 4.3M3.5 13.5h17v4a1 1 0 01-1 1h-15a1 1 0 01-1-1v-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="16" r="1.2" fill="currentColor"/><circle cx="16.5" cy="16" r="1.2" fill="currentColor"/></svg></span>
           <h3 class="service-title">Reparación sin seguro propio</h3>
           <p class="service-desc">No tenías seguro o preferiste no usarlo. Reclamamos al responsable el costo de la reparación o el valor del vehículo si fue pérdida total.</p>
           <span class="case-via">Indemnización de daños</span>
         </div>
-        <div class="service-card fi" data-delay="2">
+        <div class="service-card fi">
           <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3 class="service-title">Días sin auto y desvalorización</h3>
-          <p class="service-desc">El tiempo en el taller, el arriendo de un auto de reemplazo y la pérdida de valor de tu vehículo también son daños que se pueden reclamar, según la prueba.</p>
-          <span class="case-via">Perjuicios adicionales</span>
+          <p class="service-desc">El tiempo en el taller, el arriendo de un auto de reemplazo, la pérdida de valor del vehículo y, si es tu herramienta de trabajo, lo que dejaste de ganar.</p>
+          <span class="case-via">Lucro cesante y otros perjuicios</span>
         </div>
-        <div class="service-card fi">
+        <div class="service-card fi" data-delay="1">
           <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4l9 15.5H3L12 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg></span>
           <h3 class="service-title">El otro no tenía seguro</h3>
           <p class="service-desc">Demandamos al conductor y al propietario del vehículo, que según la Ley de Tránsito responden solidariamente por los daños.</p>
           <span class="case-via">Demanda en Policía Local</span>
         </div>
-        <div class="service-card fi" data-delay="1">
+        <div class="service-card fi" data-delay="2">
           <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M13.5 4.5l6 6M11 7l6 6M12.2 5.8l-4.4 4.4M18.2 11.8l-4.4 4.4M10 12l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 20.5h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
           <h3 class="service-title">Te citaron al Juzgado de Policía Local</h3>
           <p class="service-desc">Te defendemos si te atribuyen la culpa del choque y, si el responsable fue el otro, presentamos tu demanda en el mismo juicio.</p>
           <span class="case-via">Defensa y demanda civil</span>
-        </div>
-        <div class="service-card fi" data-delay="2">
-          <span class="service-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2.5" y="7" width="11" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M13.5 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6.5" cy="17" r="1.7" stroke="currentColor" stroke-width="1.5"/><circle cx="16.5" cy="17" r="1.7" stroke="currentColor" stroke-width="1.5"/></svg></span>
-          <h3 class="service-title">Empresas con flota</h3>
-          <p class="service-desc">Gestionamos los choques de tus vehículos de forma continua: reclamos, demandas y un reporte del estado de cada caso.</p>
-          <span class="case-via">Recupero para empresas</span>
         </div>
       </div>
       <p class="cases-note fi">¿Tu propia aseguradora rechazó el siniestro o te pagó menos? Eso lo vemos en <a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener">exigetuseguro.cl →</a></p>
@@ -1270,7 +1295,7 @@
         </details>
         <details class="faq-item fi">
           <summary class="faq-q">¿Qué daños puedo reclamar además de la reparación?</summary>
-          <div class="faq-a-inner">Según el caso y la prueba, puedes reclamar el deducible, la reparación, la pérdida total, los días que estuviste sin vehículo o el arriendo de uno de reemplazo, la desvalorización del auto y otros gastos que el choque te haya causado. Si hubo lesiones, también los gastos médicos y el daño moral.</div>
+          <div class="faq-a-inner">Según el caso y la prueba, puedes reclamar el deducible, la reparación, la pérdida total, los días que estuviste sin vehículo o el arriendo de uno de reemplazo y la desvalorización del auto. Si el vehículo es tu herramienta de trabajo, como un taxi, un auto de aplicación o de reparto, también lo que dejaste de ganar mientras estuvo detenido (lucro cesante). Si hubo lesiones, se suman los gastos médicos, los ingresos perdidos por licencia y el daño moral.</div>
         </details>
         <details class="faq-item fi">
           <summary class="faq-q">¿Dónde se demanda un choque?</summary>
@@ -1282,7 +1307,7 @@
         </details>
         <details class="faq-item faq-more fi">
           <summary class="faq-q">¿El SOAP cubre los daños de mi auto?</summary>
-          <div class="faq-a-inner">No. El Seguro Obligatorio de Accidentes Personales (SOAP) cubre a las personas lesionadas o fallecidas en un accidente, no los daños materiales de los vehículos. Los daños del auto se reclaman al responsable o a su seguro de responsabilidad civil, si lo tiene.</div>
+          <div class="faq-a-inner">No. El Seguro Obligatorio de Accidentes Personales (SOAP) cubre a las personas lesionadas o fallecidas en un accidente, no los daños materiales de los vehículos. Los daños del auto se reclaman al responsable o a su seguro de responsabilidad civil, si lo tiene. Y si hubo lesionados, lo que el SOAP no alcanza a cubrir, junto con el daño moral, también se puede reclamar al responsable.</div>
         </details>
         <details class="faq-item faq-more fi">
           <summary class="faq-q">Me culpan del choque y me citaron al juzgado, ¿qué hago?</summary>
@@ -1521,6 +1546,8 @@
         region:        document.getElementById('region').value || '—',
         materia,
         seguro_tercero: document.getElementById('seguro').value || '—',
+        hace_cuanto:   document.getElementById('cuando').value || '—',
+        monto_aprox:   document.getElementById('monto').value || '—',
         relato,
         archivos:      linksArchivos || 'Sin adjuntos',
         pagina_origen: 'santanaycia.cl/accidentes-de-transito',
