@@ -354,7 +354,7 @@
           <h4>Contacto</h4>
           <ul>
             <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-            <li><a href="https://www.santanaycia.cl/pagar">Pagar en línea</a></li>
+            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
             <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
             <li><a href="https://www.santanaycia.cl/agendar-cita">Agendar videollamada</a></li>
           </ul>
@@ -377,7 +377,7 @@
       const WA = 'https://wa.me/56969051586?text=' + encodeURIComponent('Hola, necesito un enlace de pago de honorarios.');
       const msg = (t, p) => { bill.innerHTML = '<div class="bill-msg"><h1>' + t + '</h1><p>' + p + '</p><a class="btn" href="' + WA + '" target="_blank" rel="noopener">Escribir por WhatsApp</a></div>'; };
 
-      if (!c) return msg('Pague con su enlace personal', 'Para pagar en línea, abra el enlace de pago que le enviamos por WhatsApp o correo. Si no lo tiene, pídalo y se lo enviamos de inmediato.');
+      if (!c) { location.replace('/formas-de-pago'); return; }
 
       fetch('/api/cobro/ver?c=' + encodeURIComponent(c)).then(r => r.json()).then(d => {
         if (d.error) return msg('Enlace no válido', 'Este enlace de pago no es válido o fue modificado. Pídanos uno nuevo y se lo enviamos de inmediato.');

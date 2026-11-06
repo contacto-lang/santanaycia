@@ -52,3 +52,4 @@
 - Plazo de respuesta vigente: máximo 24 horas hábiles. Si alguna fuente indica otro plazo, este es el correcto.
 - Perfil de Google: https://g.page/r/CdBfZfZ1reROEBM
 - No se listan aquí páginas de uso interno del estudio (paneles de gestión, firma de documentos de clientes), que no están destinadas a indexación pública.
+- [Formas de pago](https://www.santanaycia.cl/formas-de-pago): Pago de honorarios con tarjeta de crédito, débito o prepago vía Webpay (Flow), hasta 6 cuotas sin interés, transferencia bancaria o plan de pago según acuerdo. El estudio envía un enlace de pago personal con el nombre, caso, código y monto. Valores con IVA incluido.
