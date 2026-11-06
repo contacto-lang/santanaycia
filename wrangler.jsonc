@@ -5,10 +5,19 @@
   "name": "santanaycia",
   "compatibility_date": "2026-04-19",
 
-  // Sirve los archivos estáticos directamente desde la carpeta raíz
+  // Worker: portal de pagos con Flow (/api/*). Todo lo demás son archivos estáticos.
+  "main": "worker.js",
+  "observability": { "enabled": true },
+
+  // Sirve los archivos estáticos desde la carpeta raíz (excluidos los de .assetsignore)
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
   },
+
+  // Claves de Flow: se cargan como secretos en Cloudflare, nunca en este archivo
+  // (FLOW_API_KEY y FLOW_SECRET_KEY). FLOW_API_URL es opcional (sandbox para pruebas).
 
   // Rutas — activa esto DESPUÉS de verificar que el Worker funciona
   // "routes": [
