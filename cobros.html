@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>Generar cobro | Santana &amp; Cía Abogados</title>
+  <meta name="description" content="Uso interno.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://www.santanaycia.cl/cobros">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.santanaycia.cl/cobros">
+  <meta property="og:title" content="Generar cobro | Santana &amp; Cía Abogados">
+  <meta property="og:description" content="Uso interno.">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:site_name" content="Santana &amp; Cía Abogados">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --pale: #f5f9fd; --pale-d: #eaf2f9; --sky: #cfe5f7;
+      --celeste: #2c86c9; --celeste-d: #1a65a0; --celeste-l: #e6f1fa;
+      --navy: #0e2740; --ink: #14263a; --muted: #5c7186; --soft: #8ea2b5;
+      --border: #dce7f1; --ok: #1f9d6b; --warn: #b7791f; --warn-l: #fdf6e7;
+      --radius: 10px; --maxw: 1180px; --nav-h: 72px;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+    a { color: var(--celeste-d); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 2rem; }
+
+    /* Top bar + nav */
+    .topbar { background: var(--navy); color: #c9d8e6; font-size: 12px; }
+    .topbar .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 36px; gap: 1rem; }
+    .topbar a { color: #e3eef8; text-decoration: none; margin-left: 1.4rem; }
+    .topbar a:hover { color: #fff; }
+    nav.main { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    nav.main .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); }
+    .nav-logo { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--navy); text-decoration: none; line-height: 1.05; }
+    .nav-logo span { display: block; font-family: var(--sans); font-size: 9.5px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--celeste); margin-top: 3px; }
+    .nav-back { font-size: 13px; font-weight: 600; color: var(--celeste-d); text-decoration: none; padding: 9px 18px; border: 1px solid var(--border); border-radius: 8px; transition: all .2s; }
+    .nav-back:hover { border-color: var(--celeste); background: var(--celeste-l); }
+
+    /* Header */
+    .page-head { background: linear-gradient(180deg, var(--pale) 0%, var(--white) 100%); border-bottom: 1px solid var(--border); padding: 3.5rem 0 3rem; }
+    .crumbs { font-size: 12.5px; color: var(--soft); margin-bottom: 1.1rem; }
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--celeste-d); }
+    .page-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--celeste); margin-bottom: 0.9rem; }
+    .page-tag::before { content: ''; width: 26px; height: 1.5px; background: var(--celeste); }
+    h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(38px, 5vw, 56px); line-height: 1.05; color: var(--navy); letter-spacing: -0.01em; }
+    h1 em { color: var(--celeste); }
+    .page-lead { max-width: 640px; margin-top: 1rem; font-size: 16px; color: var(--muted); }
+    .page-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .chip { font-size: 12px; font-weight: 600; color: var(--muted); background: var(--white); border: 1px solid var(--border); border-radius: 30px; padding: 5px 12px; }
+
+    /* Resumen */
+    .summary { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .sum-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.2rem 1.1rem; box-shadow: 0 2px 10px rgba(14,39,64,0.04); }
+    .sum-ico { width: 38px; height: 38px; border-radius: 9px; background: var(--celeste-l); color: var(--celeste-d); display: grid; place-items: center; margin-bottom: 0.8rem; }
+    .sum-ico svg { width: 19px; height: 19px; }
+    .sum-card strong { display: block; font-size: 14px; color: var(--navy); margin-bottom: 0.25rem; }
+    .sum-card p { font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    /* Layout */
+    .layout { display: grid; grid-template-columns: 250px 1fr; gap: 4rem; padding: 3.5rem 0 4.5rem; align-items: start; }
+    .layout > * { min-width: 0; }
+    .toc { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+    .toc-title { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.8rem; }
+    .toc ol { list-style: none; counter-reset: toc; border-left: 1px solid var(--border); }
+    .toc li { counter-increment: toc; }
+    .toc a { display: flex; gap: 10px; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; font-size: 13px; color: var(--muted); text-decoration: none; line-height: 1.4; transition: color .15s, border-color .15s; }
+    .toc a::before { content: counter(toc, decimal-leading-zero); font-weight: 700; color: var(--soft); font-size: 11.5px; padding-top: 1px; }
+    .toc a:hover { color: var(--celeste-d); }
+    .toc a.active { color: var(--navy); font-weight: 600; border-left-color: var(--celeste); }
+    .toc a.active::before { color: var(--celeste); }
+    .toc-m { display: none; }
+
+    /* Secciones */
+    .policy section { padding-bottom: 2.6rem; margin-bottom: 2.6rem; border-bottom: 1px solid var(--border); scroll-margin-top: calc(var(--nav-h) + 1rem); }
+    .policy section:last-of-type { border-bottom: none; margin-bottom: 0; }
+    .policy h2 { display: flex; align-items: baseline; gap: 0.8rem; font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3vw, 31px); line-height: 1.15; color: var(--navy); margin-bottom: 1.1rem; }
+    .policy h2 .num { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--celeste); background: var(--celeste-l); border-radius: 6px; padding: 3px 8px; transform: translateY(-4px); }
+    .policy h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin: 1.5rem 0 0.5rem; }
+    .policy p { color: #34485c; margin-bottom: 0.9rem; }
+    .policy ul { list-style: none; margin: 0.4rem 0 1rem; }
+    .policy ul li { position: relative; padding-left: 1.4rem; margin-bottom: 0.5rem; color: #34485c; }
+    .policy ul li::before { content: ''; position: absolute; left: 0.25rem; top: 0.68em; width: 6px; height: 6px; border-radius: 50%; background: var(--celeste); }
+    .policy strong { color: var(--ink); font-weight: 600; }
+
+    .note { background: var(--pale); border: 1px solid var(--border); border-left: 3px solid var(--celeste); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.1rem 0; }
+    .note p:last-child { margin-bottom: 0; }
+    .note.warn { background: var(--warn-l); border-color: #f1dfb6; border-left-color: var(--warn); }
+    .note-title { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--celeste-d); margin-bottom: 0.3rem; }
+    .note.warn .note-title { color: var(--warn); }
+
+    .table-wrap { overflow-x: auto; margin: 1rem 0 1.2rem; border: 1px solid var(--border); border-radius: var(--radius); }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
+    th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--pale); padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; color: #34485c; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: 600; color: var(--ink); }
+    .id-table { max-width: 520px; }
+    .id-table table { min-width: 0; }
+    .id-table td:first-child { width: 42%; color: var(--muted); font-weight: 600; }
+    td small { display: block; color: var(--soft); font-size: 12px; margin-top: 2px; }
+
+    .rights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin: 1rem 0 1.4rem; }
+    .right { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.95rem 1.1rem; background: var(--white); }
+    .right strong { display: block; font-size: 14px; color: var(--navy); margin-bottom: 0.15rem; }
+    .right span { font-size: 13px; color: var(--muted); line-height: 1.5; display: block; }
+    .right .tag { display: inline-block; margin-top: 0.45rem; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--celeste-d); background: var(--celeste-l); border-radius: 4px; padding: 2px 6px; }
+
+    .steps-list { counter-reset: st; list-style: none; margin: 0.6rem 0 1rem; }
+    .steps-list li { counter-increment: st; position: relative; padding-left: 2.4rem; margin-bottom: 0.75rem; color: #34485c; }
+    .steps-list li::before { content: counter(st); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+
+    .contact-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1rem 0; }
+    .contact-card a, .contact-card div { display: block; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; text-decoration: none; background: var(--pale); }
+    .contact-card a:hover { border-color: var(--celeste); }
+    .contact-card small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.2rem; }
+    .contact-card span { font-size: 14px; font-weight: 600; color: var(--navy); word-break: break-word; }
+
+    .version { margin-top: 2.4rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; font-size: 12.5px; color: var(--soft); padding-top: 1.4rem; border-top: 1px solid var(--border); }
+    .version a { font-weight: 600; text-decoration: none; }
+
+    /* Footer */
+    footer { background: var(--navy); color: #b9cadb; padding: 3rem 0 1.6rem; font-size: 13.5px; }
+    .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; }
+    footer .nav-logo { color: #fff; }
+    footer .nav-logo span { color: #8cc6ef; }
+    .footer-brand p { margin-top: 0.9rem; max-width: 290px; line-height: 1.6; color: #9fb3c7; }
+    footer h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; margin-bottom: 0.9rem; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 0.45rem; }
+    footer a { color: #b9cadb; text-decoration: none; }
+    footer a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.4rem; padding-top: 1.3rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #8ea2b5; }
+
+    @media (max-width: 1024px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .layout { grid-template-columns: 1fr; gap: 0; padding-top: 2rem; }
+      .toc { display: none; }
+      .toc-m { display: block; margin-bottom: 2rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--pale); }
+      .toc-m summary { cursor: pointer; list-style: none; padding: 0.9rem 1.1rem; font-size: 13.5px; font-weight: 700; color: var(--navy); display: flex; justify-content: space-between; }
+      .toc-m summary::-webkit-details-marker { display: none; }
+      .toc-m summary::after { content: '+'; color: var(--celeste); font-size: 18px; line-height: 1; }
+      .toc-m[open] summary::after { content: '–'; }
+      .toc-m ol { margin: 0 1.1rem 1rem 2.3rem; font-size: 13.5px; }
+      .toc-m li { margin-bottom: 0.35rem; }
+      .toc-m a { text-decoration: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 14.5px; }
+      .wrap { padding: 0 16px; }
+      :root { --nav-h: 60px; }
+      .topbar-left { display: none; }
+      .topbar .wrap { justify-content: center; }
+      .topbar a { margin: 0 0.6rem; }
+      .nav-logo { font-size: 20px; }
+      .nav-back { font-size: 12px; padding: 7px 12px; }
+      .page-head { padding: 2.2rem 0 2rem; }
+      .summary { grid-template-columns: 1fr; gap: 0.6rem; margin-top: 1.6rem; }
+      .sum-card { display: grid; grid-template-columns: 38px 1fr; gap: 0 0.9rem; padding: 0.9rem 1rem; }
+      .sum-ico { margin-bottom: 0; grid-row: span 2; }
+      .rights, .contact-card { grid-template-columns: 1fr; }
+      .table-wrap { border: none; overflow: visible; }
+      table, tbody, tr, td { display: block; min-width: 0; width: 100%; }
+      thead { display: none; }
+      tr { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; padding: 0.8rem 0.95rem; background: var(--white); }
+      td { border: none; padding: 0; }
+      td:first-child { color: var(--navy); margin-bottom: 0.25rem; }
+      td small { display: inline; margin-left: 0.4rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.6rem; }
+    }
+    @media print {
+      .topbar, nav.main, .toc, .toc-m, footer, .nav-back { display: none !important; }
+      .layout { grid-template-columns: 1fr; padding: 1rem 0; }
+      .page-head { background: none; padding: 1rem 0; }
+      .summary { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <style>
+    .pay-wrap { display: grid; grid-template-columns: 1fr 420px; gap: 3.5rem; padding-top: 3rem; padding-bottom: 4.5rem; align-items: start; }
+    .pay-info h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; color: var(--navy); margin-bottom: 0.8rem; }
+    .pay-info p { color: #34485c; margin-bottom: 0.9rem; }
+    .pay-steps { list-style: none; counter-reset: st; margin: 1.2rem 0 1.6rem; }
+    .pay-steps li { counter-increment: st; position: relative; padding-left: 2.4rem; margin-bottom: 0.85rem; color: #34485c; }
+    .pay-steps li::before { content: counter(st); position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+    .pay-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .pay-badges span { font-size: 12px; font-weight: 600; color: var(--muted); background: var(--pale); border: 1px solid var(--border); border-radius: 30px; padding: 5px 12px; }
+    .pay-note { background: var(--pale); border: 1px solid var(--border); border-left: 3px solid var(--celeste); border-radius: 8px; padding: 1rem 1.2rem; font-size: 13.5px; color: #34485c; margin-top: 1.4rem; }
+
+    .pay-card { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--celeste); border-radius: 12px; box-shadow: 0 18px 40px -22px rgba(14,39,64,0.35); padding: 1.6rem 1.6rem 1.3rem; position: sticky; top: calc(var(--nav-h) + 1.2rem); }
+    .pay-card h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; color: var(--navy); line-height: 1.1; }
+    .pay-card .sub { font-size: 13px; color: var(--muted); margin: 0.3rem 0 1.2rem; }
+    .f { margin-bottom: 0.85rem; }
+    .f label { display: block; font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+    .f label small { font-weight: 500; color: var(--soft); }
+    .f input, .f select { width: 100%; font: inherit; font-size: 14.5px; color: var(--ink); background: var(--pale); border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; transition: border-color .15s, background .15s; }
+    .f input:focus, .f select:focus { outline: none; border-color: var(--celeste); background: #fff; }
+    .f-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .amount { position: relative; }
+    .amount span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--muted); }
+    .amount input { padding-left: 26px; font-size: 20px; font-weight: 700; letter-spacing: 0.01em; }
+    .iva { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+    .chk { display: flex; gap: 9px; align-items: flex-start; font-size: 12.5px; color: #34485c; line-height: 1.5; margin: 0.9rem 0 0.4rem; cursor: pointer; }
+    .chk input { margin-top: 2px; width: 15px; height: 15px; accent-color: var(--celeste); flex-shrink: 0; }
+    .btn-pay { width: 100%; margin-top: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--celeste); color: #fff; border: none; border-radius: 9px; padding: 14px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .btn-pay:hover { background: var(--celeste-d); }
+    .btn-pay[disabled] { opacity: .65; cursor: wait; }
+    .btn-pay svg { width: 18px; height: 18px; }
+    .err { display: none; margin-top: 0.7rem; font-size: 13px; color: #b42318; background: #fef3f2; border: 1px solid #fecdca; border-radius: 8px; padding: 9px 11px; }
+    .secure { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 0.9rem; font-size: 11.5px; color: var(--soft); }
+    .secure svg { width: 13px; height: 13px; }
+
+    .res { max-width: 620px; margin: 0 auto; text-align: center; padding-top: 4rem; padding-bottom: 5rem; }
+    .res-ico { width: 74px; height: 74px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 1.4rem; }
+    .res-ico svg { width: 34px; height: 34px; }
+    .res-ico.ok { background: #e7f6ee; color: #1f9d6b; }
+    .res-ico.wait { background: #fdf6e7; color: #b7791f; }
+    .res-ico.bad { background: #fef3f2; color: #b42318; }
+    .res h1 { font-size: clamp(34px, 4.5vw, 46px); }
+    .res p { color: #34485c; margin-top: 0.9rem; }
+    .res .meta { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.4rem; }
+    .res .meta span { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--pale); border: 1px solid var(--border); border-radius: 30px; padding: 6px 14px; }
+    .res .acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 2rem; }
+    .res .acts a { text-decoration: none; font-weight: 700; font-size: 14px; border-radius: 8px; padding: 12px 20px; }
+    .res .acts .pri { background: var(--celeste); color: #fff; }
+    .res .acts .sec { border: 1px solid var(--border); color: var(--navy); }
+
+    @media (max-width: 960px) {
+      .pay-wrap { grid-template-columns: 1fr; gap: 2rem; padding-top: 2rem; padding-bottom: 3rem; }
+      .pay-card { position: static; order: -1; }
+    }
+  </style>
+  <style>
+    .bill-wrap { padding-top: 3rem; padding-bottom: 4.5rem; display: grid; place-items: start center; }
+    .bill { width: 100%; max-width: 560px; background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px -30px rgba(14,39,64,0.45); overflow: hidden; }
+    .bill-top { background: var(--navy); color: #fff; padding: 1.6rem 1.8rem 1.4rem; }
+    .bill-top small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #8cc6ef; }
+    .bill-top h1 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.1; color: #fff; margin-top: 0.4rem; }
+    .bill-top p { color: rgba(255,255,255,0.72); font-size: 14px; margin-top: 0.35rem; }
+    .bill-body { padding: 1.5rem 1.8rem 1.6rem; }
+    .bill-rows { list-style: none; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .bill-rows li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 1rem; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .bill-rows li:last-child { border-bottom: none; }
+    .bill-rows span { color: var(--muted); }
+    .bill-rows b { color: var(--ink); font-weight: 600; text-align: right; }
+    .bill-total { display: flex; justify-content: space-between; align-items: baseline; margin: 1.3rem 0 0.2rem; }
+    .bill-total span { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .bill-total strong { font-family: var(--serif); font-size: 42px; font-weight: 600; color: var(--navy); line-height: 1; }
+    .bill-iva { text-align: right; font-size: 12px; color: var(--muted); }
+    .bill-btn { width: 100%; margin-top: 1.3rem; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--celeste); color: #fff; border: none; border-radius: 10px; padding: 16px; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .bill-btn:hover { background: var(--celeste-d); }
+    .bill-btn[disabled] { opacity: .65; cursor: wait; }
+    .bill-btn svg { width: 19px; height: 19px; }
+    .bill-foot { margin-top: 1rem; font-size: 12px; color: var(--soft); text-align: center; line-height: 1.6; }
+    .bill-foot svg { width: 12px; height: 12px; vertical-align: -1px; }
+    .bill-msg { text-align: center; padding: 2.2rem 1.8rem; }
+    .bill-msg h1 { font-size: 30px; }
+    .bill-msg p { color: #34485c; margin-top: 0.7rem; }
+    .bill-msg a.btn { display: inline-block; margin-top: 1.3rem; background: var(--celeste); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 8px; }
+    .err { display: none; margin-top: 0.8rem; font-size: 13px; color: #b42318; background: #fef3f2; border: 1px solid #fecdca; border-radius: 8px; padding: 9px 11px; }
+
+    .adm { max-width: 760px; margin: 0 auto; padding-top: 2.5rem; padding-bottom: 4rem; }
+    .adm-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; margin-bottom: 1.2rem; }
+    .adm-card h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; color: var(--navy); margin-bottom: 1rem; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .f { margin-bottom: 0.85rem; }
+    .f label { display: block; font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+    .f label small { font-weight: 500; color: var(--soft); }
+    .f input, .f select { width: 100%; font: inherit; font-size: 14.5px; color: var(--ink); background: var(--pale); border: 1px solid var(--border); border-radius: 8px; padding: 11px 12px; }
+    .f input:focus, .f select:focus { outline: none; border-color: var(--celeste); background: #fff; }
+    .adm-btn { background: var(--navy); color: #fff; border: none; border-radius: 8px; padding: 13px 20px; font: inherit; font-weight: 700; cursor: pointer; }
+    .adm-btn.sec { background: #fff; color: var(--navy); border: 1px solid var(--border); }
+    .out { display: none; }
+    .out textarea { width: 100%; font: 13px/1.5 ui-monospace, Menlo, monospace; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--pale); resize: vertical; }
+    .out .acts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+    .out .acts a, .out .acts button { text-decoration: none; font: inherit; font-size: 14px; font-weight: 700; border-radius: 8px; padding: 11px 16px; cursor: pointer; border: 1px solid var(--border); background: #fff; color: var(--navy); }
+    .out .acts .wa { background: #25d366; border-color: #25d366; color: #fff; }
+    .ok-msg { font-size: 13px; color: #1f9d6b; margin-left: 0.4rem; }
+    @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; gap: 0; } .bill-top h1 { font-size: 26px; } .bill-total strong { font-size: 36px; } }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="topbar-left">Atención remota en todo Chile</span>
+      <span>
+        <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
+        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a>
+      </span>
+    </div>
+  </div>
+
+  <nav class="main">
+    <div class="wrap">
+      <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
+      <span class="nav-back">Generador de cobros · uso interno</span>
+    </div>
+  </nav>
+
+  <main class="wrap adm">
+    <div class="adm-card">
+      <h2>Nuevo cobro</h2>
+      <form id="f" novalidate>
+        <div class="g2">
+          <div class="f"><label for="nombre">Nombre del cliente *</label><input id="nombre" required maxlength="80"></div>
+          <div class="f"><label for="email">Correo del cliente * <small>(recibe el comprobante)</small></label><input id="email" type="email" required maxlength="120"></div>
+        </div>
+        <div class="g2">
+          <div class="f"><label for="caso">Nombre del caso <small>(opcional)</small></label><input id="caso" maxlength="90" placeholder="Divorcio de mutuo acuerdo"></div>
+          <div class="f"><label for="codigo">Código <small>(vacío = se genera)</small></label><input id="codigo" maxlength="12" placeholder="K3X9M"></div>
+        </div>
+        <div class="g2">
+          <div class="f"><label for="concepto">Concepto</label>
+            <select id="concepto"><option>Honorarios</option><option>Consulta</option><option>Abono de honorarios</option><option>Cuota de honorarios</option><option>Gastos del juicio</option></select></div>
+          <div class="f"><label for="monto">Monto con IVA (CLP) *</label><input id="monto" inputmode="numeric" required placeholder="150.000"></div>
+        </div>
+        <div class="g2">
+          <div class="f"><label for="dias">Vence en</label>
+            <select id="dias"><option value="7">7 días</option><option value="15">15 días</option><option value="30" selected>30 días</option><option value="60">60 días</option></select></div>
+          <div class="f"><label for="clave">Contraseña *</label><input id="clave" type="password" autocomplete="current-password" required></div>
+        </div>
+        <button class="adm-btn" type="submit" id="go">Generar enlace de pago</button>
+        <div class="err" id="err"></div>
+      </form>
+    </div>
+
+    <div class="adm-card out" id="out">
+      <h2>Enlace listo</h2>
+      <textarea id="msg" rows="6"></textarea>
+      <div class="acts">
+        <button type="button" id="copy">Copiar mensaje</button>
+        <a id="wa" class="wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+        <a id="mail" target="_blank" rel="noopener">Enviar por correo</a>
+        <a id="prev" target="_blank" rel="noopener">Ver como cliente</a>
+        <span class="ok-msg" id="okc"></span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const $ = id => document.getElementById(id);
+      const fmt = v => v.replace(/[^\d]/g, '').replace(/^0+/, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      $('monto').addEventListener('input', () => { $('monto').value = fmt($('monto').value); });
+      try { $('clave').value = localStorage.getItem('sc_cobros_clave') || ''; } catch (e) {}
+      $('f').addEventListener('submit', async e => {
+        e.preventDefault();
+        const err = $('err'); err.style.display = 'none';
+        const body = { nombre: $('nombre').value, email: $('email').value, caso: $('caso').value, codigo: $('codigo').value,
+          concepto: $('concepto').value, monto: $('monto').value.replace(/\./g, ''), dias: $('dias').value, clave: $('clave').value };
+        $('go').disabled = true;
+        try {
+          const r = await fetch('/api/cobro/crear', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+          const j = await r.json().catch(() => ({}));
+          if (!r.ok || !j.link) throw new Error(j.error || 'No se pudo generar el enlace.');
+          try { localStorage.setItem('sc_cobros_clave', body.clave); } catch (e) {}
+          const nombre = body.nombre.trim().split(' ')[0];
+          const venc = new Date(j.expira + 'T12:00:00').toLocaleDateString('es-CL', { day: 'numeric', month: 'long' });
+          const texto = `Hola ${nombre}, le enviamos el enlace para pagar ${body.concepto.toLowerCase()}${body.caso ? ' de su caso ' + body.caso : ''} (código #${j.codigo}) por $${Number(j.monto).toLocaleString('es-CL')}, IVA incluido. Puede pagar con tarjeta de crédito o débito hasta el ${venc}:\n\n${j.link}\n\nSantana & Cía Abogados`;
+          $('msg').value = texto;
+          $('wa').href = 'https://wa.me/?text=' + encodeURIComponent(texto);
+          $('mail').href = 'mailto:' + encodeURIComponent(body.email) + '?subject=' + encodeURIComponent('Pago de honorarios #' + j.codigo + ' — Santana & Cía Abogados') + '&body=' + encodeURIComponent(texto);
+          $('prev').href = j.link;
+          $('codigo').value = j.codigo;
+          $('out').style.display = 'block'; $('out').scrollIntoView({ behavior: 'smooth' });
+        } catch (x) { err.textContent = x.message; err.style.display = 'block'; }
+        $('go').disabled = false;
+      });
+      $('copy').addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText($('msg').value); } catch (e) { $('msg').select(); document.execCommand('copy'); }
+        $('okc').textContent = 'Copiado'; setTimeout(() => $('okc').textContent = '', 2000);
+      });
+    })();
+  </script>
+</body>
+</html>

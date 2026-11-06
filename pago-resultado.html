@@ -329,13 +329,14 @@
       const estado = q.get('estado') || 'error';
       const orden = q.get('orden'); const monto = Number(q.get('monto') || 0);
       const I = { ok: '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>', wait: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>', bad: '<svg viewBox="0 0 24 24" fill="none"><path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' };
+      let VOLVER = 'https://wa.me/56969051586'; try { VOLVER = sessionStorage.getItem('sc_ultimo_cobro') || VOLVER; } catch (e) {}
       const WA = '<a class="sec" href="https://wa.me/56969051586" target="_blank" rel="noopener">Escribir por WhatsApp</a>';
       const V = {
         pagado:    ['ok',   'Pago recibido',          'Gracias. Su pago fue aprobado y Flow le enviará el comprobante a su correo. Le enviaremos la boleta o factura correspondiente.', '<a class="pri" href="https://www.santanaycia.cl/">Volver al inicio</a>' + WA],
-        pendiente: ['wait', 'Pago pendiente',         'Su pago aún no se confirma. Si eligió un medio que se paga después (por ejemplo, transferencia o cupón), complételo y recibirá la confirmación por correo.', '<a class="pri" href="https://www.santanaycia.cl/pagar">Intentar de nuevo</a>' + WA],
-        rechazado: ['bad',  'El pago no se completó', 'La transacción fue rechazada por el medio de pago. No se realizó ningún cargo. Puede intentarlo nuevamente con otra tarjeta.', '<a class="pri" href="https://www.santanaycia.cl/pagar">Intentar de nuevo</a>' + WA],
-        anulado:   ['bad',  'Pago anulado',           'La transacción fue anulada y no se realizó ningún cargo.', '<a class="pri" href="https://www.santanaycia.cl/pagar">Intentar de nuevo</a>' + WA],
-        error:     ['bad',  'No pudimos confirmar el pago', 'Hubo un problema al consultar el estado de su pago. Si se realizó un cargo, recibirá el comprobante de Flow en su correo. Escríbanos y lo revisamos.', WA + '<a class="pri" href="https://www.santanaycia.cl/pagar">Volver a pagar</a>']
+        pendiente: ['wait', 'Pago pendiente',         'Su pago aún no se confirma. Si eligió un medio que se paga después (por ejemplo, transferencia o cupón), complételo y recibirá la confirmación por correo.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
+        rechazado: ['bad',  'El pago no se completó', 'La transacción fue rechazada por el medio de pago. No se realizó ningún cargo. Puede intentarlo nuevamente con otra tarjeta.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
+        anulado:   ['bad',  'Pago anulado',           'La transacción fue anulada y no se realizó ningún cargo.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
+        error:     ['bad',  'No pudimos confirmar el pago', 'Hubo un problema al consultar el estado de su pago. Si se realizó un cargo, recibirá el comprobante de Flow en su correo. Escríbanos y lo revisamos.', WA + '<a class="pri" href="' + VOLVER + '">Volver a intentar</a>']
       };
       const v = V[estado] || V.error;
       const ico = document.getElementById('ico'); ico.className = 'res-ico ' + v[0]; ico.innerHTML = I[v[0]];
@@ -343,6 +344,9 @@
       document.getElementById('txt').textContent = v[2];
       document.getElementById('acts').innerHTML = v[3];
       const meta = [];
+      const caso = q.get('caso'), codigo = q.get('codigo');
+      if (caso) meta.push(caso);
+      if (codigo) meta.push(codigo);
       if (orden) meta.push('Orden ' + orden);
       if (monto) meta.push('$' + monto.toLocaleString('es-CL'));
       document.getElementById('meta').innerHTML = meta.map(m => '<span>' + m.replace(/[<>&]/g, '') + '</span>').join('');

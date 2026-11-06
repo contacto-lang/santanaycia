@@ -6,6 +6,9 @@ Allow: /
 
 # Bloquear carpetas de sistema si las hubiera
 Disallow: /cdn-cgi/
+Disallow: /cobros
+Disallow: /pagar
+Disallow: /pago-resultado
 
 # Crawlers de IA — permitir para indexación y citación
 User-agent: GPTBot
