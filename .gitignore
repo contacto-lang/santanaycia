@@ -1,0 +1,5 @@
+# Claves locales de prueba de Wrangler: nunca subir
+.dev.vars
+.wrangler/
+node_modules/
+_t.html

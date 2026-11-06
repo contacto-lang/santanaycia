@@ -1,0 +1,10 @@
+# Archivos del repositorio que no deben publicarse como parte del sitio
+worker.js
+wrangler.jsonc
+.assetsignore
+.git
+.gitignore
+.dev.vars
+node_modules
+package.json
+package-lock.json
