@@ -410,12 +410,34 @@
     .fp-hero h1 em { font-style: italic; color: #7cbef0; }
     .fp-lead { max-width: 520px; margin-top: 1.2rem; font-size: 16.5px; line-height: 1.7; color: rgba(255,255,255,0.74); }
     .fp-brands { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.8rem; padding: 0; list-style: none; }
-    .fp-brands li { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 13px; }
+    .fp-brands li:hover { border-color: rgba(124,190,240,0.6); background: rgba(124,190,240,0.08); }
+    .fp-brands li { animation: fpUp .6s cubic-bezier(.2,.7,.2,1) both; transition: border-color .25s, background .25s; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.18); border-radius: 30px; padding: 6px 13px; }
 
-    .fp-visual { position: relative; height: 270px; }
-    .fp-cc { position: absolute; width: 340px; max-width: 88%; aspect-ratio: 1.586; border-radius: 18px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
-    .fp-cc.back { right: 0; top: 0; transform: rotate(7deg); background: linear-gradient(135deg, #2c86c9, #1a65a0); opacity: 0.55; }
-    .fp-cc.front { left: 4%; bottom: 0; transform: rotate(-4deg); background: linear-gradient(140deg, #1d4a74 0%, #12304f 55%, #0b2036 100%); border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6); }
+    .fp-visual { position: relative; height: 270px; perspective: 1100px; }
+    .fp-float { position: absolute; inset: 0; animation: fpFloat 7s ease-in-out 1.4s infinite; }
+    .fp-stack { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+    .fp-cc { position: absolute; width: 340px; max-width: 88%; aspect-ratio: 1.586; border-radius: 18px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform .7s cubic-bezier(.2,.7,.2,1), box-shadow .7s ease; }
+
+    /* Reverso de la tarjeta: banda magnética, firma, CVV y holograma */
+    .fp-cc.back { right: 0; top: 0; padding: 0; overflow: hidden; transform: rotate(7deg); background: linear-gradient(150deg, #3a95d8 0%, #1f6fae 55%, #175a8f 100%); border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 24px 50px -28px rgba(0,0,0,0.55); animation: fpBackIn 1s cubic-bezier(.2,.7,.2,1) .15s backwards; }
+    .fp-cc.back::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px); }
+    .fp-stripe { position: absolute; left: 0; right: 0; top: 13%; height: 19%; background: linear-gradient(180deg, #0b1a2a, #13283d); }
+    .fp-sign { position: absolute; left: 7%; top: 41%; width: 58%; height: 15%; border-radius: 3px; background: repeating-linear-gradient(-45deg, #f3f7fb 0 6px, #e1eaf3 6px 12px); }
+    .fp-cvv { position: absolute; left: 67%; top: 41%; width: 15%; height: 15%; border-radius: 3px; background: #fff; display: grid; place-items: center; font: italic 700 12px/1 var(--sans); color: #1a3550; letter-spacing: 0.06em; }
+    .fp-holo { position: absolute; right: 7%; bottom: 13%; width: 15%; aspect-ratio: 1.3; border-radius: 4px; background: linear-gradient(135deg, #d6e8f7, #a9d1ef 30%, #e8dcf5 55%, #b5e3df 80%, #dbe9f6); opacity: 0.85; }
+    .fp-fine { position: absolute; left: 7%; bottom: 14%; width: 52%; display: grid; gap: 6px; }
+    .fp-fine i { display: block; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.32); }
+    .fp-fine i:nth-child(2) { width: 82%; } .fp-fine i:nth-child(3) { width: 58%; }
+
+    .fp-cc.front { left: 4%; bottom: 0; overflow: hidden; transform: rotate(-4deg); background: linear-gradient(140deg, #1d4a74 0%, #12304f 55%, #0b2036 100%); border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.6); animation: fpFrontIn 1s cubic-bezier(.2,.7,.2,1) .35s backwards; }
+    .fp-cc.front::after { content: ''; position: absolute; inset: -40% -60%; background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.13) 50%, transparent 58%); transform: translateX(-60%); transition: transform 1.1s ease; pointer-events: none; }
+    .fp-visual:hover .fp-cc.front { transform: rotate(-1.5deg) translate(-6px, -10px); box-shadow: 0 40px 70px -28px rgba(0,0,0,0.7); }
+    .fp-visual:hover .fp-cc.front::after { transform: translateX(60%); }
+    .fp-visual:hover .fp-cc.back { transform: rotate(11deg) translate(14px, -8px); }
+    @keyframes fpFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes fpBackIn { from { opacity: 0; transform: rotate(0deg) translate(-30px, 30px); } }
+    @keyframes fpFrontIn { from { opacity: 0; transform: rotate(0deg) translate(30px, 40px); } }
+
     .fp-cc .row { display: flex; justify-content: space-between; align-items: center; }
     .fp-chip { width: 42px; height: 31px; border-radius: 6px; background: linear-gradient(135deg, #d9e4ee, #a9bccd); position: relative; }
     .fp-chip::after { content: ''; position: absolute; inset: 7px 9px; border: 1px solid rgba(14,39,64,0.25); border-radius: 3px; }
@@ -431,8 +453,12 @@
     .fp-methods { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 2.2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .fp-m { padding: 1.8rem 1.5rem 1.8rem 0; }
     .fp-m + .fp-m { padding-left: 1.5rem; border-left: 1px solid var(--border); }
-    .fp-m svg { width: 26px; height: 26px; color: var(--celeste); margin-bottom: 1rem; }
-    .fp-m h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; }
+    .fp-m svg { display: block; width: 26px; height: 26px; color: var(--celeste); margin-bottom: 1rem; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+    .fp-m:hover svg { transform: translateY(-3px); }
+    .fp-m h3 { background: linear-gradient(var(--celeste), var(--celeste)) left bottom / 0 1.5px no-repeat; transition: background-size .45s cubic-bezier(.2,.7,.2,1); display: inline; }
+    .fp-m:hover h3 { background-size: 100% 1.5px; }
+    .fp-m h3 + p { margin-top: 0.4rem; }
+    .fp-m h3 { font-size: 16px; font-weight: 700; color: var(--navy); padding-bottom: 2px; }
     .fp-m p { font-size: 14px; line-height: 1.6; color: #34485c; }
 
     .fp-assure { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.2rem; padding: 0; list-style: none; }
@@ -447,6 +473,8 @@
     .fp-faq-list summary::-webkit-details-marker { display: none; }
     .fp-faq-list summary::after { content: '+'; font-weight: 500; font-size: 22px; line-height: 1; color: var(--celeste); transition: transform .2s; }
     .fp-faq-list details[open] summary::after { transform: rotate(45deg); }
+    .fp-faq-list details[open] p { animation: fpUp .45s ease both; }
+    .fp-faq-list summary:hover { color: var(--celeste-d); }
     .fp-faq-list p { padding: 0 2rem 1.2rem 0; font-size: 14.5px; line-height: 1.7; color: #34485c; }
 
     .fp-cta { margin: 4.2rem 0 4.8rem; border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; background: var(--pale); }
@@ -458,6 +486,16 @@
     .fp-cta .pri:hover { background: #163a5c; }
     .fp-cta .sec { border: 1px solid var(--border); color: var(--navy); background: #fff; }
     .fp-cta .sec:hover { border-color: var(--celeste); }
+
+    @keyframes fpUp { from { opacity: 0; transform: translateY(10px); } }
+    .js .rv { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+    .js .rv.in { opacity: 1; transform: none; }
+    .fp-hero .wrap > div:first-child > * { animation: fpUp .8s cubic-bezier(.2,.7,.2,1) both; }
+    .fp-hero h1 { animation-delay: .08s !important; } .fp-lead { animation-delay: .16s !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .rv { opacity: 1; transform: none; }
+    }
 
     @media (max-width: 960px) {
       .fp-hero .wrap { grid-template-columns: 1fr; gap: 2.2rem; padding-top: 2.6rem; padding-bottom: 3.2rem; }
@@ -472,6 +510,7 @@
       .fp-methods { grid-template-columns: 1fr; }
       .fp-m, .fp-m + .fp-m { padding: 1.2rem 0; border-left: none; display: grid; grid-template-columns: 26px 1fr; column-gap: 14px; }
       .fp-m svg { grid-row: span 2; margin: 0; }
+      .fp-m h3 { display: block; justify-self: start; }
       .fp-visual { height: 195px; }
       .fp-m + .fp-m { border-top: 1px solid var(--border); }
       .fp-assure { grid-template-columns: 1fr; gap: 1rem; }
@@ -481,6 +520,7 @@
       .fp-cta .acts, .fp-cta a { width: 100%; text-align: center; }
     }
   </style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 
@@ -509,56 +549,58 @@
         <h1>Pague nuestros servicios legales <em>con tarjeta</em></h1>
         <p class="fp-lead">Aceptamos tarjetas de crédito y débito a través de Webpay, en hasta 12 cuotas sin interés. Sin recargo y con IVA incluido. Una comodidad poco habitual en un estudio jurídico.</p>
         <ul class="fp-brands" aria-label="Tarjetas aceptadas">
-          <li>Visa</li><li>Mastercard</li><li>American Express</li><li>Redcompra</li><li>Webpay</li><li>MACH</li>
+          <li style="animation-delay:0.30s">Visa</li><li style="animation-delay:0.36s">Mastercard</li><li style="animation-delay:0.42s">American Express</li><li style="animation-delay:0.48s">Redcompra</li><li style="animation-delay:0.54s">Webpay</li><li style="animation-delay:0.60s">MACH</li>
         </ul>
       </div>
       <div class="fp-visual" aria-hidden="true">
-        <div class="fp-cc back"></div>
-        <div class="fp-cc front">
-          <div class="row"><span class="fp-chip"></span><span class="fp-mono">S<i>&amp;</i>C</span></div>
-          <div class="fp-num">•••• •••• •••• 2026</div>
-          <div class="row"><small>Santana &amp; Cía</small><b>WEBPAY</b></div>
-        </div>
+        <div class="fp-float"><div class="fp-stack">
+          <div class="fp-cc back"><span class="fp-stripe"></span><span class="fp-sign"></span><span class="fp-cvv">•••</span><span class="fp-fine"><i></i><i></i><i></i></span><span class="fp-holo"></span></div>
+          <div class="fp-cc front">
+            <div class="row"><span class="fp-chip"></span><span class="fp-mono">S<i>&amp;</i>C</span></div>
+            <div class="fp-num">•••• •••• •••• 2026</div>
+            <div class="row"><small>Santana &amp; Cía</small><b>WEBPAY</b></div>
+          </div>
+        </div></div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <section class="fp-sec" aria-labelledby="medios">
-      <h2 class="fp-h2" id="medios">Medios de pago</h2>
-      <p class="fp-kicker">Elija la forma que más le acomode. El monto es el mismo en todos los casos.</p>
+      <h2 class="fp-h2 rv" id="medios">Medios de pago</h2>
+      <p class="fp-kicker rv" style="--d:.08s">Elija la forma que más le acomode. El monto es el mismo en todos los casos.</p>
       <div class="fp-methods">
-        <div class="fp-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><h3>Tarjetas de crédito y débito</h3><p>Crédito, débito y prepago, a través de Webpay.</p></div>
-        <div class="fp-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/></svg><h3>Cuotas sin interés</h3><p>Hasta 12 cuotas con tarjeta de crédito, o sin tarjeta con banca.me.</p></div>
-        <div class="fp-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.2"/><path d="M10.5 18.5h3"/></svg><h3>Billeteras digitales</h3><p>MACH y otras billeteras, desde su celular.</p></div>
-        <div class="fp-m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"/></svg><h3>Transferencia en línea</h3><p>Desde su banco, con Khipu o Etpay.</p></div>
+        <div class="fp-m rv" style="--d:0.0s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19M6 15h4"/></svg><h3>Tarjetas de crédito y débito</h3><p>Crédito, débito y prepago, a través de Webpay.</p></div>
+        <div class="fp-m rv" style="--d:0.1s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2"/></svg><h3>Cuotas sin interés</h3><p>Hasta 12 cuotas con tarjeta de crédito, o sin tarjeta con banca.me.</p></div>
+        <div class="fp-m rv" style="--d:0.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.2"/><path d="M10.5 18.5h3"/></svg><h3>Billeteras digitales</h3><p>MACH y otras billeteras, desde su celular.</p></div>
+        <div class="fp-m rv" style="--d:0.3s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"/></svg><h3>Transferencia en línea</h3><p>Desde su banco, con Khipu o Etpay.</p></div>
       </div>
       <ul class="fp-assure">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Sin recargo</strong>Mismo valor con tarjeta.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>IVA incluido</strong>Sin costos adicionales.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Factura electrónica</strong>Disponible para empresas.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Pago seguro</strong>Procesado por Transbank.</span></li>
+        <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Sin recargo</strong>Mismo valor con tarjeta.</span></li>
+        <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>IVA incluido</strong>Sin costos adicionales.</span></li>
+        <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Factura electrónica</strong>Disponible para empresas.</span></li>
+        <li class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke-width="1.5"/><path d="M8 12.3l2.7 2.7L16 9.6"/></svg><span><strong>Pago seguro</strong>Procesado por Transbank.</span></li>
       </ul>
     </section>
 
     <section class="fp-sec fp-faq" aria-labelledby="faq">
-      <div>
+      <div class="rv">
         <h2 class="fp-h2" id="faq">Preguntas frecuentes</h2>
         <p class="fp-kicker">Sobre los pagos con tarjeta.</p>
       </div>
       <div class="fp-faq-list">
-        <details><summary>¿Puedo pagar los servicios de un abogado con tarjeta?</summary><p>Sí. En Santana &amp; Cía Abogados aceptamos pagos con tarjeta de crédito, débito o prepago a través de Webpay de Transbank: Visa, Mastercard, American Express y Redcompra, entre otras. También puede pagar con billeteras digitales como MACH o por transferencia en línea.</p></details>
-        <details><summary>¿Puedo pagar en cuotas sin interés?</summary><p>Sí. Con tarjeta de crédito puede pagar en hasta 12 cuotas sin interés, y también existe la opción de cuotas sin tarjeta con banca.me. En juicios de mayor valor, además se puede pactar un plan de pago en cuotas mensuales, según acuerdo previo.</p></details>
-        <details><summary>¿Puedo pagar al abogado con tarjeta de débito?</summary><p>Sí. Aceptamos tarjetas de débito Redcompra, cuenta vista, CuentaRUT y tarjetas prepago a través de Webpay, además de billeteras digitales como MACH y transferencia en línea con Khipu o Etpay.</p></details>
-        <details><summary>¿Pagar con tarjeta tiene recargo?</summary><p>No. El monto es el mismo si paga con tarjeta, débito o transferencia. Todos nuestros valores incluyen IVA.</p></details>
-        <details><summary>¿Cómo se realiza el pago?</summary><p>Una vez acordado el servicio, le enviamos por WhatsApp o correo el detalle del cobro con su nombre, su caso y el monto, y un botón para pagar en línea. El comprobante le llega a su correo al instante.</p></details>
-        <details><summary>¿Puedo pagar desde el extranjero?</summary><p>Sí. Puede pagar con tarjetas emitidas fuera de Chile a través de Webpay, o por transferencia bancaria. Es una alternativa práctica para chilenos que viven fuera del país y tienen asuntos legales en Chile.</p></details>
-        <details><summary>¿Es seguro pagar en línea?</summary><p>Sí. Los pagos los procesa Flow con Webpay de Transbank. Los datos de su tarjeta se ingresan directamente en la plataforma de pago y nunca pasan por nuestro sitio.</p></details>
-        <details><summary>¿Emiten factura?</summary><p>Sí. Si necesita factura para su empresa, la emitimos a nombre de Santana y Cía. SpA con los datos que nos indique.</p></details>
+        <details class="rv"><summary>¿Puedo pagar los servicios de un abogado con tarjeta?</summary><p>Sí. En Santana &amp; Cía Abogados aceptamos pagos con tarjeta de crédito, débito o prepago a través de Webpay de Transbank: Visa, Mastercard, American Express y Redcompra, entre otras. También puede pagar con billeteras digitales como MACH o por transferencia en línea.</p></details>
+        <details class="rv"><summary>¿Puedo pagar en cuotas sin interés?</summary><p>Sí. Con tarjeta de crédito puede pagar en hasta 12 cuotas sin interés, y también existe la opción de cuotas sin tarjeta con banca.me. En juicios de mayor valor, además se puede pactar un plan de pago en cuotas mensuales, según acuerdo previo.</p></details>
+        <details class="rv"><summary>¿Puedo pagar al abogado con tarjeta de débito?</summary><p>Sí. Aceptamos tarjetas de débito Redcompra, cuenta vista, CuentaRUT y tarjetas prepago a través de Webpay, además de billeteras digitales como MACH y transferencia en línea con Khipu o Etpay.</p></details>
+        <details class="rv"><summary>¿Pagar con tarjeta tiene recargo?</summary><p>No. El monto es el mismo si paga con tarjeta, débito o transferencia. Todos nuestros valores incluyen IVA.</p></details>
+        <details class="rv"><summary>¿Cómo se realiza el pago?</summary><p>Una vez acordado el servicio, le enviamos por WhatsApp o correo el detalle del cobro con su nombre, su caso y el monto, y un botón para pagar en línea. El comprobante le llega a su correo al instante.</p></details>
+        <details class="rv"><summary>¿Puedo pagar desde el extranjero?</summary><p>Sí. Puede pagar con tarjetas emitidas fuera de Chile a través de Webpay, o por transferencia bancaria. Es una alternativa práctica para chilenos que viven fuera del país y tienen asuntos legales en Chile.</p></details>
+        <details class="rv"><summary>¿Es seguro pagar en línea?</summary><p>Sí. Los pagos los procesa Flow con Webpay de Transbank. Los datos de su tarjeta se ingresan directamente en la plataforma de pago y nunca pasan por nuestro sitio.</p></details>
+        <details class="rv"><summary>¿Emiten factura?</summary><p>Sí. Si necesita factura para su empresa, la emitimos a nombre de Santana y Cía. SpA con los datos que nos indique.</p></details>
       </div>
     </section>
 
-    <section class="fp-cta" aria-label="Contacto">
+    <section class="fp-cta rv" aria-label="Contacto">
       <div><h2>Primera evaluación sin costo</h2><p>Cuéntenos su caso. Respondemos en un máximo de 24 horas hábiles.</p></div>
       <div class="acts">
         <a class="pri" href="https://www.santanaycia.cl/contacto">Contactar al estudio</a>
@@ -610,6 +652,35 @@
       </div>
     </div>
   </footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Aparición al hacer scroll
+  var els = [].slice.call(document.querySelectorAll('.rv'));
+  [].forEach.call(document.querySelectorAll('.fp-assure .rv, .fp-faq-list .rv'), function (el, i, all) {
+    el.style.setProperty('--d', ((i % 4) * 0.07) + 's');
+  });
+  if (reduce || !('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  // Inclinación 3D de las tarjetas siguiendo el mouse
+  var vis = document.querySelector('.fp-visual'), stack = document.querySelector('.fp-stack');
+  if (vis && stack && !reduce && window.matchMedia('(hover: hover)').matches) {
+    vis.addEventListener('mousemove', function (ev) {
+      var r = vis.getBoundingClientRect();
+      var x = (ev.clientX - r.left) / r.width - 0.5, y = (ev.clientY - r.top) / r.height - 0.5;
+      stack.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
+      stack.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+    });
+    vis.addEventListener('mouseleave', function () { stack.style.setProperty('--rx', '0deg'); stack.style.setProperty('--ry', '0deg'); });
+  }
+})();
+</script>
 
 </body>
 </html>
