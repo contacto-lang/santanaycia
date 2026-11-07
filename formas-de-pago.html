@@ -399,6 +399,10 @@
     }
   </style>
   <style>
+    /* Logo con el mismo estilo que la página de inicio: más fino y pequeño */
+    .nav-logo, .nav-logo:hover { font-family: var(--serif); font-weight: 400; font-size: 18px; letter-spacing: 0.05em; line-height: 1.2; }
+    .nav-logo span { font-family: var(--sans); font-weight: 400; font-size: 9px; letter-spacing: 0.3em; margin-top: 2px; }
+    @media (max-width: 640px) { .nav-logo { font-size: 18px; } }
     .fp-hero { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
     .fp-hero::before { content: ''; position: absolute; right: -18%; top: -55%; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(44,134,201,0.30), rgba(44,134,201,0) 65%); pointer-events: none; }
     .fp-hero .wrap { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; padding-top: 4.2rem; padding-bottom: 4.6rem; }
