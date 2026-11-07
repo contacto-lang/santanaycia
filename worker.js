@@ -171,7 +171,11 @@ async function pagarCobro(request, env, url) {
   const d = r.datos;
 
   const orden = `SC-${d.k}-${Date.now().toString(36).toUpperCase().slice(-5)}`;
-  const subject = [d.t, d.c, '#' + d.k].filter(Boolean).join(' · ').slice(0, 120);
+  const subject = (d.t || 'Honorarios').slice(0, 120);
+  // Filas extra del comprobante de Flow (sin repetir el concepto)
+  const extras = { Cliente: d.n };
+  if (d.c) extras.Caso = d.c;
+  extras['Código'] = '#' + d.k;
   const data = await flowPost(env, '/payment/create', {
     commerceOrder: orden,
     subject,
@@ -181,7 +185,7 @@ async function pagarCobro(request, env, url) {
     paymentMethod: '9',
     urlConfirmation: `${url.origin}/api/flow/confirmacion`,
     urlReturn: `${url.origin}/api/flow/retorno`,
-    optional: JSON.stringify({ cliente: d.n, caso: d.c || '—', codigo: '#' + d.k, concepto: d.t }),
+    optional: JSON.stringify(extras),
     timeout: '3600',
   });
   if (!data.url || !data.token) throw new Error('Respuesta inesperada de Flow: ' + JSON.stringify(data));
@@ -212,8 +216,8 @@ async function retorno(request, env, url) {
     estado: STATUS[st.status] || 'pendiente',
     orden: st.commerceOrder || '',
     monto: String(st.amount || ''),
-    caso: extra.caso && extra.caso !== '—' ? extra.caso : '',
-    codigo: extra.codigo || '',
+    caso: (extra.Caso || (extra.caso !== '—' && extra.caso) || ''),
+    codigo: extra['Código'] || extra.codigo || '',
   });
   return Response.redirect(`${url.origin}/pago-resultado?${q}`, 303);
 }
