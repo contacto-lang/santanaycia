@@ -523,6 +523,32 @@
       .fp-cta { padding: 1.5rem; }
       .fp-cta .acts, .fp-cta a { width: 100%; text-align: center; }
     }
+    .m-only { display: none; }
+    /* ── Móvil: navegación y portada más limpias ── */
+    @media (max-width: 640px) {
+      .d-only { display: none; }
+      .m-only { display: inline; }
+      .topbar { display: none; }
+      nav.main .wrap { height: 60px; }
+      .nav-back { border: none; padding: 8px 0; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); background: none !important; }
+      .nav-back .arr { color: var(--celeste); }
+      .fp-hero .wrap { grid-template-columns: minmax(0, 1fr); }
+      .fp-hero .wrap > * { min-width: 0; }
+      .fp-hero .crumbs { display: none; }
+      .fp-hero .wrap { padding-top: 2.4rem; padding-bottom: 2.6rem; gap: 2rem; }
+      .fp-eyebrow { font-size: 10.5px; margin-bottom: 0.8rem; }
+      .fp-hero h1 { font-size: 46px; line-height: 1; }
+      .fp-hero h1 em { display: block; }
+      .fp-lead { font-size: 15.5px; line-height: 1.65; margin-top: 1rem; }
+      .fp-brands { flex-wrap: nowrap; overflow-x: auto; margin: 1.5rem -16px 0; padding: 0 16px 2px; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+      .fp-brands::-webkit-scrollbar { display: none; }
+      .fp-brands li { flex-shrink: 0; font-size: 11.5px; padding: 5px 12px; }
+      .fp-visual { height: 190px; width: 100%; max-width: 330px; margin: 0 auto; }
+      .fp-cc { width: 260px; padding: 17px 19px; border-radius: 15px; }
+      .fp-chip { width: 36px; height: 27px; }
+      .fp-mono { font-size: 22px; }
+      .fp-sec { padding-top: 3rem; }
+    }
   </style>
   <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -541,7 +567,7 @@
   <nav class="main">
     <div class="wrap">
       <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
-      <a href="https://www.santanaycia.cl/" class="nav-back">← Volver al inicio</a>
+      <a href="https://www.santanaycia.cl/" class="nav-back"><span class="arr">←</span> <span class="d-only">Volver al inicio</span><span class="m-only">Inicio</span></a>
     </div>
   </nav>
 
@@ -550,8 +576,8 @@
       <div>
         <p class="crumbs"><a href="https://www.santanaycia.cl/">Inicio</a> / Formas de pago</p>
         <span class="fp-eyebrow">Formas de pago</span>
-        <h1>Pague nuestros servicios legales <em>con tarjeta</em></h1>
-        <p class="fp-lead">Aceptamos tarjetas de crédito y débito a través de Webpay, en hasta 12 cuotas sin interés. Sin recargo y con IVA incluido. Una comodidad poco habitual en un estudio jurídico.</p>
+        <h1>Pague <span class="d-only">nuestros servicios legales </span><em>con tarjeta</em></h1>
+        <p class="fp-lead">Aceptamos tarjetas de crédito y débito a través de Webpay, en hasta 12 cuotas sin interés. Sin recargo y con IVA incluido.<span class="d-only"> Una comodidad poco habitual en un estudio jurídico.</span></p>
         <ul class="fp-brands" aria-label="Tarjetas aceptadas">
           <li style="animation-delay:0.30s">Visa</li><li style="animation-delay:0.36s">Mastercard</li><li style="animation-delay:0.42s">American Express</li><li style="animation-delay:0.48s">Redcompra</li><li style="animation-delay:0.54s">Webpay</li><li style="animation-delay:0.60s">MACH</li>
         </ul>
