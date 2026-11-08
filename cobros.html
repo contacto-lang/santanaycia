@@ -250,9 +250,15 @@
     }
   </style>
   <style>
-    .bill-wrap { padding-top: 3rem; padding-bottom: 4.5rem; display: grid; place-items: start center; }
+    .bill-wrap { padding-top: 3rem; padding-bottom: 2rem; display: grid; place-items: start center; }
+    .bill-mail { margin-top: 1.3rem; }
+    .bill-mail label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .bill-mail input { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 13px 14px; transition: border-color .2s, box-shadow .2s; }
+    .bill-mail input:focus { outline: none; border-color: var(--celeste); box-shadow: 0 0 0 3px rgba(44,134,201,0.15); }
+    .bill-mail input.bad { border-color: #d92d20; }
+    .bill-mail small { display: block; font-size: 12px; color: var(--soft); margin-top: 6px; }
     .bill { width: 100%; max-width: 560px; background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px -30px rgba(14,39,64,0.45); overflow: hidden; }
-    .bill-top { background: var(--navy); color: #fff; padding: 1.6rem 1.8rem 1.4rem; }
+    .bill-top { background: var(--navy); color: #fff; padding: 1.7rem 1.8rem 1.5rem; }
     .bill-top small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #8cc6ef; }
     .bill-top h1 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.1; color: #fff; margin-top: 0.4rem; }
     .bill-top p { color: rgba(255,255,255,0.72); font-size: 14px; margin-top: 0.35rem; }
@@ -323,7 +329,7 @@
       <form id="f" novalidate>
         <div class="g2">
           <div class="f"><label for="nombre">Nombre del cliente *</label><input id="nombre" required maxlength="80"></div>
-          <div class="f"><label for="email">Correo del cliente * <small>(recibe el comprobante)</small></label><input id="email" type="email" required maxlength="120"></div>
+          <div class="f"><label for="email">Correo del cliente <small>(opcional: el cliente lo ingresa al pagar)</small></label><input id="email" type="email" maxlength="120"></div>
         </div>
         <div class="g2">
           <div class="f"><label for="caso">Nombre del caso <small>(opcional)</small></label><input id="caso" maxlength="90" placeholder="Divorcio de mutuo acuerdo"></div>

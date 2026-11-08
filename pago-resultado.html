@@ -249,25 +249,25 @@
       .pay-card { position: static; order: -1; }
     }
   </style>
+  <style>
+    body.portal { background: #f4f6f9; min-height: 100vh; display: flex; flex-direction: column; }
+    .pp-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 18px 20px; text-align: center; }
+    .pp-logo { display: inline-block; font-family: var(--serif); font-weight: 400; font-size: 19px; letter-spacing: 0.05em; line-height: 1.2; color: var(--ink); text-decoration: none; }
+    .pp-logo span { display: block; font-family: var(--sans); font-weight: 400; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--celeste); margin-top: 2px; }
+    body.portal main { flex: 1; width: 100%; }
+    footer.pp-foot { background: transparent; border-top: 1px solid var(--border); margin-top: 0; text-align: center; padding: 2rem 20px 2.4rem; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    footer.pp-foot .pp-logo { color: var(--ink); }
+    footer.pp-foot .pp-logo span { color: var(--celeste); }
+    .pp-foot .pp-logo { font-size: 16px; margin-bottom: 0.5rem; }
+    .pp-foot p + p { margin-top: 0.2rem; }
+    footer.pp-foot a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    footer.pp-foot a:hover { color: var(--celeste-d); }
+    .pp-foot .sep { opacity: .4; margin: 0 .5rem; }
+  </style>
 </head>
-<body>
+<body class="portal">
 
-  <div class="topbar">
-    <div class="wrap">
-      <span class="topbar-left">Atención remota en todo Chile</span>
-      <span>
-        <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
-        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a>
-      </span>
-    </div>
-  </div>
-
-  <nav class="main">
-    <div class="wrap">
-      <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
-      <a href="https://www.santanaycia.cl/" class="nav-back">← Volver al inicio</a>
-    </div>
-  </nav>
+  <header class="pp-nav"><a href="https://www.santanaycia.cl/" class="pp-logo">Santana &amp; Cía<span>Abogados</span></a></header>
 
   <main class="wrap">
     <section class="res" id="res">
@@ -279,48 +279,10 @@
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
-          <p>Estudio jurídico con atención remota en todo Chile y para chilenos en el extranjero.</p>
-        </div>
-        <div>
-          <h4>Áreas</h4>
-          <ul>
-            <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
-            <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
-            <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a></li>
-            <li><a href="https://www.santanaycia.cl/propiedades">Propiedades</a></li>
-            <li><a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener">Seguros</a></li>
-            <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Estudio</h4>
-          <ul>
-            <li><a href="https://www.santanaycia.cl/">Inicio</a></li>
-            <li><a href="https://www.santanaycia.cl/honorarios">Honorarios</a></li>
-            <li><a href="https://www.santanaycia.cl/contacto">Contacto</a></li>
-            <li><a href="https://www.santanaycia.cl/terminos">Términos</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
-            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="https://www.santanaycia.cl/agendar-cita">Agendar videollamada</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</span>
-        <span>Atención 100% remota · <a href="https://www.santanaycia.cl/formas-de-pago" style="color:inherit">Pagos con tarjeta</a></span>
-      </div>
-    </div>
+  <footer class="pp-foot">
+    <div class="pp-logo">Santana &amp; Cía<span>Abogados</span></div>
+    <p>Estudio jurídico con atención remota en todo Chile.</p>
+    <p><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a><span class="sep">·</span><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a></p>
   </footer>
 
   <script>
@@ -332,7 +294,7 @@
       let VOLVER = 'https://wa.me/56969051586'; try { VOLVER = sessionStorage.getItem('sc_ultimo_cobro') || VOLVER; } catch (e) {}
       const WA = '<a class="sec" href="https://wa.me/56969051586" target="_blank" rel="noopener">Escribir por WhatsApp</a>';
       const V = {
-        pagado:    ['ok',   'Pago recibido',          'Gracias. Su pago fue aprobado y Flow le enviará el comprobante a su correo. Le enviaremos la boleta o factura correspondiente.', '<a class="pri" href="https://www.santanaycia.cl/">Volver al inicio</a>' + WA],
+        pagado:    ['ok',   'Pago recibido',          'Gracias. Su pago fue aprobado y recibirá el comprobante en su correo.', '<a class="pri" href="https://www.santanaycia.cl/">Volver al inicio</a>' + WA],
         pendiente: ['wait', 'Pago pendiente',         'Su pago aún no se confirma. Si eligió un medio que se paga después (por ejemplo, transferencia o cupón), complételo y recibirá la confirmación por correo.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
         rechazado: ['bad',  'El pago no se completó', 'La transacción fue rechazada por el medio de pago. No se realizó ningún cargo. Puede intentarlo nuevamente con otra tarjeta.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
         anulado:   ['bad',  'Pago anulado',           'La transacción fue anulada y no se realizó ningún cargo.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],

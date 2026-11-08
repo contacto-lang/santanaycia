@@ -250,9 +250,15 @@
     }
   </style>
   <style>
-    .bill-wrap { padding-top: 3rem; padding-bottom: 4.5rem; display: grid; place-items: start center; }
+    .bill-wrap { padding-top: 3rem; padding-bottom: 2rem; display: grid; place-items: start center; }
+    .bill-mail { margin-top: 1.3rem; }
+    .bill-mail label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .bill-mail input { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 13px 14px; transition: border-color .2s, box-shadow .2s; }
+    .bill-mail input:focus { outline: none; border-color: var(--celeste); box-shadow: 0 0 0 3px rgba(44,134,201,0.15); }
+    .bill-mail input.bad { border-color: #d92d20; }
+    .bill-mail small { display: block; font-size: 12px; color: var(--soft); margin-top: 6px; }
     .bill { width: 100%; max-width: 560px; background: #fff; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 60px -30px rgba(14,39,64,0.45); overflow: hidden; }
-    .bill-top { background: var(--navy); color: #fff; padding: 1.6rem 1.8rem 1.4rem; }
+    .bill-top { background: var(--navy); color: #fff; padding: 1.7rem 1.8rem 1.5rem; }
     .bill-top small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #8cc6ef; }
     .bill-top h1 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.1; color: #fff; margin-top: 0.4rem; }
     .bill-top p { color: rgba(255,255,255,0.72); font-size: 14px; margin-top: 0.35rem; }
@@ -297,25 +303,25 @@
     .ok-msg { font-size: 13px; color: #1f9d6b; margin-left: 0.4rem; }
     @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; gap: 0; } .bill-top h1 { font-size: 26px; } .bill-total strong { font-size: 36px; } }
   </style>
+  <style>
+    body.portal { background: #f4f6f9; min-height: 100vh; display: flex; flex-direction: column; }
+    .pp-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 18px 20px; text-align: center; }
+    .pp-logo { display: inline-block; font-family: var(--serif); font-weight: 400; font-size: 19px; letter-spacing: 0.05em; line-height: 1.2; color: var(--ink); text-decoration: none; }
+    .pp-logo span { display: block; font-family: var(--sans); font-weight: 400; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--celeste); margin-top: 2px; }
+    body.portal main { flex: 1; width: 100%; }
+    footer.pp-foot { background: transparent; border-top: 1px solid var(--border); margin-top: 0; text-align: center; padding: 2rem 20px 2.4rem; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    footer.pp-foot .pp-logo { color: var(--ink); }
+    footer.pp-foot .pp-logo span { color: var(--celeste); }
+    .pp-foot .pp-logo { font-size: 16px; margin-bottom: 0.5rem; }
+    .pp-foot p + p { margin-top: 0.2rem; }
+    footer.pp-foot a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    footer.pp-foot a:hover { color: var(--celeste-d); }
+    .pp-foot .sep { opacity: .4; margin: 0 .5rem; }
+  </style>
 </head>
-<body>
+<body class="portal">
 
-  <div class="topbar">
-    <div class="wrap">
-      <span class="topbar-left">Atención remota en todo Chile</span>
-      <span>
-        <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>
-        <a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a>
-      </span>
-    </div>
-  </div>
-
-  <nav class="main">
-    <div class="wrap">
-      <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
-      <a href="https://www.santanaycia.cl/" class="nav-back">← Volver al inicio</a>
-    </div>
-  </nav>
+  <header class="pp-nav"><a href="https://www.santanaycia.cl/" class="pp-logo">Santana &amp; Cía<span>Abogados</span></a></header>
 
   <main class="wrap bill-wrap">
     <div class="bill" id="bill">
@@ -323,48 +329,10 @@
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="https://www.santanaycia.cl/" class="nav-logo">Santana &amp; Cía<span>Abogados</span></a>
-          <p>Estudio jurídico con atención remota en todo Chile y para chilenos en el extranjero.</p>
-        </div>
-        <div>
-          <h4>Áreas</h4>
-          <ul>
-            <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
-            <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
-            <li><a href="https://www.santanaycia.cl/devuelveme-mi-casa">Arriendo</a></li>
-            <li><a href="https://www.santanaycia.cl/propiedades">Propiedades</a></li>
-            <li><a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener">Seguros</a></li>
-            <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Estudio</h4>
-          <ul>
-            <li><a href="https://www.santanaycia.cl/">Inicio</a></li>
-            <li><a href="https://www.santanaycia.cl/honorarios">Honorarios</a></li>
-            <li><a href="https://www.santanaycia.cl/contacto">Contacto</a></li>
-            <li><a href="https://www.santanaycia.cl/terminos">Términos</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
-            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="https://www.santanaycia.cl/agendar-cita">Agendar videollamada</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</span>
-        <span>Atención 100% remota · <a href="https://www.santanaycia.cl/formas-de-pago" style="color:inherit">Pagos con tarjeta</a></span>
-      </div>
-    </div>
+  <footer class="pp-foot">
+    <div class="pp-logo">Santana &amp; Cía<span>Abogados</span></div>
+    <p>Estudio jurídico con atención remota en todo Chile.</p>
+    <p><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a><span class="sep">·</span><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp +56 9 6905 1586</a></p>
   </footer>
 
   <script>
@@ -385,37 +353,45 @@
         const nombre = esc(d.nombre).split(' ')[0];
         bill.innerHTML = `
           <div class="bill-top">
-            <small>Santana &amp; Cía Abogados · Cobro de honorarios</small>
             <h1>Hola, ${nombre}</h1>
-            <p>Este es el detalle de su pago. Revise los datos y pague de forma segura con Webpay.</p>
+            <p>Revise el detalle y complete su pago.</p>
           </div>
           <div class="bill-body">
             <ul class="bill-rows">
-              <li><span>Cliente</span><b>${esc(d.nombre)}</b></li>
               ${d.caso ? `<li><span>Caso</span><b>${esc(d.caso)}</b></li>` : ''}
               <li><span>Código</span><b>#${esc(d.codigo)}</b></li>
               <li><span>Concepto</span><b>${esc(d.concepto)}</b></li>
-              <li><span>Válido hasta</span><b>${fecha(d.expira)}</b></li>
             </ul>
             <div class="bill-total"><span>Total a pagar</span><strong>${clp(d.monto)}</strong></div>
             <p class="bill-iva">IVA incluido</p>
-            <button class="bill-btn" id="pay"><svg viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5.5" width="19" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 10h19M6 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Pagar con Webpay</span></button>
+            <div class="bill-mail">
+              <label for="mail">Correo para su comprobante</label>
+              <input id="mail" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="nombre@correo.cl" value="${esc(d.email || '')}" required>
+            </div>
+            <button class="bill-btn" id="pay"><svg viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5.5" width="19" height="13" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 10h19M6 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Pagar con tarjeta</span></button>
             <div class="err" id="err"></div>
-            <p class="bill-foot"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.5a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg> Pago seguro procesado por Flow con Webpay de Transbank.<br>Los datos de su tarjeta no pasan por nuestro sitio. Recibirá el comprobante en su correo.</p>
+            <p class="bill-foot"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10.5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.5a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.8"/></svg> Pago seguro con Webpay de Transbank · Válido hasta el ${fecha(d.expira)}</p>
           </div>`;
         document.title = 'Pago #' + d.codigo + ' | Santana & Cía Abogados';
+        document.getElementById('mail').addEventListener('input', e => e.target.classList.remove('bad'));
         document.getElementById('pay').addEventListener('click', async () => {
-          const btn = document.getElementById('pay'), err = document.getElementById('err');
-          btn.disabled = true; btn.querySelector('span').textContent = 'Conectando con Webpay…'; err.style.display = 'none';
+          const btn = document.getElementById('pay'), err = document.getElementById('err'), mail = document.getElementById('mail');
+          const email = mail.value.trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+            mail.classList.add('bad'); mail.focus();
+            err.textContent = 'Ingrese un correo válido para enviarle el comprobante.'; err.style.display = 'block'; return;
+          }
+          mail.classList.remove('bad');
+          btn.disabled = true; btn.querySelector('span').textContent = 'Conectando…'; err.style.display = 'none';
           try {
-            const r = await fetch('/api/cobro/pagar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ c }) });
+            const r = await fetch('/api/cobro/pagar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ c, email }) });
             const j = await r.json().catch(() => ({}));
             if (!r.ok || !j.url) throw new Error(j.error || 'No pudimos iniciar el pago.');
             try { sessionStorage.setItem('sc_ultimo_cobro', location.href); } catch (e) {}
             location.href = j.url;
           } catch (x) {
             err.textContent = x.message + ' Si el problema continúa, escríbanos por WhatsApp.'; err.style.display = 'block';
-            btn.disabled = false; btn.querySelector('span').textContent = 'Pagar con Webpay';
+            btn.disabled = false; btn.querySelector('span').textContent = 'Pagar con tarjeta';
           }
         });
       }).catch(() => msg('No pudimos cargar su cobro', 'Revise su conexión e intente nuevamente, o escríbanos por WhatsApp.'));

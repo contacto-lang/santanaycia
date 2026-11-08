@@ -24,6 +24,7 @@
 const MIN_AMOUNT = 350;          // mínimo que acepta Flow
 const MAX_AMOUNT = 50_000_000;
 const STATUS = { 1: 'pendiente', 2: 'pagado', 3: 'rechazado', 4: 'anulado' };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // sin 0/O/1/I, igual que los códigos de consulta
 
 export default {
@@ -142,7 +143,8 @@ async function crearCobro(request, env, url) {
   const dias = Math.min(Math.max(parseInt(b.dias, 10) || 30, 1), 180);
 
   if (!nombre) return json({ error: 'Falta el nombre del cliente.' }, 400);
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: 'El correo del cliente no es válido (Flow le envía el comprobante).' }, 400);
+  // El correo es opcional: si no se indica, el cliente lo ingresa al pagar
+  if (email && !EMAIL_RE.test(email)) return json({ error: 'El correo del cliente no es válido.' }, 400);
   if (!Number.isFinite(monto) || monto < MIN_AMOUNT || monto > MAX_AMOUNT) return json({ error: `El monto debe estar entre $${MIN_AMOUNT} y $${MAX_AMOUNT.toLocaleString('es-CL')}.` }, 400);
   if (!codigo) codigo = [...crypto.getRandomValues(new Uint8Array(5))].map(n => CODE_CHARS[n % 32]).join('');
 
@@ -159,7 +161,7 @@ async function verCobro(env, url) {
   const d = r.datos;
   return json({
     estado: r.error === 'vencido' ? 'vencido' : 'vigente',
-    nombre: d.n, caso: d.c || '', codigo: d.k, concepto: d.t, monto: d.m, expira: d.x,
+    nombre: d.n, caso: d.c || '', codigo: d.k, concepto: d.t, monto: d.m, expira: d.x, email: d.e || '',
   });
 }
 
@@ -169,6 +171,9 @@ async function pagarCobro(request, env, url) {
   if (r.error === 'invalido') return json({ error: 'Este enlace de pago no es válido. Pida uno nuevo al estudio.' }, 400);
   if (r.error === 'vencido') return json({ error: 'Este enlace de pago venció. Pida uno nuevo al estudio.' }, 400);
   const d = r.datos;
+  // Correo para el comprobante: el que ingresa el cliente al pagar (o el del cobro)
+  const email = limpiar(b.email, 120) || d.e || '';
+  if (!EMAIL_RE.test(email)) return json({ error: 'Ingrese un correo válido para enviarle el comprobante.' }, 400);
 
   const orden = `SC-${d.k}-${Date.now().toString(36).toUpperCase().slice(-5)}`;
   const subject = (d.t || 'Honorarios').slice(0, 120);
@@ -181,7 +186,7 @@ async function pagarCobro(request, env, url) {
     subject,
     currency: 'CLP',
     amount: String(d.m),
-    email: d.e,
+    email,
     paymentMethod: '9',
     urlConfirmation: `${url.origin}/api/flow/confirmacion`,
     urlReturn: `${url.origin}/api/flow/retorno`,
