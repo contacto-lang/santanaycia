@@ -658,9 +658,9 @@
       .hero::before, .hero-bg { display: none; }
       .hero-inner { gap: 0; }
       .hero-copy {
-        position: relative; margin: 0 -1.15rem; padding: 3.4rem 1.15rem 4.6rem; color: #fff;
+        position: relative; margin: 0 -1.15rem; padding: 2.6rem 1.15rem 4.6rem; color: #fff;
         background:
-          linear-gradient(180deg, rgba(14,39,64,0.55) 0%, rgba(14,39,64,0.72) 45%, rgba(14,39,64,0.94) 100%),
+          linear-gradient(180deg, rgba(14,39,64,0.94) 0%, rgba(14,39,64,0.82) 45%, rgba(14,39,64,0.45) 80%, rgba(14,39,64,0.35) 100%),
           url('https://images.pexels.com/photos/19953030/pexels-photo-19953030.jpeg?auto=compress&cs=tinysrgb&w=1200') 50% 45% / cover no-repeat, #0e2740;
       }
       .hero-eyebrow, .hero-sub, .hero-checks, .hero-stats, .hero-wa { display: none; }
@@ -679,7 +679,13 @@
       .hero-m-trust li { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); }
       .hero-m-trust svg { width: 14px; height: 14px; color: #8cc6ef; }
       .hero { padding-bottom: 0; }
-      .hero-copy { padding-bottom: 3.2rem; }
+      .hero-copy {
+        padding-bottom: 3.2rem;
+        /* Portada alta (≈70% de la pantalla), con el texto arriba y la foto abajo */
+        min-height: 70vh; min-height: 70svh;
+        display: flex; flex-direction: column; justify-content: flex-start;
+      }
+      .hero-kicker-m { align-self: flex-start; }
       .form-card { scroll-margin-top: 76px; }
       /* Formulario al final de la página */
       .m-form-sec { display: block; background: var(--pale); border-top: 1px solid var(--border); scroll-margin-top: 60px; }
