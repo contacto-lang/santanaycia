@@ -350,10 +350,10 @@
       fetch('/api/cobro/ver?c=' + encodeURIComponent(c)).then(r => r.json()).then(d => {
         if (d.error) return msg('Enlace no válido', 'Este enlace de pago no es válido o fue modificado. Pídanos uno nuevo y se lo enviamos de inmediato.');
         if (d.estado === 'vencido') return msg('Este enlace venció', 'El enlace de pago del código <b>#' + esc(d.codigo) + '</b> venció el ' + fecha(d.expira) + '. Pídanos uno nuevo y se lo enviamos de inmediato.');
-        const nombre = esc(d.nombre).split(' ')[0];
+        const nombre = esc((d.nombre || '').trim().split(' ')[0]);
         bill.innerHTML = `
           <div class="bill-top">
-            <h1>Hola, ${nombre}</h1>
+            <h1>${nombre ? 'Hola, ' + nombre : 'Detalle de su pago'}</h1>
             <p>Revise el detalle y complete su pago.</p>
           </div>
           <div class="bill-body">
