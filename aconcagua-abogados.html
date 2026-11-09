@@ -581,7 +581,7 @@
     .footer-col a:hover { color: #fff; }
     .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.4); }
 
-    .hero-sub-m { display: none; }
+    .hero-sub-m, .hero-m, .hero-kicker-m { display: none; }
 
     /* ─────────────────────────────────────────
        FADE-IN
@@ -618,13 +618,32 @@
       .nav-logo { font-size: 19px; }
 
       /* Hero: título + una línea + formulario */
-      .hero { padding: 1.75rem 0 3.5rem; }
-      .hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.66) 40%, rgba(255,255,255,0.9) 78%, #fff 100%); }
-      .hero-bg { object-position: 65% 40%; }
-      .hero-inner { gap: 1.5rem; }
+      /* Hero móvil: portada oscura con la cordillera, CTA y señales de confianza; el formulario va debajo */
+      .hero { padding: 0 0 3rem; background: var(--pale); }
+      .hero::before, .hero-bg { display: none; }
+      .hero-inner { gap: 0; }
+      .hero-copy {
+        position: relative; margin: 0 -1.15rem; padding: 3.4rem 1.15rem 4.6rem; color: #fff;
+        background:
+          linear-gradient(180deg, rgba(14,39,64,0.55) 0%, rgba(14,39,64,0.72) 45%, rgba(14,39,64,0.94) 100%),
+          url('https://images.unsplash.com/photo-1700663852617-6ad9ff430710?auto=format&fit=crop&w=1200&q=70') 62% 40% / cover no-repeat, #0e2740;
+      }
       .hero-eyebrow, .hero-sub, .hero-checks, .hero-stats, .hero-wa { display: none; }
-      .hero-title { font-size: clamp(34px, 10vw, 42px); line-height: 1.05; margin-bottom: 0.7rem; }
-      .hero-sub-m { display: block; font-size: 14.5px; color: var(--ink); line-height: 1.55; }
+      .hero-kicker-m { display: inline-flex; align-items: center; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #8cc6ef; margin-bottom: 0.9rem; }
+      .hero-kicker-m::before { content: ''; width: 22px; height: 1.5px; background: #8cc6ef; }
+      .hero-title { font-size: clamp(38px, 11vw, 46px); line-height: 1.02; margin-bottom: 0.9rem; color: #fff; }
+      .hero-title em { color: #8cc6ef; white-space: nowrap; }
+      .hero-sub-m { display: block; font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.6; max-width: 32ch; }
+      .hero-m { display: block; margin-top: 1.6rem; }
+      .hero-m-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .hero-m-cta a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 10px; font-size: 14.5px; font-weight: 700; text-decoration: none; }
+      .hero-m-cta .m-pri { background: var(--celeste); color: #fff; }
+      .hero-m-cta .m-wa { border: 1px solid rgba(255,255,255,0.35); color: #fff; background: rgba(255,255,255,0.06); }
+      .hero-m-cta svg { width: 18px; height: 18px; }
+      .hero-m-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; margin-top: 1.3rem; }
+      .hero-m-trust li { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); }
+      .hero-m-trust svg { width: 14px; height: 14px; color: #8cc6ef; }
+      .form-card { position: relative; z-index: 3; margin-top: -2.2rem; scroll-margin-top: 76px; }
 
       /* Formulario compacto: etiquetas ocultas, placeholders autoexplicativos */
       .form-card { border-radius: 12px; box-shadow: 0 16px 40px -16px rgba(14,39,64,0.25); }
@@ -661,6 +680,7 @@
       .comunas-chips {
         flex-wrap: nowrap; overflow-x: auto; margin: 1rem -1.15rem 0; padding: 0 1.15rem 4px;
         scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
       }
       .comunas-chips::-webkit-scrollbar { display: none; }
       .comuna-chip { flex-shrink: 0; font-size: 12.5px; padding: 6px 13px; }
@@ -825,8 +845,20 @@
 
       <div class="hero-copy">
         <p class="hero-eyebrow"><b>Aconcagua</b> Atención en todo el Valle de Aconcagua</p>
+        <span class="hero-kicker-m">Valle de Aconcagua</span>
         <h1 class="hero-title">Abogados en <em>San Felipe</em> y <em>Los Andes</em></h1>
-        <p class="hero-sub-m">Familia, herencias, arriendo y civil. Primera evaluación sin costo.</p>
+        <p class="hero-sub-m">Familia, herencias, arriendo y civil, con atención remota en todo el Valle.</p>
+        <div class="hero-m">
+          <div class="hero-m-cta">
+            <a class="m-pri" href="#contacto">Enviar mi caso</a>
+            <a class="m-wa" href="https://wa.me/56969051586?text=Hola%2C%20quisiera%20consultar%20por%20un%20caso%20en%20el%20Valle%20de%20Aconcagua." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          </div>
+          <ul class="hero-m-trust">
+            <li><svg><use href="#i-check"/></svg>Evaluación sin costo</li>
+            <li><svg><use href="#i-check"/></svg>Atención remota</li>
+            <li><svg><use href="#i-check"/></svg>Pagos con tarjeta</li>
+          </ul>
+        </div>
         <p class="hero-sub">Familia, civil, herencias y arriendo. Atendemos San Felipe, Los Andes y todo el Valle de forma remota, con rigor técnico y trato directo con el abogado a cargo.</p>
 
         <ul class="hero-checks">
