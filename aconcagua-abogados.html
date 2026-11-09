@@ -569,6 +569,27 @@
     /* ─────────────────────────────────────────
        FOOTER
     ───────────────────────────────────────── */
+    /* Footer corporativo */
+    footer.ft { position: relative; background: var(--navy); color: rgba(255,255,255,0.62); padding: 4.2rem 0 1.8rem; }
+    footer.ft::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--celeste) 25%, #7dc0ee 50%, var(--celeste) 75%, transparent); opacity: .7; }
+    .ft-top { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.6rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .ft-logo { display: inline-block; font-family: var(--serif); font-weight: 400; font-size: 24px; letter-spacing: 0.05em; line-height: 1.15; color: #fff; text-decoration: none; }
+    .ft-logo span { display: block; font-family: var(--sans); font-size: 9.5px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: #9fd1f4; margin-top: 4px; }
+    .ft-brand p { font-size: 13.5px; line-height: 1.75; max-width: 330px; margin-top: 1.1rem; }
+    .ft-contact { display: grid; gap: 0.7rem; margin-top: 1.5rem; }
+    .ft-contact a { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; width: fit-content; }
+    .ft-contact small { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 1px; }
+    .ft-ico { width: 38px; height: 38px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); color: #9fd1f4; transition: border-color .25s, background .25s; }
+    .ft-ico svg { width: 18px; height: 18px; }
+    .ft-contact a:hover .ft-ico { border-color: rgba(159,209,244,0.55); background: rgba(159,209,244,0.08); }
+    .ft-col h4 { font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; margin-bottom: 1.1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .ft-col ul { list-style: none; display: grid; gap: 0.65rem; }
+    .ft-col a { font-size: 13.5px; color: rgba(255,255,255,0.66); text-decoration: none; transition: color .2s, padding-left .25s; }
+    .ft-col a:hover { color: #fff; padding-left: 3px; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; font-size: 12px; color: rgba(255,255,255,0.42); }
+    .ft-legal { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .ft-legal a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .ft-legal a:hover { color: #fff; }
     footer { background: var(--navy); padding: 4rem 0 2rem; color: rgba(255,255,255,0.62); }
     .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.25rem; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 1.5rem; }
     .footer-brand .nav-logo { color: #fff; margin-bottom: 1rem; }
@@ -602,6 +623,8 @@
       .comunas-grid, .nosotros-grid, .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .nosotros-img { aspect-ratio: 16 / 9; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-top { grid-template-columns: 1fr 1fr 1fr; gap: 2.2rem; }
+      .ft-brand { grid-column: 1 / -1; }
       .footer-brand { grid-column: 1 / -1; }
     }
     /* ─────────────────────────────────────────
@@ -772,6 +795,18 @@
 
       /* Footer compacto */
       footer { padding: 2.5rem 0 1.5rem; }
+      footer.ft { padding: 3rem 0 1.6rem; }
+      .ft-top { grid-template-columns: 1fr 1fr; gap: 2rem 1.2rem; padding-bottom: 2rem; }
+      .ft-brand p { font-size: 13px; margin-top: 0.9rem; }
+      .ft-contact { margin-top: 1.2rem; }
+      .ft-contact a { width: 100%; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; background: rgba(255,255,255,0.03); }
+      .ft-ico { width: 34px; height: 34px; border: none; background: rgba(159,209,244,0.1); }
+      .ft-col:last-child { grid-column: 1 / -1; }
+      .ft-col:last-child ul { grid-template-columns: repeat(3, auto); justify-content: start; gap: 0.6rem 1.4rem; }
+      .ft-col h4 { margin-bottom: 0.8rem; padding-bottom: 0.6rem; }
+      .ft-col a { font-size: 13px; }
+      .ft-bottom { flex-direction: column; align-items: flex-start; gap: 0.7rem; font-size: 11.5px; }
+      .ft-legal { gap: 1.1rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; padding-bottom: 1.5rem; margin-bottom: 1.1rem; }
       .footer-brand p { display: none; }
       .footer-brand .nav-logo { margin-bottom: 0; }
@@ -1314,17 +1349,18 @@
   <!-- ══════════════════════════════════
        FOOTER
   ══════════════════════════════════ -->
-  <footer>
+  <footer class="ft">
     <div class="wrap">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="https://www.santanaycia.cl/" class="nav-logo">
-            Santana &amp; Cía
-            <span>Abogados · Valle de Aconcagua</span>
-          </a>
-          <p>Familia, civil, herencias y arriendo para San Felipe, Los Andes y todo el Valle de Aconcagua, con atención remota.</p>
+      <div class="ft-top">
+        <div class="ft-brand">
+          <a href="https://www.santanaycia.cl/" class="ft-logo">Santana &amp; Cía<span>Abogados</span></a>
+          <p>Estudio jurídico en familia, herencias, arriendo y civil para San Felipe, Los Andes y todo el Valle de Aconcagua, con atención remota.</p>
+          <div class="ft-contact">
+            <a href="mailto:contacto@santanaycia.cl"><span class="ft-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span><span><small>Correo</small>contacto@santanaycia.cl</span></a>
+            <a href="https://wa.me/56969051586" target="_blank" rel="noopener"><span class="ft-ico"><svg><use href="#i-wa"/></svg></span><span><small>WhatsApp</small>+56 9 6905 1586</span></a>
+          </div>
         </div>
-        <div class="footer-col">
+        <div class="ft-col">
           <h4>Áreas</h4>
           <ul>
             <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
@@ -1333,30 +1369,27 @@
             <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="ft-col">
           <h4>Estudio</h4>
           <ul>
             <li><a href="https://www.santanaycia.cl/">Inicio</a></li>
             <li><a href="https://www.santanaycia.cl/honorarios">Honorarios</a></li>
+            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
             <li><a href="#faq">Preguntas frecuentes</a></li>
-            <li><a href="https://www.santanaycia.cl/privacidad">Privacidad</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Contacto</h4>
+        <div class="ft-col">
+          <h4>Clientes</h4>
           <ul>
-            <li><a href="#contacto">Escribir consulta</a></li>
-            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
+            <li><a href="#contacto">Enviar consulta</a></li>
             <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener">Perfil en Google</a></li>
             <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener">Dejar una reseña</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="ft-bottom">
         <span>© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</span>
-        <span>San Felipe · Los Andes · Valle de Aconcagua · <a href="https://www.santanaycia.cl/formas-de-pago" style="color:inherit">Pagos con tarjeta</a></span>
+        <span class="ft-legal"><a href="https://www.santanaycia.cl/privacidad">Privacidad</a><a href="https://www.santanaycia.cl/terminos">Términos</a><a href="https://www.santanaycia.cl/formas-de-pago">Pagos con tarjeta</a></span>
       </div>
     </div>
   </footer>
