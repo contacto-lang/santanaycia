@@ -658,7 +658,7 @@
       .hero::before, .hero-bg { display: none; }
       .hero-inner { gap: 0; }
       .hero-copy {
-        position: relative; margin: 0 -1.15rem; padding: 3.4rem 1.15rem 4.6rem; color: #fff;
+        position: relative; margin: 0 -1.15rem; padding: 2.6rem 1.15rem 4.6rem; color: #fff;
         background:
           linear-gradient(180deg, rgba(14,39,64,0.30) 0%, rgba(14,39,64,0.55) 40%, rgba(14,39,64,0.92) 78%, rgba(14,39,64,0.97) 100%),
           url('https://images.pexels.com/photos/8274982/pexels-photo-8274982.jpeg?auto=compress&cs=tinysrgb&w=1200') 50% 45% / cover no-repeat, #0e2740;
@@ -681,8 +681,8 @@
       .hero { padding-bottom: 0; }
       .hero-copy {
         padding-bottom: 3.2rem;
-        /* Portada casi a pantalla completa: el texto se apoya abajo y la foto respira arriba */
-        min-height: calc(100vh - 120px); min-height: calc(100svh - 120px);
+        /* Portada alta (≈70% de la pantalla), con el texto apoyado abajo */
+        min-height: 70vh; min-height: 70svh;
         display: flex; flex-direction: column; justify-content: flex-end;
       }
       .hero-kicker-m { align-self: flex-start; }
