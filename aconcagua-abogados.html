@@ -644,7 +644,7 @@
       .hero-copy {
         position: relative; margin: 0 -1.15rem; padding: 3.4rem 1.15rem 4.6rem; color: #fff;
         background:
-          linear-gradient(180deg, rgba(14,39,64,0.55) 0%, rgba(14,39,64,0.72) 45%, rgba(14,39,64,0.94) 100%),
+          linear-gradient(180deg, rgba(14,39,64,0.30) 0%, rgba(14,39,64,0.55) 40%, rgba(14,39,64,0.92) 78%, rgba(14,39,64,0.97) 100%),
           url('https://images.unsplash.com/photo-1700663852617-6ad9ff430710?auto=format&fit=crop&w=1200&q=70') 62% 40% / cover no-repeat, #0e2740;
       }
       .hero-eyebrow, .hero-sub, .hero-checks, .hero-stats, .hero-wa { display: none; }
@@ -663,7 +663,13 @@
       .hero-m-trust li { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); }
       .hero-m-trust svg { width: 14px; height: 14px; color: #8cc6ef; }
       .hero { padding-bottom: 0; }
-      .hero-copy { padding-bottom: 3.2rem; }
+      .hero-copy {
+        padding-bottom: 3.2rem;
+        /* Portada casi a pantalla completa: el texto se apoya abajo y la foto respira arriba */
+        min-height: calc(100vh - 120px); min-height: calc(100svh - 120px);
+        display: flex; flex-direction: column; justify-content: flex-end;
+      }
+      .hero-kicker-m { align-self: flex-start; }
       .form-card { scroll-margin-top: 76px; }
       /* Formulario al final de la página */
       .m-form-sec { display: block; background: var(--pale); border-top: 1px solid var(--border); scroll-margin-top: 60px; }
