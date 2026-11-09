@@ -142,7 +142,6 @@ async function crearCobro(request, env, url) {
   const monto = Math.round(Number(String(b.monto || '').replace(/[^\d]/g, '')));
   const dias = Math.min(Math.max(parseInt(b.dias, 10) || 30, 1), 180);
 
-  if (!nombre) return json({ error: 'Falta el nombre del cliente.' }, 400);
   // El correo es opcional: si no se indica, el cliente lo ingresa al pagar
   if (email && !EMAIL_RE.test(email)) return json({ error: 'El correo del cliente no es válido.' }, 400);
   if (!Number.isFinite(monto) || monto < MIN_AMOUNT || monto > MAX_AMOUNT) return json({ error: `El monto debe estar entre $${MIN_AMOUNT} y $${MAX_AMOUNT.toLocaleString('es-CL')}.` }, 400);
@@ -161,7 +160,7 @@ async function verCobro(env, url) {
   const d = r.datos;
   return json({
     estado: r.error === 'vencido' ? 'vencido' : 'vigente',
-    nombre: d.n, caso: d.c || '', codigo: d.k, concepto: d.t, monto: d.m, expira: d.x, email: d.e || '',
+    nombre: d.n || '', caso: d.c || '', codigo: d.k, concepto: d.t, monto: d.m, expira: d.x, email: d.e || '',
   });
 }
 
@@ -178,7 +177,8 @@ async function pagarCobro(request, env, url) {
   const orden = `SC-${d.k}-${Date.now().toString(36).toUpperCase().slice(-5)}`;
   const subject = (d.t || 'Honorarios').slice(0, 120);
   // Filas extra del comprobante de Flow (sin repetir el concepto)
-  const extras = { Cliente: d.n };
+  const extras = {};
+  if (d.n) extras.Cliente = d.n;
   if (d.c) extras.Caso = d.c;
   extras['Código'] = '#' + d.k;
   const data = await flowPost(env, '/payment/create', {
