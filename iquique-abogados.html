@@ -557,6 +557,24 @@
     /* ─────────────────────────────────────────
        FOOTER
     ───────────────────────────────────────── */
+    /* Footer corporativo: cuatro columnas simétricas */
+    footer.ft { position: relative; background: var(--navy); color: rgba(255,255,255,0.62); padding: 4rem 0 1.8rem; }
+    footer.ft::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--celeste) 25%, #7dc0ee 50%, var(--celeste) 75%, transparent); opacity: .7; }
+    .ft-top { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem; padding-bottom: 2.4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .ft-col h4, .ft-logo { display: flex; flex-direction: column; justify-content: flex-end; min-height: 52px; padding-bottom: 0.85rem; box-sizing: border-box; margin-bottom: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .ft-col h4 { font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+    .ft-col .ft-logo { font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: 0.05em; line-height: 1.1; color: #fff; text-decoration: none; }
+    .ft-logo span { display: block; font-family: var(--sans); font-size: 9px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: #9fd1f4; margin-top: 3px; }
+    .ft-brand p { font-size: 13.5px; line-height: 1.75; }
+    .ft-col ul { list-style: none; display: grid; gap: 0.7rem; }
+    .ft-col a { font-size: 13.5px; color: rgba(255,255,255,0.66); text-decoration: none; transition: color .2s; }
+    .ft-col a:hover { color: #fff; }
+    .ft-ic a { display: inline-flex; align-items: center; gap: 9px; }
+    .ft-ic svg { width: 15px; height: 15px; flex-shrink: 0; color: #9fd1f4; }
+    .ft-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding-top: 1.5rem; font-size: 12px; color: rgba(255,255,255,0.42); }
+    .ft-legal { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .ft-legal a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .ft-legal a:hover { color: #fff; }
     footer { background: var(--navy); padding: 4rem 0 2rem; color: rgba(255,255,255,0.62); }
     .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.25rem; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 1.5rem; }
     .footer-brand .nav-logo { color: #fff; margin-bottom: 1rem; }
@@ -569,7 +587,7 @@
     .footer-col a:hover { color: #fff; }
     .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.4); }
 
-    .hero-sub-m { display: none; }
+    .hero-sub-m, .hero-m, .hero-kicker-m, .m-form-sec { display: none; }
 
     /* ─────────────────────────────────────────
        FADE-IN
@@ -618,6 +636,7 @@
       .comunas-grid, .nosotros-grid, .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .nosotros-img { aspect-ratio: 16 / 9; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .ft-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.2rem 2.5rem; }
       .footer-brand { grid-column: 1 / -1; }
     }
     /* ─────────────────────────────────────────
@@ -634,13 +653,40 @@
       .nav-logo { font-size: 19px; }
 
       /* Hero: título + una línea + formulario */
-      .hero { padding: 1.75rem 0 3.5rem; }
-      .hero::before { background: linear-gradient(180deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.66) 40%, rgba(255,255,255,0.9) 78%, #fff 100%); }
-      .hero-bg { object-position: 65% 40%; }
-      .hero-inner { gap: 1.5rem; }
+      /* Hero móvil: portada oscura con la cordillera, CTA y señales de confianza; el formulario va debajo */
+      .hero { padding: 0 0 3rem; background: var(--pale); }
+      .hero::before, .hero-bg { display: none; }
+      .hero-inner { gap: 0; }
+      .hero-copy {
+        position: relative; margin: 0 -1.15rem; padding: 3.4rem 1.15rem 4.6rem; color: #fff;
+        background:
+          linear-gradient(180deg, rgba(14,39,64,0.55) 0%, rgba(14,39,64,0.72) 45%, rgba(14,39,64,0.94) 100%),
+          url('https://images.pexels.com/photos/19953030/pexels-photo-19953030.jpeg?auto=compress&cs=tinysrgb&w=1200') 50% 45% / cover no-repeat, #0e2740;
+      }
       .hero-eyebrow, .hero-sub, .hero-checks, .hero-stats, .hero-wa { display: none; }
-      .hero-title { font-size: clamp(34px, 10vw, 42px); line-height: 1.05; margin-bottom: 0.7rem; }
-      .hero-sub-m { display: block; font-size: 14.5px; color: var(--ink); line-height: 1.55; }
+      .hero-kicker-m { display: inline-flex; align-items: center; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #8cc6ef; margin-bottom: 0.9rem; }
+      .hero-kicker-m::before { content: ''; width: 22px; height: 1.5px; background: #8cc6ef; }
+      .hero-title { font-size: clamp(38px, 11vw, 46px); line-height: 1.02; margin-bottom: 0.9rem; color: #fff; }
+      .hero-title em { color: #8cc6ef; white-space: nowrap; }
+      .hero-sub-m { display: block; font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.6; max-width: 32ch; }
+      .hero-m { display: block; margin-top: 1.6rem; }
+      .hero-m-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .hero-m-cta a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 10px; font-size: 14.5px; font-weight: 700; text-decoration: none; }
+      .hero-m-cta .m-pri { background: var(--celeste); color: #fff; }
+      .hero-m-cta .m-wa { border: 1px solid rgba(255,255,255,0.35); color: #fff; background: rgba(255,255,255,0.06); }
+      .hero-m-cta svg { width: 18px; height: 18px; }
+      .hero-m-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; margin-top: 1.3rem; }
+      .hero-m-trust li { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.78); }
+      .hero-m-trust svg { width: 14px; height: 14px; color: #8cc6ef; }
+      .hero { padding-bottom: 0; }
+      .hero-copy { padding-bottom: 3.2rem; }
+      .form-card { scroll-margin-top: 76px; }
+      /* Formulario al final de la página */
+      .m-form-sec { display: block; background: var(--pale); border-top: 1px solid var(--border); scroll-margin-top: 60px; }
+      .m-form-lead { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0.2rem 0 1.4rem; }
+      #m-form-slot .form-head { display: none; }
+      #m-form-slot .form-body { padding-top: 1.2rem; }
+      .cta-band { display: none; }
 
       /* Formulario compacto: etiquetas ocultas, placeholders autoexplicativos */
       .form-card { border-radius: 12px; box-shadow: 0 16px 40px -16px rgba(14,39,64,0.25); }
@@ -677,6 +723,7 @@
       .comunas-chips {
         flex-wrap: nowrap; overflow-x: auto; margin: 1rem -1.15rem 0; padding: 0 1.15rem 4px;
         scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
       }
       .comunas-chips::-webkit-scrollbar { display: none; }
       .comuna-chip { flex-shrink: 0; font-size: 12.5px; padding: 6px 13px; }
@@ -760,6 +807,19 @@
 
       /* Footer compacto */
       footer { padding: 2.5rem 0 1.5rem; }
+      /* Footer móvil: una columna vertical */
+      footer.ft { padding: 3rem 0 1.8rem; }
+      .ft-top { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 2rem; }
+      .ft-col h4, .ft-logo { min-height: 0; padding-bottom: 0.7rem; margin-bottom: 0.9rem; }
+      .ft-col .ft-logo { font-size: 22px; }
+      .ft-brand p { font-size: 13.5px; }
+      .ft-col ul { gap: 0; }
+      .ft-col li a { display: flex; align-items: center; gap: 10px; padding: 0.62rem 0; font-size: 14.5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .ft-col li:last-child a { border-bottom: none; }
+      .ft-col ul:not(.ft-ic) li a::after { content: '›'; margin-left: auto; font-size: 18px; line-height: 1; color: rgba(159,209,244,0.6); }
+      .ft-ic svg { width: 17px; height: 17px; }
+      .ft-bottom { flex-direction: column; align-items: flex-start; gap: 0.8rem; font-size: 11.5px; }
+      .ft-legal { gap: 1.2rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; padding-bottom: 1.5rem; margin-bottom: 1.1rem; }
       .footer-brand p { display: none; }
       .footer-brand .nav-logo { margin-bottom: 0; }
@@ -842,8 +902,20 @@
 
       <div class="hero-copy">
         <p class="hero-eyebrow"><b>Iquique</b> Atención en toda la Región de Tarapacá</p>
+        <span class="hero-kicker-m">Región de Tarapacá</span>
         <h1 class="hero-title">Abogados en <em>Iquique</em> y <em>Alto Hospicio</em></h1>
-        <p class="hero-sub-m">Familia, herencias, arriendo y civil en todo Tarapacá. Primera evaluación sin costo.</p>
+        <p class="hero-sub-m">Familia, herencias, arriendo y civil, con atención remota en todo Tarapacá.</p>
+        <div class="hero-m">
+          <div class="hero-m-cta">
+            <a class="m-pri" href="#consulta">Enviar mi caso</a>
+            <a class="m-wa" href="https://wa.me/56969051586?text=Hola%2C%20quisiera%20consultar%20por%20un%20caso%20en%20Iquique." target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+          </div>
+          <ul class="hero-m-trust">
+            <li><svg><use href="#i-check"/></svg>Evaluación sin costo</li>
+            <li><svg><use href="#i-check"/></svg>Atención remota</li>
+            <li><svg><use href="#i-check"/></svg>Pagos con tarjeta</li>
+          </ul>
+        </div>
         <p class="hero-sub">Familia, herencias, arriendo y civil para Iquique, Alto Hospicio y la provincia del Tamarugal. Atención remota, con rigor técnico y trato directo con el abogado a cargo, también en los temas propios de la región: trabajo por turnos, Zona Franca y familias con raíces en otros países.</p>
 
         <ul class="hero-checks">
@@ -1313,6 +1385,16 @@
     </div>
   </section>
 
+  <!-- Formulario al final (solo móvil): el formulario del hero se traslada aquí -->
+  <section class="m-form-sec" id="consulta" aria-labelledby="m-form-title">
+    <div class="wrap">
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-title" id="m-form-title">¿Listo para contarnos <em>su caso</em>?</h2>
+      <p class="m-form-lead">Primera evaluación sin costo. Respuesta en un máximo de 24 horas hábiles.</p>
+      <div id="m-form-slot"></div>
+    </div>
+  </section>
+
   <!-- ══════════════════════════════════
        CTA FINAL
   ══════════════════════════════════ -->
@@ -1334,51 +1416,44 @@
   <!-- ══════════════════════════════════
        FOOTER
   ══════════════════════════════════ -->
-  <footer>
+  <footer class="ft">
     <div class="wrap">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="https://www.santanaycia.cl/" class="nav-logo">
-            Santana &amp; Cía
-            <span>Abogados · Iquique</span>
-          </a>
+      <div class="ft-top">
+        <div class="ft-col ft-brand">
+          <a href="https://www.santanaycia.cl/" class="ft-logo">Santana &amp; Cía<span>Abogados</span></a>
           <p>Familia, herencias, arriendo y civil para Iquique, Alto Hospicio y la provincia del Tamarugal, con atención remota.</p>
         </div>
-        <div class="footer-col">
+        <div class="ft-col">
           <h4>Áreas</h4>
           <ul>
             <li><a href="https://www.santanaycia.cl/familia">Familia</a></li>
             <li><a href="https://www.santanaycia.cl/legatum">Herencias</a></li>
-            <li><a href="https://www.santanaycia.cl/arriendo-iquique">Arriendo en Iquique</a></li>
+            <li><a href="https://www.santanaycia.cl/arriendo-iquique">Arriendo</a></li>
             <li><a href="https://www.santanaycia.cl/abogados">Civil</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="ft-col">
           <h4>Estudio</h4>
           <ul>
-            <li><a href="https://www.santanaycia.cl/">Inicio</a></li>
             <li><a href="https://www.santanaycia.cl/honorarios">Honorarios</a></li>
+            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
             <li><a href="https://www.santanaycia.cl/arica-abogados">Abogados en Arica</a></li>
-            <li><a href="https://www.santanaycia.cl/arriendo-antofagasta">Arriendo en Antofagasta</a></li>
-            <li><a href="#faq">Preguntas frecuentes</a></li>
-            <li><a href="https://www.santanaycia.cl/privacidad">Privacidad</a></li>
+            <li><a href="https://www.santanaycia.cl/aconcagua-abogados">Valle de Aconcagua</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="ft-col">
           <h4>Contacto</h4>
-          <ul>
-            <li><a href="#contacto">Escribir consulta</a></li>
-            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></li>
-            <li><a href="https://www.santanaycia.cl/formas-de-pago">Formas de pago</a></li>
-            <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener">Perfil en Google</a></li>
-            <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener">Dejar una reseña</a></li>
+          <ul class="ft-ic">
+            <li><a href="mailto:contacto@santanaycia.cl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>contacto@santanaycia.cl</a></li>
+            <li><a href="https://wa.me/56969051586" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>+56 9 6905 1586</a></li>
+            <li><a href="https://g.page/r/CdBfZfZ1reROEBM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Perfil en Google</a></li>
+            <li><a href="https://g.page/r/CdBfZfZ1reROEBM/review" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>Dejar una reseña</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="ft-bottom">
         <span>© 2026 Santana &amp; Cía Abogados. Todos los derechos reservados.</span>
-        <span>Iquique · Alto Hospicio · Pozo Almonte · Pica · <a href="https://www.santanaycia.cl/formas-de-pago" style="color:inherit">Pagos con tarjeta</a></span>
+        <span class="ft-legal"><a href="https://www.santanaycia.cl/privacidad">Privacidad</a><a href="https://www.santanaycia.cl/terminos">Términos</a><a href="https://www.santanaycia.cl/formas-de-pago">Pagos con tarjeta</a></span>
       </div>
     </div>
   </footer>
@@ -1566,5 +1641,16 @@
     });
   </script>
 
+<script>
+  // En pantallas chicas el formulario se muestra al final de la página; en escritorio, junto al título
+  (function () {
+    var card = document.getElementById('contacto'), slot = document.getElementById('m-form-slot');
+    if (!card || !slot || !window.matchMedia) return;
+    var home = card.parentNode, mq = window.matchMedia('(max-width: 768px)');
+    function place() { if (mq.matches) { if (card.parentNode !== slot) slot.appendChild(card); } else if (card.parentNode !== home) home.appendChild(card); }
+    place();
+    if (mq.addEventListener) mq.addEventListener('change', place); else if (mq.addListener) mq.addListener(place);
+  })();
+</script>
 </body>
 </html>
