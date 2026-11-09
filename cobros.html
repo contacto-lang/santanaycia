@@ -338,7 +338,7 @@
         <div class="g2">
           <div class="f"><label for="concepto">Concepto</label>
             <select id="concepto"><option>Honorarios</option><option>Consulta</option><option>Abono de honorarios</option><option>Cuota de honorarios</option><option>Gastos del juicio</option></select></div>
-          <div class="f"><label for="monto">Monto con IVA (CLP) *</label><input id="monto" inputmode="numeric" required placeholder="150.000"></div>
+          <div class="f"><label for="monto">Monto (CLP) *</label><input id="monto" inputmode="numeric" required placeholder="150.000"></div>
         </div>
         <div class="g2">
           <div class="f"><label for="dias">Vence en</label>
@@ -382,7 +382,7 @@
           try { localStorage.setItem('sc_cobros_clave', body.clave); } catch (e) {}
           const nombre = body.nombre.trim().split(' ')[0];
           const venc = new Date(j.expira + 'T12:00:00').toLocaleDateString('es-CL', { day: 'numeric', month: 'long' });
-          const texto = `Hola${nombre ? ' ' + nombre : ''}, le enviamos el enlace para pagar ${body.concepto.toLowerCase()}${body.caso ? ' de su caso ' + body.caso : ''} (código #${j.codigo}) por $${Number(j.monto).toLocaleString('es-CL')}, IVA incluido. Puede pagar con tarjeta de crédito o débito hasta el ${venc}:\n\n${j.link}\n\nSantana & Cía Abogados`;
+          const texto = `Hola${nombre ? ' ' + nombre : ''}, le enviamos el enlace para pagar ${body.concepto.toLowerCase()}${body.caso ? ' de su caso ' + body.caso : ''} (código #${j.codigo}) por $${Number(j.monto).toLocaleString('es-CL')}. Puede pagar con tarjeta de crédito o débito hasta el ${venc}:\n\n${j.link}\n\nSantana & Cía Abogados`;
           $('msg').value = texto;
           $('wa').href = 'https://wa.me/?text=' + encodeURIComponent(texto);
           $('mail').href = 'mailto:' + encodeURIComponent(body.email) + '?subject=' + encodeURIComponent('Pago de honorarios #' + j.codigo + ' — Santana & Cía Abogados') + '&body=' + encodeURIComponent(texto);

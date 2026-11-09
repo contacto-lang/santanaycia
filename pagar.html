@@ -363,7 +363,6 @@
               <li><span>Concepto</span><b>${esc(d.concepto)}</b></li>
             </ul>
             <div class="bill-total"><span>Total a pagar</span><strong>${clp(d.monto)}</strong></div>
-            <p class="bill-iva">IVA incluido</p>
             <div class="bill-mail">
               <label for="mail">Correo para su comprobante</label>
               <input id="mail" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="nombre@correo.cl" value="${esc(d.email || '')}" required>
