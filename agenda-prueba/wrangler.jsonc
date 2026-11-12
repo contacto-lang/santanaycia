@@ -1,0 +1,8 @@
+{
+  // Agenda de prueba: se despliega como Worker independiente en agenda-prueba.raulsantana.workers.dev
+  "name": "agenda-prueba",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "kv_namespaces": [{ "binding": "AGENDA", "id": "5288158b6fc0422aa48e3738efc3043c" }]
+}
