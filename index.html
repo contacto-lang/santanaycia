@@ -819,7 +819,33 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-eyebrow, .hero-title, .hero-sub, .hero-trust, .hero-form-card, .hero-eyebrow::before { animation: none !important; }
     }
-  </style>
+  
+    /* Ilustraciones sutiles */
+    .area-ico.area-ilus, .area-card:hover .area-ico.area-ilus { background: var(--white); }
+    .area-ico.area-ilus svg { width: 34px; height: 34px; transition: transform .25s; }
+    .area-card:hover .area-ico.area-ilus svg { transform: scale(1.08); }
+    .value-num.value-ilus { opacity: 1; width: 48px; height: 48px; border-radius: 12px; background: var(--pale); display: grid; place-items: center; padding: 0; }
+    .value-ilus svg { width: 34px; height: 34px; }
+    .abroad-ico.abroad-ilus { width: 52px; height: 52px; background: var(--pale); }
+    .abroad-ilus svg { width: 38px; height: 38px; }
+    .extranjero-inner { position: relative; }
+    .globo-ilus { position: absolute; right: 0; top: -10px; width: 260px; height: auto; pointer-events: none; }
+    .globo-ilus .ruta { animation: ruta 3s linear infinite; }
+    @keyframes ruta { to { stroke-dashoffset: -24; } }
+    .quote-cord { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 100px; z-index: 1; pointer-events: none; }
+    .quote-band-inner { z-index: 2; }
+    .area-card.tool { grid-template-columns: auto 1fr auto; gap: 1.75rem; }
+    .tool-ilus { width: 90px; height: 70px; }
+    .flota { animation: flota 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes flota { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @media (prefers-reduced-motion: reduce) { .flota, .globo-ilus .ruta { animation: none; } }
+    @media (max-width: 1100px) { .globo-ilus { width: 190px; } }
+    @media (max-width: 860px) {
+      .globo-ilus { display: none; }
+      .area-card.tool { grid-template-columns: 1fr; } .tool-ilus { width: 70px; height: 54px; }
+      .abroad-ico.abroad-ilus { width: 46px; height: 46px; } .abroad-ilus svg { width: 32px; height: 32px; }
+    }
+</style>
 </head>
 <body>
 
@@ -949,7 +975,7 @@
         <a href="https://www.santanaycia.cl/familia" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1758227365187-016878604d94?q=80&w=1000&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.6" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2-5 4.5-5s4.5 2 4.5 5M13 19c0-2.4 1.6-4.2 3.5-4.2S20 16.6 20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="17" cy="15" r="6" fill="#e8b998"/><path d="M6 46 q0 -20 11 -20 q11 0 11 20z" fill="#2c86c9"/><circle cx="37" cy="15" r="6" fill="#e8b998"/><path d="M26 46 q0 -20 11 -20 q11 0 11 20z" fill="#0e2740"/><circle cx="27" cy="29" r="4.5" fill="#e8b998"/><path d="M19 46 q0 -12 8 -12 q8 0 8 12z" fill="#f2c14e"/></svg></span>
             <span class="area-num">01</span>
           </div>
           <h3 data-en="Family and Individuals">Familia y personas</h3>
@@ -964,7 +990,7 @@
         <a href="https://www.santanaycia.cl/legatum" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 24 L22 11 L38 24 V46 H6Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M3 25.5 L22 9.5 L41 25.5" stroke="#0e2740" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="32" width="10" height="14" fill="#1a65a0"/><rect x="30" y="22" width="20" height="26" rx="2.5" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><g fill="#cfe5f7"><rect x="34" y="27" width="12" height="2.4" rx="1.2"/><rect x="34" y="32" width="10" height="2.4" rx="1.2"/></g><circle cx="40" cy="41" r="3.6" fill="#f2c14e"/></svg></span>
             <span class="area-num">02</span>
           </div>
           <h3 data-en="Estates and Wills">Herencias y testamentos</h3>
@@ -979,7 +1005,7 @@
         <a href="https://www.santanaycia.cl/devuelveme-mi-casa" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1729855637715-99192904aac5?q=80&w=900&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 24 L22 11 L38 24 V46 H6Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M3 25.5 L22 9.5 L41 25.5" stroke="#0e2740" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="32" width="10" height="14" fill="#2c86c9"/><g transform="rotate(-35 40 38)"><circle cx="34" cy="38" r="7" fill="#f2c14e"/><circle cx="34" cy="38" r="2.6" fill="#fff"/><rect x="40" y="36" width="13" height="4" rx="1.5" fill="#f2c14e"/><rect x="48" y="40" width="3" height="4" fill="#f2c14e"/></g></svg></span>
             <span class="area-num">03</span>
           </div>
           <h3 data-en="Landlord Recovery Law">Devuélveme mi casa</h3>
@@ -994,7 +1020,7 @@
         <a href="https://www.santanaycia.cl/abogados" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=900')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 20h12M5 7h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 7l-3 6.5a3 3 0 006 0L7 7zM17 7l-3 6.5a3 3 0 006 0L17 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><rect x="25" y="9" width="4" height="34" fill="#0e2740"/><path d="M17 48 h20 l-3 -5 h-14z" fill="#1a65a0"/><g transform="rotate(7 27 11)"><rect x="7" y="9" width="40" height="4" rx="2" fill="#0e2740"/></g><circle cx="27" cy="11" r="3.5" fill="#f2c14e"/><path d="M9 8 l-6 15 M9 8 l6 15 M45 13 l-6 15 M45 13 l6 15" stroke="#0e2740" stroke-width="1.4"/><path d="M2 23 h14 q-1 5 -7 5 q-6 0 -7 -5z" fill="#2c86c9"/><path d="M38 28 h14 q-1 5 -7 5 q-6 0 -7 -5z" fill="#1a65a0"/></svg></span>
             <span class="area-num">04</span>
           </div>
           <h3 data-en="Civil and Contracts">Civil y contratos</h3>
@@ -1009,7 +1035,7 @@
         <a href="https://www.santanaycia.cl/propiedades" class="area-card">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/37136626/pexels-photo-37136626.jpeg?auto=compress&cs=tinysrgb&w=1200')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 13l1.8 1.8L15 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 24 L22 11 L38 24 V46 H6Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M3 25.5 L22 9.5 L41 25.5" stroke="#0e2740" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="32" width="10" height="14" fill="#1a65a0"/><rect x="28" y="28" width="24" height="18" rx="2" fill="#0e2740"/><rect x="31" y="32" width="18" height="2.4" rx="1.2" fill="#cfe5f7"/><rect x="31" y="37" width="12" height="2.4" rx="1.2" fill="#cfe5f7"/><circle cx="46" cy="41" r="2.4" fill="#f2c14e"/></svg></span>
             <span class="area-num">05</span>
           </div>
           <h3 data-en="Property Law">Propiedades</h3>
@@ -1024,7 +1050,7 @@
         <a href="https://www.exigetuseguro.cl" class="area-card" target="_blank" rel="noopener">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1768839720586-71b7ff8b5c59?q=80&w=900&auto=format&fit=crop')" aria-hidden="true"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5l7 2.8v5.2c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6.3l7-2.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2.2 2.2L15.5 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="area-ico area-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M27 5 l20 8 v14 q0 18 -20 26 q-20 -8 -20 -26 v-14z" fill="#2c86c9"/><path d="M27 5 l20 8 v14 q0 18 -20 26z" fill="#1a65a0"/><path d="M18 29 l6 6 l12 -13" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <span class="area-num">06</span>
           </div>
           <h3 data-en="Insurance Claims">Seguros</h3>
@@ -1037,6 +1063,7 @@
         </a>
 
         <a href="https://www.santanaycia.cl/legatum" class="area-card tool">
+          <svg class="tool-ilus" viewBox="0 0 90 70" aria-hidden="true"><path d="M8 34 L32 16 L56 34 V64 H8Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M4 36 L32 13 L60 36" stroke="#0e2740" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="26" y="46" width="12" height="18" fill="#1a65a0"/><g class="flota"><circle cx="68" cy="40" r="17" fill="#f2c14e"/><path d="M68 40 V23 A17 17 0 0 1 84 46z" fill="#2c86c9"/><path d="M68 40 L84 46 A17 17 0 0 1 58 54z" fill="#0e2740"/></g></svg>
           <div class="tool-left">
             <div class="tool-badge" data-en="&lt;div class=&quot;tool-badge-dot&quot;&gt;&lt;/div&gt; Free tool"><div class="tool-badge-dot"></div> Herramienta gratuita</div>
             <h3 data-en="Legatum — Inheritance Calculator">Legatum — Calculadora de herencias</h3>
@@ -1060,28 +1087,28 @@
 
       <div class="values-grid fade-in">
         <div class="value-item">
-          <span class="value-num">01</span>
+          <span class="value-num value-ilus" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="5" width="24" height="32" rx="3" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><g fill="#cfe5f7"><rect x="13" y="11" width="14" height="2.4" rx="1.2"/><rect x="13" y="16" width="11" height="2.4" rx="1.2"/></g><circle cx="30" cy="30" r="9" fill="#fff" fill-opacity=".9" stroke="#0e2740" stroke-width="3.2"/><line x1="36.5" y1="36.5" x2="44" y2="44" stroke="#f2c14e" stroke-width="4.5" stroke-linecap="round"/></svg></span>
           <div class="value-body">
             <strong data-en="Specialization">Especialización</strong>
             <p data-en="We focus exclusively on family, civil and estate law. Depth is our differentiator.">Nos dedicamos exclusivamente al derecho de familia, civil y sucesiones. La profundidad es nuestro diferencial.</p>
           </div>
         </div>
         <div class="value-item">
-          <span class="value-num">02</span>
+          <span class="value-num value-ilus" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="20" width="28" height="22" rx="4" fill="#1a65a0"/><path d="M16 20 v-5 a8 8 0 0 1 16 0 v5" stroke="#0e2740" stroke-width="4" fill="none"/><circle cx="24" cy="29" r="3" fill="#fff"/><rect x="23" y="30" width="2" height="6" rx="1" fill="#fff"/></svg></span>
           <div class="value-body">
             <strong data-en="Confidentiality">Confidencialidad</strong>
             <p data-en="Every account and document is handled under strict professional confidentiality from the first contact.">Todo relato y documentación es tratado con estricta reserva profesional desde el primer contacto.</p>
           </div>
         </div>
         <div class="value-item">
-          <span class="value-num">03</span>
+          <span class="value-num value-ilus" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="5" width="28" height="36" rx="3" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><circle cx="24" cy="18" r="7" fill="#f2c14e"/><text x="24" y="22" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="10" fill="#0e2740">$</text><g fill="#cfe5f7"><rect x="15" y="30" width="18" height="2.4" rx="1.2"/><rect x="15" y="35" width="13" height="2.4" rx="1.2"/></g></svg></span>
           <div class="value-body">
             <strong data-en="Fee Transparency">Transparencia de costos</strong>
             <p data-en="Before committing, clients know exactly the legal strategy, timelines and fees involved.">Antes de comprometerse, el cliente conoce con exactitud la estrategia legal, los plazos y los honorarios.</p>
           </div>
         </div>
         <div class="value-item">
-          <span class="value-num">04</span>
+          <span class="value-num value-ilus" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M20 4 q4 6 2 12 q-2 6 1 12 q2 6 -1 12 q-1 4 0 6" stroke="#2c86c9" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M34 6 a8 8 0 0 1 8 8 c0 6 -8 13 -8 13 s-8 -7 -8 -13 a8 8 0 0 1 8 -8z" fill="#0e2740"/><circle cx="34" cy="14" r="3" fill="#fff"/></svg></span>
           <div class="value-body">
             <strong data-en="Service Across Chile">Atención en todo Chile</strong>
             <p data-en="We work remotely by form, video call or email. No geographic barriers.">Atendemos de forma remota por formulario, videollamada o correo. Sin barreras geográficas.</p>
@@ -1093,28 +1120,29 @@
 
   <!-- CHILENOS EN EL EXTRANJERO -->
   <section id="extranjero">
-    <div class="section-inner">
+    <div class="section-inner extranjero-inner">
+      <svg class="globo-ilus" viewBox="0 0 260 220" aria-hidden="true"><circle cx="130" cy="112" r="92" fill="#eef6fc" stroke="#cfe5f7" stroke-width="2"/><g fill="none" stroke="#cfe5f7" stroke-width="1.5"><ellipse cx="130" cy="112" rx="40" ry="92"/><ellipse cx="130" cy="112" rx="75" ry="92"/><path d="M38 112 h184 M48 70 h164 M48 154 h164"/></g><g fill="#d7e8f5"><path d="M150 50 q20 -6 32 6 q4 14 -8 20 q-14 2 -18 14 q-12 6 -16 -6 q-2 -16 10 -34z"/><path d="M88 52 q14 -8 26 0 q6 10 -2 18 q-12 4 -20 14 q-10 0 -10 -12 q0 -12 6 -20z"/><path d="M104 120 q12 -4 18 6 q4 14 -2 30 q-4 20 -10 30 q-6 -10 -8 -28 q-4 -22 2 -38z"/></g><path d="M110 128 q2 22 -4 54" stroke="#2c86c9" stroke-width="5" fill="none" stroke-linecap="round"/><path class="ruta" d="M176 62 Q160 20 130 50 Q108 80 112 132" stroke="#f2c14e" stroke-width="3" stroke-dasharray="6 6" fill="none" stroke-linecap="round"/><circle cx="176" cy="62" r="5" fill="#0e2740"/><path d="M112 116 a9 9 0 0 1 9 9 c0 7 -9 14 -9 14 s-9 -7 -9 -14 a9 9 0 0 1 9 -9z" fill="#0e2740"/><circle cx="112" cy="125" r="3.2" fill="#fff"/></svg>
       <span class="section-tag fade-in" data-en="Living abroad">Chilenos en el extranjero</span>
       <h2 class="section-title fade-in" data-en="Live outside Chile?&lt;br&gt;We &lt;em&gt;represent you&lt;/em&gt; here">¿Vive fuera de Chile?<br>Lo <em>representamos</em> aquí</h2>
       <p class="section-lead fade-in" data-en="We assist Chileans and foreigners living in Europe, the United States, Canada, Australia or any other country who need to resolve a legal matter in Chile. Everything is handled remotely by video call, email and WhatsApp, taking the time difference into account.">Atendemos a chilenos y extranjeros que viven en Europa, Estados Unidos, Canadá, Australia o cualquier otro país y necesitan resolver un asunto legal en Chile. Todo se gestiona a distancia, por videollamada, correo y WhatsApp, coordinando la diferencia horaria.</p>
       <div class="abroad-grid fade-in">
         <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="abroad-ico abroad-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 24 L22 11 L38 24 V46 H6Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M3 25.5 L22 9.5 L41 25.5" stroke="#0e2740" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="32" width="10" height="14" fill="#1a65a0"/><rect x="30" y="22" width="20" height="26" rx="2.5" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><g fill="#cfe5f7"><rect x="34" y="27" width="12" height="2.4" rx="1.2"/><rect x="34" y="32" width="10" height="2.4" rx="1.2"/></g><circle cx="40" cy="41" r="3.6" fill="#f2c14e"/></svg></span>
           <h3 data-en="Inheritances in Chile">Herencias en Chile</h3>
           <p data-en="Probate, division and sale of inherited assets in Chile, even if you or other heirs live abroad.">Posesión efectiva, partición y venta de bienes heredados en Chile, aunque usted u otros herederos vivan afuera.</p>
         </div>
         <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5.5 20.5h13M7 20.5V9.5M17 20.5V9.5M12 20.5V9.5M4 9.5h16L12 3.5 4 9.5z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="abroad-ico abroad-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><rect x="8" y="8" width="26" height="34" rx="2.5" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><g fill="#cfe5f7"><rect x="12" y="13" width="12" height="2.4" rx="1.2"/><rect x="12" y="18" width="10" height="2.4" rx="1.2"/></g><path d="M16 34 q4 -6 8 0 t8 0" stroke="#1a65a0" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="40" cy="38" r="11" fill="#2c86c9"/><path d="M29 38 h22 M40 27 q-6 11 0 22 M40 27 q6 11 0 22" stroke="#fff" stroke-width="1.6" fill="none"/></svg></span>
           <h3 data-en="Power of attorney from abroad">Poder desde el extranjero</h3>
           <p data-en="We explain how to grant the power of attorney at the Chilean consulate or before a local notary with an apostille, so we can act on your behalf.">Le indicamos cómo otorgar el poder ante el consulado de Chile o ante un notario de su país con apostilla, para actuar en su nombre.</p>
         </div>
         <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="abroad-ico abroad-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 24 L22 11 L38 24 V46 H6Z" fill="#fff" stroke="#cfe5f7" stroke-width="1.5"/><path d="M3 25.5 L22 9.5 L41 25.5" stroke="#0e2740" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="32" width="10" height="14" fill="#2c86c9"/><g transform="rotate(-35 40 38)"><circle cx="34" cy="38" r="7" fill="#f2c14e"/><circle cx="34" cy="38" r="2.6" fill="#fff"/><rect x="40" y="36" width="13" height="4" rx="1.5" fill="#f2c14e"/><rect x="48" y="40" width="3" height="4" fill="#f2c14e"/></g></svg></span>
           <h3 data-en="Your property in Chile">Su propiedad en Chile</h3>
           <p data-en="Leases, tenants who do not pay, title regularization or sale of your property in Chile while you live abroad.">Arriendos, arrendatarios que no pagan, regularización o venta de su propiedad en Chile mientras vive fuera.</p>
         </div>
         <div class="abroad-card">
-          <span class="abroad-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.5 5.2 3.5 8.5s-1.2 6.1-3.5 8.5c-2.3-2.4-3.5-5.2-3.5-8.5S9.7 5.9 12 3.5z" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          <span class="abroad-ico abroad-ilus"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="14" cy="14" r="5.5" fill="#e8b998"/><path d="M4 44 q0 -18 10 -18 q10 0 10 18z" fill="#2c86c9"/><circle cx="40" cy="16" r="5" fill="#e8b998"/><path d="M31 44 q0 -16 9 -16 q9 0 9 16z" fill="#0e2740"/><path d="M20 14 q7 -9 14 0" stroke="#f2c14e" stroke-width="2" stroke-dasharray="3 3" fill="none"/></svg></span>
           <h3 data-en="Family matters at a distance">Familia a distancia</h3>
           <p data-en="Child support, divorce and travel authorizations when one parent lives in another country.">Pensión de alimentos, divorcio y autorizaciones de viaje cuando uno de los padres vive en otro país.</p>
         </div>
@@ -1129,6 +1157,7 @@
   <!-- QUOTE -->
   <div class="quote-band">
     <img class="quote-band-img" src="https://images.pexels.com/photos/21533323/pexels-photo-21533323.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="" width="1920" height="1080" loading="lazy" aria-hidden="true">
+    <svg class="quote-cord" viewBox="0 390 1440 330" preserveAspectRatio="none" aria-hidden="true"><path d="M0 560 L120 470 L210 520 L330 420 L440 500 L560 400 L690 490 L800 430 L930 510 L1060 420 L1180 490 L1300 440 L1440 500 V720 H0Z" fill="#ffffff" fill-opacity=".045"/><path d="M0 640 Q360 600 720 630 T1440 620 V720 H0Z" fill="#ffffff" fill-opacity=".04"/></svg>
     <div class="quote-band-inner fade-in">
       <span class="quote-mark">"</span>
       <p class="quote-text" data-en="The most important legal matters in life deserve dedicated attention, not generic solutions.">Los asuntos legales más importantes de la vida merecen atención dedicada, no soluciones genéricas.</p>
