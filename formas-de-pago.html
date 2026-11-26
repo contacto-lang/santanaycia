@@ -251,6 +251,14 @@
         },
         {
           "@type": "Question",
+          "name": "¿El comprobante de pago es válido como boleta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Cuando paga con tarjeta de crédito, débito o prepago, el comprobante de pago de Flow que recibe en su correo es válido como boleta de ventas y servicios, según el artículo 54 de la Ley de IVA y las Resoluciones Exentas SII N° 176/2020 y N° 76/2021. Flow informa cada día al SII los pagos recibidos, y quedan registrados en el Registro de Compras y Ventas del comercio. Si necesita factura, solicítela por separado."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "¿Emiten factura?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -523,11 +531,13 @@
     .fp-faq-list details:first-child { border-top: 1px solid var(--border); }
     .fp-faq-list summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; padding: 1.1rem 0; font-weight: 700; font-size: 15.5px; color: var(--navy); }
     .fp-faq-list summary::-webkit-details-marker { display: none; }
-    .fp-faq-list summary::after { content: '+'; font-weight: 500; font-size: 22px; line-height: 1; color: var(--celeste); transition: transform .2s; }
+    .fp-faq-list summary::after { content: '+'; flex: none; align-self: flex-start; font-weight: 500; font-size: 22px; line-height: 1; color: var(--celeste); transition: transform .2s; }
     .fp-faq-list details[open] summary::after { transform: rotate(45deg); }
     .fp-faq-list details[open] p { animation: fpUp .45s ease both; }
     .fp-faq-list summary:hover { color: var(--celeste-d); }
     .fp-faq-list p { padding: 0 2rem 1.2rem 0; font-size: 14.5px; line-height: 1.7; color: #34485c; }
+    .fp-faq-list p a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .fp-faq-list p a:hover { color: var(--celeste-d); }
 
     .fp-cta { margin: 4.2rem 0 4.8rem; border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; background: var(--pale); }
     .fp-cta h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; color: var(--navy); line-height: 1.15; }
@@ -733,6 +743,7 @@
         <details class="rv"><summary>¿Cómo se realiza el pago?</summary><p>Una vez acordado el servicio, le enviamos por WhatsApp o correo el detalle del cobro con su nombre, su caso y el monto, y un botón para pagar en línea. El comprobante le llega a su correo al instante.</p></details>
         <details class="rv"><summary>¿Puedo pagar desde el extranjero?</summary><p>Sí. Puede pagar con tarjetas emitidas fuera de Chile a través de Webpay, o por transferencia bancaria. Es una alternativa práctica para chilenos que viven fuera del país y tienen asuntos legales en Chile.</p></details>
         <details class="rv"><summary>¿Es seguro pagar en línea?</summary><p>Sí. Los pagos los procesa Flow con Webpay de Transbank. Los datos de su tarjeta se ingresan directamente en la plataforma de pago y nunca pasan por nuestro sitio.</p></details>
+        <details class="rv"><summary>¿El comprobante de pago es válido como boleta?</summary><p>Sí. Cuando paga con tarjeta de crédito, débito o prepago, el comprobante de pago de Flow que recibe en su correo es válido como boleta de ventas y servicios, según el artículo 54 de la Ley de IVA y las Resoluciones Exentas SII <a href="https://www.sii.cl/normativa_legislacion/resoluciones/2020/reso176.pdf" target="_blank" rel="noopener">N° 176/2020</a> y <a href="https://www.sii.cl/normativa_legislacion/resoluciones/2021/reso76.pdf" target="_blank" rel="noopener">N° 76/2021</a>. Flow informa cada día al SII los pagos recibidos, y quedan registrados en el Registro de Compras y Ventas del comercio. Si necesita factura, solicítela por separado.</p></details>
         <details class="rv"><summary>¿Emiten factura?</summary><p>Sí. Si necesita factura para su empresa, la emitimos a nombre de Santana y Cía. SpA con los datos que nos indique.</p></details>
       </div>
     </section>
