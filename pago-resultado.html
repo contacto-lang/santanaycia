@@ -263,6 +263,23 @@
     footer.pp-foot a { color: var(--navy); text-decoration: none; font-weight: 600; }
     footer.pp-foot a:hover { color: var(--celeste-d); }
     .pp-foot .sep { opacity: .4; margin: 0 .5rem; }
+    .boleta { margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 1rem; text-align: left; }
+    .boleta summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+    .boleta summary::-webkit-details-marker { display: none; }
+    .boleta summary svg { width: 17px; height: 17px; flex: none; color: var(--celeste); }
+    .boleta summary .chev { width: 14px; height: 14px; color: var(--soft); transition: transform .2s; }
+    .boleta[open] summary .chev { transform: rotate(180deg); }
+    .boleta summary:focus-visible { outline: 2px solid var(--celeste); outline-offset: 4px; border-radius: 6px; }
+    .boleta-body { margin-top: 0.9rem; font-size: 13px; line-height: 1.65; color: #34485c; }
+    .boleta-body p { margin: 0; }
+    .boleta-body p + p { margin-top: 0.7rem; }
+    .boleta-body a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .boleta-body a:hover { color: var(--celeste-d); }
+    .boleta-body h3 { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 1rem 0 0.4rem; }
+    .boleta-body ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+    .boleta-body li { padding-left: 14px; position: relative; }
+    .boleta-body li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 5px; height: 5px; border-radius: 50%; background: var(--celeste); opacity: .7; }
+    .boleta-res { max-width: 520px; margin: 2.2rem auto 0; }
   </style>
 </head>
 <body class="portal">
@@ -276,6 +293,7 @@
       <p id="txt"></p>
       <div class="meta" id="meta"></div>
       <div class="acts" id="acts"></div>
+      <div class="boleta-res" id="boleta"></div>
     </section>
   </main>
 
@@ -300,11 +318,24 @@
         anulado:   ['bad',  'Pago anulado',           'La transacción fue anulada y no se realizó ningún cargo.', '<a class="pri" href="' + VOLVER + '">Intentar de nuevo</a>' + WA],
         error:     ['bad',  'No pudimos confirmar el pago', 'Hubo un problema al consultar el estado de su pago. Si se realizó un cargo, recibirá el comprobante de Flow en su correo. Escríbanos y lo revisamos.', WA + '<a class="pri" href="' + VOLVER + '">Volver a intentar</a>']
       };
+      const BOLETA = '<details class="boleta"><summary><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h7.5L19 7.5V21H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14.5 3v4.5H19M10 14.5l2 2 3.5-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Comprobante de pago válido como boleta</span><svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>'
+        + '<div class="boleta-body">'
+        + '<p>Al pagar con tarjeta de crédito, débito o prepago, Flow le envía a su correo el comprobante de pago. Ese comprobante es válido como boleta de ventas y servicios, según el artículo 54 de la Ley de IVA y las instrucciones del SII.</p>'
+        + '<p>Flow informa cada día al SII las transacciones del día anterior, y esa información se incorpora al Registro de Compras y Ventas del comercio. Así, su pago queda respaldado y registrado ante el SII.</p>'
+        + '<p>¿Necesita factura? Solicítela por separado escribiendo a <a href="mailto:contacto@santanaycia.cl?subject=Solicitud%20de%20factura">contacto@santanaycia.cl</a>.</p>'
+        + '<h3>Normativa del SII</h3>'
+        + '<ul>'
+        + '<li><a href="https://www.bcn.cl/leychile/navegar?idNorma=6369" target="_blank" rel="noopener">Artículo 54 de la Ley sobre Impuesto a las Ventas y Servicios</a></li>'
+        + '<li><a href="https://www.sii.cl/normativa_legislacion/resoluciones/2020/reso176.pdf" target="_blank" rel="noopener">Resolución Exenta SII N° 176/2020</a></li>'
+        + '<li><a href="https://www.sii.cl/normativa_legislacion/resoluciones/2021/reso76.pdf" target="_blank" rel="noopener">Resolución Exenta SII N° 76/2021</a></li>'
+        + '<li><a href="https://www.sii.cl/destacados/ticketporboleta/administrador.html" target="_blank" rel="noopener">Obligación de información de los administradores u operadores de medios de pago electrónicos</a></li>'
+        + '</ul></div></details>';
       const v = V[estado] || V.error;
       const ico = document.getElementById('ico'); ico.className = 'res-ico ' + v[0]; ico.innerHTML = I[v[0]];
       document.getElementById('tit').textContent = v[1];
       document.getElementById('txt').textContent = v[2];
       document.getElementById('acts').innerHTML = v[3];
+      if (estado === 'pagado') document.getElementById('boleta').innerHTML = BOLETA;
       const meta = [];
       const caso = q.get('caso'), codigo = q.get('codigo');
       if (caso) meta.push(caso);
