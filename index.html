@@ -832,6 +832,84 @@
       .hero-eyebrow, .hero-title, .hero-sub, .hero-trust, .hero-form-card, .hero-eyebrow::before { animation: none !important; }
     }
   
+
+    /* ── HERO: collage de fotos en rotación ── */
+    .hs-bg { opacity: 0; transition: opacity 1.4s ease; will-change: opacity; }
+    .hs-bg.is-on { opacity: 1; }
+    img.hs-bg.is-on { animation: hsZoom 9s ease-out both; }
+    .hero-img[data-slide="1"] { object-position: center 40%; }
+    .hero-img[data-slide="2"] { object-position: center 55%; }
+    .hs-bg-pay { position: absolute; inset: 0; background:
+        radial-gradient(60% 70% at 25% 35%, rgba(47,127,196,0.35), transparent 70%),
+        linear-gradient(135deg, #0b1a2d 0%, #12304f 55%, #1a4a78 100%); }
+    @keyframes hsZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+
+    .hs { position: relative; }
+    .hs-track { display: grid; }
+    .hs-slide { grid-area: 1 / 1; align-self: center; opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s .8s; }
+    .hs-slide.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: .25s, .25s, 0s; }
+    .hs-title { margin-bottom: 1.3rem; }
+    .hs-slide .hero-sub a { color: #fff; text-decoration: underline; text-decoration-color: rgba(169,210,242,0.6); text-underline-offset: 3px; }
+    .hs-mail { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.1; margin: -0.4rem 0 1.4rem; overflow-wrap: anywhere; }
+    .hs-mail a { color: var(--celeste-soft); text-decoration: none; border-bottom: 1px solid rgba(169,210,242,0.35); transition: border-color .25s; }
+    .hs-mail a:hover { border-color: var(--celeste-soft); }
+    .hs-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; max-width: 520px; }
+    .hs-chips a { font-size: 11.5px; color: rgba(255,255,255,0.85); text-decoration: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 6px 13px; transition: border-color .25s, background .25s; }
+    .hs-chips a:hover { border-color: rgba(169,210,242,0.6); background: rgba(169,210,242,0.1); }
+    .hs-link { display: inline-block; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; text-decoration: none; background: var(--celeste); padding: 0.85rem 1.4rem; border-radius: 4px; transition: background .25s; }
+    .hs-link:hover { background: var(--celeste-d); }
+
+    /* Tarjetas (como en Formas de pago) */
+    .hs-cards { position: relative; width: 250px; height: 132px; margin-bottom: 1.6rem; }
+    .hs-cc { position: absolute; width: 190px; aspect-ratio: 1.586; border-radius: 11px; transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s ease; }
+    .hs-cc.back { right: 0; top: 0; overflow: hidden; background: linear-gradient(150deg, #3a95d8 0%, #1f6fae 55%, #175a8f 100%); border: 1px solid rgba(255,255,255,0.18); transform: rotate(7deg); }
+    .hs-stripe { position: absolute; left: 0; right: 0; top: 13%; height: 19%; background: #0b1a2a; }
+    .hs-sign { position: absolute; left: 8%; top: 42%; width: 58%; height: 15%; border-radius: 2px; background: repeating-linear-gradient(-45deg, #f3f7fb 0 5px, #e1eaf3 5px 10px); }
+    .hs-holo { position: absolute; right: 8%; bottom: 13%; width: 16%; aspect-ratio: 1.3; border-radius: 3px; background: linear-gradient(135deg, #d6e8f7, #a9d1ef 35%, #e8dcf5 60%, #b5e3df); opacity: .85; }
+    .hs-cc.front { left: 0; bottom: 0; padding: 13px 15px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(140deg, #1d4a74 0%, #12304f 55%, #0b2036 100%); border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 22px 40px -20px rgba(0,0,0,0.6); transform: rotate(-4deg); }
+    .hs-cc .row { display: flex; justify-content: space-between; align-items: center; }
+    .hs-chip { width: 25px; height: 19px; border-radius: 4px; background: linear-gradient(135deg, #d9e4ee, #a9bccd); }
+    .hs-mono { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 17px; color: #fff; line-height: 1; }
+    .hs-mono i { font-style: normal; font-size: .55em; color: var(--celeste-soft); }
+    .hs-num { font-size: 10.5px; font-weight: 500; letter-spacing: .14em; color: rgba(255,255,255,.88); }
+    .hs-cc small { font-size: 7px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+    .hs-cc b { font-size: 8px; letter-spacing: .12em; color: #fff; }
+    .hs-slide:not(.is-on) .hs-cc.back { transform: rotate(0) translate(-18px, 18px); opacity: 0; }
+    .hs-slide:not(.is-on) .hs-cc.front { transform: rotate(0) translate(18px, 24px); opacity: 0; }
+    .hs-slide.is-on .hs-cc.back { transition-delay: .35s; }
+    .hs-slide.is-on .hs-cc.front { transition-delay: .5s; }
+    .hs-slide.is-on .hs-cards { animation: hsFloat 7s ease-in-out 1.4s infinite; }
+    @keyframes hsFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+    /* Controles: barras de progreso + pausa */
+    .hs-ctrl { display: flex; align-items: center; gap: 0.9rem; margin-top: 2.2rem; }
+    .hs-dots { display: flex; gap: 0.4rem; }
+    .hs-dot { width: 38px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; }
+    .hs-dot i { display: block; height: 2px; border-radius: 2px; background: rgba(255,255,255,0.25); position: relative; overflow: hidden; }
+    .hs-dot i::after { content: ''; position: absolute; inset: 0; background: var(--celeste-soft); transform: scaleX(0); transform-origin: left; }
+    .hs-dot.is-done i::after { transform: scaleX(1); }
+    .hs-dot.is-on i::after { animation: hsBar var(--hs-ms, 7000ms) linear forwards; }
+    .hs.is-paused .hs-dot.is-on i::after { animation-play-state: paused; }
+    .hs-dot:focus-visible, .hs-pause:focus-visible { outline: 2px solid var(--celeste-soft); outline-offset: 3px; border-radius: 3px; }
+    @keyframes hsBar { to { transform: scaleX(1); } }
+    .hs-pause { width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; background: none; cursor: pointer; position: relative; }
+    .hs-pause::before, .hs-pause::after { content: ''; position: absolute; top: 7px; width: 2px; height: 8px; background: rgba(255,255,255,0.8); }
+    .hs-pause::before { left: 8px; } .hs-pause::after { left: 12px; }
+    .hs-pause[aria-pressed="true"]::before { left: 9px; top: 6.5px; width: 0; height: 0; background: none; border-left: 7px solid rgba(255,255,255,0.85); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
+    .hs-pause[aria-pressed="true"]::after { display: none; }
+
+    @media (max-width: 768px) {
+      .hs-cards { display: none; }
+      .hs-slide .hero-eyebrow { display: none; }
+      .hs-ctrl { margin-top: 1.4rem; }
+      .hs-slide:not([data-slide="0"]) .hero-sub { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      img.hs-bg.is-on, .hs-slide.is-on .hs-cards { animation: none !important; }
+      .hs-dot.is-on i::after { animation: none; transform: scaleX(1); }
+      .hs-slide, .hs-bg, .hs-cc { transition-duration: .01ms !important; }
+    }
     /* Ilustraciones sutiles */
     .area-ico.area-ilus, .area-card:hover .area-ico.area-ilus { background: var(--white); }
     .area-ico.area-ilus svg { width: 34px; height: 34px; transition: transform .25s; }
@@ -907,15 +985,20 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <img
-      class="hero-img"
+      class="hero-img hs-bg is-on" data-slide="0"
       src="https://i.postimg.cc/G2k4nBFS/476531221-1063690762468539-6084965534244979362-n.jpg"
       alt="Santana &amp; Cía — Abogados Chile"
       loading="eager"
       fetchpriority="high"
     >
+    <img class="hero-img hs-bg" data-slide="1" src="/hero-sur-de-chile.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="1680" height="1120">
+    <img class="hero-img hs-bg" data-slide="2" src="/hero-santiago.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="1680" height="1116">
+    <div class="hs-bg hs-bg-pay" data-slide="3" aria-hidden="true"></div>
     <div class="hero-img-overlay"></div>
     <div class="hero-inner">
-      <div>
+      <div class="hs" id="hero-slides" role="region" aria-roledescription="carrusel" aria-label="Presentación del estudio">
+        <div class="hs-track">
+        <div class="hs-slide is-on" data-slide="0" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
         <p class="hero-eyebrow">contacto@santanaycia.cl</p>
         <h1 class="hero-title" data-en="Lawyers for&lt;br&gt;what &lt;em class=&quot;t-opt&quot;&gt;truly&lt;/em&gt;&lt;br class=&quot;t-br&quot;&gt; &lt;span class=&quot;t-last&quot;&gt;matters&lt;/span&gt;">Abogados para<br>lo que <em class="t-opt">realmente</em><br class="t-br"> <span class="t-last">importa</span></h1>
         <p class="hero-sub" data-en="Family, civil, estate, rental and property law. One firm, service across Chile.">Familia, civil, herencias, arriendo y propiedades. Un solo estudio, atención en todo Chile.</p>
@@ -923,6 +1006,57 @@
           <span data-en="Free Initial Assessment">Primera evaluación sin costo</span>
           <span data-en="Card payments accepted">Pagos con tarjeta</span>
           <span data-en="Service Across Chile">Atención en todo Chile</span>
+        </div>
+        </div>
+
+        <div class="hs-slide" data-slide="1" role="group" aria-roledescription="diapositiva" aria-label="2 de 4" aria-hidden="true" inert>
+          <p class="hero-eyebrow" data-en="From Arica to Magallanes">De Arica a Magallanes</p>
+          <p class="hero-title hs-title" data-en="Service across&lt;br&gt;&lt;em&gt;all of Chile&lt;/em&gt;">Atención en<br><em>todo Chile</em></p>
+          <p class="hero-sub" data-en="Write to us on WhatsApp at &lt;a href=&quot;https://wa.me/56969051586&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;+56 9 6905 1586&lt;/a&gt; or by email at &lt;a href=&quot;mailto:contacto@santanaycia.cl&quot;&gt;contacto@santanaycia.cl&lt;/a&gt;. We assist you wherever you are.">Escríbenos por WhatsApp al <a href="https://wa.me/56969051586" target="_blank" rel="noopener">+56 9 6905 1586</a> o al correo <a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a>. Te atendemos estés donde estés.</p>
+          <div class="hero-trust">
+            <span data-en="WhatsApp">WhatsApp</span>
+            <span data-en="Email">Correo</span>
+            <span data-en="Video call">Videollamada</span>
+          </div>
+        </div>
+
+        <div class="hs-slide" data-slide="2" role="group" aria-roledescription="diapositiva" aria-label="3 de 4" aria-hidden="true" inert>
+          <p class="hero-eyebrow" data-en="Write to us">Escríbenos</p>
+          <p class="hero-title hs-title" data-en="You can also write&lt;br&gt;to us by email:">También nos puedes<br>escribir al correo:</p>
+          <p class="hs-mail"><a href="mailto:contacto@santanaycia.cl">contacto@santanaycia.cl</a></p>
+          <div class="hs-chips">
+            <a href="https://www.santanaycia.cl/familia" data-en="Family">Familia</a>
+            <a href="https://www.santanaycia.cl/legatum" data-en="Estates and wills">Herencias y testamentos</a>
+            <a href="https://www.santanaycia.cl/devuelveme-mi-casa" data-en="Landlord recovery">Devuélveme mi casa</a>
+            <a href="https://www.santanaycia.cl/abogados" data-en="Civil and contracts">Civil y contratos</a>
+            <a href="https://www.santanaycia.cl/propiedades" data-en="Property">Propiedades</a>
+            <a href="https://www.exigetuseguro.cl" target="_blank" rel="noopener" data-en="Insurance">Seguros</a>
+          </div>
+        </div>
+
+        <div class="hs-slide" data-slide="3" role="group" aria-roledescription="diapositiva" aria-label="4 de 4" aria-hidden="true" inert>
+          <div class="hs-cards" aria-hidden="true">
+            <div class="hs-cc back"><span class="hs-stripe"></span><span class="hs-sign"></span><span class="hs-holo"></span></div>
+            <div class="hs-cc front">
+              <div class="row"><span class="hs-chip"></span><span class="hs-mono">S<i>&amp;</i>C</span></div>
+              <div class="hs-num">•••• •••• •••• 2026</div>
+              <div class="row"><small>Santana &amp; Cía</small><b>WEBPAY</b></div>
+            </div>
+          </div>
+          <p class="hero-title hs-title" data-en="Flexible&lt;br&gt;&lt;em&gt;payment options&lt;/em&gt;">Flexibilidad de<br><em>medios de pago</em></p>
+          <p class="hero-sub" data-en="Up to 12 interest-free installments by credit card, installments without a card, debit or bank transfer. No surcharge.">Hasta 12 cuotas sin interés con tarjeta de crédito, cuotas sin tarjeta, débito o transferencia. Sin recargo.</p>
+          <a class="hs-link" href="https://www.santanaycia.cl/formas-de-pago" data-en="See payment options →">Ver formas de pago →</a>
+        </div>
+        </div>
+
+        <div class="hs-ctrl">
+          <div class="hs-dots" role="tablist" aria-label="Elegir diapositiva">
+            <button type="button" class="hs-dot is-on" data-go="0" aria-label="Diapositiva 1" aria-current="true"><i></i></button>
+            <button type="button" class="hs-dot" data-go="1" aria-label="Diapositiva 2"><i></i></button>
+            <button type="button" class="hs-dot" data-go="2" aria-label="Diapositiva 3"><i></i></button>
+            <button type="button" class="hs-dot" data-go="3" aria-label="Diapositiva 4"><i></i></button>
+          </div>
+          <button type="button" class="hs-pause" aria-label="Pausar presentación" aria-pressed="false"></button>
         </div>
       </div>
 
@@ -1299,6 +1433,64 @@
       btn.setAttribute('aria-expanded', 'false');
     }
 
+
+    /* ── HERO: rotación de diapositivas ── */
+    (function(){
+      var root = document.getElementById('hero-slides');
+      if (!root) return;
+      var slides = root.querySelectorAll('.hs-slide');
+      var bgs = document.querySelectorAll('#hero .hs-bg');
+      var dots = root.querySelectorAll('.hs-dot');
+      var pauseBtn = root.querySelector('.hs-pause');
+      var MS = 7000, cur = 0, timer = null;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var userPaused = reduce, hoverPaused = false;
+      root.style.setProperty('--hs-ms', MS + 'ms');
+
+      function show(n){
+        cur = (n + slides.length) % slides.length;
+        slides.forEach(function(el, i){
+          var on = i === cur;
+          el.classList.toggle('is-on', on);
+          if (on) { el.removeAttribute('aria-hidden'); el.removeAttribute('inert'); }
+          else { el.setAttribute('aria-hidden', 'true'); el.setAttribute('inert', ''); }
+        });
+        bgs.forEach(function(el){ el.classList.toggle('is-on', +el.dataset.slide === cur); });
+        dots.forEach(function(d, i){
+          d.classList.remove('is-on');
+          d.classList.toggle('is-done', i < cur);
+          if (i === cur) { d.setAttribute('aria-current', 'true'); } else { d.removeAttribute('aria-current'); }
+        });
+        void dots[cur].offsetWidth;          /* reinicia la barra */
+        dots[cur].classList.add('is-on');
+        schedule();
+      }
+      function schedule(){
+        clearTimeout(timer);
+        if (userPaused || hoverPaused || document.hidden) return;
+        timer = setTimeout(function(){ show(cur + 1); }, MS);
+      }
+      function setPaused(){
+        root.classList.toggle('is-paused', userPaused || hoverPaused);
+        if (userPaused || hoverPaused) { clearTimeout(timer); } else { show(cur); }
+      }
+      dots.forEach(function(d){ d.addEventListener('click', function(){ show(+d.dataset.go); }); });
+      pauseBtn.addEventListener('click', function(){
+        userPaused = !userPaused;
+        pauseBtn.setAttribute('aria-pressed', String(userPaused));
+        pauseBtn.setAttribute('aria-label', userPaused ? 'Reanudar presentación' : 'Pausar presentación');
+        setPaused();
+      });
+      if (reduce) { pauseBtn.setAttribute('aria-pressed', 'true'); pauseBtn.setAttribute('aria-label', 'Reanudar presentación'); root.classList.add('is-paused'); }
+      root.addEventListener('mouseenter', function(){ hoverPaused = true; setPaused(); });
+      root.addEventListener('mouseleave', function(){ hoverPaused = false; setPaused(); });
+      root.addEventListener('focusin', function(){ hoverPaused = true; setPaused(); });
+      root.addEventListener('focusout', function(e){ if (!root.contains(e.relatedTarget)) { hoverPaused = false; setPaused(); } });
+      document.addEventListener('visibilitychange', schedule);
+      /* Precarga las fotos cuando la página ya cargó */
+      window.addEventListener('load', function(){ bgs.forEach(function(el){ if (el.tagName === 'IMG') el.loading = 'eager'; }); });
+      schedule();
+    })();
     /* ── Selector de idioma — motor de traducción ── */
     let currentLang = 'es';
     const i18nEls = document.querySelectorAll('[data-en]');
