@@ -826,6 +826,68 @@
       html { scroll-behavior: auto; }
       .fi { opacity: 1; transform: none; }
     }
+
+    /* ─────────────────────────────────────────
+       ILUSTRACIONES FLAT (áreas, pasos, Legatum)
+    ───────────────────────────────────────── */
+    .area-ico--ill { width: 64px; height: 64px; border-radius: 14px; }
+    .area-ico--ill svg { width: 52px; height: 52px; overflow: visible; transition: transform .35s ease; }
+    .area-top:has(.area-ico--ill) { margin-top: -30px; }
+    .area-card:hover .area-ico--ill { background: var(--celeste-l); }
+    .area-card:hover .area-ico--ill svg { transform: translateY(-2px) scale(1.04); }
+
+    .step-ill {
+      width: 78px; height: 78px; border-radius: 18px; background: var(--celeste-l);
+      display: grid; place-items: center; margin-bottom: 1.4rem;
+    }
+    .step-ill svg { width: 60px; height: 60px; overflow: visible; }
+    .step-ill + .step-num {
+      position: absolute; top: calc(2rem - 9px); left: calc(1.75rem + 62px);
+      width: 28px; height: 28px; font-size: 15px; margin: 0; box-shadow: 0 0 0 4px #fff;
+    }
+
+    .tool-ico--ill { width: 124px; height: 88px; background: none; border: none; border-radius: 0; }
+    .tool-ico--ill svg { width: 124px; height: 88px; }
+    .tool-card:hover .tool-ico--ill svg { transform: translateY(-2px); }
+    .tool-ico--ill svg { transition: transform .35s ease; }
+    .pie { stroke-dasharray: 0 100; transition: stroke-dasharray 1.1s cubic-bezier(.4,0,.2,1); }
+    .tool-card.visible .pie-1 { stroke-dasharray: 49 100; transition-delay: .35s; }
+    .tool-card.visible .pie-2 { stroke-dasharray: 24 100; transition-delay: .75s; }
+    .tool-card.visible .pie-3 { stroke-dasharray: 24 100; transition-delay: 1s; }
+    .heir { opacity: 0; transform: translateX(-4px); transition: opacity .6s ease, transform .6s ease; }
+    .tool-card.visible .heir { opacity: 1; transform: none; }
+    .tool-card.visible .heir-1 { transition-delay: 1.1s; }
+    .tool-card.visible .heir-2 { transition-delay: 1.3s; }
+    .tool-card.visible .heir-3 { transition-delay: 1.5s; }
+
+    .ill-float, .ill-tilt, .ill-scan { transform-box: fill-box; transform-origin: center; }
+    .ill-tilt { transform-origin: 50% 0; }
+    .ill-float { animation: illFloat 7s ease-in-out infinite; }
+    .ill-tilt  { animation: illTilt 8s ease-in-out infinite; }
+    .ill-scan  { animation: illScan 7s ease-in-out infinite; }
+    .ill-dot   { animation: illDot 2.4s ease-in-out infinite; }
+    .ill-dot:nth-of-type(2) { animation-delay: .3s; }
+    .ill-dot:nth-of-type(3) { animation-delay: .6s; }
+    .areas-grid .area-card:nth-child(2n) .ill-float, .step:nth-child(2) .ill-scan { animation-delay: -2.5s; }
+    .step:nth-child(3) .ill-float { animation-delay: -4s; }
+    @keyframes illFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    @keyframes illTilt  { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    @keyframes illScan  { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-6px,-4px); } }
+    @keyframes illDot   { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .area-ico--ill { width: 52px; height: 52px; border-radius: 12px; }
+      .area-ico--ill svg { width: 40px; height: 40px; }
+      .area-top:has(.area-ico--ill) { margin-top: -25px; }
+      .step-ill { display: none; }
+      .step-ill + .step-num { position: static; width: 34px; height: 34px; font-size: 17px; box-shadow: 0 0 0 4px var(--celeste-l); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ill-float, .ill-tilt, .ill-scan, .ill-dot { animation: none !important; }
+      .pie, .heir { transition: none !important; }
+      .pie-1 { stroke-dasharray: 49 100; } .pie-2, .pie-3 { stroke-dasharray: 24 100; }
+      .heir { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -1097,7 +1159,7 @@
         <a href="https://www.santanaycia.cl/familia" class="area-card fi">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1758227365187-016878604d94?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D')"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.6" stroke="currentColor" stroke-width="1.6"/><circle cx="16.5" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2-5 4.5-5s4.5 2 4.5 5M13 19c0-2.4 1.6-4.2 3.5-4.2S20 16.6 20 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ico--ill"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"><path d="M6 39h36" stroke="#0e2740" stroke-opacity=".15" stroke-width="1.5" stroke-linecap="round"/><circle cx="15" cy="17" r="5" fill="#1a65a0"/><path d="M7 39c0-6.3 3.6-11 8-11s8 4.7 8 11z" fill="#2c86c9"/><circle cx="33" cy="18" r="4.5" fill="#0e2740"/><path d="M26 39c0-5.8 3.1-10 7-10s7 4.2 7 10z" fill="#1a65a0"/><circle cx="24" cy="28" r="3.2" fill="#fff" stroke="#1a65a0" stroke-width="1.5"/><path d="M19 39c0-3.7 2.2-6.2 5-6.2s5 2.5 5 6.2z" fill="#fff" stroke="#1a65a0" stroke-width="1.5" stroke-linejoin="round"/><path class="ill-float" d="M24 10.2c-1-1.6-3.7-1.2-3.7 1 0 1.6 2.2 3 3.7 4.1 1.5-1.1 3.7-2.5 3.7-4.1 0-2.2-2.7-2.6-3.7-1z" fill="#2c86c9"/></svg></span>
             <span class="area-num">01</span>
           </div>
           <p class="area-eyebrow">Derecho de Familia</p>
@@ -1115,7 +1177,7 @@
         <a href="https://www.santanaycia.cl/legatum" class="area-card fi" data-delay="1">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4V20a.5.5 0 01-.5.5h-10.5A.5.5 0 016.5 20V4a.5.5 0 01.5-.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13.5 3.5V8h4.5M9.5 12.5h5M9.5 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ico--ill"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"><rect x="16" y="10" width="22" height="30" rx="2.5" fill="#cfe5f7"/><rect x="10" y="6" width="22" height="30" rx="2.5" fill="#fff" stroke="#1a65a0" stroke-width="1.5"/><path d="M15 13h12M15 18h12M15 23h7" stroke="#cfe5f7" stroke-width="2.2" stroke-linecap="round"/><g class="ill-float"><path d="M27.5 36.5l-1.6 6 3.1-1.7 1.8 2.6.4-6.2M34.5 36.5l1.6 6-3.1-1.7-1.8 2.6-.4-6.2" fill="#1a65a0"/><circle cx="31" cy="33" r="6.5" fill="#2c86c9"/><circle cx="31" cy="33" r="3.5" stroke="#fff" stroke-width="1.5"/></g></svg></span>
             <span class="area-num">02</span>
           </div>
           <p class="area-eyebrow">Herencias y Sucesiones</p>
@@ -1133,7 +1195,7 @@
         <a href="https://www.santanaycia.cl/arriendo-san-felipe-los-andes" class="area-card fi">
           <div class="area-photo" style="background-image:url('https://images.unsplash.com/photo-1729855637715-99192904aac5?q=80&w=715&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D')"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 11l8-6.5 8 6.5V20a.5.5 0 01-.5.5H4.5A.5.5 0 014 20v-9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 15.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+            <span class="area-ico area-ico--ill"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"><path d="M5 39h38" stroke="#0e2740" stroke-opacity=".15" stroke-width="1.5" stroke-linecap="round"/><path d="M10 21.5V39h22V21.5L21 12.5z" fill="#fff" stroke="#1a65a0" stroke-width="1.5" stroke-linejoin="round"/><path d="M6.5 22.5L21 10l14.5 12.5" stroke="#2c86c9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="17.5" y="28" width="7" height="11" rx="1" fill="#cfe5f7"/><rect x="26" y="24" width="3.5" height="3.5" rx=".6" fill="#cfe5f7"/><g class="ill-float"><circle cx="38" cy="25" r="4.2" fill="#fff" stroke="#0e2740" stroke-width="1.8"/><path d="M38 29.2v9.3M38 34.5h2.6M38 37.5h2" stroke="#0e2740" stroke-width="1.8" stroke-linecap="round"/></g></svg></span>
             <span class="area-num">03</span>
           </div>
           <p class="area-eyebrow">Arriendo · Ley 21.461</p>
@@ -1151,7 +1213,7 @@
         <a href="https://www.santanaycia.cl/abogados" class="area-card fi" data-delay="1">
           <div class="area-photo" style="background-image:url('https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=900')"></div>
           <div class="area-top">
-            <span class="area-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16M6 20h12M5 7h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7 7l-3 6.5a3 3 0 006 0L7 7zM17 7l-3 6.5a3 3 0 006 0L17 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <span class="area-ico area-ico--ill"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"><path d="M24 11v27M16 39.5h16" stroke="#0e2740" stroke-width="1.8" stroke-linecap="round"/><g class="ill-tilt"><path d="M9 14h30" stroke="#1a65a0" stroke-width="1.8" stroke-linecap="round"/><path d="M12 14l-4 11M12 14l4 11M36 14l-4 11M36 14l4 11" stroke="#1a65a0" stroke-opacity=".55" stroke-width="1"/><path d="M6.5 25h11a5.5 5.5 0 01-11 0z" fill="#2c86c9"/><path d="M30.5 25h11a5.5 5.5 0 01-11 0z" fill="#cfe5f7" stroke="#1a65a0" stroke-width="1.2" stroke-linejoin="round"/></g><circle cx="24" cy="10" r="2.2" fill="#2c86c9"/></svg></span>
             <span class="area-num">04</span>
           </div>
           <p class="area-eyebrow">Derecho Civil</p>
@@ -1167,7 +1229,7 @@
         </a>
 
         <a href="https://www.santanaycia.cl/legatum" class="tool-card fi">
-          <span class="tool-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3.5" width="14" height="17" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7.5h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="12" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="15" cy="12" r=".9" fill="currentColor"/><circle cx="9" cy="16" r=".9" fill="currentColor"/><circle cx="12" cy="16" r=".9" fill="currentColor"/><circle cx="15" cy="16" r=".9" fill="currentColor"/></svg></span>
+          <span class="tool-ico tool-ico--ill"><svg viewBox="0 0 112 80" fill="none" aria-hidden="true" focusable="false"><rect x="4" y="6" width="68" height="68" rx="10" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".16"/><circle cx="38" cy="40" r="17" stroke="#fff" stroke-opacity=".1" stroke-width="10"/><circle class="pie pie-1" cx="38" cy="40" r="17" pathLength="100" stroke="#9fd1f4" stroke-width="10" transform="rotate(-90 38 40)"/><circle class="pie pie-2" cx="38" cy="40" r="17" pathLength="100" stroke="#2c86c9" stroke-width="10" stroke-dashoffset="-50" transform="rotate(-90 38 40)"/><circle class="pie pie-3" cx="38" cy="40" r="17" pathLength="100" stroke="#fff" stroke-opacity=".85" stroke-width="10" stroke-dashoffset="-75" transform="rotate(-90 38 40)"/><path d="M72 40h8M80 20v40M80 20h6M80 40h6M80 60h6" stroke="#fff" stroke-opacity=".22" stroke-width="1.5" stroke-linecap="round"/><g class="heir heir-1"><circle cx="96" cy="16.5" r="3.4" fill="#9fd1f4"/><path d="M90 26.5c0-3.6 2.7-6 6-6s6 2.4 6 6z" fill="#9fd1f4"/></g><g class="heir heir-2"><circle cx="96" cy="36.5" r="3.4" fill="#2c86c9"/><path d="M90 46.5c0-3.6 2.7-6 6-6s6 2.4 6 6z" fill="#2c86c9"/></g><g class="heir heir-3"><circle cx="96" cy="56.5" r="3.4" fill="#fff" fill-opacity=".85"/><path d="M90 66.5c0-3.6 2.7-6 6-6s6 2.4 6 6z" fill="#fff" fill-opacity=".85"/></g></svg></span>
           <div>
             <span class="tool-badge">Herramienta gratuita</span>
             <h3 class="tool-title"><em>Legatum</em> — Calculadora de herencias</h3>
@@ -1208,18 +1270,21 @@
       </div>
       <div class="steps">
         <div class="step fi">
+          <div class="step-ill"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M11 12h26a4 4 0 014 4v12a4 4 0 01-4 4H21l-6 5v-5h-4a4 4 0 01-4-4V16a4 4 0 014-4z" fill="#fff" stroke="#1a65a0" stroke-width="1.5" stroke-linejoin="round"/><path d="M13 19.5h20M13 25.5h12" stroke="#cfe5f7" stroke-width="2.4" stroke-linecap="round"/><g class="ill-float"><path d="M31 33h22a4 4 0 014 4v9a4 4 0 01-4 4h-3v5l-6-5H31a4 4 0 01-4-4v-9a4 4 0 014-4z" fill="#2c86c9"/><circle class="ill-dot" cx="35.5" cy="41.5" r="1.7" fill="#fff"/><circle class="ill-dot" cx="42" cy="41.5" r="1.7" fill="#fff"/><circle class="ill-dot" cx="48.5" cy="41.5" r="1.7" fill="#fff"/></g></svg></div>
           <div class="step-num">1</div>
           <h3>Nos cuenta su caso</h3>
           <p>Por el formulario, correo o WhatsApp. Puede adjuntar los documentos que tenga a mano.</p>
           <span class="step-tag">5 minutos</span>
         </div>
         <div class="step fi" data-delay="1">
+          <div class="step-ill"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><rect x="11" y="7" width="30" height="41" rx="3" fill="#fff" stroke="#1a65a0" stroke-width="1.5"/><path d="M17 16h18M17 22h18M17 28h11" stroke="#cfe5f7" stroke-width="2.4" stroke-linecap="round"/><path d="M17 37l3 3 6-6" stroke="#2c86c9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><g class="ill-scan"><circle cx="42" cy="38" r="9" fill="#fff" fill-opacity=".7" stroke="#0e2740" stroke-width="2"/><path d="M48.5 44.5l7 7" stroke="#0e2740" stroke-width="3.2" stroke-linecap="round"/></g></svg></div>
           <div class="step-num">2</div>
           <h3>Evaluación sin costo</h3>
           <p>Analizamos su situación antes de responder y le damos una primera opinión fundada.</p>
           <span class="step-tag">Máx. 24 h hábiles</span>
         </div>
         <div class="step fi" data-delay="2">
+          <div class="step-ill"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><rect x="7" y="11" width="42" height="32" rx="3.5" fill="#fff" stroke="#1a65a0" stroke-width="1.5"/><path d="M7.75 14.5a2.75 2.75 0 012.75-2.75h35a2.75 2.75 0 012.75 2.75v4.25H7.75z" fill="#2c86c9"/><path d="M13 26h20M13 32h13" stroke="#cfe5f7" stroke-width="2.4" stroke-linecap="round"/><path d="M13 38.5c2-2.2 3.4-2.2 4.4 0s2.6 2 4-1 3-1.2 4.6.6" stroke="#1a65a0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><g class="ill-float"><circle cx="48" cy="44" r="8.5" fill="#0e2740"/><path d="M44.3 44.2l2.6 2.6 4.8-5.2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
           <div class="step-num">3</div>
           <h3>Propuesta transparente</h3>
           <p>Estrategia, plazos y honorarios por escrito. Usted decide si avanzamos, sin compromiso.</p>
