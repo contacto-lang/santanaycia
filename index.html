@@ -839,9 +839,7 @@
     img.hs-bg.is-on { animation: hsZoom 9s ease-out both; }
     .hero-img[data-slide="1"] { object-position: center 40%; }
     .hero-img[data-slide="2"] { object-position: center 55%; }
-    .hs-bg-pay { position: absolute; inset: 0; background:
-        radial-gradient(60% 70% at 25% 35%, rgba(47,127,196,0.35), transparent 70%),
-        linear-gradient(135deg, #0b1a2d 0%, #12304f 55%, #1a4a78 100%); }
+    .hero-img[data-slide="3"] { object-position: 70% 50%; filter: brightness(.62) saturate(.85); }
     @keyframes hsZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
 
     .hs { position: relative; }
@@ -850,7 +848,7 @@
       transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1), visibility 0s .8s; }
     .hs-slide.is-on { opacity: 1; visibility: visible; transform: none; transition-delay: .25s, .25s, 0s; }
     .hs-title { margin-bottom: 1.3rem; }
-    .hs-slide .hero-sub a { color: #fff; text-decoration: underline; text-decoration-color: rgba(169,210,242,0.6); text-underline-offset: 3px; }
+    .hs-slide .hero-sub a { white-space: nowrap; color: #fff; text-decoration: underline; text-decoration-color: rgba(169,210,242,0.6); text-underline-offset: 3px; }
     .hs-mail { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.1; margin: -0.4rem 0 1.4rem; overflow-wrap: anywhere; }
     .hs-mail a { color: var(--celeste-soft); text-decoration: none; border-bottom: 1px solid rgba(169,210,242,0.35); transition: border-color .25s; }
     .hs-mail a:hover { border-color: var(--celeste-soft); }
@@ -909,6 +907,24 @@
       img.hs-bg.is-on, .hs-slide.is-on .hs-cards { animation: none !important; }
       .hs-dot.is-on i::after { animation: none; transform: scaleX(1); }
       .hs-slide, .hs-bg, .hs-cc { transition-duration: .01ms !important; }
+    }
+
+    /* Móvil: hero más sutil y elegante */
+    @media (max-width: 768px) {
+      .hero { padding-bottom: 2.25rem; }
+      .hero-title, .hs-title { font-size: clamp(29px, 8.2vw, 34px); line-height: 1.08; margin-bottom: 0.85rem; letter-spacing: 0; }
+      .hero-sub, .hs-slide:not([data-slide="0"]) .hero-sub { font-size: 13px; line-height: 1.7; margin-bottom: 1rem; color: rgba(255,255,255,0.72); max-width: 34ch; }
+      .hero-trust { gap: 0.45rem 1rem; }
+      .hero-trust span { font-size: 10px; letter-spacing: 0.04em; color: rgba(255,255,255,0.62); }
+      .hero-trust span::before { width: 4px; height: 4px; }
+      .hs-mail { font-size: 21px; margin: -0.2rem 0 0.9rem; }
+      .hs-chips { gap: 0.35rem; }
+      .hs-chips a { font-size: 10.5px; padding: 4px 10px; color: rgba(255,255,255,0.78); }
+      .hs-link { font-size: 10.5px; letter-spacing: 0.12em; padding: 0.65rem 1.05rem; }
+      .hs-ctrl { margin-top: 1.1rem; gap: 0.7rem; }
+      .hs-dot { width: 26px; height: 20px; }
+      .hs-pause { width: 20px; height: 20px; transform: scale(.85); }
+      .hero-inner { gap: 1.6rem; }
     }
     /* Ilustraciones sutiles */
     .area-ico.area-ilus, .area-card:hover .area-ico.area-ilus { background: var(--white); }
@@ -993,7 +1009,7 @@
     >
     <img class="hero-img hs-bg" data-slide="1" src="/hero-sur-de-chile.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="1680" height="1120">
     <img class="hero-img hs-bg" data-slide="2" src="/hero-santiago.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="1680" height="1116">
-    <div class="hs-bg hs-bg-pay" data-slide="3" aria-hidden="true"></div>
+    <img class="hero-img hs-bg" data-slide="3" src="/hero-medios-de-pago.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="1680" height="1120">
     <div class="hero-img-overlay"></div>
     <div class="hero-inner">
       <div class="hs" id="hero-slides" role="region" aria-roledescription="carrusel" aria-label="Presentación del estudio">
@@ -1039,7 +1055,7 @@
             <div class="hs-cc back"><span class="hs-stripe"></span><span class="hs-sign"></span><span class="hs-holo"></span></div>
             <div class="hs-cc front">
               <div class="row"><span class="hs-chip"></span><span class="hs-mono">S<i>&amp;</i>C</span></div>
-              <div class="hs-num">•••• •••• •••• 2026</div>
+              <div class="hs-num">•••• •••• •••• 4817</div>
               <div class="row"><small>Santana &amp; Cía</small><b>WEBPAY</b></div>
             </div>
           </div>
